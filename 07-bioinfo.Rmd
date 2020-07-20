@@ -1,0 +1,337 @@
+# Bioinfo questions
+
+```{r}
+answer=T
+```
+
+* 进入sxbd目录，查看目录下的文件有哪些？
+* 查看GTF文件的内容和格式 (如果没有，可在<ftp://ftp.ensembl.org/pub/release-91/gtf/homo_sapiens/Homo_sapiens.GRCh38.91.gtf.gz>下载。)
+* 给每个区域的行首增加`chr`标签，并去掉`#`开头的行。
+
+```
+grep -v '^#' GRCh38.gtf | sed 's/^/chr/' >GRCh38.new.gtf
+```
+
+* 统计GTF文件中染色体数目？
+
+```
+ct@ehbio:~/sxbd$ cut -f1 GRCh38.new.gtf | uniq -c >chrCount.txt
+ct@ehbio:~/sxbd$ awk '{print $2"\t"$1}' chrCount.txt 
+chr1	236802
+chr2	194223
+chr3	160954
+chr4	106152
+chr5	115953
+chr6	116635
+chr7	122750
+chrX	81525
+chr8	95038
+chr9	91333
+chr11	159595
+chr10	94467
+chr12	154317
+chr13	38817
+chr14	93293
+chr15	97353
+chr16	125435
+chr17	166619
+chr18	47336
+chr20	57175
+chr19	163738
+chrY	7167
+chr22	56380
+chr21	28928
+chrMT	144
+chrKI270728.1	120
+chrKI270727.1	88
+chrKI270442.1	6
+chrGL000225.1	3
+chrGL000009.2	8
+chrGL000194.1	26
+chrGL000205.2	17
+chrGL000195.1	27
+chrKI270733.1	12
+chrGL000219.1	12
+chrGL000216.2	3
+chrKI270744.1	3
+chrKI270734.1	96
+chrGL000213.1	52
+chrGL000220.1	12
+chrGL000218.1	8
+chrKI270731.1	11
+chrKI270750.1	3
+chrKI270721.1	25
+chrKI270726.1	11
+chrKI270711.1	151
+chrKI270713.1	20
+ct@ehbio:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt 
+ 236802 chr1
+ 194223 chr2
+ 160954 chr3
+ 106152 chr4
+ 115953 chr5
+ 116635 chr6
+ 122750 chr7
+  81525 chrX
+  95038 chr8
+  91333 chr9
+ 159595 chr11
+  94467 chr10
+ 154317 chr12
+  38817 chr13
+  93293 chr14
+  97353 chr15
+ 125435 chr16
+ 166619 chr17
+  47336 chr18
+  57175 chr20
+ 163738 chr19
+   7167 chrY
+  56380 chr22
+  28928 chr21
+    144 chrMT
+ct@ehbio:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt | sed 's/  *\([0-9]*\) \(chr.*\)/\2\t\1/' 
+chr1	236802
+chr2	194223
+chr3	160954
+chr4	106152
+chr5	115953
+chr6	116635
+chr7	122750
+chrX	81525
+chr8	95038
+chr9	91333
+chr11	159595
+chr10	94467
+chr12	154317
+chr13	38817
+chr14	93293
+chr15	97353
+chr16	125435
+chr17	166619
+chr18	47336
+chr20	57175
+chr19	163738
+chrY	7167
+chr22	56380
+chr21	28928
+chrMT	144
+```
+
+* 统计GTF文件中基因数目？
+
+```
+ct@ehbio:~/sxbd$ time cut -f 3 GRCh38.new.gtf | sort | uniq -c
+ 712821 CDS
+1199851 exon
+ 144659 five_prime_utr
+  58302 gene
+    119 Selenocysteine
+  83743 start_codon
+  75493 stop_codon
+ 137545 three_prime_utr
+ 200310 transcript
+
+real	0m8.314s
+user	0m8.259s
+sys	0m0.679s
+# 更快
+ct@ehbio:~/sxbd$ time awk '{a[$3]+=1}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
+five_prime_utr 144659
+exon 1199851
+three_prime_utr 137545
+CDS 712821
+gene 58302
+start_codon 83743
+Selenocysteine 119
+stop_codon 75493
+transcript 200310
+
+real	0m1.898s
+user	0m1.504s
+sys	0m0.394s
+
+
+ct@ehbio:~/sxbd$ awk '{if(a[$3]=="") a[$3]=1; else a[$3]=a[$3]+1;}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
+```
+
+* 计算GTF中外显子总长度？
+
+```
+# 这个是冗余的外显子，后面在计算非冗余外显子
+ct@ehbio:~/sxbd$ awk '{if($3=="exon") sum+=$5-$4+1;}END\
+	{print "Total redundant exon length", sum;}' GRCh38.new.gtf
+```
+
+* 计算GTF文件中每个基因的转录本数目？
+
+```
+# 第一个办法：基因和对应的转录本是排序好的，直接判断计算就可以
+awk 'BEGIN{OFS=FS="\t";}{if($3=="gene" && count>0) {print count; count=0;} else \
+	{if($3=="transcript") count+=1;}}END{print count}' GRCh38.new.gtf
+
+# 第二个方法：取出所有基因和转录本名字
+sed 's/"/\t/g' GRCh38.new.gtf | awk '$3=="transcript"' | cut -f 10,14 | cut -f 1 | uniq -c
+
+# 第三个方法：与第二个类似，但使用了groupBy
+
+sed 's/"/\t/g' GRCh38.new.gtf | awk '$3=="transcript"' | cut -f 10,14 | \
+	bedtools groupby -g 1 -c 1,2 -o count,collapse | head
+ENSG00000223972	2	ENST00000456328,ENST00000450305
+ENSG00000227232	1	ENST00000488147
+ENSG00000278267	1	ENST00000619216
+ENSG00000243485	2	ENST00000473358,ENST00000469289
+ENSG00000284332	1	ENST00000607096
+ENSG00000237613	2	ENST00000417324,ENST00000461467
+ENSG00000268020	1	ENST00000606857
+ENSG00000240361	2	ENST00000642116,ENST00000492842
+ENSG00000186092	2	ENST00000641515,ENST00000335137
+ENSG00000238009	5	ENST00000466430,ENST00000477740,ENST00000471248,ENST00000610542,ENST00000453576
+
+sed 's/"/\t/g' GRCh38.new.gtf | awk '$3=="transcript"' | cut -f 10,14 | \
+	bedtools groupby -g 1 -c 1,2 -o count,collapse >geneTrCount.txt
+
+```
+
+* 计算GTF文件中基因所拥有的平均转录本数目
+
+```
+awk 'BEGIN{OFS=FS="\t"}{sum+=$2}END{print sum/NR;}' geneTrCount.txt
+# 3.43573
+```
+
+* 生成一个多行Fasta测试序列供后续运算 (也可使用我们前面提供的脚本生成)
+
+```
+cat <<END >test.fa
+>id1
+ACGCATGGGGGGGGGGGGGGGGG
+AGTATGGTCCAGTA
+>id11
+AGTGGGGGGGGGGGGGGGGTTCCT
+cgactaggcagtctgagttga
+>id21
+AGTGGGGGGGGGGGGGGGGTTCCT
+cgactaggcagtctgagttga
+END
+```
+
+* `test.fa`中的序列全转成大写。
+
+```
+# \U 转换为大写
+# & 表示所有匹配内容
+sed -i '/^[^>]/ s/.*/\U&/' test.fa
+```
+
+* 计算多行FASTA文件`test.fa`中每条序列长度，输出类似`genome.txt`格式的文件(文件有两列，第一列为序列ID，第二列为序列长度)
+
+```
+# 计算一个输出一个
+awk 'BEGIN{OFS="\t"; size=0;}{if($0~/>/) {if(size>0) print geneName,size; \
+	geneName=$0; sub(">","",geneName); size=0;} else \
+	{size+=length}}END{print geneName,size}' test.fa
+```
+
+```
+# 全部计算完存储起来再输出
+awk 'BEGIN{OFS="\t";}{if($0~/>/) {geneName=$0; sub(">","",geneName); size[geneName]=0;} \
+	else {size[geneName]+=length($0)}}END\
+	{for (geneName in size) print geneName,size[geneName]}' test.fa
+```
+
+* 多行FASTA转单行FASTA序列
+
+```
+# conditions?true_value:false_value 三目运算符，条件为真时，返回冒号前结果，否则冒号后结果
+# 对于非第一行的>，输出前先输出一个换行
+awk '/^>/&&NR>1{print "";}{printf "%s",/^>/?$0"\n":$0}' test.fa >singleLine.fa
+```
+
+
+* 取出单行FASTA文件中序列长度大于40的序列的名字？
+
+```
+awk 'BEGIN{OFS="\t";}{if($0~/>/) {geneName=$0; sub(">","",geneName); } else \
+	{if (length($0)>40) print geneName;}}' singleLine.fa
+```
+
+
+* 分别用`awk`和`grep`从`test.fa`中提取给定ID对应的序列。
+
+```
+ID list:
+id1
+id21
+```
+
+* 利用AWK对基因表达数据进行标准化
+
+```
+cat <<END | sed 's/  */\t/g' >test.expr
+ID	sampleA	sampleB	sampleC
+A	1	2	3
+B	4	5	6
+C	6	7	8
+D	10	11	12
+END
+```
+
+```
+# 单列
+awk 'ARGIND==1{if(FNR>1) sum=sum+$2;}\
+	 ARGIND==2{if(FNR>1) {$3=$2/sum;} print $0;}' test.expr test.expr
+
+# 多列
+awk 'ARGIND==1{if(FNR>1) {for(i=2;i<=NF;i++) sum[i]=sum[i]+$i;}}\
+	 ARGIND==2{if(FNR>1) for(i=2;i<=NF;i++) {$i=$i/sum[i];} print $0;}' \
+	 test.expr test.expr
+```
+
+* 写出3种写法，去掉上一题`test.expr`矩阵中的第一行？
+
+```
+awk 'FNR>1' test.expr
+
+tail -n +2 test.expr
+
+sed -n '2,$p' test.expr
+```
+
+* 分别用`awk`和`sed`给`test.expr`矩阵加上标题行？
+
+```
+sed '1 iheaderline' test.expr
+awk '{if(FNR==1} print "headerline"; print $0' test.expr
+```
+
+* 给定一个`BAM`文件，怎么计算有多少基因组区域被测到了？平均测序深度是多少？
+
+```
+bedtools genomecov -ibam ../bio/map.sortP.bam -bga 
+```
+
+* 如何使用`bedtools`的其它工具或其它Linux命令实现`bedtools jaccard`子功能？ `bedtools jaccard`计算的是给定的两个`bed`文件之间交集区域(intersection)占总区域(union-intersection)的比例(jaccard)和交集的数目(n_intersections)。
+
+```
+ct@localhost:~/bedtools$ cat test1.bed 
+chr1	1	100
+chr2	1	50
+chr3	20	50
+ct@localhost:~/bedtools$ cat test2.bed 
+chr1	50	150
+chr3	1	50
+chr4	1	50
+chr5	1	50
+ct@localhost:~/bedtools$ bedtools jaccard -a test1.bed -b test2.bed 
+intersection	union-intersection	jaccard	n_intersections
+80	296	0.27027	2
+ct@localhost:~/bedtools$ bedtools intersect -a test1.bed -b test2.bed -wao \
+	| awk '{sum+=$NF}END{print sum;}'
+80
+ct@localhost:~/bedtools$ cat test1.bed test2.bed | awk '{sum+=$3-$2}END{print sum;}'
+376
+```
+
+
+

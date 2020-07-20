@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName 'Please contact ct@ehbio.com for accssing.'
+AuthUserFile   /var/www/html/ehbio_doc/.htpasswd_ehbio_doc
+Require valid-user
+

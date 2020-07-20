@@ -1,0 +1,1165 @@
+# Linux下软件安装相关 {#softinstall}
+
+视频课见 <http://bioinfo.ke.qq.com>。
+
+## 文件属性和可执行属性 {#fileattributeplusX}
+
+### 文件属性 {#fileattribute}
+
+文件属性`rwx`中`r`表示`read` (数字表示为4)、`w`表示`write` (数字表示为2)、`x`表示执行 (数字表示为1)。三个为一组，连续出现三次(如下面命令行中所示), 第一组表示文件的所有者拥有的权限，第二组为文件所有者所在的用户组所拥有的权限，组内所有成员都具有的权限，第三组为其它用户的权限。
+
+`chmod`可以修改文件或文件夹属性。
+
+```bash
+ct@ehbio:~$ ls -l /home
+-rwxr-xr-x 1 ct ct 26 12月  7 2016  ct
+
+# 让自己的家目录只自己可见
+ct@ehbio:~$ chmod go-rwx /home/ct
+ct@ehbio:~$ ls -l /home
+-rwx------ 1 ct ct 26 12月  7 2016  ct
+
+# 同组人增加可读和可执行属性
+ct@ehbio:~$ chmod g+rx /home/ct
+ct@ehbio:~$ ls -l /home
+-rwxr-x--- 1 ct ct 26 12月  7 2016  ct
+
+# 所有人增加可读和可执行属性
+ct@ehbio:~$ chmod a+rx /home/ct
+ct@ehbio:~$ ls -l /home
+-rwxr-xr-x 1 ct ct 26 12月  7 2016  ct
+```
+
+### 可执行属性 {#executable}
+
+Linux下文件有一个特殊的属性即可执行属性，用来指示这个文件是一个可执行的脚本或可以运行的二进制文件。前面所提到的这些命令，都具有可执行属性。
+
+`which`: 表示查看命令的路径。一般用于当我们想知道使用的命令来源于什么地方时，比如安装了多个R或多个python，但又分不清用的是哪个时，`which`一下，立即明了。在这儿我们用which获取的是可执行的命令所在的路径，进而查看其属性。
+
+```bash
+ct@ehbio:~$ ls -l "`which cd`"
+#rwx: 文件所有者可读、可写、可执行
+#r-x: 文件所有者所在组其它成员可读、可执行，不可修改
+#r-x: 其它人可读、可执行，不可修改
+-rwxr-xr-x 1 root root 26 12月  7 2016 /usr/bin/cd
+
+ct@ehbio:~$ ls -l "`which mkdir`"
+-rwxr-xr-x. 1 root root 79768 11月  6 2016 /usr/bin/mkdir
+
+ct@ehbio:~$ ls -l "`which python`"
+#l: 代表软连接
+#软连接自身是所有人可读可写，但具体的权限依赖于其链接的文件
+lrwxrwxrwx. 1 root root 7 3月  22 15:04 /usr/bin/python -> python2
+
+ct@ehbio:~$ ls -l "`which python2`"
+#第二层链接
+lrwxrwxrwx. 1 root root 9 3月  22 15:04 /usr/bin/python2 -> python2.7
+
+#链接的原始文件
+
+ct@ehbio:~$ ls -l "`which python2.7`"
+-rwxr-xr-x. 1 root root 7136 11月  6 2016 /usr/bin/python2.7
+```
+
+
+`chmod a+x file`: 表示给文件增加所有人(a)可执行权限 (+x)
+
+`chmod u+x file`: 表示给文件增加所有者(u，user，)可执行权限 (+x)
+
+`chmod g+x`, `chmod o+X`: 表示给文件增加组内人或其它人可执行权限
+
+`chmod 755 file`: 表示拥有者有可读写执行权限，其它人有可读执行权限。(`7=4+2+1`; `5=4+1`)
+
+具体使用`man chmod`查看其它参数使用。
+
+```bash
+# 新建个文件
+ct@ehbio:~$ cat <<END >run.sh
+> echo " I am a script created by ehbio." 
+> END
+
+# 查看其权限值
+ct@ehbio:~$ ls -l run.sh 
+-rw-rw-r-- 1 ct ct 39 6月  14 23:12 run.sh
+
+# 更改权限值
+ct@ehbio:~$ chmod 755 run.sh
+
+# 查看其权限值
+# 注意多了3个x
+ct@ehbio:~$ ls -l run.sh 
+-rwxr-xr-x 1 ct ct 39 6月  14 23:12 run.sh
+
+# 去除其它用户的可执行权限
+ct@ehbio:~$ chmod o-x run.sh 
+
+# 注意看少了个x
+ct@ehbio:~$ ls -l run.sh 
+-rwxr-xr-- 1 ct ct 39 6月  14 23:12 run.sh
+
+# 去除同组的可执行权限
+ct@ehbio:~$ chmod g-x run.sh
+
+# 注意看又少了个x
+ct@ehbio:~$ ls -l run.sh 
+-rwxr--r-- 1 ct ct 39 6月  14 23:12 run.sh
+
+# 去除所有人的可执行权限
+ct@ehbio:~$ chmod a-x run.sh
+ct@ehbio:~$ ls -l run.sh 
+-rw-r--r-- 1 ct ct 39 6月  14 23:12 run.sh
+
+# 给所有人增加可执行权限
+ct@ehbio:~$ chmod a+x run.sh
+ct@ehbio:~$ ls -l run.sh 
+-rwxr-xr-x 1 ct ct 39 6月  14 23:12 run.sh
+```
+
+## 环境变量 {#path}
+
+如果一个文件有了可执行权限，是不是就可以执行了，我们来检测下。
+
+```bash
+ct@ehbio:~$ run.sh
+-bash: run.sh: 未找到命令
+```
+
+事实上并非如此，输入命令，回车后，提示命令未找打，这是为什么呢？
+
+这就涉及到**环境变量**的概念，通俗的讲，环境变量就是告诉电脑 (实际是操作系统)几个目录。这几个目录下存储又可执行文件，如前面显示的`/usr/bin`目录，大部分的系统命令都在这个目录下。
+
+当我们输入命令`mkdir`时，系统就会在环境变量所代表的几个目录从前都厚去查找，哪个里面有`mkdir`文件，然后去执行`mkdir`命令。
+
+系统中环境变量的名字是`PATH`，其内容可通过下面的命令显示 (根据操作系统不同和配置不同，略有差别，但格式是统一的，`:`分割的一堆路径)：
+
+```bash
+ct@ehbio:~$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+```
+
+所以如果我们想让自己的命令能被系统找到，就需要把命令所在的目录加到环境变量里面，怎么操作呢？
+
+
+加到环境变量的路径必须是全路径，全路径指以`/`开头或已`~`开头的路径 (`~`开头的路径只能个人用户有效)。
+
+```bash
+# 加到环境变量的路径必须是全路径，全路径指以/开头或已~开头的路径
+# 注意第一个PATH不含$, 第二个PATH有$符号
+# 我们后面会讲什么时候用$, 什么时候不用$
+ct@ehbio:~$ export PATH=$PATH:/home/ct
+ct@ehbio:~$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ct
+```
+
+这时，我们在执行那个命令试试，成功运行了。
+
+```bash
+ct@ehbio:~$ run.sh 
+I am a script created by ehbio.
+```
+
+所以在以后安装了新的软件，或者写了新的脚本后，都把软件的**可执行程序**和**可执行的脚本**所在的目录，加到环境变量里面就可以了。
+
+但是，在命令行中执行`export`，对环境变量所做的修改，只对当前终端有效，退出后就无效了。为了使得这一操作，长期有效，我们需要把这句话写入一个文件中，一个登陆服务器就会被自动读取的文件中。
+
+对于普通用户，在远程登录终端时，家目录下的`~/.bash_profile` (不是`~/.bashrc`, 在本地登录时才会被读取)会自动被读取，所以我们需要把`export`语句加入到这个文件中。
+
+```bash
+# 这是我的~/.bash_profile中的内容，主要是最好一行。可以连续的加入多个路径。
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+	
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+		
+export PATH=$PATH:/home/ct:/home/bin:/home/soft/bowtie2/bin
+```
+
+前面提到，系统查找命令的顺序是从环境变量的第一个目录到最后一个目录，在第一次碰到查询的命令后，就调用执行。假如系统存在一个`python`命令，我们自己又安装了一个`python` (假如在/home/ct/anaconda/bin目录下)，如果我们想执行自己的`python`程序，就需要把`/home/ct/anaconda/bin`写在`$PATH`前面，如下
+
+```bash
+# 注意$PATH的顺序
+
+ct@ehbio:~$ export PATH=/home/ct/anaconda/bin:$PATH
+```
+
+环境变量设置的两种方式：1. 不同给`$PATH`后面新增目录；2. 建议一个目录，放在`$PATH`中，之后新安装的软件采用软链方式。
+
+至此，我们可以熟练使用**环境变量**来简化命令的输入过程了，因为如果没有环境变量，我们就得需要运行`/home/ct/anaconda/bin/python`来运行`python`命令了。
+
+环境变量这块，自己多操作下，就会慢慢理解熟练了。
+
+### 环境变量的补充
+
+`PATH`只是众多环境变量中的一个变量，用于存储可执行文件所在的目录，以便在用户输入命令时可以查询的到。尤其是自己写的脚本或安装的程序，系统不会知道它们在哪个路径下，需要我们去提供给系统这些新的路径，学名叫设置环境变量。
+
+此外常用到的环境变量还有`LD_LIBARY_PATH`: 指定动态链接库 (so文件)的位置，一般在安装软件出错时会用到；`PYTHONPATH`: 指定Python的安装包的路径；`PERL5LIB`: 指定perl的安装包的路径。
+
+设置环境变量要注意2点：1. 设置新的环境变量时一般要包含原始的环境变量，不能覆盖；2. 注意自己的目录和系统环境变量的目录的顺序，想让哪个先被找到，就先放哪个。
+
+
+
+## 软件安装的几种方式 {#softInstallways}
+
+不同于windows，Linux下软件安装的方式比较多样，有些也比较复杂。每种安装方式都有自己的优点和局限，也都有可能遇到问题。在我们理解了原理之后，借助谷歌，可以更好地帮助解决问题。
+
+### 系统包管理器安装
+
+软件安装最方便的、一般也不容易出问题的是利用系统自带的包管理工具，可以解决大部分的依赖问题。
+
+```
+# centos
+# 如果长时间没更新，先运行下update
+yum update
+# 如果不知道软件具体名字，可以先用一个关键字search一下, 选择正式的名字
+# 需要注意的是一般的服务器都是64 bit，需要选x86_64版本
+yum search soft_name or soft_description
+yum search soft_official_name
+```
+
+但也有一些不足，主要3点：
+
+1. 需要根用户的权限。
+2. 如果系统版本老，安装的软件版本也会比较老。使用新版本有时又会发生冲突。
+3. 生物信息学中不少软件不在系统的安装源里面。
+
+### 下载二进制文件
+
+解决这些问题，就需要自己去软件官网查找最新的分法包，又有两种可能，一种是分法包直接就是编译好的软件，下载下来设置下可执行属性并放入环境变量就可以运行了，如于`blast`或`bowtie`这样的工具。
+
+blast的链接为<ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz>。
+
+```bash
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz
+tar xvzf ncbi-blast-2.7.1+-x64-linux.tar.gz
+cd ncbi*
+cd bin
+# 直接进入bin目录，找到对应可执行文件，链接到在环境变量的目录中去。
+# 具体可看视频的操作  http://bioinfo.ke.qq.com
+ln -s `pwd`/* ~/bin
+```
+
+另一种则是需要从源码编译安装，下面主要讲解下这个。
+
+### 源码编译安装
+
+源码编译经典的三部曲`configure`, `make`, `make install`。如果不出问题，一步步执行下来就安装好了，也不一定要知其所以然。但出了问题，就不是比较容易解决的。如果知道这背后的机制，还是会有帮助的。
+
+* `configure`是检查系统的库文件、类文件、依赖软件是否存在以及它们的版本是否满足需求，并根据实际检测结果生成`Makefile`的工具。一般是一堆bash命令的组合。通常也需要在这一步配置一些参数。最常用的就是指定软件的安装目录`--prefix=/home/ct/soft/specific_name`。
+
+* `make`则是具体的编译过程。编译的语句都写在了`Makefile`中。`make`默认编译Makefile中出现的第一个`target`，也可以指定`target`编译，并根据Makefile的设置方式依次编译所有依赖的东西。
+
+有些软件的安装，在执行完`make`后就获得了可执行程序，可以跳过`make install`的过程，只需要把可执行程序放入环境变量就可以运行了。但部分软件还需要一些依赖关系，所以需要执行`make install`才算完成了完整的安装。
+
+* `make install`通常是拷贝`make`编译出来的可执行文件或者依赖的库文件(如果有的话)到`configure`时的`--prefix`指定的目录下。
+
+* 安装好的软件放入环境变量, 就可以快乐的运行了。
+
+两条注意:
+
+* 从源码编译最难解决的问题就是依赖的库文件、头文件、其它软件的缺失或版本不匹配，没有统一的解决办法，原则就是`缺啥补啥`。
+
+* 三部曲每一步的执行，屏幕上都会输出比较多的信息，一定仔细看最后有没有`ERROR`类的字样，对判断软件有无安装成功和下一步要怎么做会很有帮助。
+
+举一个例子，编译安装`samtools`。具体看视频解释<http://bioinfo.ke.qq.com>。
+
+```bash
+wget https://jaist.dl.sourceforge.net/project/samtools/samtools/1.7/samtools-1.7.tar.bz2
+tar xvzf samtools-1.7.tar.bz2
+cd samtoo*
+./configure --prefix=/home/ct/soft/samtools
+make
+make install
+cd /home/ct/soft/samtools/bin
+ln -s `pwd`/* ~/bin
+```
+
+**小练习**： 尝试源码安装`EMBOSS`, 下载地址 <ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz>.
+
+`EMBOSS`是欧洲分子生物学开放软件包，主要做序列比对，数据库搜搜，蛋白motif分析和功能域分析，序列模式搜索，引物设计等。
+
+```{r}
+emboss= "Popular applications;Functions
+prophet;Gapped alignment for profiles.
+infoseq;Displays some simple information about sequences.
+water;Smith-Waterman local alignment.
+pepstats;Protein statistics.
+showfeat;Show features of a sequence.
+palindrome;Looks for inverted repeats in a nucleotide sequence.
+eprimer3;Picks PCR primers and hybridization oligos.
+profit;Scan a sequence or database with a matrix or profile.
+extractseq;Extract regions from a sequence.
+marscan;Finds MAR/SAR sites in nucleic sequences.
+tfscan;Scans DNA sequences for transcription factors.
+patmatmotifs;Compares a protein sequence to the PROSITE motif database.
+showdb;Displays information on the currently available databases.
+wossname;Finds programs by keywords in their one-line documentation.
+abiview;Reads ABI file and display the trace.
+tranalign;Align nucleic coding regions given the aligned proteins."
+
+emboss = read.table(text=emboss,sep=";",row.names=NULL,header=T)
+knitr::kable(emboss, booktabs=T, caption="Popular applications of EMBOSS.")
+```
+
+### Python包的安装 {#pythonpac}
+
+在没有`Anaconda`(或其前身canopy)出现之前，Python包以其管理混乱、安装困难著称。有了`Anaconda`后，不只python包的安装简单了，其它软件的安装也都方便了 (详见后面Anaconda的两个福利)。
+
+* 首先下载Anaconda的安装包 https://www.continuum.io/downloads。
+* Anaconda的安装包做的很人性化，一个bash脚本，只要运行`bash Anacond*x86_64.sh`，然后按照提示操作就可以了。
+* 安装好后，设置或刷新下环境变量就可以使用了。
+* 此后再安装python的包只需要执行`pip install pakcage_name`或`conda install pakckage_name`就可以了。
+* 这里唯一需要注意的就是确认使用的`python`或`pip`确实是Anaconda安装的`python`或`pip`。
+	* `which python`查看使用的python命令。
+	* 如果使用的还是系统默认的python，则需要检查下环境变量的设置，尤其前面提到的环境变量里面不同目录放置的顺序。
+
+
+### Anaconda的两个福利
+
+1. 头文件和库文件库
+
+这是Anaconda安装后的目录结构
+
+```
+bin   envs  Examples  imports  lib    LICENSE.txt  pkgs     share  var
+conda-meta  etc   gcc include  lib64  mkspecsplugins  ssl
+```
+
+其中lib目录下，一部分是依赖的动态链接库, `.so`文件；这也是在源码编译时最常见的拦路虎。通常，只需要把这个目录放入环境变量`LD_LIBRARY_PATH`里面比如`export LD_LIBARY_PATH=${LD_LIBARY_PATH}:anaconda_path/lib`就可以解决问题。
+
+```
+cairo                    libitm.a              libQtScript.so.4
+cmake                    libitm.la             libQtScript.so.4.8
+engines                  libitm.so             libQtScript.so.4.8.7
+gcc                      libitm.so.1           libQtScriptTools.la
+gcj-4.8.5-14             libitm.so.1.0.0       libQtScriptTools.prl
+glib-2.0                 libitm.spec           libQtScriptTools.so
+libargtable2.a           libjpeg.a             libQtScriptTools.so.4
+libargtable2.la          libjpeg.la            libQtScriptTools.so.4.8
+libargtable2.so          libjpeg.so            libQtScriptTools.so.4.8.7
+libargtable2.so.0        libjpeg.so.8          libQtSql.la
+libargtable2.so.0.1.8    libjpeg.so.8.4.0      libQtSql.prl
+libasan.a                libmkl_avx2.so        libQtSql.so
+libasan.la               libmkl_avx512_mic.so  libQtSql.so.4
+libasan_preinit.o        libmkl_avx512.so      libQtSql.so.4.8
+libasan.so               libmkl_avx.so         libQtSql.so.4.8.7
+```
+
+2. bioconda
+
+bioconda提供了一个虚拟环境，方便软件的编译安装，随后会具体介绍。
+
+
+### R和R包的安装
+
+如果使用的是新版的操作系统。直接可以用`sudo apt-get install r-base` 或者`yum install r-base`来安装。
+
+若系统版本老，或没有根用户权限，则需要下载编译源码安装，最新地址为<https://cran.r-project.org/src/base/R-latest.tar.gz>。
+
+具体编译方式为 (Linux下软件安装见 <http://blog.genesino.com/2016/06/bash1>):
+
+```
+# configure是收集系统信息，生成Makefile的过程
+# --enable-R-shlib 需要设置，使得其他程序包括Rstudio可以使用R的动态库
+# --prefix指定软件安装目录，需使用绝对路径
+./configure --prefix=/home/ehbio/R/3.4.0 --enable-R-shlib
+
+# 也可以使用这个命令，共享系统的blas库，提高运输速度
+#./configure --prefix=/home/ehbio/R/3.4.0 --enable-R-shlib --with-blas --with-lapack
+
+# make是编译的过程
+make
+
+# 安装到指定目录的过程
+make install
+```
+
+安装完成之后，在Linux终端输入`R`即可启动交互式运行界面，`ctrl+d`退出`R`运行界面。若提示`找不到命令`，需要判断有没有加入进环境变量。
+
+
+如何安装R包
+
+```
+install.packages("package_name")
+# 指定安装来源
+install.packages("package_name", repo="http://cran.us.r-project.org")
+
+# 安装Bioconductor的包
+source('https://bioconductor.org/biocLite.R')
+biocLite('BiocInstaller')
+biocLite(c("RUVSeq","pcaMethods"))
+
+# 安装Github的R包
+install.packages("devtools")
+devtools::install_github("JustinaZ/pcaReduce")
+
+# 手动安装, 首先下载包的源文件（压缩版就可），然后在终端运行下面的命令。
+ct@ehbio:~$ R CMD INSTALL package.tar.gz
+
+# 移除包
+remove.packages("package_name")
+
+# 查看所有安装的包
+library()
+
+# 查看特定安装包的版本
+installed.packages()[c("ggplot2"), c("Package", "Version")]
+
+#  Package  Version 
+# "DESeq2" "1.14.1" 
+
+# 查看默认安装包的位置
+.libPaths()
+
+# 查看已加载的包
+.packages()
+
+# 调用安装的包
+library(package_name)
+```
+
+自动安装包
+
+```r
+usePackage <- function(p) {
+	if (!is.element(p, installed.packages()[,1])) {
+		install.packages(p, dep = TRUE)
+	}
+	require(p, character.only = TRUE)
+}
+```
+
+需要注意的也是依赖的软件或库文件的版本，同样的Anaconda提供的lib库也可以直接拿来用。
+
+## Conda安装 {#condaInstall}
+
+Conda是一种通用包管理系统，旨在构建和管理任何语言的任何类型的软件。通常与Anaconda (集成了更多软件包，[https://www.anaconda.com/download/#download](https://www.anaconda.com/download/#download))和Miniconda(只包含基本功能软件包, [https://conda.io/miniconda.html](https://conda.io/miniconda.html))一起分发。
+
+最初接触到Anaconda是用于Python包的安装。Anaconda囊括了100多个常用的Python包，一键式安装，解决Python包安装的痛苦。但后来发现，其还有更多的功能，尤其是其增加了bionconda ([https://bioconda.github.io/index.html](https://bioconda.github.io/index.html))频道后，生物信息分析的1500多个软件都可以一键安装了，免去了编译时间浪费和解决库文件安装的问题。[对于经常编译软件的人，这一点还不够有吸引力](http://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA)。最有吸引力的是它的`工作环境`概念，可以简单的配置不同Python版本的环境、不同Python包的环境、不同R环境和R包的环境，对于生物信息软件繁杂的应用和频繁的更新提供了很大的便利。
+
+### Conda安装和配置 {#condaInstallConfig}
+
+在上面给出的链接下载Anaconda或Conda对应版本的分发包之后，安装就是运行下面的命令，根据提示一步步操作，主要是修改安装路径 (如果是根用户，可以安装到/anaconda下，其它任意目录都可以，但路径短还是有好处的；普通用户安装到自己有权限的目录下)
+
+```
+bash Miniconda2-latest-Linux-x86_64.sh
+```
+
+安装完成之后，记得把安装路径下的`bin`文件夹加入到环境变量中。
+
+
+### Conda基本使用
+
+在Conda安装配置好之后，就可以使用了。
+
+```
+conda list # 列出安装的软件包
+conda search <package ambigious name> # 搜索需要安装的软件包，获取其完成名字
+```
+
+以搜索`numpy`为例：
+
+```
+conda search numpy  # * 表示对于版本的包已安装
+```
+
+```
+Fetching package metadata ...............
+numpy                        1.7.2           py27_blas_openblas_201  conda-forge     [blas_openblas]
+                             1.7.2           py27_blas_openblas_202  conda-forge     [blas_openblas]
+                             1.12.0                   py36_0  defaults        
+                             1.12.0             py36_nomkl_0  defaults        [nomkl]
+                          *  1.12.1                   py27_0  defaults        
+                             1.12.1             py27_nomkl_0  defaults        [nomkl]
+                             1.13.1                   py36_0  defaults        
+                             1.13.1             py36_nomkl_0  defaults        [nomkl]
+numpy-indexed                0.3.2                    py27_0  conda-forge                
+                             1.0.47                   py35_0  conda-forge     
+                             1.0.47                   py36_0  conda-forge     
+numpy_groupies               0.9.6                    py27_0  conda-forge     
+                             0.9.6                    py35_0  conda-forge     
+                             0.9.6                    py36_0  conda-forge     
+numpy_sugar                  1.0.6                    py27_0  conda-forge     
+                             1.0.6                    py34_0  conda-forge        
+numpydoc                     0.6.0                    py27_0  conda-forge     
+                             0.6.0                    py34_0  conda-forge             
+xnumpy                       0.0.1                    py27_0  conda-forge           
+```
+
+安装包
+
+```
+conda install <package name> # 安装软件包
+conda install numpy=1.7.2 # 安装特定版本的软件包
+conda remove <package name> # 移除软件包
+```
+
+安装R
+
+```
+# 具体见下面
+# 安装R,及80多个常用的数据分析包, 包括idplyr, shiny, ggplot2, tidyr, caret 和 nnet
+conda install -c r r-essentials 
+# 安装单个包
+# conda install -c https://conda.binstar.org/bokeh ggplot 
+```
+
+
+获取帮助信息
+
+```
+conda -h # 查看conda可用的命令
+conda install -h #查看install子命令的帮助
+```
+
+只是这些命令就可以省去不少安装的麻烦了，但是如果软件没搜索到呢？
+
+### Conda的channel
+
+Conda默认的源访问速度有些慢，可以增加国内的源；另外还可以增加几个源，以便于安装更多的软件，尤其是`bioconda`安装生信类工具。`conda-forge`通道是Conda社区维护的包含很多不在默认通道里面的通用型软件。`r`通道是向后兼容性通道，尤其是使用R3.3.1版本时会用到。后加的通道优先级更高，因此一般用下面列出的顺序添加。清华镜像具体见<https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/>。
+
+```
+conda config --add channels conda-forge # Lowest priority
+conda config --add channels \
+		  https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --add channels r # Optional
+conda config --add channels defaults
+conda config --add channels bioconda 
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+# Anocanda清华镜像
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ 
+# 清华通道, 最高优先级
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/ 
+conda config --set show_channel_urls yes
+```
+
+```
+# 显示已有的通道
+conda config --get channels
+```
+
+conda通道的配置文件一般在`~/.condarc`里面，内容如下。全局控制conda的安装在`conda_path/.condarc`，具体操作见[https://conda.io/docs/user-guide/configuration/admin-multi-user-install.html](https://conda.io/docs/user-guide/configuration/admin-multi-user-install.html)。
+
+```
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ # Anocanda清华镜像
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+  - bioconda
+  - defaults
+  - r
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  - conda-forge
+```
+
+### 创建不同的软件运行环境
+
+这是`Conda`最有特色的地方，可以通过创建不同的环境，同时运行不同软件的多个版本。
+
+新创建的软件环境的目录为`anaconda_path/envs/enrironment_name`，具体见下面的3个例子。
+
+
+* 安装`ete3`
+
+使用官方的推荐命令安装时出了问题，py3.5的包装到了py2.7环境下。解决办法，新建一个`py2.7`的环境，然后安装。
+
+```
+# 新建一个环境，命名为phylo，指定其内安装的python版本为2.7
+conda create -n phylo python=2.7
+
+# 在phylo环境中安装 ete3 
+# ete3存在于2个通道中，官方推荐使用自己的通道，但没有成功
+# -n 指定安装环境  -c 指定下载通道
+# conda install -n phylo -c etetoolkit ete3 ete3_external_apps
+
+# bioconda通道里面也有ete3, 下面的安装未指定具体通道，
+# 将在前面设定的几个通道里面按先后顺序查找安装
+conda install -n phylo ete3 ete3_external_apps
+
+# 默认安装到了anaconda_path下面的envs/phylo目录下（在屏幕输出也会有显示）
+# 这个目录下存在bin文件夹，一般使用全路径就可以调用，如下
+# anaconda_path/envs/phylo/bin/ete3 -h # 但有时会因为依赖关系而失败
+
+# 所以激活本次安装环境是比较不容易出问题的使用方式
+source activate phylo
+
+# 在新环境里面执行命令操作
+ete3 -h
+# 其它操作
+
+# 退出新环境
+source deactivate phylo
+```
+
+
+* 创建R环境 [Reference1](https://samrelton.wordpress.com/2015/07/02/rconda/)
+
+```
+# Create a new conda environment called r,并且在里面安装anaconda
+conda create -n r anaconda
+
+# Switch to r environment
+source activate r
+
+# 在新环境里面安装R Installs R
+conda install -c r r
+
+# Install R kernel for IPython notebook
+conda install -c r r-irkernel
+
+# Install ggplot
+conda install -c https://conda.binstar.org/bokeh ggplot
+
+# 最后退出新环境
+source deactivate r
+```
+
+* 创建比对工具环境 (bioconda中的例子，[https://bioconda.github.io/index.html#set-up-channels](https://bioconda.github.io/index.html#set-up-channels))
+
+```
+# 环境名字为 aligners
+# 环境中安装 bwa bowtie hisat star
+conda create -n aligners bwa bowtie hisat star
+
+# 如果还想继续安装
+conda install -n aligners hisat2
+
+# 启动新环境
+source activate aligners
+star -h
+
+source deactivate aligners
+```
+
+
+* 移除环境
+
+如果环境不需要了，或出了错，则可以移除。比如需要移除`phylo`环境，执行`conda remove -n phylo --all`。
+
+### Conda配置R
+
+在添加了不同的源之后，有些源更新快，有些更新慢，经常会碰到版本不一的问题。而且软件版本的优先级，低于源的优先级。保险期间，先做下搜索，获得合适的版本号，然后再选择安装。
+
+```
+conda search r-essentials
+
+r-essentials                 1.0                    r3.2.1_0  r               
+                             1.0                   r3.2.1_0a  r               
+                             1.1                    r3.2.1_0  r               
+                             1.1                    r3.2.2_0  r               
+                             1.1                   r3.2.1_0a  r               
+                             1.1                   r3.2.2_0a  r               
+                             1.1                    r3.2.2_1  r               
+                             1.1                   r3.2.2_1a  r               
+                             1.4                           0  r               
+                             1.4.1                  r3.3.1_0  r               
+                             1.4.2                         0  r               
+                             1.4.2                  r3.3.1_0  r               
+                             1.4.3                  r3.3.1_0  r               
+                             1.5.0                         0  r               
+                             1.5.1                         0  r               
+                             1.5.2                  r3.3.2_0  r               
+                             1.5.2                  r3.4.1_0  r               
+                             1.6.0                  r3.4.1_0  r               
+                             1.0                    r3.2.1_0  defaults        
+                             1.0                   r3.2.1_0a  defaults        
+                             1.1                    r3.2.1_0  defaults        
+                             1.1                    r3.2.2_0  defaults        
+                             1.1                   r3.2.1_0a  defaults        
+                             1.1                   r3.2.2_0a  defaults        
+                             1.1                    r3.2.2_1  defaults        
+                             1.1                   r3.2.2_1a  defaults        
+                             1.4                           0  defaults        
+                             1.4.1                  r3.3.1_0  defaults        
+                             1.4.2                         0  defaults        
+                             1.4.2                  r3.3.1_0  defaults        
+                             1.4.3                  r3.3.1_0  defaults        
+                             1.5.0                         0  defaults        
+                             1.5.1                         0  defaults        
+                             1.5.2                  r3.3.2_0  defaults        
+                             1.5.2                  r3.4.1_0  defaults        
+                             1.6.0                  r3.4.1_0  defaults        
+                             1.5.2                  r3.3.2_0  conda-forge     
+                             1.5.2                  r3.3.2_0  https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge 
+
+```
+
+从上面可以看到清华的源版本同步于conda-forge, 都比较老，还是指定`r`通道安装。
+
+```
+conda install -c r -n r r-essentials=1.6.0
+```
+
+`R`会安装于`conda_path/envs/r/bin`中，软链到位于环境变量的目录中即可正常使用。
+
+
+### Conda环境简化运行
+
+为了方便不同环境里面程序的运行，我写了一个shell脚本 (`conda_env_run.sh`)，具体运行如下：
+
+```
+# -c: 表示实际需要运行的命令
+# -e: 表示需要启动的软件环境，也就是上面conda create建立的环境
+# -b：一般不需要指定，如果conda没在环境变量中需要给出conda的安装路径
+conda_env_run.sh -c  'ete3 -h mod' -e phylo
+
+conda_env_run.sh -c  'bwa mem -h' -e aligner -b "/usr/local/anaconda2/bin"
+```
+
+`conda_env_run.sh`内容如下
+
+```bash
+#!/bin/bash
+
+#set -x
+
+usage()
+{
+cat <<EOF
+${txtcyn}
+
+***CREATED BY Chen Tong (chentong_biology@163.com)***
+
+Usage:
+
+$0 options${txtrst}
+
+${bldblu}Function${txtrst}:
+
+This is designed to run conda program in given environment. 
+It will automatically activate the environment, run the program and 
+deactivate the environment.
+
+Thress commands from conda, 'activate', 'conda', 'deactivate' must 
+be in PATH or you should spcify <-b> parameter.
+
+${txtbld}OPTIONS${txtrst}:
+	-c	Full command to be run ${bldred}[NECESSARY]${txtrst}
+	-e	Environment name${bldred}[NECESSARY]${txtrst}
+	-b	Conda path${bldred}[NECESSARY]${txtrst}
+EOF
+}
+
+command_cmd=''
+environment=''
+conda_path=''
+
+while getopts "hc:e:b:" OPTION
+do
+	case $OPTION in
+		h)
+			echo "Help mesage"
+			usage
+			exit 1
+			;;
+		c)
+			command_cmd=$OPTARG
+			;;
+		e)
+			environment=$OPTARG
+			;;
+		b)
+			conda_path=$OPTARG
+			;;
+		?)
+			usage
+			echo "Unknown parameters"
+			exit 1
+			;;
+	esac
+done
+
+
+if [ -z ${environment} ]; then
+	echo 1>&2 "Please give command and environment."
+	usage
+	exit 1
+fi
+
+if ! [ -z ${conda_path} ]; then
+	export PATH=${conda_path}:${PATH}
+fi
+
+source activate ${environment}
+${command_cmd}
+source deactivate ${environment}
+```
+
+
+## Makefile知识
+
+Makefile通常的格式和布局如下，有兴趣的可以自己去学，或者我们再出一个教程。
+
+```make
+# 假设当前文件夹下Makefile文件中内容如下 
+ct@ehbio:~$ cat Makefile
+# first: target名字
+# echo "compile first": target对应的命令，任何Linux命令都可以
+first:
+echo "compile first"
+all: first second
+echo "compile all"
+second:
+echo "compile second"
+
+# 直接运行make，会make第一个出现的target
+ct@ehbio:~$ make
+echo "compile first"
+compile first
+# make first与直接make相同，因为它出现在第一个 
+ct@ehbio:~$ make first
+echo "compile first"
+compile first
+# all依赖于first, second，因此make all会先执行make first, make second
+# 然后才是自己所代表的命令 
+ct@ehbio:~$ make all
+echo "compile first"
+compile first
+echo "compile second"
+compile second
+echo "compile all"
+compile all
+```
+
+## Docker安装
+
+### Docker能做什么
+
+The key benefit of Docker is that it allows users to package an
+application with all of its dependencies into a standardized unit for
+software development. 
+
+* 提供一个虚拟的操作平台，供我们安装依赖不同版本系统的工具软件。
+
+* 提供一个即时可用的应用软件或者流程的镜像，开发者把软件部署到系统镜像中，
+  使用者可以直接下载下来使用，省去了个人安装软件的烦恼。
+
+* 提供一个系统资源分配手段，给不同用户的程序分配独立的计算资源。
+
+
+### Docker的几个基本概念
+
+* 镜像 (Images): 可以认为是超级轻量级的虚拟机的快照。
+  镜像会有自己的唯一ID，名字和标签，比如`ubuntu:latest`, `django:1.6`等。
+  通常都是在已有的镜像（多数是Linux操作系统的镜像）的基础上构建自己的
+  具有新功能的镜像。
+
+* 容器 (Containers): 可以认为是超级轻量级的虚拟机，
+  是镜像运行起来所处的可读写的状态。
+  容器里面可以安装、运行程序，还可以把安装好的程序存储起来获得新的镜像。
+  
+  与虚拟机很大的不同在于，一个容器通常只运行一个程序。在Docker中，
+  应用程序和数据文件是分开的，因此可以在不影响数据的情况下快速升级代码
+  或系统。
+
+* 数据卷 (Volumes): 永久保存数据的磁盘空间。
+  Docker允许用户定义哪一部分是应用程序，哪一步分是数据，并且把他们分隔开。
+  这就保证了在Docker中容器的生命周期是短暂的，而数据的存储是永恒的。
+  
+  数据卷存储在运行Docker的宿主机上，对每个容器来说是特有的。
+  我们可以启动同一个镜像来产生多个容器，并且分别给他们分配一个数据卷。
+
+  数据卷也可用于在不同的容器间共享数据。
+  具体参见<http://blog.genesino.com//2016/09/docker-lamp/>
+
+* 联通 (Links): 容器启动后会分配有一个私有IP，其它容器可以通过这个IP地
+  址与这个容器通讯。
+
+  假如有个正在运行的数据库容器 (dbapp)，
+  那么我们可以在网络服务器容器 (webserver)中通过指定端口连接dbapp与数据库容器通讯。
+
+
+### 安装和配置
+
+* Centos 6.5 安装Docker
+
+  ```bash
+
+  #添加epel的源
+  su -c 'rpm -Uvh  http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm'
+  yum update
+
+  # 安装Docker
+  yum install docker-io
+
+  # 启动Docker服务
+  service docker start
+  # 关闭Docker服务
+  service docker stop
+
+  # 设置Docker开机启动
+  /sbin/chkconfig --add docker
+  /sbin/chkconfig docker on
+  ```
+
+* 其他新版操作系统的安装可以直接使用系统自带的`yum`或`apt`工具，
+  启动和配置如上。
+
+  ```bash
+  apt-get install docker.io
+  ```
+
+### Docker用户权限
+
+默认情况下，Docker命令的运行需要根用户权限。一个解决办法是把用户加入
+`docker`用户组，原因是Docker能够将`/run/docker.socket`的文件权限设为
+`660`、用户组设为`docker`。当把用户加入到`docker`用户组后，就无需使用
+`sudo`或`su`命令切换获取根用户权限。[check here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#create-a-docker-group)
+
+```bash
+###以下操作都是在根用户下进行的
+
+###增加一个用户组docker
+# groupadd docker
+###把用户${USER}加入docker用户组
+# usermod -aG docker ${USER}
+###重启docker服务(可不执行)
+# service docker restart
+###新窗口登录${USER}
+```
+
+但通常只应把信任的用户加入docker用户组因为docker用户组的权限相当于root。
+
+如果打算只允许用户访问一个特定的容器，可以写一个简单脚本
+
+```bash
+# cat /bin/docker_container1
+#!/bin/sh
+docker run -ti --rm container_name /bin/sh
+```
+
+脚本完成后，配置sudoers
+
+```bash
+# grep username /etc/sudoers
+username   ALL=(ALL)  NOPASSWD: /bin/docker_container1
+```
+
+更多权限设置见<http://dockone.io/article/589>
+
+
+### Docker试用
+
+* 查看本地Docker的信息 `docker info`
+* 运行Docker需要有一个镜像和容器。镜像是容器的只读版本，
+  最基础的镜像是一个操作系统，是运行其他命令的基础。
+  因此我们需要先获取一个操作系统镜像，通常使用Ubuntu系统, CentOS系统和
+  Alpine (只有5M)。
+  我们也可以根据所要运行软件的需要，来获取不同的操作系统，
+  方便软件的安装。
+* 搜索镜像 `docker search ubuntu`; 镜像的名字通常由`用户名/镜像名`构成,
+  无用户名的为官方认证镜像。	
+
+```bash
+root@server:~# docker search ubuntu
+NAME              DESCRIPTION      STARS     OFFICIAL   AUTOMATED
+ubuntu            Ubuntu is ...    4595      [OK]       
+ubuntu-upstart    Upstart is...     66       [OK]
+jordi/ubuntu      Ubuntu bas...     1                    [OK] 
+```
+
+* 获取镜像 
+  * `docker pull ubuntu` 获取镜像的最新版本(不指定版本号即为latest)
+  * `docker pull ubuntu:14.04` 获取指定版本的镜像；14.04为镜像的版本号(又称`TAG`)。
+
+* 查看本机Docker中存在的镜像 `docker images`
+  
+```
+REPOSITORY   TAG      IMAGE ID       CREATED      VIRTUAL SIZE
+ubuntu       latest   37b164bb431e   4 days ago   126.6 MB
+```
+
+* 获得了镜像之后，我们需要运行镜像；运行起来的镜像就是容器，是可读写的。
+  我们可以在容器中安装软件、运行命令，就如在正常的操作系统中一样。
+  
+  在容器中运行单个命令或程序, 通常加`--rm`参数，容器运行结束之后就自动
+  删除。如果我们想保留容器的修改，则不能加`--rm`参数。
+
+```bash
+docker run --rm ubuntu echo "Hello from docker"
+Hello from docker
+```
+
+  交互式运行容器 `docker run -it ubuntu`, 这时可以发现终端的用户名变了
+  
+```bash
+root@server:~# docker run -it ubuntu
+root@57cb695e904f:/# ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+root@57cb695e904f:/# 
+```
+  
+  `docker run --help`可以查看这个命令的参数。
+
+* 在容器中部署软件，安装`build-essential`和`r-base`; 
+  *build-essential* 是编译软件包的基础，提供需要的编译器、头文件和库文件。
+  *r-base* 是编译R语言程序包的基础。
+
+```bash
+apt-get update
+#apt-get install -y build-essential r-base
+apt-get install toliet
+```
+
+  这一步我们可以安装任意的软件，测试时可以选择小一点的软件包。
+  最开始时选择了安装`build-essential`, 只是为了学习，
+  到后来发现安装这个并没有什么用，也不方便测试。为了简单起见，
+  可以尝试安装`Apache`。在本文后面有个简单的测试`Apache`安装的例子。
+
+* 运行` docker commit -m 'Add build-essential r-base' -a ct5869 8aca49b869be ct5869/ubuntu-dev:v1''`。
+
+* 测试运行新的镜像 `docker run --rm -it username/ubuntu-dev:v1`。
+
+* 挂载宿主机硬盘在容器内部操作, 通过`-v`参数，路径都为绝对路径，
+  `docker run --rm -v /host_absolute_dir:/container_absolute_dir
+  username/ubuntu-dev:v1 echo 'test' >/container_absolute_dir/test_file`
+  这样，就相当于把host机目录`/host_absolute_dir`链接为docker容器路径
+  `/container_absolute_dir`。
+
+* 如果只是自己用，到现在就可以结束了，我们可以在镜像里面继续更多的操作了。
+
+* 另外我们还可以运用`导出`和`导入`来迁移镜像
+	* 导出镜像：`docker export image_id >ubuntu-dev.v1.tar`
+	* 导入镜像：`cat ubuntu-dev.v1.tar | docker import - username/ubuntu-dev:v1 `
+
+* 如果我们想把镜像分发给别人使用，就需要把镜像传到镜像仓库比如Docker Hub。
+  我们需要现在[Docker hub](https://hub.docker.com)注册，
+  用注册的用户名替换掉前文提到的`username`。
+
+* 注册成功之后，在本地服务器尝试登录，用以把登录信息存储在本地，方便后续使用。
+  运行`docker login`，按提示输入用户名、密码和邮件。登录成功会返回
+  `Login Succeeded`.
+
+* 运行`docker push username/ubuntu-dev:v1`把准备好的镜像上传；
+  等待片刻，完成上传。这时就可以再Docker hub上看到上传的镜像了。
+
+* 其它用户可以使用 `docker pull username/ubuntu-dev:v1`来获取安装好编
+  译环境的ubuntu系统了。
+  
+### Docker系统基本操作
+
+* 当一个容器不再使用时，运行`docker rm container_id`移除容器，以节省空间。
+  这不会对镜像造成影响。
+
+* 当一个容器不再使用时，运行`docker rm -v container_id`移除容器及其挂载卷，
+  以节省空间。这不会对镜像造成影响。
+
+* 批量删除退出的容器`docker rm -v $(docker ps -a -q -f status=exited)`。
+
+* 对于只需要单次运行的容器，比如执行一个命令等，则只需要在
+  `docker run`时添加`--rm`参数就好。这样容器运行结束后会自动删除。
+
+* 运行`docker rmi username/ubuntu-dev:v1`移除镜像。
+
+* 运行`docker tag 26d99f722dca username/ubuntu-dev:v0`修改镜像的名字。
+
+* 运行`docker run -d --name=container_name username/ubuntu-dev:v1`
+  指定运行的container的名字。
+
+* 运行`docker run --rm -ti -v /host_abs_dir:/container_abs_dir:ro
+  username/ubuntu-dev:v1`挂载只读目录。
+
+* 运行`docker stop containde_id/container_name`停止镜像。
+
+* 运行`docker rm $(docker ps -a -q)`和`docker rmi $(docker images -q)`移除全部镜像。**BE CAREFULL**
+
+* 查看Docker镜像的创建历史 `docker history image_name`
+
+```
+IMAGE          CREATED       CREATED BY SIZE                COMMENT
+3d4f934accdb   7 months ago        /bin/sh -c #(nop) CMD ["/run.sh" ]               0 B                 
+aa321fa8d23f   7 months ago        /bin/sh -c #(nop) EXPOSE  3306/tcp 80/tcp        0 B                 
+6446fbfc507d   7 months ago        /bin/sh -c #(nop) VOLUME  [/etc/mysql /var/lib   0 B                 
+44e98bdf2bbf   7 months ago        /bin/sh -c #(nop) ENV PHP_POST_MAX_SIZE=10M     0 B                 
+bedff16caee9   7 months ago        /bin/sh -c #(nop) ENV  PHP_UPLOAD_MAX_FILESIZE   0 B                 
+72b723ccc97f   7 months ago        /bin/sh -c mkdir -p /app && rm -fr /var/www/h   0 B
+```
+
+* 查看镜像的JSON文件 `docker inspect image_name`
+
+* Docker images的安装路径为 `/var/lib/docker`。
+
+  * `/var/lib/docker/{driver-name}` will contain the driver specific storage for contents of the images.
+  * `/var/lib/docker/graph/<id>` now only contains metadata about the image,  in the json and layersize files.
+
+* 查看Docker 容器启动和运行日志
+
+```
+docker logs --tail=all container_id
+```
+
+### 使用Dockerfile自动构建镜像
+
+除了可以像上面那样一步步地获取镜像、修改容器、存储镜像、上传镜像等操作外，
+我们还可以使用Dockerfile自动实现上述操作。
+
+典型的Dockerfile如下所示，
+
+```
+FROM alpine
+MAINTAINER username username@internet.com
+RUN apk add --no-cache apache2 apache2-utils
+COPY public_html /var/www/html
+EXPOSE 80 443
+CMD ["rc-service apache2 start"]
+```
+
+* `FROM`为除注释之外的第一条命令，用来声明镜像的基础系统。
+* `MAINTAINER`设置镜像维护人的信息。
+* `RUN`在容器内部运行shell命令。
+* `COPY`是把本地的bash配置文件拷贝到新维护的镜像中；
+  COPY的文件的路径是相对于docker build的PATH，一般是当前路径；
+* `CMD`指定容易运行时默认执行的命令，如出现多个，只有最后一个会被运行。
+
+运行命令`docker build -t="username/httpd-alpine:v1" .`就可以构建镜像了。
+最后的`.`表示Dockerfile在当前目录，也可指定其他目录。`public_html`必须
+与Dockerfile在同一目录。
+
+### Docker的特征
+
+* Docker will watch only one single process. 
+  If you need multiple processes, 
+  you need to add a monitor like [Monit](http://mmonit.com/monit/) or 
+  [Supervisor](http://supervisord.org/) at the top-level to take
+  care of the others. But this is not recommended.
+
+### Docker使用注意
+
+* 避免安装不必要的软件包。
+
+* 每个容器都只运行一个进程。
+
+* 最小化层：每执行一个命令，都会产生一个层。
+ 
+
+### 参考
+
+* 入门级 <http://blog.saymagic.cn/2015/06/01/learning-docker.html>
+
+* 入门级 <https://www.dwhd.org/20151115_140935.html>
+
+* 入门级 <http://www.cnblogs.com/kevinX/p/5458244.html>
+
+* Start (english version) <https://scotch.io/tutorials/getting-started-with-docker>
+
+* Start (english version) <https://prakhar.me/docker-curriculum/>
+
+* Greate english version <https://blog.talpor.com/2015/01/docker-beginners-tutorial/>
+
+* Docker trick <https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/>
+
+* Docker root and non-root <http://www.2cto.com/os/201508/432930.html>
+
+## References
+
+* [https://samrelton.wordpress.com/2015/07/02/rconda/](https://samrelton.wordpress.com/2015/07/02/rconda/)
+* [https://www.anaconda.com/blog/developer-blog/anaconda-r-users-sparkr-and-rbokeh/](https://www.anaconda.com/blog/developer-blog/anaconda-r-users-sparkr-and-rbokeh/)
+* [http://www.bioinfo-scrounger.com/archives/209](http://www.bioinfo-scrounger.com/archives/209)
+* [清华大学开源镜像站](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
+* [Linux学习 - 又双叒叕一个软件安装方法](http://mp.weixin.qq.com/s/A4_j8ZbyprMr1TT_wgisQQ)
+
+

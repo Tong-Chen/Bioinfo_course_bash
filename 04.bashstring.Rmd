@@ -1,0 +1,538 @@
+# Bash 字符串处理 {#bash_string}
+
+视频课见 <http://bioinfo.ke.qq.com>。
+
+## Bash特殊字符
+
+1. 通配符:   
+
+`*`: 匹配任何字符
+
+`**`: 匹配任何字符串  
+
+`*?`: 匹配任何单个字符
+
+2. 集合运算符
+
+用一些单个字、一个连续范围或断续的字符集合作为通配符  
+
+`[a-z]`: 用字符集合作通配符匹配单个字符, 如: `[aeiou]`, `[a-o]`, `[A-Z]`, `[0-9]`  
+
+`[!A-Za-z0-9]`: 除了集合外的所有字符组成的集合作通配符
+   
+3. 花括号展开式（可以嵌套）:   
+
+`c{a{r,t,n}, b{r,t,n}}s` 可以匹配`cars` `cats` `cans` `cbrs` `cbts` `cbns`
+   
+4. 其它特殊字符:   
+
+`()`: 子shell运行；比如 `(cd ehbio; mdkir ysx)`进入`ehbio`目录，新建`ysx`文件夹，运行完之后还在当前目录。
+ 
+`'`: 强引用字符串, 不解释特殊字符  
+
+`"`: 弱引用字符串, 解释所有特殊字符  
+
+`;`: 命令分隔符（命令终止符）, 运行在一行里执行多条命令;一般在终端直接写判断语句或执行`for`循环时用。
+
+`#`: 行注释  
+`$`: 变量表达式，变量解析
+`&`: 在后台执行命令，在`for`循环中也可用作命令分割符，取代`done`前面的`;`
+
+## Bash变量
+
+1. 自定义变量
+
+用户自定义的变量由字母、数字和下划线组成, 并且变量名的第一个字符不能为数字, 且变量名大小写敏感。  
+
+`varname=value` **注意bash不能在等号两侧留空格**  
+
+shell语言是非类型的解释型语言, 给一个变量赋值实际上就是定义了变量, 而且可以赋不同类型的值。引用变量有两种方式, `$varname`和`${varname}`, 为防止变量在字符串中产生歧义建议使用第二种方式, 引用未定义的变量其值为空。  
+
+```
+ct@ehbio:~$ a="EHBIO"
+ct@ehbio:~$ echo ${a}
+EHBIO
+ct@ehbio:~$ echo $a
+EHBIO
+
+#出错了
+ct@ehbio:~$ echo $agood
+
+#引用变量时大括号的作用
+ct@ehbio:~$ echo ${a}good
+EHBIOgood
+ct@ehbio:~$ echo $a.good
+EHBIO.good
+
+#出错了
+ct@ehbio:~$ echo $a_good
+
+#引用变量时大括号的作用
+ct@ehbio:~$ echo ${a}_good
+EHBIO_good
+```
+
+为了使变量可以在其它进程中使用, 需要将变量导出: `export varname`
+
+
+2. 环境变量
+
+可以用`set`命令给变量赋值或查看环境变量值, 使用`unset`命令清除变量值, 使用`export`导出变量将可以使其它进程访问到该环境变量。可以把设置保存到`.bashrc`或`.bash_profile`中, 成为永久的环境变量。
+
+环境变量不限于我们之前讲过的[可执行程序的环境变量、动态库、Python模块的环境变量](http://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA)，任何变量都可以的。
+
+3. 位置变量
+
+位置变量对应于命令行参数, 其中`$0`为脚本名称, `$1`为第一个参数, 依次类推, 参数超过9个必须使用`${}`引用变量。shell保留这些变量, 不允许用户以另外的方式定义它们, 传给脚本或函数的位置变量是局部和只读的, 而其余变量为全局的（可以用local关键字声明为局部）。
+
+4. 其它变量
+
+`$?`: 保存前一个命令的返回码; `0`为运行成功，常用来判断上一个程序的退出状态。
+
+`$$`: 当前shell的进程号  
+
+`$!`: 上一个子进程的进程号  
+
+`$#`: 传给脚本或函数的参数个数, 即位置变量数减`1`(1代表脚本自身)  
+`$*`和`$@`: 传给脚本的所有参数(不包含脚本本身), 每个参数以`$IFS`分隔（一般内为空格, TAB, 换行）; 两者的不同点是引号括起来时，`$*`会被作为一个整体，`$@`还是单个的参数。
+
+```
+ct@ehbio:~$ cat ehbio_testParam.sh
+#!/bin/bash
+
+echo "EHBIO${IFS}great"
+
+echo '$*'
+echo -ne "\t";
+echo $*
+
+echo '$@'
+echo -ne "\t";
+echo $@
+
+echo 'Each element in $*:'
+
+for i in "$*"; do
+	echo -ne "\t";
+	echo $i;
+done
+
+
+echo 'Each element in $@:'
+for i in "$@"; do
+	echo -ne "\t";
+	echo $i;
+done
+
+ct@ehbio:~$ bash ehbio_testParam.sh sheng xin bao dian
+EHBIO 	
+great
+$*
+	sheng xin bao dian
+$@
+	sheng xin bao dian
+Each element in $*:
+	sheng xin bao dian
+Each element in $@:
+	sheng
+	xin
+	bao
+	dian
+```
+
+## Bash操作符
+
+1. 字符串操作符（替换操作符）
+
+`${var:-word}`: 如果var存在且不为空, 返回它的值, 否则返回word  
+`${var:=word}`: 如果var存在且不为空, 返回它的值, 否则将word赋给var,  返回它的值  
+`${var:+word}`: 如果var存在且不为空, 返回word, 否则返回空  
+`${var:?message}` 如果var存在且不为空, 返回它的值,   
+否则显示“-bash: var: message”, 然后退出当前命令或脚本  
+`${var:offset[:length]}` 从offset位置开始返回var的一个长为length的子串,   
+若没有length, 则默认到var串末尾
+
+```bash
+ct@ehbio:~$ echo ${var:?message}
+-bash: var: message
+ct@ehbio:~$ var='sheng xin bao dian'
+ct@ehbio:~$ echo ${var:6:3}
+xin
+ct@ehbio:~$ echo ${var:?message}
+sheng xin bao dian
+ct@ehbio:~$ echo $?
+0
+ct@ehbio:~$ unset var
+ct@ehbio:~$ echo ${var:?message}
+-bash: var: message
+ct@ehbio:~$ echo $?
+1
+ct@ehbio:~$ echo ${var:=ehbio}
+ehbio
+ct@ehbio:~$ echo ${var}
+ehbio
+```
+
+2. 模式匹配操作符
+
+`${var#pattern}` 从var头部开始, 删除和pattern匹配的最短模式串, 然后返回 剩余串  
+
+`${var##pattern}` 从var头部开始, 删除和pattern匹配的最长模式串, 然后返回 剩余串, `basename path＝${path##*/}`  
+
+`${var%pattern}` 从var尾部开始, 删除和pattern匹配的最短模式串, 然后返回 剩余串, `dirname path＝${path%/*}`
+
+`${var%%pattern}` 从var尾部开始, 删除和pattern匹配的最长模式串, 然后返回 剩余串  
+
+`${var/pattern/string}`  用string替换var中和pattern匹配的最长模式串
+
+个人最常用的是最后一个，常用于`for`循环中。
+
+```
+ct@ehbio:~$ var='sheng xin bao dian good'
+ct@ehbio:~$ ${var/good/great}
+-bash: sheng: command not found
+ct@ehbio:~$ echo ${var/good/great}
+sheng xin bao dian great
+```
+
+比如获取fastq文件的名字部分
+
+```
+for i in `ls *_1.fq.gz`; do j=${i/_1.fq.gz/}; echo "$j"; done
+```
+
+## Shell中条件和test命令
+
+Bash可以使用`[ … ]`结构或`test`命令测试复杂条件  
+格式: `[ expression ]` 或 `test expression`  
+返回一个代码, 表明条件为真还是为假, 返回`0`为真, 否则为假。  
+注: 左括号`后`和右括号`前空格`是**必须的**语法要求
+
+1. 文件测试操作符
+
+`-d file`: file存在并且是一个目录  
+`-e file`: file存在  
+`-f file`: file存在并且是一个普通文件  
+`-g file`: file存在并且是SGID(设置组ID)文件  
+`-r file`: 对file有读权限  
+`-s file`: file存在并且不为空  
+`-u file`: file存在并且是SUID(设置用户ID)文件  
+`-w file`: 对file有写权限  
+`-x file`: 对file有执行权限, 如果是目录则有查找权限  
+`-O file`: 拥有file  
+`-G file`: 测试是否是file所属组的一个成员  
+`-L file`: file为符号链接  
+`file1 –nt file2`: file1比file2新
+
+`file1 –ot file2`: file1比file2旧
+
+举两个例子
+
+```
+ct@ehbio:~$ touch older
+ct@ehbio:~$ touch newer
+
+ct@ehbio:~$ if test -e older; then echo "older esists"; fi
+older esists
+ct@ehbio:~$ if test -s older; then echo "older is unempty"; fi
+ct@ehbio:~$ if [ -s older ]; then echo "older is unempty"; fi
+ct@ehbio:~$ if [ ! -s older ]; then echo "older is empty"; fi
+older is empty
+ct@ehbio:~$ if [ newer -nt older ]; then echo "newer"; fi
+newer
+```
+
+2. 字符串操作符
+
+`str1=str2` str1和str2匹配  
+`str1!=str2` str1和str2不匹配  
+`str1>str2` str1大于str2  
+`-n str` str的长度大于0（不为空）
+`-z str` str的长度为0（空串），常用于判断必须的命令行参数是否传入
+
+```
+# 字符串的大小比较的是最先遇到的不同的ASCII码的大小
+ct@ehbio:~$ if test "10">"20"; then echo "10>20"; fi
+10>20
+ct@ehbio:~$ if test 10>20; then echo "10 < 20"; fi
+```
+
+3. **整数**操作符
+
+var1 –eq var2 var1等于var2  
+var1 –ne var2 var1不等于var2  
+var1 –ge var2 var1大于等于var2  
+var1 –gt var2 var1大于var2  
+var1 –le var2 var1小于等于var2  
+var1 –lt var2 var1小于var2
+
+`ge`: great equal; `gt`: great than
+
+**需要注意的是常用的数学运算符给了字符串比较，数字比较使用的却是英文缩写**
+
+数学表达式也可以
+
+```
+if (( 3>2 )); then echo 'TRUE'; fi
+TRUE
+```
+
+4. 逻辑操作符
+
+`!expr` 对expr求反
+`expr1 && expr2` 对expr1与expr2求逻辑与, 当expr1为假时不再执行expr2  
+`expr1 || expr2` 对expr1与expr2求逻辑或, 当expr1为真时不再执行expr2  
+
+
+## Shell流控制
+
+1. 条件语句: if
+
+`if`, `then`, `elif`, `else`, `fi`是关键词，其它的是需要替换掉的。
+
+```
+if conditions; then
+	do sth when conditions are true
+elif another_conditions; then
+	do sth when another_conditions are true
+else:
+	do sth when above condiitons are all false
+fi
+```
+
+```
+if test $guanzhu_sxbd == "already"; then
+	echo "Enjoy it"
+elif test $guanzhu_hjyz == "already"; then
+	echo "Enjoy it"
+else
+	echo "Guan zhu them"
+fi
+
+Enjoy it
+```
+
+
+2. 确定性循环: `for do done` **常用的批量操作方式**
+
+遍历一个列表，取出每个元素，针对性操作。
+
+```
+for i in `ls *_1.fq.gz`; do 
+	echo "$i"; 
+done
+```
+
+3. 不确定性循环: `while`和`until`
+
+```  
+declare -i a #定义整数变量
+a=1   # 初始化变量
+while test $a -lt 3; do
+	echo $a
+	a=$a+1
+done 
+
+echo $a
+```
+
+4. 选择结构: `case`和`select` (类似getopts)
+
+```
+ct@ehbio:~$ cat select_case.sh
+
+PS3="Input the position of selected parameter (1 for exit):"
+
+select opts in a b c d
+do
+	case $opts in
+		a)
+			exit 0;
+			;;
+		b)
+			echo " Parameters $opts"
+			;;
+		c)
+			echo " Parameters $opts"
+			;;
+		d)
+			echo " Parameters $opts"
+			;;
+		?)
+			echo "Unknown"
+			;;
+	esac
+done
+
+ct@ehbio:~$ bash select_case.sh 
+1) a
+2) b
+3) c
+4) d
+Input the position of selected parameter (1 for exit):2
+ Parameters b
+Input the position of selected parameter (1 for exit):3
+ Parameters c
+Input the position of selected parameter (1 for exit):4
+ Parameters d
+Input the position of selected parameter (1 for exit):1
+
+```
+
+5. 命令`shift`
+
+将存放在位置变量中的命令行参数依次向左传递`shift n` 命令行参数向左传递`n`个参数串
+
+```
+ct@ehbio:~$ cat ehbio_testParam.sh
+#!/bin/bash
+
+echo 'Each element in $*:'
+
+for i in "$*"; do
+	echo -ne "\t";
+	echo $i;
+done
+
+echo $1
+shift
+
+for i in "$*"; do
+	echo -ne "\t";
+	echo $i;
+done
+ct@ehbio:~$ bash ehbio_testParam.sh sheng xin bao dian
+Each element in $*:
+	sheng xin bao dian
+sheng
+	xin bao dian
+```
+
+## Shell函数
+
+`function function_name () { function body}`定义函数，函数参数的获取同命令行参数获取。
+
+```
+ct@ehbio:~$ cat test_func.sh 
+function show_ehbio () {
+	echo $@
+	echo $1
+}
+
+show_ehbio "EHBIO great" "SXBD great"
+ct@ehbio:~$ bash test_func.sh
+EHBIO great SXBD great
+EHBIO great
+```
+
+## 输入输出
+
+1. I/O重定向  
+
+[管道、标准输入输出](http://mp.weixin.qq.com/s/zL9Mw_2ig48gHrIjKM0CMw)之前有过详细介绍。
+
+`<`: 输入重定向 
+
+`>`: 输出重定向(没有文件则创建, 有则覆盖)  
+
+`>>`: 输出重定向(没有则创建, 有则追加到文件尾部)  
+
+`<<`: 输入重定向(here文档)  
+
+```
+command << label  
+input…  
+label  
+说明:  使一个命令的输入为一段shell脚本(input…), 直到标号(label)结束  
+```
+
+```
+ftp: USER=anonymous  
+PASS=YC@163.com  
+#-i: 非交互模式 -n: 关闭自动登录  
+ftp –i –n << END 
+open ftp.163.com  
+user $USER $PASS  
+cd /pub  
+close  
+END
+#END标记输入结束 
+```
+ 
+2. 字符串I/O操作  
+
+字符串输出: `echo`  
+
+命令选项:  `-e`: 启动转义序列 `-n`: 取消输出后换行  (前面已经用到过)
+
+3. 字符串输入: `read` 可以用于用户交互输入, 也可以用来一次处理文本文件中的一行
+
+命令选项: 
+
+```
+ct@ehbio:~$ read -p "Enter the best tutorial: " tutorial
+Enter the best tutorial: Sheng Xin Bao Dian
+ct@ehbio:~$ echo $tutorial
+Sheng Xin Bao Dian
+
+# 隐藏输入内容
+ct@ehbio:~$ read -s -p "Enter your password: " password
+Enter your password: 
+ct@ehbio:~$ echo $password
+haha
+```
+
+## 命令行处理 命令行处理命令: 
+
+`getopts` 有两个参数, 第一个为字母和冒号组成的选项列表字符串, 第二个为一个变量名
+
+选项列表字符串以冒号开头的选项字母排列组成, 如果一选项需要一个参数则该选项字母后跟一个冒号
+
+`getopts`分解第一参数, 依次将选项摘取出来赋给第二个参数变量
+
+如果某选项有参数, 则读取参数到内置变量`OPTARG`中 内置变量`OPTIND`保存着将被处理的命令行参数（位置参数）的数值选项列表处理完毕`getopts`返回`1`, 否则返回`0` 如: 
+
+在我们推出的[一步绘图脚本](https://mp.weixin.qq.com/s/bsvB1k17Izom2ldgdwXrdg)里面，就是使用`Bash`封装的R脚本，通过修改命令行参数，完成热图、柱状图、线图、Venn图、火山图、泡泡图等图形的绘制和定制。
+
+```
+while getopts "hf:m:a:A:b:I:t:x:l:j:J:d:F:G:H:P:L:y:V:D:c:C:B:X:Y:R:w:u:r:o:O:s:S:p:z:Z:v:e:E:i:" OPTION
+do
+        case $OPTION in
+                h)
+                        usage
+                        exit 1
+                        ;;
+                f)
+                        file=$OPTARG
+                        ;;
+                m)
+                        melted=$OPTARG
+						;;
+				.
+				.
+				.
+                ?)
+                        usage
+                        exit 1
+                        ;;
+        esac
+done				
+```
+
+## 进程和作业控制
+
+[命令行运行监测和软件安装](https://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA)文中讲述了部分监测命令。
+
+如果一个命令需要运行比较久，一般使用`nohup cmmand &`来放入后台不中断运行，这样推出终端也不影响程序。
+
+`command &`是把程序放入后台。
+
+`jobs`: 查看后台进程
+
+`bg`: 显示后台进程, 即用Ctrl+z挂起或‘命令 &’执行的进程
+
+`fg job_id`: 将后台进程转到前台执行
+
+`kill –9 process_id`: 强制杀掉某个进程
+
+

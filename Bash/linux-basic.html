@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Linux学习</title>
+  <meta name="description" content="Linux学习">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Linux学习" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linux学习" />
+  
+  
+  
+
+<meta name="author" content="易生信">
+<meta name="author" content="www.ehbio.com/Training">
+<meta name="author" content="train@ehbio.com">
+
+
+<meta name="date" content="2018-04-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="softinstall.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.ehbio.com"><img src="http://www.ehbio.com/logos/ehbio_gitbook_logo.png" width="95%"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>EHBIO Gene Technology</a></li>
+<li class="chapter" data-level="1" data-path="linux-basic.html"><a href="linux-basic.html"><i class="fa fa-check"></i><b>1</b> Linux基础内容</a><ul>
+<li class="chapter" data-level="1.1" data-path="linux-basic.html"><a href="linux-basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
+<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统简介</a></li>
+<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.3</b> 如何获取Linux系统</a></li>
+<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录</a></li>
+<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统</a></li>
+<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
+<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.7"><i class="fa fa-check"></i><b>1.1.7</b> 硬件信息查看</a></li>
+<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.8"><i class="fa fa-check"></i><b>1.1.8</b> 目录内容查看</a></li>
+<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.9"><i class="fa fa-check"></i><b>1.1.9</b> 新建目录</a></li>
+<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.10"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
+<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.11"><i class="fa fa-check"></i><b>1.1.11</b> 获取可用命令行参数</a></li>
+<li class="chapter" data-level="1.1.12" data-path="linux-basic.html"><a href="linux-basic.html#a"><i class="fa fa-check"></i><b>1.1.12</b> 小结</a></li>
+<li class="chapter" data-level="1.1.13" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.13"><i class="fa fa-check"></i><b>1.1.13</b> 练习题</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="linux-basic.html"><a href="linux-basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 文件上下翻转和左右翻转</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 其它新建文件的方式</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些异常情况</a></li>
+<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.5</b> Linux下文件内容操作</a></li>
+<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.6"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="linux-basic.html"><a href="linux-basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
+<li class="chapter" data-level="1.4" data-path="linux-basic.html"><a href="linux-basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.4</b> Linux下的标准输入、输出、重定向、管道</a></li>
+<li class="chapter" data-level="1.5" data-path="linux-basic.html"><a href="linux-basic.html#filecontent"><i class="fa fa-check"></i><b>1.5</b> Linux文件内容操作</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.1"><i class="fa fa-check"></i><b>1.5.1</b> 文件生成</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.2"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#fasta"><i class="fa fa-check"></i><b>1.5.3</b> FASTA序列提取</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> 命令运行监测</a></li>
+<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a><ul>
+<li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="softinstall.html"><a href="softinstall.html#fileattribute"><i class="fa fa-check"></i><b>2.1.1</b> 文件属性</a></li>
+<li class="chapter" data-level="2.1.2" data-path="softinstall.html"><a href="softinstall.html#executable"><i class="fa fa-check"></i><b>2.1.2</b> 可执行属性</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#path"><i class="fa fa-check"></i><b>2.2</b> 环境变量</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 环境变量的补充</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种方式</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
+<li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
+<li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#section-2.3.3"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
+<li class="chapter" data-level="2.3.4" data-path="softinstall.html"><a href="softinstall.html#pythonpac"><i class="fa fa-check"></i><b>2.3.4</b> Python包的安装</a></li>
+<li class="chapter" data-level="2.3.5" data-path="softinstall.html"><a href="softinstall.html#anaconda"><i class="fa fa-check"></i><b>2.3.5</b> Anaconda的两个福利</a></li>
+<li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#rr"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="softinstall.html"><a href="softinstall.html#condaInstallConfig"><i class="fa fa-check"></i><b>2.4.1</b> Conda安装和配置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
+<li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#condachannel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
+<li class="chapter" data-level="2.4.4" data-path="softinstall.html"><a href="softinstall.html#section-2.4.4"><i class="fa fa-check"></i><b>2.4.4</b> 创建不同的软件运行环境</a></li>
+<li class="chapter" data-level="2.4.5" data-path="softinstall.html"><a href="softinstall.html#condar"><i class="fa fa-check"></i><b>2.4.5</b> Conda配置R</a></li>
+<li class="chapter" data-level="2.4.6" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.6</b> Conda环境简化运行</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.5</b> Makefile知识</a></li>
+<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6</b> Docker安装</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.1</b> Docker能做什么</a></li>
+<li class="chapter" data-level="2.6.2" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.2</b> Docker的几个基本概念</a></li>
+<li class="chapter" data-level="2.6.3" data-path="softinstall.html"><a href="softinstall.html#section-2.6.3"><i class="fa fa-check"></i><b>2.6.3</b> 安装和配置</a></li>
+<li class="chapter" data-level="2.6.4" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.4</b> Docker用户权限</a></li>
+<li class="chapter" data-level="2.6.5" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.5</b> Docker试用</a></li>
+<li class="chapter" data-level="2.6.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.6</b> Docker系统基本操作</a></li>
+<li class="chapter" data-level="2.6.7" data-path="softinstall.html"><a href="softinstall.html#dockerfile"><i class="fa fa-check"></i><b>2.6.7</b> 使用Dockerfile自动构建镜像</a></li>
+<li class="chapter" data-level="2.6.8" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.8</b> Docker的特征</a></li>
+<li class="chapter" data-level="2.6.9" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.9</b> Docker使用注意</a></li>
+<li class="chapter" data-level="2.6.10" data-path="softinstall.html"><a href="softinstall.html#section-2.6.10"><i class="fa fa-check"></i><b>2.6.10</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="softinstall.html"><a href="softinstall.html#references-1"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html"><i class="fa fa-check"></i><b>3</b> Linux神器</a><ul>
+<li class="chapter" data-level="3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#regularExpr"><i class="fa fa-check"></i><b>3.1</b> 正则表达式</a></li>
+<li class="chapter" data-level="3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2</b> awk命令</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2.1</b> awk基本参数解释</a></li>
+<li class="chapter" data-level="3.2.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.2"><i class="fa fa-check"></i><b>3.2.2</b> 常见操作</a></li>
+<li class="chapter" data-level="3.2.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.3"><i class="fa fa-check"></i><b>3.2.3</b> 糅合操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3</b> SED命令</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3.1</b> sed基本参数解释</a></li>
+<li class="chapter" data-level="3.3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>3.3.2</b> 常见操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4</b> VIM的使用</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.1</b> 初识VIM</a></li>
+<li class="chapter" data-level="3.4.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.2</b> VIM中使用正则表达式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#references-2"><i class="fa fa-check"></i><b>3.5</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bash-string.html"><a href="bash-string.html"><i class="fa fa-check"></i><b>4</b> Bash 字符串处理</a><ul>
+<li class="chapter" data-level="4.1" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
+<li class="chapter" data-level="4.2" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
+<li class="chapter" data-level="4.3" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
+<li class="chapter" data-level="4.4" data-path="bash-string.html"><a href="bash-string.html#shelltest"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
+<li class="chapter" data-level="4.5" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
+<li class="chapter" data-level="4.6" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
+<li class="chapter" data-level="4.7" data-path="bash-string.html"><a href="bash-string.html#section-4.7"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
+<li class="chapter" data-level="4.8" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令:</a></li>
+<li class="chapter" data-level="4.9" data-path="bash-string.html"><a href="bash-string.html#section-4.9"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html"><i class="fa fa-check"></i><b>5</b> Bioinfo tools</a><ul>
+<li class="chapter" data-level="5.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#cas9"><i class="fa fa-check"></i><b>5.1</b> 寻找Cas9的同源基因并进行进化分析</a></li>
+<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#emboss"><i class="fa fa-check"></i><b>5.2</b> emboss的使用</a></li>
+<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#samtoolssnp"><i class="fa fa-check"></i><b>5.3</b> 使用samtools计算SNP</a></li>
+<li class="chapter" data-level="5.4" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bedtools"><i class="fa fa-check"></i><b>5.4</b> Bedtools使用</a></li>
+<li class="chapter" data-level="5.5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#sra-toolkit"><i class="fa fa-check"></i><b>5.5</b> SRA toolkit使用</a></li>
+<li class="chapter" data-level="5.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 生信流程开发</a></li>
+<li class="chapter" data-level="5.7" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 数据同步和备份</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#scp"><i class="fa fa-check"></i><b>5.7.1</b> scp</a></li>
+<li class="chapter" data-level="5.7.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.7.2</b> rsync</a></li>
+<li class="chapter" data-level="5.7.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rdiff-backup"><i class="fa fa-check"></i><b>5.7.3</b> rdiff-backup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bioinfo-questions.html"><a href="bioinfo-questions.html"><i class="fa fa-check"></i><b>6</b> Bioinfo questions</a></li>
+<li class="chapter" data-level="7" data-path="supplemental.html"><a href="supplemental.html"><i class="fa fa-check"></i><b>7</b> Supplemental</a></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="section-8.html"><a href="section-8.html#section-8.1.1"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
+<li class="chapter" data-level="8.1.2" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
+<li class="chapter" data-level="8.1.3" data-path="section-8.html"><a href="section-8.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
+<li class="chapter" data-level="8.1.4" data-path="section-8.html"><a href="section-8.html#section-8.1.4"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
+<li class="chapter" data-level="8.1.5" data-path="section-8.html"><a href="section-8.html#section-8.1.5"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
+<li class="chapter" data-level="8.1.6" data-path="section-8.html"><a href="section-8.html#section-8.1.6"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
+<li class="chapter" data-level="8.1.7" data-path="section-8.html"><a href="section-8.html#linux-1"><i class="fa fa-check"></i><b>8.1.7</b> Linux</a></li>
+<li class="chapter" data-level="8.1.8" data-path="section-8.html"><a href="section-8.html#circos"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
+<li class="chapter" data-level="8.1.9" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
+<li class="chapter" data-level="8.1.10" data-path="section-8.html"><a href="section-8.html#section-8.1.10"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
+<li class="chapter" data-level="8.1.11" data-path="section-8.html"><a href="section-8.html#section-8.1.11"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.1.12" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
+<li class="chapter" data-level="8.1.13" data-path="section-8.html"><a href="section-8.html#section-8.1.13"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
+<li class="chapter" data-level="8.1.14" data-path="section-8.html"><a href="section-8.html#python"><i class="fa fa-check"></i><b>8.1.14</b> Python</a></li>
+<li class="chapter" data-level="8.1.15" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
+<li class="chapter" data-level="8.1.16" data-path="section-8.html"><a href="section-8.html#cytoscape"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
+<li class="chapter" data-level="8.1.17" data-path="section-8.html"><a href="section-8.html#section-8.1.17"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
+<li class="chapter" data-level="8.1.18" data-path="section-8.html"><a href="section-8.html#section-8.1.18"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
+<li class="chapter" data-level="8.1.19" data-path="section-8.html"><a href="section-8.html#section-8.1.19"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
+<li class="chapter" data-level="8.1.20" data-path="section-8.html"><a href="section-8.html#section-8.1.20"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
+<li class="chapter" data-level="8.1.21" data-path="section-8.html"><a href="section-8.html#section-8.1.21"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.html"><a href="section-8.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-8.html"><a href="section-8.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-8.html"><a href="section-8.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.html"><a href="section-8.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.html"><a href="section-8.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
+<li class="chapter" data-level="8.2.6" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="section-8.html"><a href="section-8.html#section-8.2.8"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
+<li class="chapter" data-level="8.2.9" data-path="section-8.html"><a href="section-8.html#section-8.2.9"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
+<li class="chapter" data-level="8.2.10" data-path="section-8.html"><a href="section-8.html#section-8.2.10"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
+<li class="chapter" data-level="8.2.11" data-path="section-8.html"><a href="section-8.html#section-8.2.11"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
+<li class="chapter" data-level="8.2.12" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
+<li class="chapter" data-level="8.2.13" data-path="section-8.html"><a href="section-8.html#section-8.2.13"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="mailto:ct@ehbio.com" target="blank">ct@ehbio.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linux学习</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linux_basic" class="section level1">
+<h1><span class="header-section-number">1</span> Linux基础内容</h1>
+<p>视频课见 <a href="http://bioinfo.ke.qq.com" class="uri">http://bioinfo.ke.qq.com</a>。</p>
+<div id="basicDir" class="section level2">
+<h2><span class="header-section-number">1.1</span> Linux系统简介和目录理解</h2>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> 为什么要用Linux系统</h3>
+<p>个人认为，Linux操作系统和类Linux操作系统的命令行界面是最适合进行生物信息分析的操作系统。原因有三点：</p>
+<ul>
+<li>长期运行的稳定性</li>
+<li>多数软件只有Linux版本</li>
+<li>强大的Bash命令简化繁琐的操作，尤其是大大简化重复性工作</li>
+</ul>
+<p>但对于初学者来说，接触和理解Linux操作系统需要一些时间和摸索。陡然从可视化点选操作的Windows进入到只有命令行界面的Linux，最大的陌生感是不知道做什么，不知道文件在哪？</p>
+<p>我们这篇教程就带大家学习、熟悉、体会Linux系统的使用。</p>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Linux系统简介</h3>
+<ul>
+<li><p>Linux是一种多用户、多任务的操作系统。最开始是由Linus Torvalds与1991年发布，后由社区维护，产生了不同的分发版。</p></li>
+<li><p>常见版本有<code>Centos</code>, <code>Ubuntu</code>, <code>RedHat</code>, <code>Debian</code>等。服务器多用<code>Centos</code>系统，免费，稳定，但更新慢。<code>Ubuntu</code>系统更新快，注重界面的体验，适合自己笔记本安装。有面向中国的“麒麟”系统。其它两个没用过，<code>Centos</code>与<code>RedHat</code>, <code>Debian</code>与<code>Ubuntu</code>同宗，命令行操作起来很相似。</p></li>
+</ul>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> 如何获取Linux系统</h3>
+<ul>
+<li>如果自己的单位有共有服务器，可以尝试申请账号。</li>
+<li>自己的电脑安装双系统或虚拟机。</li>
+<li>使用<a href="http://blog.csdn.net/woodcorpse/article/details/79313846">gitforwindows</a>在windows下模拟使用Linux命令。</li>
+<li>购买一块云服务器</li>
+<li>试验下在线学习平台实验楼 <a href="https://www.shiyanlou.com" class="uri">https://www.shiyanlou.com</a> (里面也有不少Linux教程，任意点一个进去，双击桌面的<code>Xfce</code>图标，都可以启动Linux终端)</li>
+</ul>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Linux系统登录</h3>
+<p>登录服务器的IP是：192.168.1.107; 端口是：22；用户名是每个人的姓名全拼，如陈同为chentong (全小写，无空格)；密码是 yishengxin。</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="image/Linux_xshell1.png" alt="配置Xshell登录服务器1。" width="100%" />
+<p class="caption">
+Figure 1.1: 配置Xshell登录服务器1。
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="image/Linux_xshell2.png" alt="配置Xshell登录服务器2。" width="100%" />
+<p class="caption">
+Figure 1.2: 配置Xshell登录服务器2。
+</p>
+</div>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.1.5</span> 初识Linux系统</h3>
+<p>既然用Linux，我们就摒弃界面操作，体验其命令行的魅力和庞大。后续操作都是在命令行下进行的，主要靠键盘，少数靠鼠标。</p>
+<p>登录Linux系统后，呈现在眼前的是这样一个界面:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Last</span> login: Mon Jun  5 16:56:56 2017 from 239.241.208.209
+
+<span class="kw">Welcome</span> to aliyun Elastic Compute Service!
+
+<span class="kw">ct@ehbio</span>:~$ </code></pre></div>
+<p>首先解释下出现的这几个字母和符号:</p>
+<ul>
+<li><code>ct</code>: 用户名</li>
+<li><code>ehbio</code>：如果是登录的远程服务器，则为宿主机的名字；若是本地电脑，则为自己电脑的名字。</li>
+<li><code>~</code>: 代表家目录, 在我们进入新的目录后，这个地方会跟着改变</li>
+<li><code>$</code>: 用来指示普通用户输入命令的地方；对根用户来说一般是<code>#</code></li>
+<li><a href="http://bashrcgenerator.com/" class="uri">http://bashrcgenerator.com/</a>可视化定制不同的显示方式。</li>
+<li>个人习惯的展示：<code>PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$</code></li>
+</ul>
+</div>
+<div id="section-1.1.6" class="section level3">
+<h3><span class="header-section-number">1.1.6</span> 我的电脑在哪？</h3>
+<p>打开Windows，首先看到的是桌面；不爱整理文件的我，桌面的东西已经多到需要2个屏幕才能显示的完。另外一个常用的就是我的电脑，然后打开D盘，依次点开对应的文件夹，然后点开文件。</p>
+<p>Linux的文件系统组织方式与Windows略有不同，登录进去就是家目录，可视为Windows下的桌面[^Linux的家目录严格来说可能类似于Windows下的`C:\\Users\\ct`]。在这个目录下，我们可以新建文件、新建文件夹，就像在桌面上的操作一样。</p>
+<p>而Linux的完整目录结构如下：</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="image/Linux_dir.png" alt="Linux目录层级结构。" width="100%" />
+<p class="caption">
+Figure 1.3: Linux目录层级结构。
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 若提示命令找不到，运行下面语句安装tree</span>
+<span class="co"># 需要有根用户权限</span>
+<span class="co"># yum install tree.x86_64</span>
+<span class="kw">ct@ehbio</span>:~$ tree -d -L 2 /</code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-5">Table 1.1: </span>Linux下目录简介</caption>
+<thead>
+<tr class="header">
+<th align="left">Path</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">/</td>
+<td align="left">根目录</td>
+</tr>
+<tr class="even">
+<td align="left">/bin</td>
+<td align="left">常用软件如ls, mkdir, top等的存放地</td>
+</tr>
+<tr class="odd">
+<td align="left">/dev</td>
+<td align="left">硬件相关</td>
+</tr>
+<tr class="even">
+<td align="left">/etc</td>
+<td align="left">存放系统管理和配置相关文件</td>
+</tr>
+<tr class="odd">
+<td align="left">/etc/cron*</td>
+<td align="left">与定时任务相关的文件夹，可执行程序放置到对应文件夹就可以定时执行</td>
+</tr>
+<tr class="even">
+<td align="left">/etc/profile.d</td>
+<td align="left">目录下存放Bash相关的配置文件，相当于全局的.bashrc</td>
+</tr>
+<tr class="odd">
+<td align="left">/etc/profile.d/custom.sh</td>
+<td align="left">我在配置全局环境时，一般写入这个文件；如果不存在，可以新建。</td>
+</tr>
+<tr class="even">
+<td align="left">/home</td>
+<td align="left">家目录，默认新建用户的个人家目录都在此文件夹下</td>
+</tr>
+<tr class="odd">
+<td align="left">/home/ct</td>
+<td align="left">用户名为ct的用户的家目录</td>
+</tr>
+<tr class="even">
+<td align="left">/lib -&gt; usr/lib</td>
+<td align="left">存放动态库的目录 (library)，安装软件时碰到依赖的动态库一般存储于此</td>
+</tr>
+<tr class="odd">
+<td align="left">/lib64 -&gt; usr/lib64</td>
+<td align="left">64位软件动态库，-&gt; 表示软连接，等同于快捷方式</td>
+</tr>
+<tr class="even">
+<td align="left">/mnt</td>
+<td align="left">文件系统挂载，一般插入U盘会显示在这。</td>
+</tr>
+<tr class="odd">
+<td align="left">/opt</td>
+<td align="left">部分额外安装的软件会置于此</td>
+</tr>
+<tr class="even">
+<td align="left">/root</td>
+<td align="left">根用户的家目录</td>
+</tr>
+<tr class="odd">
+<td align="left">/sbin -&gt; usr/sbin</td>
+<td align="left">根用户的管理命令</td>
+</tr>
+<tr class="even">
+<td align="left">/tmp</td>
+<td align="left">临时目录，会定时清空，常用于存放中间文件</td>
+</tr>
+<tr class="odd">
+<td align="left">/usr</td>
+<td align="left">存放系统应用的目录，前面有几个目录都是该目录下子目录的软链</td>
+</tr>
+<tr class="even">
+<td align="left">/usr/bin</td>
+<td align="left">大部分应用程序安装于此</td>
+</tr>
+<tr class="odd">
+<td align="left">/usr/sbin</td>
+<td align="left">根用户的管理命令</td>
+</tr>
+<tr class="even">
+<td align="left">/usr/lib</td>
+<td align="left">存放动态库的目录 (library)，安装软件时碰到依赖的动态库一般存储于此</td>
+</tr>
+<tr class="odd">
+<td align="left">/usr/lib64</td>
+<td align="left">64位软件动态库</td>
+</tr>
+<tr class="even">
+<td align="left">/usr/local/bin</td>
+<td align="left">存放本地安装的命令</td>
+</tr>
+<tr class="odd">
+<td align="left">/usr/local/lib</td>
+<td align="left">存放本地安装的库</td>
+</tr>
+<tr class="even">
+<td align="left">/var</td>
+<td align="left">存放各服务的日志文件。若装有网络服务，一般在/var/www/html下。</td>
+</tr>
+</tbody>
+</table>
+<p>作为一个普通用户，通常只在<code>/home/usr</code>, <code>/tmp</code>下有<strong>可写</strong>的权限，其它目录最多是<strong>可读、可执行</strong>，部分目录连读的权限都没有。这种权限管理方式是Linux能成为真正多用户系统的一个原因。后面我们会讲解如何查看并修改这些权限。</p>
+</div>
+<div id="section-1.1.7" class="section level3">
+<h3><span class="header-section-number">1.1.7</span> 硬件信息查看</h3>
+<p>看完目录结构了，来看一下硬盘有多大，有多少可用空间，只需要运行<code>df -h</code>命令。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ df -h
+<span class="kw">Filesystem</span>            Size  Used Avail Use% Mounted on
+<span class="kw">/dev/sda2</span>             193G   61G  122G  34% /
+<span class="kw">tmpfs</span>                 127G  344K  127G   1% /dev/shm
+<span class="kw">/dev/sda1</span>             190M   77M  103M  43% /boot
+<span class="kw">/dev/mapper/a</span>          37T   12T   25T  32% /ehbio1
+<span class="kw">/dev/mapper/b</span>          37T   28T  8.8T  76% /ehbio2
+<span class="kw">/dev/mapper/c</span>          37T   15T   23T  40% /ehbio3</code></pre></div>
+<p>除了看硬盘，还想看下CPU、内存、操作系统呢？</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># serverInfo.sh是我写的一个脚本，这个脚本怎么实现的会是一个考核题目。</span>
+<span class="kw">ct@ehbio</span>:~$ serverInfo.sh</code></pre></div>
+<pre><code>Hostname is localhost.localdomain,Ip address is 192.168.1.30.
+
+The 64 bit operating system is  CentOS release 6.9 (Final), 
+    
+Nuclear info is 2.6.32-696.10.1.el6.x86_64.
+
+The CPU is Intel(R) Xeon(R) CPU E9-5799 v2 @ 3.90GHz.
+
+There are 8 physical cpu, each physical cpu has 0 cores, 0 threads.
+
+There are 96 logical cpu.
+
+The memory of this server is 252G.</code></pre>
+</div>
+<div id="section-1.1.8" class="section level3">
+<h3><span class="header-section-number">1.1.8</span> 目录内容查看</h3>
+<p>通常登陆后直接进入家目录，下面大部分操作也是在家目录下完成的。如果想查看当前目录下都有什么内容，输入命令 <code>ls</code>，回车即可 (ls可以理解为单词list的缩写)。当前目录下什么也没有，所以没有任何输出。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ ls</code></pre></div>
+<p>如果错把<code>l</code>看成了<code>i</code>，输入了<code>is</code>，则会出现下面的提示<code>未找到命令</code>。如果输入的是Linux基本命令，出现这个提示，基本可以判定是命令输入错了，瞪大眼睛仔细看就是了。 <strong>在敲完命令回车后，注意查看终端的输出，以判断是否有问题。</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ is
+<span class="kw">-bash</span>: is: 未找到命令
+<span class="co"># 大小写敏感</span>
+<span class="kw">ct@ehbio</span>:~$ lS
+<span class="kw">-bash</span>: lS: 未找到命令</code></pre></div>
+<p>当前目录下只有一个文件，看不出效果，我们可以新建几个文件和文件夹。</p>
+</div>
+<div id="section-1.1.9" class="section level3">
+<h3><span class="header-section-number">1.1.9</span> 新建目录</h3>
+<p><code>mkdir</code>是新建一个目录 (<code>m</code>a<code>k</code>e a <code>dir</code>ectory)；<code>data</code>是目录的名字。 如果目录存在，则会出现提示，“无法创建已存在的目录”。这时可以使用参数<code>-p</code>忽略这个错误。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ mkdir data
+<span class="kw">ct@ehbio</span>:~$ ls
+<span class="kw">data</span>
+<span class="kw">ct@ehbio</span>:~$ mkdir data
+<span class="kw">mkdir</span>: 无法创建目录<span class="st">&quot;data&quot;</span> : 文件已存在
+
+<span class="co"># -p: no error if existing, make parent directories as needed</span>
+<span class="kw">ct@ehbio</span>:~$ mkdir -p data</code></pre></div>
+<p><code>cat</code>是一个命令，主要用来查看文件；在这与<code>&lt;&lt;END</code>连用用于读入大段数据。输入<code>cat &lt;&lt;END</code>之后，回车，会看到终端出现一个大于号，大于号后面可以输入内容，再回车，继续输入内容，直到我们输入<code>END</code> (大写的，与上面一致)，输入过程结束，我们输入的内容都显示在了屏幕上。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ mkdir data
+<span class="kw">ct@ehbio</span>:~$ cat &lt;&lt;END
+a
+bc
+END
+a
+bc</code></pre></div>
+<p>如果我们想把这些内容写入文件，就需要使用 <code>command &gt; filename</code>格式。</p>
+<p><code>&gt;</code>是一个重定向符号，即把前面命令的输出写入到<code>&gt;</code>后面的文件中。如下所示，新建了一个<code>Fasta</code>格式的文件。</p>
+<p><code>ls -l</code>列出文件的详细信息；<code>-l</code>表示命令行参数，是程序预留的一些选项，保证在不更改程序的情况下获得更灵活的操作。可使用<code>man ls</code>查看<code>ls</code>所有的命令行参数, <strong>上下箭头翻页</strong>，按<code>q</code>退出查看。(man: manual, 手册)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ cat &lt;&lt;END &gt;data/test.fa
+&gt;SOX2
+ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT
+ACGATGAGGAGTAGGAGAGAGGAGG
+&gt;OCT4
+ACGTAGGATGGAGGAGAGGGAGGGGGGAGGAGAGGAA
+AGAGTAGAGAGA
+&gt;NANOG
+ACGATGCGATGCAGCGTTTTTTTTTGGTTGGATCT
+CAGGTAGGAGCGAGGAGGCAGCGGCGGATGCAGGCA
+ACGGTAGCGAGTC
+&gt;mYC HAHA
+ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
+CAGGACAGGAGCTA
+end
+END
+
+## 注意命令和参数之间的空格
+ct@ehbi<span class="kw">o</span>:<span class="kw">~/data</span>$ <span class="kw">ls-l</span>
+-bash: <span class="kw">ls-l</span>: 未找到命令
+
+ct@ehbio:~$ <span class="kw">ls</span> -l
+总用量 4
+## d: dir; 表示data是个目录
+## rwx：表示目录的权限，暂时忽略，或自己在线搜索
+drwxrwxr-x 2 ct ct 4096 6月   8 14:52 data
+
+ct@ehbio:~$ l<span class="kw">s</span> <span class="kw">-l</span> data
+总用量 4
+## 开头的<span class="kw">`-`</span>表示test.fa是个文件
+<span class="kw">-rw-rw-r--</span> 1 ct ct 284 6月   8 14:48 test.fa</code></pre></div>
+</div>
+<div id="section-1.1.10" class="section level3">
+<h3><span class="header-section-number">1.1.10</span> 访问文件</h3>
+<p>查看写入的文件的内容，<code>cat 文件名</code>；需要注意的是文件所在的目录，默认是当前目录；如下面第一个命令，会提示<code>cat: test.fa: 没有那个文件或目录</code>，是因为当前目录下不存在文件<code>test.fa</code>。(注意文件末尾的end)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 这个应该是最常见的错误之一，程序不可能知道你的输入文件在什么地方，</span>
+<span class="co"># 需要人为指定。</span>
+<span class="co"># 如果未指定路径，表示当前目录</span>
+<span class="kw">ct@ehbio</span>:~$ cat test.fa
+<span class="kw">cat</span>: test.fa: 没有那个文件或目录
+
+<span class="kw">ct@ehbio</span>:~$ cat data/test.fa 
+<span class="kw">&gt;SOX2</span>
+<span class="kw">ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT</span>
+<span class="kw">ACGATGAGGAGTAGGAGAGAGGAGG</span>
+<span class="kw">&gt;OCT4</span>
+<span class="kw">ACGTAGGATGGAGGAGAGGGAGGGGGGAGGAGAGGAA</span>
+<span class="kw">AGAGTAGAGAGA</span>
+<span class="kw">&gt;NANOG</span>
+<span class="kw">ACGATGCGATGCAGCGTTTTTTTTTGGTTGGATCT</span>
+<span class="kw">CAGGTAGGAGCGAGGAGGCAGCGGCGGATGCAGGCA</span>
+<span class="kw">ACGGTAGCGAGTC</span>
+<span class="kw">&gt;mYC</span> HAHA
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span></code></pre></div>
+<p><code>test.fa</code>在目录<code>data</code>下，可以先进入<code>data</code>目录，然后再查看文件。类比于Windows下先点开一个文件夹，再点开下面的文件。</p>
+<p>这个例子中文件<code>test.fa</code>在当前目录的子目录<code>data</code>里面，在当前目录下直接查看<code>test.fa</code>就像在<code>我的电脑</code>里面不进入C盘，就像打开<code>Program file</code>文件夹。这属于<strong>隔空打牛</strong>的境界，不是一般人能练就的。起码Linux下不可以。</p>
+<p>提到目录，Linux下有<strong>绝对路径</strong>和<strong>相对路径</strong>的概念。</p>
+<ul>
+<li><p>绝对路径：以<code>/</code>开头的路径为绝对路径，如<code>/home/ct</code>, <code>/usr/bin</code>, <code>/home/ct/data</code>等。需要注意的是<code>~/data</code>等同于<code>/home/ct/data</code>, 多数情况下可以等同于绝对路径，但在一个情况下例外，软件安装时用于<code>--prefix</code>后的路径必须是<code>/</code>开头的绝对路径。</p></li>
+<li><p>相对路径: 不以<code>/</code>和<code>~</code>开头的路径都是相对路径，如<code>data</code>表示当前目录下的data目录，等同于<code>./data</code> (<code>.</code>为当前目录), <code>../data</code>表示当前目录的上一层目录下的data目录 (<code>../</code>表示上层目录)。</p></li>
+</ul>
+<p><code>pwd</code> (print working directory) 获取当前工作目录。</p>
+<p><code>cd</code> (change dir)切换目录。若<code>cd</code>后没有指定切换到那个目录，则调回家目录。特别地，<code>cd -</code>表示返回到最近的<code>cd</code>操作前所在目录，相当于回撤到上一个工作目录。</p>
+<p><code>head</code>查看文件最开始的几行，默认为10行，可使用<code>-n 6</code>指定查看前6行。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 记住输出</span>
+<span class="kw">ct@ehbio</span>:~$ pwd
+<span class="kw">/home/ct</span>
+
+<span class="kw">ct@ehbio</span>:~$ cd data
+
+<span class="co"># 注意输出变化</span>
+<span class="kw">ct@ehbio</span>:~$ pwd
+<span class="kw">/home/ct/data</span>
+<span class="kw">ct@ehbio</span>:~/data$ head -n 6 test.fa 
+<span class="kw">&gt;SOX2</span>
+<span class="kw">ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT</span>
+<span class="kw">ACGATGAGGAGTAGGAGAGAGGAGG</span>
+<span class="kw">&gt;OCT4</span>
+<span class="kw">ACGTAGGATGGAGGAGAGGGAGGGGGGAGGAGAGGAA</span>
+<span class="kw">AGAGTAGAGAGA</span></code></pre></div>
+<p>另外<code>less</code>和<code>more</code>也可以用来查看文件，尤其是文件内容特别多的时候。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/data$ less test.fa 
+<span class="co"># q: 退出</span>
+<span class="co"># 上下箭头、空格翻页</span></code></pre></div>
+</div>
+<div id="section-1.1.11" class="section level3">
+<h3><span class="header-section-number">1.1.11</span> 获取可用命令行参数</h3>
+<p>前面使用的命令，有几个用到了参数如<code>ls -l</code>, <code>head -n 6</code>等，需要注意的是命令跟参数之间要有<strong>空格</strong>。</p>
+<p>终端运行<code>man ls</code>可以查看<code>ls</code>所有可用的参数，上下箭头翻页，按<code>q</code>退出查看。(man: manual, 手册)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/data$ man ls
+<span class="kw">NAME</span>
+ <span class="kw">ls</span> - list directory contents
+
+<span class="kw">SYNOPSIS</span>
+ <span class="kw">ls</span> [OPTION]... [FILE]...
+
+<span class="kw">DESCRIPTION</span>
+ <span class="kw">List</span>  information  about  the  FILEs  (the current directory by default)<span class="kw">.</span>
+ <span class="kw">Sort</span> entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+ <span class="kw">Mandatory</span> arguments to long options are mandatory for short options too.
+
+ <span class="kw">-a</span>, --all
+  <span class="kw">do</span> <span class="kw">not</span> ignore entries starting with .
+
+ <span class="kw">-A</span>, --almost-all
+  <span class="kw">do</span> <span class="kw">not</span> list implied . and ..
+
+ <span class="kw">--author</span>
+  <span class="kw">with</span> -l, print the author of each file
+
+ <span class="kw">-b</span>, --escape
+  <span class="kw">print</span> C-style escapes for nongraphic characters
+ <span class="kw">....</span>
+    </code></pre></div>
+</div>
+<div id="a" class="section level3">
+<h3><span class="header-section-number">1.1.12</span> 小结</h3>
+<ol style="list-style-type: decimal">
+<li><p>Linux是多用户操作系统。这一点可以从我们每个人能同时登录到同一台Linux电脑各自进行操作而不相互干扰可以体会出来。大家可以尝试下是否可以看到其它人家目录下的东西。我们后期在<strong>权限管理</strong>部分会涉及如何开放或限制自己的文件被他人访问。</p></li>
+<li><p>Linux下所有目录都在<strong>根目录</strong>下。根目录某种程度上可类比于Windows的我的电脑，第一级子目录类比于<code>C盘</code>，<code>D盘</code>等 (等我们熟练了，就忘记这个拙劣的类比吧)。</p></li>
+<li><p>使用<code>mkdir</code>新建目录，<code>cd</code>切换目录，<code>pwd</code>获取当前工作目录，<code>ls</code>查看目录下的内容, <code>cat</code>查看文件，<code>man ls</code>查看ls命令的使用。</p></li>
+<li><p>访问一个文件需要指定这个文件的路径，当前目录下的文件可省略其路径<code>./</code>，其它目录下则需要指定全路径 (可以是相对路径，也可以是绝对路径)。</p></li>
+</ol>
+</div>
+<div id="section-1.1.13" class="section level3">
+<h3><span class="header-section-number">1.1.13</span> 练习题</h3>
+<ol style="list-style-type: decimal">
+<li>在家目录下新建文件夹<code>bin</code>和<code>soft</code>。</li>
+<li>在<code>bin</code>和<code>soft</code>目录下各自新建一个文件，名字都是<code>README</code>。</li>
+<li>在<code>bin/README</code>文件中写入内容：This folder is used to save executable files。</li>
+<li>在<code>soft/README</code>文件中写入内容：This folder is used to save software source files。</li>
+<li>查看两个<code>README</code>文件的大小。</li>
+</ol>
+</div>
+</div>
+<div id="fileoperation" class="section level2">
+<h2><span class="header-section-number">1.2</span> Linux下文件操作</h2>
+<div id="section-1.2.1" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> 文件上下翻转和左右翻转</h3>
+<p>两个有意思的命令，<code>tac</code>: 文件翻转，第一行变为最后一行，第二行变为倒数第二行；<code>rev</code>每列反转，第一个字符变为最后一个字符，第二个字符变为倒数第二个字符。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/data$ cat &lt;&lt;END | t<span class="kw">ac</span>
+&gt; first
+&gt; se<span class="kw">cond</span>
+&gt; thir<span class="kw">d</span>
+&gt; END
+thir<span class="kw">d</span>
+secon<span class="kw">d</span>
+first
+
+ct@ehbio:~/<span class="kw">data</span>$ cat &lt;&lt;END | rev
+&gt; <span class="kw">abcde</span>
+&gt; xyz
+&gt; END
+<span class="kw">edcba</span>
+zyx</code></pre></div>
+</div>
+<div id="section-1.2.2" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> 其它新建文件的方式</h3>
+<p><code>nano</code>类似于Windows下记事本的功能，<code>nano filename</code>就可以新建一个文件，并在里面写内容；<code>ctrl+x</code>退出，根据提示按<code>Y</code>保存。</p>
+<p><code>vim</code> 功能更强大的文本编辑器。<code>vim filename</code>就可以新建一个文件, 敲击键盘字母<code>i</code>，进入写作模式。写完后，敲击键盘<code>Esc</code>, 退出写作模式，然后输入<code>:w</code> (会显示在屏幕左下角)，回车保存。<code>vim</code>的常用方法，后面会有单独介绍。</p>
+</div>
+<div id="section-1.2.3" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> 文件拷贝、移动、重命名</h3>
+<p>常用的文件操作有移动文件到另一个文件夹、复制文件到另一个文件夹、文件重命名等。</p>
+<p><code>cp</code> (copy): 拷贝文件或文件夹 (<code>cp -r</code> 拷贝文件夹时的参数，递归拷贝).</p>
+<p><code>cp source1 source2 ... target_dir</code> 将一个或多个源文件或者目录复制到已经存在的目标目录。</p>
+<p><code>cp</code>常用参数</p>
+<blockquote>
+<p>-r: 递归拷贝</p>
+</blockquote>
+<blockquote>
+<p>-f: 强制覆盖</p>
+</blockquote>
+<blockquote>
+<p>-i: 覆盖前先询问</p>
+</blockquote>
+<blockquote>
+<p>-p: 保留文件或目录的属性，主要是时间戳</p>
+</blockquote>
+<blockquote>
+<p>-b: 备份复制，若目标文件存在，先备份之前的，再把新的覆盖过去</p>
+</blockquote>
+<blockquote>
+<p>-u: 更新复制，若源文件和目标文件都存在，只在源文件的修改时间比较新时才复制</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 列出当前目录下有的文件和文件夹</span>
+<span class="kw">ct@ehbio</span>:~$ ls
+<span class="kw">data</span>
+
+<span class="co"># 新建一个文件夹</span>
+<span class="kw">ct@ehbio</span>:~$ mkdir ehbio_project
+
+<span class="co"># 列出当前目录下有的文件和文件夹, 及其子文件夹的内容</span>
+<span class="co"># data目录下有一个文件，ehbio_project目录下无文件</span>
+<span class="kw">ct@ehbio</span>:~$ ls *
+<span class="kw">data</span>:
+<span class="kw">test.fa</span>
+
+<span class="kw">ehbio_project</span>:
+
+<span class="co"># 拷贝data目录下的文件test.fa到ehbio_project目录下</span>
+<span class="kw">ct@ehbio</span>:~$ cp data/test.fa ehbio_project/
+
+<span class="co"># 列出当前目录下有的文件和文件夹, 及其子文件夹的内容</span>
+<span class="co"># data目录下有一个文件，ehbio_project目录下无文件</span>
+<span class="kw">ct@ehbio</span>:~$ ls *
+<span class="kw">data</span>:
+<span class="kw">test.fa</span>
+
+<span class="kw">ehbio_project</span>:
+<span class="kw">test.fa</span></code></pre></div>
+<p><code>mv</code> (move): 移动文件或文件夹</p>
+<p><code>mv source target</code>, 常用参数有</p>
+<blockquote>
+<p>-f: 强制覆盖</p>
+</blockquote>
+<blockquote>
+<p>-i: 覆盖前询问</p>
+</blockquote>
+<blockquote>
+<p>-u: 更新移动</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 重命名data目录下的文件test.fa为first.fa</span>
+<span class="co"># mv除了可以移动文件，也可以做单个文件的重命名</span>
+<span class="kw">ct@ehbio</span>:~$ mv data/test.fa data/first.fa
+
+<span class="co"># 列出当前目录下有的文件和文件夹,  及其子文件夹的内容</span>
+<span class="kw">ct@ehbio</span>:~$ ls *
+<span class="kw">data</span>:
+<span class="kw">first.fa</span>
+
+<span class="kw">ehbio_project</span>:
+<span class="kw">test.fa</span></code></pre></div>
+<p><code>rename</code>: 文件重命名 (常用于批量重命名，不同的系统可能用法略有不同，使用前先<code>man rename</code>查看使用方法)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 进入另一个目录</span>
+<span class="kw">ct@ehbio</span>:~$ cd ehbio_project/
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">test.fa</span>
+
+<span class="co"># 给文件做一份拷贝</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cp test.fa second.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">second.fa</span>  test.fa
+
+<span class="co"># 给文件多拷贝几次，无聊的操作，就是为了给rename提供发挥作用的机会</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cp test.fa test2.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cp test.fa test3.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cp test.fa test4.fa
+
+<span class="co"># cp 后面需要2个参数，被拷贝的文件和要被拷贝到的目录或文件</span>
+<span class="co"># 出现下面的错误，表示缺少目标路径或文件</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cp ehbio.fa 
+<span class="kw">cp</span>: 在<span class="st">&quot; ehbio.fa&quot;</span>  后缺少了要操作的目标文件
+<span class="kw">Try</span> <span class="st">&#39;cp --help&#39;</span> for more information.
+
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">second.fa</span>  test2.fa  test3.fa  test4.fa  test.fa
+
+<span class="co"># 用rename进行文件批量重命名</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ rename <span class="st">&#39;test&#39;</span> <span class="st">&#39;ehbio&#39;</span> test*.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio2.fa</span>  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa</code></pre></div>
+<p><code>ln</code> (link): 给文件建立快捷方式 (<code>ln -s source_file target</code> 创建软连接)。</p>
+<p>在建立软连接时，原文件要使用全路径。全路径指以<code>/</code>开头的路径。如果希望软链可以让不同的用户访问，不要使用<code>~</code>。</p>
+<p>建立软连接，是为了在不增加硬盘存储的情况下，简化文件访问方式的一个办法。把其它文件夹下的文件链接到当前目录，使用时只需要写文件的名字就可以了，不需要再写长串的目录了。</p>
+<p><code>ln</code>命令常用参数</p>
+<blockquote>
+<p>-s: 软连接</p>
+</blockquote>
+<blockquote>
+<p>-f: 强制创建</p>
+</blockquote>
+<p><code>../</code>: 表示上一层目录；<code>../../</code>: 表示上面两层目录</p>
+<p><code>pwd</code> (print current/working directory): 输出当前所在的目录</p>
+<p><code>\``为键盘</code>Esc<code>下第一个按键 (与家目录</code>~`符号同一个键)，写在反引号内的命令会被运行，运行结果会放置在反引号所在的位置</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 建立软连接，把当前目录下的ehbio2.fa，链接到上一层目录的data下面</span>
+
+<span class="co"># 这是一个无效的软连接，</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -s ehbio2.fa ../data
+
+<span class="co"># 在使用ls查看时，无效的软连接的文件名下面是黑色的背景。</span>
+<span class="co"># 不同的终端配色方案会有不同，一般一直闪烁表示是失效的链接，</span>
+<span class="co"># 另外是否失效以能否使用为最终判断标准。</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls -l ../data/
+总用量 <span class="kw">4</span>
+<span class="kw">lrwxrwxrwx</span> 1 ct ct   9 6月   9 17:55 ehbio2.fa -<span class="kw">&gt;</span> ehbio2.fa
+<span class="kw">-rw-rw-r--</span> 1 ct ct 284 6月   8 14:48 first.fa
+
+<span class="co"># 输出当前所在的目录</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ pwd
+<span class="kw">/home/ct/ehbio_project</span>
+
+<span class="co"># 建立软连接时，原始文件一定使用全路径。全路径指以/开头的路径。</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -s /home/ct/ehbio_project/ehbio2.fa ../data
+<span class="kw">ln</span>: 无法创建符号链接<span class="st">&quot; ../data/ehbio2.fa&quot;</span> : 文件已存在
+
+<span class="co"># 上面的错误信息时，已经存在这么一个链接了（虽然是无效的），但再建新的链接时还会提示</span>
+<span class="co"># 使用`-f` (force)强制覆盖已有的链接</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -fs /home/ct/ehbio_project/ehbio2.fa ../data
+
+<span class="co"># 再次查看时，就正常了。文件名下面没有了恐怖的背景色，并且有个右箭头指向原始文件</span>
+<span class="co"># `lrwxrwxrwx`中的`l`表示软连接。</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls -l ../data/
+总用量 <span class="kw">4</span>
+<span class="kw">lrwxrwxrwx</span> 1 ct ct  32 6月   9 17:56 ehbio2.fa -<span class="kw">&gt;</span> /home/ct/ehbio_project/ehbio2.fa
+<span class="kw">-rw-rw-r--</span> 1 ct ct 284 6月   8 14:48 first.fa
+
+<span class="co"># 通常为了简化写法，使用`pwd`代替全路径</span>
+<span class="co"># `为键盘Esc下面的按键，写在反引号内的命令会被运行，运行结果会放置在反引号所在的位置</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -s <span class="kw">`pwd`</span>/ehbio2.fa ../data
+<span class="kw">ln</span>: 无法创建符号链接<span class="st">&quot; ../data/ehbio2.fa&quot;</span> : 文件已存在
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -fs <span class="kw">`pwd`</span>/ehbio2.fa ../data
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls -l ../data/
+总用量 <span class="kw">4</span>
+<span class="kw">lrwxrwxrwx</span> 1 ct ct  32 6月   9 17:56 ehbio2.fa -<span class="kw">&gt;</span> /home/ct/ehbio_project/ehbio2.fa
+<span class="kw">-rw-rw-r--</span> 1 ct ct 284 6月   8 14:48 first.fa</code></pre></div>
+<p>复制、移动或创建软连接时，如果目标已存在，除了使用<code>-f</code>强制覆盖外，还可以使用<code>rm</code>命令删除。</p>
+<p><code>rm</code>可以删除一个或多个文件和目录，也可以递归删除所有子目录，使用时一定要慎重。<code>rm</code>命令删除的文件很难恢复。</p>
+<p><code>rm -rf *</code>: 可以删除当前目录下所有文件和文件夹，慎用。</p>
+<p><code>rm</code>命令常见参数：</p>
+<blockquote>
+<p>-f：强制删除</p>
+</blockquote>
+<blockquote>
+<p>-i: 删除前询问是否删除</p>
+</blockquote>
+<blockquote>
+<p>-r: 递归删除</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -s <span class="kw">`pwd`</span>/ehbio2.fa ../data
+<span class="kw">ln</span>: 无法创建符号链接<span class="st">&quot; ../data/ehbio2.fa&quot;</span> : 文件已存在
+
+<span class="co"># 删除之前的软连接，源文件不会被删除</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ rm -f ../data/ehbio2.fa
+
+<span class="co"># 再次新建软连接</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ln -s <span class="kw">`pwd`</span>/ehbio2.fa ../data
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls -l ../data/
+总用量 <span class="kw">4</span>
+<span class="kw">lrwxrwxrwx</span> 1 ct ct  32 6月   9 17:56 ehbio2.fa -<span class="kw">&gt;</span> /home/ct/ehbio_project/ehbio2.fa
+<span class="kw">-rw-rw-r--</span> 1 ct ct 284 6月   8 14:48 first.fa
+
+<span class="co"># </span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ mkdir tmp
+
+<span class="co"># touch filename: 如果文件不存在，则新建一个文件</span>
+<span class="co">#                 若存在，则更新其修改和访问时间</span>
+<span class="co">#                 在后面的搜索讲解中会有touch的一个妙用</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ touch tmp/a
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ touch tmp/b
+
+<span class="co"># -r: 递归删除，主要用于删除目录和子目录时</span>
+<span class="co"># -f: 强制删除</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ rm -rf tmp</code></pre></div>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Linux下命令的一些异常情况</h3>
+<p><strong>命令不全</strong>：在命令没有输入完 (引号或括号没有配对)，就不小心按下了<code>Enter</code>键，终端会提示出一个<code>&gt;</code>代表命令不完整，这是可以继续输入，也可以<code>ctrl+c</code>终止输入，重新再来。(下面sed命令使用时，还有另外一种命令不全的问题)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ rename <span class="st">&#39;ehbio2</span>
+<span class="st">&gt;&#39;</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ rename <span class="st">&#39;ehbio2</span>
+<span class="st">&gt; ^C</span>
+<span class="st">ct@ehbio:~/ehbio_project$</span></code></pre></div>
+<p><strong>文件名输入错误</strong>: 多一个字母、少一个字母、大小写问题</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project<span class="ot">$ls</span>
+<span class="kw">ehbio2.fa</span>  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
+
+<span class="co"># 重命名没有生效</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ rename <span class="st">&#39;ehbio2&#39;</span> <span class="st">&#39;ehbio5&#39;</span> ebio2.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio2.fa</span>  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
+
+<span class="co"># 仔细看是ehbio2.fa写成了ebio2.fa，更正后即可。</span>
+<span class="kw">Z8vb3e9jtel4m99ss6e7eZ</span>:~/ehbio_project$ rename <span class="st">&#39;ehbio2&#39;</span> <span class="st">&#39;ehbio5&#39;</span> ehbio2.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio3.fa</span>  ehbio4.fa  ehbio5.fa  ehbio.fa  second.fa</code></pre></div>
+<p><strong>所在目录不对</strong>: 访问的文件不存在于当前目录，而又没有提供绝对路径, 或软连接失效</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio3.fa</span>  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls ../data
+<span class="kw">ehbio2.fa</span>  first.fa
+
+<span class="co"># 当前目录没有ehbio2.fa</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ less ehbio2.fa
+<span class="kw">ehbio2.fa</span>: 没有那个文件或目录
+
+<span class="co"># ehbio2.fa在上一层目录的data目录下</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls ../data/ehbio2.fa 
+<span class="kw">../data/ehbio2.fa</span>
+
+<span class="co"># 加上路径依然访问不了 </span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ less ../data/ehbio2.fa 
+<span class="kw">../data</span>/ehbio2.fa: 没有那个文件或目录
+
+<span class="co"># 上面的问题是软连接失效，在之前的操作中删掉了原始的ehbio2.fa，所以快捷方式失效</span>
+
+<span class="co"># 正确的访问</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ tail -n 3 ../data/first.fa 
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span></code></pre></div>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> Linux下文件内容操作</h3>
+<p>常用的文件内容操作有文件压缩解压缩、文件大小行数统计、文件内容查询等。</p>
+<p><code>gzip</code>: 压缩文件; <code>gunzip</code>: 解压缩文件</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># gzip -c 把压缩的文件输出到标准输出 (一般是屏幕)</span>
+<span class="co"># &#39;&gt;&#39; 输出重定向，输出写入文件</span>
+
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ gzip -c ehbio.fa <span class="kw">&gt;</span>ehbio.fa.gz
+
+<span class="co"># 多了一个.gz文件</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio3.fa</span>  ehbio4.fa  ehbio5.fa  ehbio.fa  ehbio.fa.gz  second.fa
+
+<span class="co"># 解压缩</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ gunzip ehbio.fa.gz
+<span class="kw">gzip</span>: ehbio.fa already exists<span class="kw">;</span> <span class="kw">do</span> <span class="kw">you</span> wish to overwrite (y or n)<span class="kw">?</span> y
+
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio3.fa</span>  ehbio4.fa  ehbio5.fa  ehbio.fa  second.fa</code></pre></div>
+<p><code>wc</code> (word count): 一般使用<code>wc -l</code>获取文件的行数。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 输出文件有14行</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ wc -l ehbio.fa
+<span class="kw">14</span> ehbio.fa</code></pre></div>
+<p>获取文件中包含大于号 (<code>&gt;</code>)的行, <code>grep</code> (print lines matching a pattern，对每一行进行模式匹配)。</p>
+<p><code>grep</code>的用法很多，支持正则表达式匹配，这个后面我们会详细讲解。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ grep <span class="st">&#39;&gt;&#39;</span> ehbio.fa
+<span class="kw">&gt;SOX2</span>
+<span class="kw">&gt;OCT4</span>
+<span class="kw">&gt;NANOG</span>
+<span class="kw">&gt;mYC</span> HAHA
+
+<span class="co"># 获取包含&gt;的行的行数 (-c: count lines)</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ grep -c <span class="st">&#39;&gt;&#39;</span> ehbio.fa
+<span class="kw">4</span>
+
+<span class="co"># 是不是还记得当时新建文件时，末尾多了一行end，删除end所在行</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ less ehbio.fa 
+
+<span class="co"># -v: 不输出匹配上的行</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ grep -v <span class="st">&#39;end&#39;</span> ehbio.fa <span class="kw">&gt;</span>ehbio6.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cat ehbio6.fa 
+<span class="kw">&gt;SOX2</span>
+<span class="kw">ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT</span>
+<span class="kw">ACGATGAGGAGTAGGAGAGAGGAGG</span>
+<span class="kw">&gt;OCT4</span>
+<span class="kw">ACGTAGGATGGAGGAGAGGGAGGGGGGAGGAGAGGAA</span>
+<span class="kw">AGAGTAGAGAGA</span>
+<span class="kw">&gt;NANOG</span>
+<span class="kw">ACGATGCGATGCAGCGTTTTTTTTTGGTTGGATCT</span>
+<span class="kw">CAGGTAGGAGCGAGGAGGCAGCGGCGGATGCAGGCA</span>
+<span class="kw">ACGGTAGCGAGTC</span>
+<span class="kw">&gt;mYC</span> HAHA
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span></code></pre></div>
+<p>替换文件中的字符: <code>sed</code>是一个功能强大的文件内容编辑工具，常用于替换、取得行号等操作。现在先有个认识，后面会详细介绍。</p>
+<p><code>|</code> 为管道符，在相邻命令之间传递数据流，表示把上一个命令的输出作为下一个命令的输入。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 第一个错误，漏掉了文件名</span>
+<span class="co"># 程序静止在这，等待用户的进一步输入</span>
+<span class="co"># ctrl+c杀掉当前命令</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ sed <span class="st">&#39;s/ HAHA//&#39;</span> <span class="kw">|</span> <span class="kw">tail</span> -n 3
+
+^<span class="kw">C</span>
+
+<span class="co"># 第二个错误，文件名和单引号之间没有空格，使得sed判断命令错误</span>
+
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ sed <span class="st">&#39;s/ HAHA//&#39;</span>ehbio.fa  <span class="kw">|</span> <span class="kw">tail</span> -n 3
+<span class="kw">sed</span>：-e 表达式 <span class="co">#1，字符 11：“s”的未知选项</span>
+
+<span class="co"># 正确操作，</span>
+
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ sed <span class="st">&#39;s/ HAHA//&#39;</span> ehbio.fa  <span class="kw">|</span> <span class="kw">tail</span> -n 4
+<span class="kw">&gt;mYC</span>
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span></code></pre></div>
+<p>另外一个方式，去除<code>HAHA</code>，使用<code>cut</code>命令。cut更适合于矩阵操作，去除其中的一列或者多列。但在处理FASTA格式文件时有这么一个妙用。FASTA文件中序列里面是没有任何符号的，而如果名字比较长，则可以指定相应分隔符就行<code>cut</code>，这样既处理了名字，又保留了序列。</p>
+<p><code>-f</code>: 指定取出哪一列，使用方法为<code>-f 2</code> (取出第2列)，<code>-f 2-5</code> (取出第2-5列)，<code>-f 2,5</code> (取出第2和第5列)。<strong>注意不同符号之间的区别。</strong></p>
+<p><code>-d</code>: 设定分隔符, 默认为TAB键。如果某一行没有指定的分隔符，整行都为第一列。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ cut -f 1 -d <span class="st">&#39; &#39;</span> ehbio.fa <span class="kw">|</span> <span class="kw">tail</span> -n 4
+<span class="kw">&gt;mYC</span>
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span></code></pre></div>
+</div>
+<div id="section-1.2.6" class="section level3">
+<h3><span class="header-section-number">1.2.6</span> 小结和练习</h3>
+<ol style="list-style-type: decimal">
+<li>Linux下文件拷贝、移动、重命名、软连接、压缩、替换等操作。</li>
+<li>Linux下常见问题</li>
+</ol>
+<ul>
+<li><code>ehbio2.fa: 没有那个文件或目录</code>：这个错误通常由什么引起，应该怎么解决？</li>
+<li>若文件<code>a</code>存在，运行<code>ln a data/b</code>能否成功给<code>a</code>建立软连接？</li>
+<li><code>grep '&gt; ehbio.fa</code>的输出是什么？</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>若目标文件存在时，再运行<code>cp</code>, <code>mv</code>或<code>ln</code>会有什么提示？</li>
+<li>计算某一个Fasta序列中序列的个数。</li>
+</ol>
+</div>
+</div>
+<div id="shortcut" class="section level2">
+<h2><span class="header-section-number">1.3</span> Linux终端常用快捷操作</h2>
+<ul>
+<li>命令或文件名自动补全：在输入命令或文件名的前几个字母后，按<code>Tab</code>键，系统会自动补全或提示补全</li>
+<li>上下箭头：使用上下箭头可以回溯之前的命令，增加命令的重用，减少输入工作量</li>
+<li><code>!</code>加之前输入过的命令的前几个字母，快速获取前面的命令</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ cut -f 1 -d <span class="st">&#39; &#39;</span> ehbio.fa <span class="kw">|</span> <span class="kw">tail</span> -n 4
+<span class="kw">&gt;mYC</span>
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ man cut
+<span class="co"># 直接跳到上面运行的cut命令，再执行一次</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ !cut
+<span class="kw">cut</span> -f 1 -d <span class="st">&#39; &#39;</span> ehbio.fa <span class="kw">|</span> <span class="kw">tail</span> -n 4
+<span class="kw">&gt;mYC</span>
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span></code></pre></div>
+<ul>
+<li><code>ctrl+a</code>回到命令的行首，<code>ctrl+e</code>到命令行尾，(<code>home</code>和<code>end</code>也有类似功能)，用于修改命令或注释掉命令</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 写完下面的命令，突然不想运行了，又不想一个个删掉</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cut -f 1 -d <span class="st">&#39; &#39;</span> ehbio.fa <span class="kw">|</span> <span class="kw">tail</span> -n 4
+
+<span class="co"># 按ctrl+a, 回到行首，再输入`#`号，回车，命令即被注释掉。</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ <span class="co">#cut -f 1 -d &#39; &#39; ehbio.fa | tail -n 4</span></code></pre></div>
+<ul>
+<li><code>!!</code> 表示上一条命令。</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/ehbio_project$ ls
+<span class="kw">ehbio3.fa</span>  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ !!
+<span class="kw">ls</span>
+<span class="kw">ehbio3.fa</span>  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa</code></pre></div>
+<ul>
+<li>替换上一个命令中的字符，再运行一遍命令，用于需要对多个文件执行同样的命令，又不想写循环的情况</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 输入一个命令</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ <span class="co">#cut -f 1 -d &#39; &#39; ehbio.fa | tail -n 4</span>
+
+<span class="co"># !!表示上一条命令</span>
+<span class="co"># :gs表示替换，把上一个命令中全部的ehbio替换为ehbio3; g: global; s: substitute</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ !!:gs/ehbio/ehbio3
+<span class="co">#cut -f 1 -d &#39; &#39; ehbio3.fa | tail -n 4</span>
+
+<span class="co"># 替换后效果如上</span>
+
+<span class="co"># 去掉命令前的#号</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ cut -f 1 -d <span class="st">&#39; &#39;</span> ehbio3.fa <span class="kw">|</span> <span class="kw">tail</span> -n 4
+<span class="kw">&gt;mYC</span>
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span>
+
+<span class="co">## 替换ehbio3为ehbio4，直接运行命令</span>
+<span class="kw">ct@ehbio</span>:~/ehbio_project$ !!:gs/ehbio3/ehbio4
+<span class="kw">cut</span> -f 1 -d <span class="st">&#39; &#39;</span> ehbio4.fa <span class="kw">|</span> <span class="kw">tail</span> -n 4
+<span class="kw">&gt;mYC</span>
+<span class="kw">ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC</span>
+<span class="kw">CAGGACAGGAGCTA</span>
+<span class="kw">end</span></code></pre></div>
+</div>
+<div id="stdinoutpipe" class="section level2">
+<h2><span class="header-section-number">1.4</span> Linux下的标准输入、输出、重定向、管道</h2>
+<p>在Linux系统中，有4个特殊的符号，<code>&lt;</code>, <code>&gt;</code>, <code>|</code>, <code>-</code>，在我们处理输入和输出时存在重要但具有迷惑性的作用。</p>
+<p>默认Linux的命令的结果都是输出到标准输出，错误信息 (比如命令未找到或文件格式识别错误等) 输出到标准错误，而标准输出和标准错误默认都会显示到屏幕上。</p>
+<p><code>&gt;</code>表示重定向标准输出，<code>&gt; filename</code>就是把标准输出存储到文件filename里面。标准错误还是会显示在屏幕上。</p>
+<p><code>2 &gt;&amp;1</code> 表示把标准错误重定向到标准输出。Linux终端用<code>2</code>表示标准错误，<code>1</code>表示标准输出。</p>
+<p><code>-</code> (短横线)：表示标准输入，一般用于1个程序需要多个输入的时候。</p>
+<p><code>&lt;</code> 标准输入，后面可以跟可以产生输出的命令，一般用于1个程序需要多个输入的时候。相比<code>-</code>适用范围更广。</p>
+<p><code>|</code>管道符，表示把前一个命令的输出作为后一个命令的输入，前面也有一些展示例子。用于数据在不同的命令之间传输，用途是减少硬盘存取损耗。</p>
+<p>下面我们通过一个程序<code>stdout_error.sh</code>来解释上面的文字 (Bash脚本写作，后面会有专门介绍)，内容如下</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+
+<span class="kw">echo</span> <span class="st">&quot;I am std output&quot;</span> 
+<span class="co"># 下面是随便写的一个理论上不存在的命令, 理论上会报错的。</span>
+<span class="kw">unexisted_command</span></code></pre></div>
+<p>运行这个脚本</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 标准输出和标准错误默认都会显示到屏幕上</span>
+<span class="kw">ct@ehbio</span>:~$ bash stdout_error.sh 
+<span class="kw">I</span> am std output
+<span class="kw">stdout_error.sh</span>: line 5: unexisted_command: command not found
+<span class="co"># 上一行的line 5 表示是第5行命令出错了，通常用来调试程序。</span>
+<span class="co"># 在这个例子中，bash脚本第5行是故意输入的一个错误命令，用来展示什么是标准错误</span>
+
+<span class="co"># &gt;把结果输入到了文件；标准错误还显示在屏幕上</span>
+<span class="kw">ct@ehbio</span>:~$ bash stdout_error.sh <span class="kw">&gt;</span>stdout_error.stdout
+<span class="kw">stdout_error.sh</span>: line 5: unexisted_command: command not found
+<span class="kw">ct@ehbio</span>:~$ cat stdout_error.stdout
+<span class="kw">I</span> am std output
+
+<span class="co"># &gt;把结果输入到了文件; 2&gt;把标准错误输入到了另一个文件</span>
+<span class="kw">ct@ehbio</span>:~$ bash stdout_error.sh <span class="kw">&gt;</span>stdout_error.stdout <span class="kw">2&gt;</span>stdout_error.stderr
+<span class="kw">ct@ehbio</span>:~$ cat stdout_error.stderr
+<span class="kw">stdout_error.sh</span>: line 5: unexisted_command: command not found
+
+<span class="co"># 标准输出和标准错误写入同一个文件</span>
+<span class="kw">ct@ehbio</span>:~$ bash stdout_error.sh <span class="kw">&gt;</span>stdout_error.stdout <span class="kw">2&gt;&amp;1</span>
+<span class="kw">ct@ehbio</span>:~$ cat stdout_error.stdout
+<span class="kw">I</span> am std output
+<span class="kw">stdout_error.sh</span>: line 5: unexisted_command: command not found</code></pre></div>
+<p>下面看管道符和标准输入的使用。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 管道符的使用</span>
+<span class="co"># 第一个命令的输出作为第二个的输入</span>
+<span class="co"># 前面的例子中也有使用</span>
+<span class="co"># tr: 是用于替换字符的，把空格替换为换行，文字就从一行变为了一列</span>
+<span class="kw">ct@ehbio</span>:~$ echo <span class="st">&quot;1 2 3&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span>
+<span class="kw">1</span>
+<span class="kw">2</span>
+<span class="kw">3</span>
+
+<span class="co"># cat命令之前也用过，输出一段文字</span>
+<span class="co"># diff是比较2个文件的差异的，需要2个参数</span>
+<span class="co"># - (短横线)表示上一个命令的输出，传递给diff</span>
+<span class="co"># &lt; 表示其后的命令的输出，也重定向给diff</span>
+<span class="kw">ct@ehbio</span>:~$ cat &lt;&lt;END | diff - &lt;(ech<span class="kw">o</span> <span class="st">&quot;1 2 3&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span>)
+&gt; 2
+&gt; 3
+&gt; 4
+&gt; END
+0a1
+&gt; 1
+3d3
+&lt; 4
+
+# 如果不使用管道和重定向标准输入，程序是这么写的
+
+# 先把第一部分存储为1个文件
+ct@ehbio:~$ cat &lt;&lt;END &gt;firstfile
+2
+3
+&gt; 4
+&gt; END
+ct@ehbio:~$ less firstfile 
+
+# 再把第二部分存储为1个文件
+ct@ehbio:~$ echo &quot;1 2 3&quot; | tr &#39; &#39; &#39;\n&#39; &gt;secondfile
+
+# 然后比较
+ct@ehbio:~$ diff firstfile secondfile 
+0a1
+&gt; 1
+3d3
+&lt; 4</code></pre></div>
+<p>管道符的更多应用</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ echo  <span class="st">&quot;actg aaaaa cccccg&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="kw">wc</span> -l
+<span class="kw">3</span>
+
+<span class="co"># sed =：先输出行号，再输出每行的内容</span>
+<span class="kw">ct@ehbio</span>:~$ echo  <span class="st">&quot;a b c&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="kw">sed</span> =  
+<span class="kw">1</span>
+<span class="kw">a</span>
+<span class="kw">2</span>
+<span class="kw">b</span>
+<span class="kw">3</span>
+<span class="kw">c</span>
+
+<span class="co"># 后面这个命令会略微难理解些</span>
+<span class="co"># sed = 同时输出行号</span>
+<span class="co"># N: 表示读入下一行；sed命令每次只读一行，加上N之后就是缓存了第2行，所有的操作都针对第一行；</span>
+<span class="co"># s: 替换；把换行符替换为\t</span>
+<span class="kw">ct@ehbio</span>:~$ echo  <span class="st">&quot;a b c&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="kw">sed</span> = <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/\n/\t/&#39;</span> 
+<span class="kw">1</span>   a
+<span class="kw">2</span>   b
+<span class="kw">3</span>   c
+
+<span class="co"># 后面这个命令不太好解释</span>
+<span class="co"># sed = 同时输出行号</span>
+<span class="co"># N: 表示读入下一行；sed命令每次只读一行，加上N之后就是缓存了第2行，所有的操作都针对第一行；</span>
+<span class="co"># s: 替换；把读取的奇数行行首加一个&#39;&gt;&#39;（偶数行相当于被隐藏了）</span>
+<span class="kw">ct@ehbio</span>:~$ echo  <span class="st">&quot;a b c&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="kw">sed</span> = <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/^/&gt;/&#39;</span> 
+<span class="kw">&gt;1</span>
+<span class="kw">a</span>
+<span class="kw">&gt;2</span>
+<span class="kw">b</span>
+<span class="kw">&gt;3</span>
+<span class="kw">c</span>
+
+<span class="co"># 把多条序列转成FATSA格式</span>
+<span class="co"># sed = 同时输出行号</span>
+<span class="co"># N: 表示读入下一行；sed命令每次只读一行，加上N之后就是缓存了第2行，所有的操作都针对第一行；</span>
+<span class="co"># s: 替换；把读取的奇数行行首加一个&#39;&gt;&#39;（偶数行相当于被隐藏了）</span>
+<span class="co"># 于是FASTA格式序列就出来了</span>
+<span class="kw">ct@ehbio</span>:~$ echo  <span class="st">&quot;actg aaaaa cccccg&quot;</span> <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39; &#39;</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="kw">sed</span> = <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/^/&gt;/&#39;</span> 
+<span class="kw">&gt;1</span>
+<span class="kw">actg</span>
+<span class="kw">&gt;2</span>
+<span class="kw">aaaaa</span>
+<span class="kw">&gt;3</span>
+<span class="kw">cccccg</span></code></pre></div>
+</div>
+<div id="filecontent" class="section level2">
+<h2><span class="header-section-number">1.5</span> Linux文件内容操作</h2>
+<div id="section-1.5.1" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> 文件生成</h3>
+<p><code>seq</code>: 产生一系列的数字; <code>man seq</code>查看其具体使用。我们这使用<code>seq</code>产生下游分析所用到的输入文件。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 产生从1到10的数，步长为1</span>
+<span class="kw">ct@ehbio</span>:~$ seq 1 10
+<span class="kw">1</span>
+<span class="kw">2</span>
+<span class="kw">3</span>
+<span class="kw">4</span>
+<span class="kw">5</span>
+<span class="kw">6</span>
+<span class="kw">7</span>
+<span class="kw">8</span>
+<span class="kw">9</span>
+<span class="kw">10</span>
+
+<span class="co"># 产生从1到10的数，步长为1，用空格分割</span>
+<span class="kw">ct@ehbio</span>:~$ seq -s <span class="st">&#39; &#39;</span> 1 10
+<span class="kw">1</span> 2 3 4 5 6 7 8 9 10
+
+<span class="co"># 产生从1到10的数，步长为2</span>
+<span class="co"># 如果有3个数，中间的数为步长，最后一个始终为最大值</span>
+<span class="kw">ct@ehbio</span>:~$ seq -s <span class="st">&#39; &#39;</span> 1 2 10
+<span class="kw">1</span> 3 5 7 9
+
+<span class="co"># 还记得前面提到的标准输入和标准输出吧</span>
+<span class="kw">ct@ehbio</span>:~$ cat <span class="kw">&lt;(seq</span> 0 3 17<span class="kw">)</span> <span class="kw">&lt;(seq</span> 3 6 18<span class="kw">)</span> <span class="kw">&gt;</span>test
+<span class="kw">ct@ehbio</span>:~$ cat test 
+<span class="kw">0</span>
+<span class="kw">3</span>
+<span class="kw">6</span>
+<span class="kw">9</span>
+<span class="kw">12</span>
+<span class="kw">15</span>
+<span class="kw">3</span>
+<span class="kw">9</span>
+<span class="kw">15</span></code></pre></div>
+</div>
+<div id="section-1.5.2" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> 文件排序</h3>
+<p><code>sort</code>: 排序，默认按字符编码排序。如果想按数字大小排序，需添加<code>-n</code>参数。</p>
+<p><code>sort</code>常用参数</p>
+<blockquote>
+<p>-n: 数值排序</p>
+</blockquote>
+<blockquote>
+<p>-h: 人类刻度的数值排序 (2K 1G等)</p>
+</blockquote>
+<blockquote>
+<p>-r: reverse, 逆序</p>
+</blockquote>
+<blockquote>
+<p>-c: check, 不排序，查看文件是否已排序好</p>
+</blockquote>
+<blockquote>
+<p>-k: 指定使用哪列或哪几列排序</p>
+</blockquote>
+<blockquote>
+<p>-m: 合并已经排序好的文件</p>
+</blockquote>
+<blockquote>
+<p>-S: 缓冲区大小，用于排序大文件时的分割排序中每次分割的文件大小</p>
+</blockquote>
+<blockquote>
+<p>-u: 重复行只保留一次</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 系统默认按ASCII码排序，首先排0，然后排1, 3, 6, 9</span>
+<span class="kw">ct@ehbio</span>:~$ sort test
+<span class="kw">0</span>
+<span class="kw">12</span>
+<span class="kw">15</span>
+<span class="kw">15</span>
+<span class="kw">3</span>
+<span class="kw">3</span>
+<span class="kw">6</span>
+<span class="kw">9</span>
+<span class="kw">9</span>
+
+<span class="co"># 按数值大小排序</span>
+<span class="kw">ct@ehbio</span>:~$ sort -n test
+<span class="kw">0</span>
+<span class="kw">3</span>
+<span class="kw">3</span>
+<span class="kw">6</span>
+<span class="kw">9</span>
+<span class="kw">9</span>
+<span class="kw">12</span>
+<span class="kw">15</span>
+<span class="kw">15</span></code></pre></div>
+<p><code>sort -u</code>: 去除重复的行，等同于<code>sort | uniq</code>。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ sort -nu test
+<span class="kw">0</span>
+<span class="kw">3</span>
+<span class="kw">6</span>
+<span class="kw">9</span>
+<span class="kw">12</span>
+<span class="kw">15</span></code></pre></div>
+<p><code>sort file | uniq -d</code>: 获得重复的行。(<code>d</code>=<code>duplication</code>)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ sort -n test <span class="kw">|</span> <span class="kw">uniq</span> -d
+<span class="kw">3</span>
+<span class="kw">9</span>
+<span class="kw">15</span></code></pre></div>
+<p><code>sort file | uniq -c</code>: 获得每行重复的次数。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 第一列为每行出现的次数，第二列为原始的行</span>
+<span class="kw">ct@ehbio</span>:~$ sort -n test <span class="kw">|</span> <span class="kw">uniq</span> -c
+  <span class="kw">1</span> 0
+  <span class="kw">2</span> 3
+  <span class="kw">1</span> 6
+  <span class="kw">2</span> 9
+  <span class="kw">1</span> 12
+  <span class="kw">2</span> 15
+
+<span class="co"># 换一个文件看的更清楚</span>
+<span class="kw">ct@ehbio</span>:~$ cat &lt;&lt;END &gt;test2
+a
+b
+c
+b
+a
+e
+d
+a
+END
+
+# 第一列为每行出现的次数，第二列为原始的行
+ct@ehbi<span class="kw">o</span>:<span class="kw">~</span>$ <span class="kw">sort</span> test2 <span class="kw">|</span> <span class="kw">uniq</span> -c
+3 a
+2 b
+1 c
+1 d
+1 e
+
+# 在执行uniq操作前，文件要先排序，不然结果很诡异
+ct@ehbio:~$ cat test2 | uniq -c
+1 a
+1 b
+1 c
+1 b
+1 a
+1 e
+1 d
+1 a</code></pre></div>
+<p>整理下<code>uniq -c</code>的结果，使得原始行在前，每行的计数在后。</p>
+<p><code>awk</code>是一个强大的文本处理工具，其处理数据模式为按行处理。每次读入一行，进行操作。</p>
+<ul>
+<li><code>OFS</code>: 输出文件的列分隔符 (output file column separtor)；</li>
+<li><code>FS</code>为输入文件的列分隔符 (默认为空白字符)；</li>
+<li><code>awk</code>中的列从第1到n列，分别记录为<code>$1</code>, <code>$2</code> … <code>$n</code>；</li>
+<li><code>BEGIN</code>表示在文件读取前先设置基本参数；与之相对应的是<code>END</code>，只文件读取完成之后进行操作；</li>
+<li>不以<code>BEGIN</code>, <code>END</code>开头的<code>{}</code>就是文件读取、处理的部分。每次对一行进行处理。后面会详细讲解。</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 管道符还记得吧</span>
+<span class="co"># awk的操作就是读入上一步的结果，去除多余的空白，然后调换2列</span>
+<span class="co">#</span>
+<span class="kw">ct@ehbio</span>:~$ sort test2 <span class="kw">|</span> <span class="kw">uniq</span> -c <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=&quot;\t&quot;;}{print $2, $1}&#39;</span>
+<span class="kw">a</span>   3
+<span class="kw">b</span>   2
+<span class="kw">c</span>   1
+<span class="kw">d</span>   1
+<span class="kw">e</span>   1</code></pre></div>
+<p>对两列文件，按照第二列进行排序, <code>sort -k2,2n</code>。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 第二列按数值大小排序</span>
+<span class="kw">ct@ehbio</span>:~$ sort test2 <span class="kw">|</span> <span class="kw">uniq</span> -c <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=&quot;\t&quot;;}{print $2, $1}&#39;</span> <span class="kw">|</span> <span class="kw">sort</span> -k2, 2n
+<span class="kw">c</span>   1
+<span class="kw">d</span>   1
+<span class="kw">e</span>   1
+<span class="kw">b</span>   2
+<span class="kw">a</span>   3
+
+<span class="co"># 第二列按数值大小排序</span>
+<span class="co"># 第二列相同的再按第一列的字母顺序的逆序排序 (-r)</span>
+<span class="co"># 注意看前3行的顺序与上一步结果的差异</span>
+<span class="kw">ct@ehbio</span>:~$ sort test2 <span class="kw">|</span> <span class="kw">uniq</span> -c <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=&quot;\t&quot;;}{print $2,$1}&#39;</span> <span class="kw">|</span> <span class="kw">sort</span> -k2,2n -k1,1r
+<span class="kw">e</span>   1
+<span class="kw">d</span>   1
+<span class="kw">c</span>   1
+<span class="kw">b</span>   2
+<span class="kw">a</span>   3</code></pre></div>
+</div>
+<div id="fasta" class="section level3">
+<h3><span class="header-section-number">1.5.3</span> FASTA序列提取</h3>
+<p>生成单行序列FASTA文件，提取特定基因的序列，最简单的是使用<code>grep</code>命令。</p>
+<p><code>grep</code>在前面也提到过，以后还会经常提到，主要用途是匹配文件中的字符串，以此为基础，进行一系列的操作。如果会使用正则表达式，将会非常强大。正则表达式版本很多，几乎每种语言都有自己的规则，后面会详细展开。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 生成单行序列FASTA文件</span>
+<span class="co"># 开头的大于号是为了还原命令的输入过程，可以复制下面cat出来的结果，方便输入。</span>
+<span class="kw">ct@ehbio</span>:~$ cat &lt;&lt;END &gt;test.fasta
+&gt; &gt;SOX2
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt; &gt;POU5F1
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt; &gt;NANOG
+&gt; CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT
+&gt; END
+ct@ehbi<span class="kw">o</span>:<span class="kw">~</span>$ <span class="kw">cat</span> test.fasta 
+&gt;SOX2
+ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt;POU5F1
+ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt;NANOG
+CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT
+
+# grep匹配含有SOX2的行
+# -A 1 表示输出的行中，包含匹配行的下一行 (A: after)
+ct@ehbi<span class="kw">o</span>:<span class="kw">~</span>$ <span class="kw">grep</span> -A 1 <span class="st">&#39;SOX2&#39;</span> test.fasta 
+&gt;SOX2
+ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+
+# 也可以使用AWK
+# 先判断当前行是不是 &gt; 开头，如果是，表示是序列名字行，替换掉大于号，取出名字。
+# sub 替换, sub(被替换的部分，要替换成的，待替换字符串)
+# 如果不以大于号开头，则为序列行，存储起来。
+# seq[name]: 相当于建一个字典，name为key，序列为值。然后就可以使用name调取序列。
+# 若命令太长，可在末尾加一个 \, 换行书写
+#
+# awk中<span class="ot">$0</span> ~ /&gt;/ 里面的 ~ 不表示家目录，而是一个运算符，用来做模式匹配的
+# /pattern/ 则表示与什么模式进行匹配，pattern代表的是匹配模式
+#
+# awk对文件是按行操作的，{}里面的语句会对文件的每一行都进行判断或操作，循环执行
+# <span class="ot">$0</span>: 表示当前行所有内容；<span class="ot">$1</span>, <span class="ot">$2</span>, <span class="ot">$3</span> 表示当前行第1,2,3列
+#
+# 关于引号，如果最外层用的是单引号，那么里面最好不要再出现单引号
+# 如果最外面用的是双引号，则里面最好不要再出现单引号
+# 命令会寻找最近的同样引号进行匹配。
+ct@ehbi<span class="kw">o</span>:<span class="kw">~</span>$ <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{if($0~/&gt;/) {name=$0; sub(&quot;&gt;&quot;, &quot;&quot;, name);} \</span>
+<span class="st">    else seq[name]=$0;}END{print &quot;&gt;SOX2&quot;; print seq[&quot;SOX2&quot;]}&#39;</span> test.fasta
+&gt;SOX2
+ACGAGGGACGCATCGGACGACTGCAGGACTGTC</code></pre></div>
+<p>多行FASTA序列提取要麻烦些，一个办法就是转成单行序列，用上面的方式处理。</p>
+<p><code>sed</code>和<code>tr</code>都为最常用的字符替换工具。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~$ cat &lt;&lt;END &gt;test.fasta
+&gt; &gt;SOX2
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt; ACGAGGGACGCATCGGACGACTGCAGGAC
+&gt; &gt;POU5F1
+&gt; CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT
+&gt; CGGAAGGTAGTCGTCAGTGCAGCGAGTCC
+&gt; &gt;NANOG
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt; ACGAGGGACGCATCGGACGACTGCAGG
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGTC
+&gt; ACGAGGGACGCATCGGACGACTGCAGGACTGT
+&gt; END
+
+# 新解法，更简单
+ct@ehbi<span class="kw">o</span>:<span class="kw">~</span>$ <span class="kw">cat</span> test.fasta <span class="kw">|</span> <span class="kw">tr</span> <span class="st">&#39;\n&#39;</span> <span class="st">&#39;\t&#39;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/\t&gt;/\n&gt;/g&#39;</span> \
+        <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/\t/\n/&#39;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/\t//g&#39;</span> <span class="kw">&gt;</span>test.oneline.fa
+# 分解来看
+# 第一步所有行变为一行
+#
+# 这一步使用tr是因为tr里面可以直接识别换行符，而sed不可以
+# 其它的替换都使用sed
+ct@ehbio:~$ cat test.fasta | tr &#39;\n&#39; &#39;\t&#39;</code></pre></div>
+<blockquote>
+<p><code>&gt;</code>SOX2 ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGAC &gt;POU5F1 CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT CGGAAGGTAGTCGTCAGTGCAGCGAGTCC &gt;NANOG ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGG ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGT</p>
+</blockquote>
+<pre><code># &gt;号前面加换行符
+ct@ehbio:~$ cat test.fasta | tr &#39;\n&#39; &#39;\t&#39; | sed &#39;s/\t&gt;/\n&gt;/g&#39;</code></pre>
+<blockquote>
+<p><code>&gt;</code>SOX2 ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGAC</p>
+</blockquote>
+<blockquote>
+<p><code>&gt;</code>POU5F1 CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT CGGAAGGTAGTCGTCAGTGCAGCGAGTCC</p>
+</blockquote>
+<blockquote>
+<p><code>&gt;</code>NANOG ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGG ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGT</p>
+</blockquote>
+<pre><code># 先把第一个TAB键变为换行符，实现序列名字和序列的分离
+# 再去掉序列中所有的TAB键
+ct@ehbio:~$ cat test.fasta | tr &#39;\n&#39; &#39;\t&#39; | sed &#39;s/\t&gt;/\n&gt;/g&#39; \
+        | sed &#39;s/\t/\n/&#39; | sed &#39;s/\t//g&#39; &gt;test.oneline.fa</code></pre>
+<blockquote>
+<p><code>&gt;</code>SOX2</p>
+</blockquote>
+<blockquote>
+<p>ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGAC</p>
+</blockquote>
+<blockquote>
+<p><code>&gt;</code>POU5F1</p>
+</blockquote>
+<blockquote>
+<p>CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGTCGGAAGGTAGTCGTCAGTGCAGCGAGTCC</p>
+</blockquote>
+<blockquote>
+<p><code>&gt;</code>NANOG</p>
+</blockquote>
+<blockquote>
+<p>ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGT</p>
+</blockquote>
+<p>或者简单点，直接用前面的<code>awk</code>略微做下修改。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 差别只在一点</span>
+<span class="co"># 对于单行fasta文件，只需要记录一行，seq[name]=$0</span>
+<span class="co"># 对于多好fasta文件，需要把每一行序列都加到前面的序列上，seq[name]=seq[name]$0</span>
+<span class="kw">ct@ehbio</span>:~$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{if($0~/&gt;/) {name=$0; sub(&quot;&gt;&quot;, &quot;&quot;, name);} \</span>
+<span class="st">    else seq[name]=seq[name]$0;}END{print &quot;&gt;SOX2&quot;; print seq[&quot;SOX2&quot;]}&#39;</span> test.fasta
+<span class="kw">&gt;SOX2</span>
+<span class="kw">ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGAC</span></code></pre></div>
+</div>
+</div>
+<div id="section-1.6" class="section level2">
+<h2><span class="header-section-number">1.6</span> 命令运行监测</h2>
+<ol style="list-style-type: decimal">
+<li>监测命令的运行时间 <code>time command</code></li>
+</ol>
+<pre><code>ct@ehbio:~$ time sleep 5
+
+real    0m5.003s # 程序开始至结束的时间，包括其它进程占用的时间片和IO时间
+user    0m0.001s # 进程真正执行占用CPU的时间, 
+sys 0m0.002s     # 进程在内核中调用所消耗的CPU时间
+user+sys是进程实际的CPU时间。如果多线程执行，这个时间可能大于Real。如果IO是瓶颈，则real会大于user+sys (单线程)。</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>查看正在运行的命令和其资源使用 <code>top</code></li>
+</ol>
+<ul>
+<li>top输出界面第一行主要信息是负载显示，分别是1分钟、5分钟、15分钟前到现在的任务队列的平均长度。</li>
+<li>一般与CPU数目相当为好，过大系统负载超额，反应慢。</li>
+<li>在top输出界面输入 <code>u</code>, 会提示输入用户名，以查看某个用户的进程。</li>
+<li>重点关注的是%MEM列，查看系统占用的内存是否超出。</li>
+</ul>
+<pre><code>ct@ehbio:~$ top -a #按内存排序显示
+
+top - 09:02:11 up 224 days,  8:34,  30 users,  load average: 40, 33, 28
+Tasks: 1561 total,   1 running, 1550 sleeping,   0 stopped,  10 zombie
+Cpu(s):  0.6%us,  0.2%sy,  0.0%ni, 99.2%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Mem:  2642768880k total, 2094619800k used, 548149080k free,   4310240k buffers
+Swap: 86472700k total, 73226016k used, 13246684k free, 193383748k cached
+
+  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND                                  
+32527 ct        20   0 2631m 1.7g 1332 S  0.0  0.7 100:34.87 rsem-run-em 
+29273 ct        20   0 4094m 692m 3396 S  0.0  0.3  45:18.83 java -Xmx1000m
+40148 mysql     20   0 21.9g 606m 6116 S  1.3  0.2   2536:06 /usr/sbin/mysqld
+31040 ct        20   0 1887m  77m 2604 S  0.3  0.0 180:43.16 [celeryd: </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>查看系统进程 <code>ps auwx | grep  'process_name'</code></li>
+</ol>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">1.7</span> References</h2>
+<ul>
+<li>原文链接 <a href="http://blog.genesino.com//2017/06/bash1/" class="uri">http://blog.genesino.com//2017/06/bash1/</a></li>
+<li>微信公众号 <a href="http://mp.weixin.qq.com/s/yKP1Kboji9N4p2Sl1Ovj0Q" class="uri">http://mp.weixin.qq.com/s/yKP1Kboji9N4p2Sl1Ovj0Q</a></li>
+<li><a href="http://mp.weixin.qq.com/s/hEYU80fPf1eD5OWL3fO4Bg">Linux-总目录</a></li>
+<li><a href="http://mp.weixin.qq.com/s/yKP1Kboji9N4p2Sl1Ovj0Q">Linux-文件和目录</a></li>
+<li><a href="http://mp.weixin.qq.com/s/4bYMzJclf_xHpqdrlbvAdA">Linux-文件操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/QFgINAYcQA9kYYSA28wK-Q">Linux文件内容操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/poFpNHQgHDr0qr2wqfVNdw">Linux-环境变量和可执行属性</a></li>
+<li><a href="http://mp.weixin.qq.com/s/zL9Mw_2ig48gHrIjKM0CMw">Linux - 管道、标准输入输出</a></li>
+<li><a href="http://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA">Linux - 命令运行监测和软件安装</a></li>
+<li><a href="http://mp.weixin.qq.com/s/cDIN4_R4nETEB5irmIGFAQ">Linux-常见错误和快捷操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/1QaroFE7AH1pREuq-k2YAw">Linux-文件列太多，很难识别想要的信息在哪列；别焦急，看这里。</a></li>
+<li><a href="http://mp.weixin.qq.com/s/R1OHRhZoDJuAdyVdJr2xHg">Linux-文件排序和FASTA文件操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/HLHiWMLaWtB7SOJe_jP3mA">Linux-应用Docker安装软件</a></li>
+<li><a href="http://mp.weixin.qq.com/s/c2cspK5b4sQScWYMBtG63g">Linux服务器数据定期同步和备份方式</a></li>
+<li><a href="https://mp.weixin.qq.com/s/4lUiZ60-aXLilRk9--iQhA">VIM的强大文本处理方法</a></li>
+<li><a href="http://mp.weixin.qq.com/s/A4_j8ZbyprMr1TT_wgisQQ">Linux - Conda软件安装方法</a></li>
+<li><a href="http://mp.weixin.qq.com/s/xq0JfkHJJeHQk1acjOAJUQ">查看服务器配置信息</a></li>
+<li><a href="http://mp.weixin.qq.com/s/cywkIeRbhkYTZvkwTeIVSA">Linux - SED操作，awk的姊妹篇</a></li>
+<li><a href="http://mp.weixin.qq.com/s/8wD14FXt7fLDo1BjJyT0ew">Linux - 常用和不太常用的实用awk命令</a></li>
+<li><a href="http://mp.weixin.qq.com/s/lWNp_6W_jLiogmtlk9nO2A">Bash概论 - Linux系列教程补充篇</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="softinstall.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Bash.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

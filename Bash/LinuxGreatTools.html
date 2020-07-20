@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Linux学习</title>
+  <meta name="description" content="Linux学习">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Linux学习" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linux学习" />
+  
+  
+  
+
+<meta name="author" content="易生信">
+<meta name="author" content="www.ehbio.com/Training">
+<meta name="author" content="train@ehbio.com">
+
+
+<meta name="date" content="2018-04-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="softinstall.html">
+<link rel="next" href="bash-string.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.ehbio.com"><img src="http://www.ehbio.com/logos/ehbio_gitbook_logo.png" width="95%"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>EHBIO Gene Technology</a></li>
+<li class="chapter" data-level="1" data-path="linux-basic.html"><a href="linux-basic.html"><i class="fa fa-check"></i><b>1</b> Linux基础内容</a><ul>
+<li class="chapter" data-level="1.1" data-path="linux-basic.html"><a href="linux-basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
+<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统简介</a></li>
+<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.3</b> 如何获取Linux系统</a></li>
+<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录</a></li>
+<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统</a></li>
+<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
+<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.7"><i class="fa fa-check"></i><b>1.1.7</b> 硬件信息查看</a></li>
+<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.8"><i class="fa fa-check"></i><b>1.1.8</b> 目录内容查看</a></li>
+<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.9"><i class="fa fa-check"></i><b>1.1.9</b> 新建目录</a></li>
+<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.10"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
+<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.11"><i class="fa fa-check"></i><b>1.1.11</b> 获取可用命令行参数</a></li>
+<li class="chapter" data-level="1.1.12" data-path="linux-basic.html"><a href="linux-basic.html#a"><i class="fa fa-check"></i><b>1.1.12</b> 小结</a></li>
+<li class="chapter" data-level="1.1.13" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.13"><i class="fa fa-check"></i><b>1.1.13</b> 练习题</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="linux-basic.html"><a href="linux-basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 文件上下翻转和左右翻转</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 其它新建文件的方式</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些异常情况</a></li>
+<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.5</b> Linux下文件内容操作</a></li>
+<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.6"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="linux-basic.html"><a href="linux-basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
+<li class="chapter" data-level="1.4" data-path="linux-basic.html"><a href="linux-basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.4</b> Linux下的标准输入、输出、重定向、管道</a></li>
+<li class="chapter" data-level="1.5" data-path="linux-basic.html"><a href="linux-basic.html#filecontent"><i class="fa fa-check"></i><b>1.5</b> Linux文件内容操作</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.1"><i class="fa fa-check"></i><b>1.5.1</b> 文件生成</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.2"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#fasta"><i class="fa fa-check"></i><b>1.5.3</b> FASTA序列提取</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> 命令运行监测</a></li>
+<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a><ul>
+<li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="softinstall.html"><a href="softinstall.html#fileattribute"><i class="fa fa-check"></i><b>2.1.1</b> 文件属性</a></li>
+<li class="chapter" data-level="2.1.2" data-path="softinstall.html"><a href="softinstall.html#executable"><i class="fa fa-check"></i><b>2.1.2</b> 可执行属性</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#path"><i class="fa fa-check"></i><b>2.2</b> 环境变量</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 环境变量的补充</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种方式</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
+<li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
+<li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#section-2.3.3"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
+<li class="chapter" data-level="2.3.4" data-path="softinstall.html"><a href="softinstall.html#pythonpac"><i class="fa fa-check"></i><b>2.3.4</b> Python包的安装</a></li>
+<li class="chapter" data-level="2.3.5" data-path="softinstall.html"><a href="softinstall.html#anaconda"><i class="fa fa-check"></i><b>2.3.5</b> Anaconda的两个福利</a></li>
+<li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#rr"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="softinstall.html"><a href="softinstall.html#condaInstallConfig"><i class="fa fa-check"></i><b>2.4.1</b> Conda安装和配置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
+<li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#condachannel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
+<li class="chapter" data-level="2.4.4" data-path="softinstall.html"><a href="softinstall.html#section-2.4.4"><i class="fa fa-check"></i><b>2.4.4</b> 创建不同的软件运行环境</a></li>
+<li class="chapter" data-level="2.4.5" data-path="softinstall.html"><a href="softinstall.html#condar"><i class="fa fa-check"></i><b>2.4.5</b> Conda配置R</a></li>
+<li class="chapter" data-level="2.4.6" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.6</b> Conda环境简化运行</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.5</b> Makefile知识</a></li>
+<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6</b> Docker安装</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.1</b> Docker能做什么</a></li>
+<li class="chapter" data-level="2.6.2" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.2</b> Docker的几个基本概念</a></li>
+<li class="chapter" data-level="2.6.3" data-path="softinstall.html"><a href="softinstall.html#section-2.6.3"><i class="fa fa-check"></i><b>2.6.3</b> 安装和配置</a></li>
+<li class="chapter" data-level="2.6.4" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.4</b> Docker用户权限</a></li>
+<li class="chapter" data-level="2.6.5" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.5</b> Docker试用</a></li>
+<li class="chapter" data-level="2.6.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.6</b> Docker系统基本操作</a></li>
+<li class="chapter" data-level="2.6.7" data-path="softinstall.html"><a href="softinstall.html#dockerfile"><i class="fa fa-check"></i><b>2.6.7</b> 使用Dockerfile自动构建镜像</a></li>
+<li class="chapter" data-level="2.6.8" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.8</b> Docker的特征</a></li>
+<li class="chapter" data-level="2.6.9" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.9</b> Docker使用注意</a></li>
+<li class="chapter" data-level="2.6.10" data-path="softinstall.html"><a href="softinstall.html#section-2.6.10"><i class="fa fa-check"></i><b>2.6.10</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="softinstall.html"><a href="softinstall.html#references-1"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html"><i class="fa fa-check"></i><b>3</b> Linux神器</a><ul>
+<li class="chapter" data-level="3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#regularExpr"><i class="fa fa-check"></i><b>3.1</b> 正则表达式</a></li>
+<li class="chapter" data-level="3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2</b> awk命令</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2.1</b> awk基本参数解释</a></li>
+<li class="chapter" data-level="3.2.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.2"><i class="fa fa-check"></i><b>3.2.2</b> 常见操作</a></li>
+<li class="chapter" data-level="3.2.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.3"><i class="fa fa-check"></i><b>3.2.3</b> 糅合操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3</b> SED命令</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3.1</b> sed基本参数解释</a></li>
+<li class="chapter" data-level="3.3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>3.3.2</b> 常见操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4</b> VIM的使用</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.1</b> 初识VIM</a></li>
+<li class="chapter" data-level="3.4.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.2</b> VIM中使用正则表达式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#references-2"><i class="fa fa-check"></i><b>3.5</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bash-string.html"><a href="bash-string.html"><i class="fa fa-check"></i><b>4</b> Bash 字符串处理</a><ul>
+<li class="chapter" data-level="4.1" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
+<li class="chapter" data-level="4.2" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
+<li class="chapter" data-level="4.3" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
+<li class="chapter" data-level="4.4" data-path="bash-string.html"><a href="bash-string.html#shelltest"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
+<li class="chapter" data-level="4.5" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
+<li class="chapter" data-level="4.6" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
+<li class="chapter" data-level="4.7" data-path="bash-string.html"><a href="bash-string.html#section-4.7"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
+<li class="chapter" data-level="4.8" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令:</a></li>
+<li class="chapter" data-level="4.9" data-path="bash-string.html"><a href="bash-string.html#section-4.9"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html"><i class="fa fa-check"></i><b>5</b> Bioinfo tools</a><ul>
+<li class="chapter" data-level="5.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#cas9"><i class="fa fa-check"></i><b>5.1</b> 寻找Cas9的同源基因并进行进化分析</a></li>
+<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#emboss"><i class="fa fa-check"></i><b>5.2</b> emboss的使用</a></li>
+<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#samtoolssnp"><i class="fa fa-check"></i><b>5.3</b> 使用samtools计算SNP</a></li>
+<li class="chapter" data-level="5.4" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bedtools"><i class="fa fa-check"></i><b>5.4</b> Bedtools使用</a></li>
+<li class="chapter" data-level="5.5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#sra-toolkit"><i class="fa fa-check"></i><b>5.5</b> SRA toolkit使用</a></li>
+<li class="chapter" data-level="5.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 生信流程开发</a></li>
+<li class="chapter" data-level="5.7" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 数据同步和备份</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#scp"><i class="fa fa-check"></i><b>5.7.1</b> scp</a></li>
+<li class="chapter" data-level="5.7.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.7.2</b> rsync</a></li>
+<li class="chapter" data-level="5.7.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rdiff-backup"><i class="fa fa-check"></i><b>5.7.3</b> rdiff-backup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bioinfo-questions.html"><a href="bioinfo-questions.html"><i class="fa fa-check"></i><b>6</b> Bioinfo questions</a></li>
+<li class="chapter" data-level="7" data-path="supplemental.html"><a href="supplemental.html"><i class="fa fa-check"></i><b>7</b> Supplemental</a></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="section-8.html"><a href="section-8.html#section-8.1.1"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
+<li class="chapter" data-level="8.1.2" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
+<li class="chapter" data-level="8.1.3" data-path="section-8.html"><a href="section-8.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
+<li class="chapter" data-level="8.1.4" data-path="section-8.html"><a href="section-8.html#section-8.1.4"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
+<li class="chapter" data-level="8.1.5" data-path="section-8.html"><a href="section-8.html#section-8.1.5"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
+<li class="chapter" data-level="8.1.6" data-path="section-8.html"><a href="section-8.html#section-8.1.6"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
+<li class="chapter" data-level="8.1.7" data-path="section-8.html"><a href="section-8.html#linux-1"><i class="fa fa-check"></i><b>8.1.7</b> Linux</a></li>
+<li class="chapter" data-level="8.1.8" data-path="section-8.html"><a href="section-8.html#circos"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
+<li class="chapter" data-level="8.1.9" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
+<li class="chapter" data-level="8.1.10" data-path="section-8.html"><a href="section-8.html#section-8.1.10"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
+<li class="chapter" data-level="8.1.11" data-path="section-8.html"><a href="section-8.html#section-8.1.11"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.1.12" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
+<li class="chapter" data-level="8.1.13" data-path="section-8.html"><a href="section-8.html#section-8.1.13"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
+<li class="chapter" data-level="8.1.14" data-path="section-8.html"><a href="section-8.html#python"><i class="fa fa-check"></i><b>8.1.14</b> Python</a></li>
+<li class="chapter" data-level="8.1.15" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
+<li class="chapter" data-level="8.1.16" data-path="section-8.html"><a href="section-8.html#cytoscape"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
+<li class="chapter" data-level="8.1.17" data-path="section-8.html"><a href="section-8.html#section-8.1.17"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
+<li class="chapter" data-level="8.1.18" data-path="section-8.html"><a href="section-8.html#section-8.1.18"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
+<li class="chapter" data-level="8.1.19" data-path="section-8.html"><a href="section-8.html#section-8.1.19"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
+<li class="chapter" data-level="8.1.20" data-path="section-8.html"><a href="section-8.html#section-8.1.20"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
+<li class="chapter" data-level="8.1.21" data-path="section-8.html"><a href="section-8.html#section-8.1.21"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.html"><a href="section-8.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-8.html"><a href="section-8.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-8.html"><a href="section-8.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.html"><a href="section-8.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.html"><a href="section-8.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
+<li class="chapter" data-level="8.2.6" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="section-8.html"><a href="section-8.html#section-8.2.8"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
+<li class="chapter" data-level="8.2.9" data-path="section-8.html"><a href="section-8.html#section-8.2.9"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
+<li class="chapter" data-level="8.2.10" data-path="section-8.html"><a href="section-8.html#section-8.2.10"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
+<li class="chapter" data-level="8.2.11" data-path="section-8.html"><a href="section-8.html#section-8.2.11"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
+<li class="chapter" data-level="8.2.12" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
+<li class="chapter" data-level="8.2.13" data-path="section-8.html"><a href="section-8.html#section-8.2.13"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="mailto:ct@ehbio.com" target="blank">ct@ehbio.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linux学习</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="LinuxGreatTools" class="section level1">
+<h1><span class="header-section-number">3</span> Linux神器</h1>
+<p>视频课见 <a href="http://bioinfo.ke.qq.com" class="uri">http://bioinfo.ke.qq.com</a>。</p>
+<div id="regularExpr" class="section level2">
+<h2><span class="header-section-number">3.1</span> 正则表达式</h2>
+<p>正则表达式 (regular expression)是用来做模糊匹配的，匹配符合特定模式的文本。最早来源于Unix系统中的<code>sed</code>和<code>grep</code>命令，在各个程序语言，如<code>perl</code>, <code>python</code>中也都有实现。不同程序语言中正则表达式语法大体通用，细节上又各自有自己的特色。</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="http://www.ehbio.com/ehbio_resource/pyre.png" alt="正则表达式基本语法" width="100%" />
+<p class="caption">
+Figure 3.1: 正则表达式基本语法
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 假如有这么一个测试文件</span>
+<span class="kw">ct@ehbio</span>: ~/$ cat &lt;&lt;END &gt;url.list
+http://www.ehbio.com/ImageGP
+http://www.ehbio.com/Training
+http://www.ehbio.com/Esx
+www.ehbio.com
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Lineplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/GOenrichmentplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PHeatmap.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Volcanoplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Manhattanplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Histogram.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/VennDiagram.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/UpsetView.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Densityplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PCAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PCoAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Sankey.html
+http://blog.genesino.com
+https://blog.csdn.net/qazplm12_3/
+https://blog.csdn.net/woodcorpse/
+blog.csdn.net/woodcorpse/article/details/79313846
+
+ImageGP is one of the Best online plot.
+123456789
+END</code></pre></div>
+<p>获取以<code>https</code>开头的行</p>
+<pre><code>ct@ehbio: ~/$ grep &#39;^https&#39; url.list
+https://blog.csdn.net/qazplm12_3/
+https://blog.csdn.net/woodcorpse/</code></pre>
+<p>获取包含数字的行</p>
+<pre><code>ct@ehbio:~/$ grep &#39;[0-9]&#39; url.list 
+https://blog.csdn.net/qazplm12_3/
+blog.csdn.net/woodcorpse/article/details/79313846
+123456789</code></pre>
+<p>获取空行</p>
+<pre><code>ct@ehbio:~/$ grep &#39;^$&#39; url.list 
+</code></pre>
+<p>获取<code>html</code>结尾的行</p>
+<pre><code>ct@ehbio:~/$ grep &#39;html$&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Lineplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/GOenrichmentplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PHeatmap.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Volcanoplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Manhattanplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Histogram.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/VennDiagram.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/UpsetView.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Densityplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PCAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PCoAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Sankey.html</code></pre>
+<p>获取<code>Boxplot</code>和<code>Barplot</code>的地址</p>
+<pre><code># 未能满足要求
+ct@ehbio:~/$ grep &#39;B.*plot&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ImageGP is one of the Best online plot.
+
+# 一个办法：更长的匹配
+ct@ehbio:~/$ grep &#39;B.*plot.html&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+
+# 限定中间不能有空格
+ct@ehbio:~/$ grep &#39;B[^ ]*plot&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+
+# 限定中间只能有2个字符
+ct@ehbio:~/$ grep &#39;B..plot&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+
+# 2个字符的另外一种写法
+ct@ehbio:~/$ grep -P &#39;B.{2}plot&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+
+# 2个字符的再一种写法，只允许出现特定字符
+ct@ehbio:~/$ grep -P &#39;B[arox]*plot&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html</code></pre>
+<p>获取PCA或PCoA相关的行</p>
+<pre><code>ct@ehbio:~/$ grep &#39;PCo*A&#39; url.list 
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PCAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/PCoAplot.html
+http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html</code></pre>
+</div>
+<div id="awk" class="section level2">
+<h2><span class="header-section-number">3.2</span> awk命令</h2>
+<p>前面的学习过程中已经提到了<code>awk</code>和<code>sed</code>的使用，作为一个引子。现在则详细列举关于<code>awk</code>常用的操作和一些偏门的操作。</p>
+<div id="awk" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> awk基本参数解释</h3>
+<p>awk擅长于对文件按行操作，每次读取一行，然后进行相应的操作。</p>
+<p>awk读取单个文件时的基本语法格式是<code>awk 'BEGIN{OFS=FS=&quot;\t&quot;}{print $0, $1;}' filename</code>。</p>
+<p>读取多个文件时的语法是<code>awk 'BEGIN{OFS=FS=&quot;\t&quot;}ARGIND==1{print $0, $1;}ARGIND==2{print $0;}' file1 file2</code>。</p>
+<p>awk后面的命令部分是用引号括起来的，可以单引号，可以双引号，但注意不能与内部命令中用到的引号相同，否则会导致最相邻的引号视为一组，引发解释错误。<strong>引号不可以嵌套</strong></p>
+<ul>
+<li><p><code>OFS</code>: 文件输出时的列分隔符 (output field separtor)</p></li>
+<li><p><code>FS</code>: 文件输入时的列分隔符 (field separtor)</p></li>
+<li><p><code>BEGIN</code>: 设置初始参数，初始化变量</p></li>
+<li><p><code>END</code>: 读完文件后做最终的处理</p></li>
+<li><p>其它<code>{}</code>：循环读取文件的每一行</p></li>
+<li><p><code>$0</code>表示一行内容；<code>$1</code>, <code>$2</code>, … <code>$NF</code>表示第一列，第二列到最后一列。</p></li>
+<li><p><code>NF (number of fields)</code>文件多少列；<code>NR (number of rows)</code> 文件读了多少行: <code>FNR</code> 当前文件读了多少行，常用于多文件操作时。</p></li>
+<li><p><code>a[$1]=1</code>: 索引操作，类似于python中的字典，在<code>ID map</code>，<code>统计</code>中有很多应用。</p></li>
+</ul>
+</div>
+<div id="section-3.2.2" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> 常见操作</h3>
+<ul>
+<li>针对特定列的计算，比如wig文件的标准化</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 注意除了第一行是空格，其它行都是tab键分割</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END &gt;ehbio.wig
+variableStep chrom=chr2
+300701  12
+300702  10
+300703  11
+300704  13
+300705  12.5
+END
+
+ct@localhost:~/sxb<span class="kw">d</span>$ <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}\</span>
+<span class="st">    {if(FNR&gt;1) $2=$2*10^6/(2.5*10^6); print $0}&#39;</span> ehbio.wig
+variableStep chrom=chr2
+300701  4.8
+300702  4
+300703  4.4
+300704  5.2
+300705  5</code></pre></div>
+<ul>
+<li>计算某列内容出现的次数。</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 怎么获得count文件，应该不难吧</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat count 
+<span class="kw">ID</span>  Type
+<span class="kw">Pou5f1</span>  Pluripotency
+<span class="kw">Nanog</span>   Pluripotency
+<span class="kw">Sox2</span>    Neuron
+<span class="kw">Tet1</span>    Epigenetic
+<span class="kw">Tet3</span>    Epigenetic
+<span class="kw">Myc</span> Oncogene
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{if(FNR&gt;1) a[$2]+=1;}END\</span>
+<span class="st">    {print &quot;Type\tCount&quot;; for(i in a) print i,a[i];}&#39;</span> count
+<span class="kw">Type</span>    Count
+<span class="kw">Neuron</span>  1
+<span class="kw">Epigenetic</span>  2
+<span class="kw">Oncogene</span>    1
+<span class="kw">Pluripotency</span>    2
+
+<span class="co"># 这个也可以用下面方式代替，但不直接</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ tail -n +2 count <span class="kw">|</span> <span class="kw">cut</span> -f 2 <span class="kw">|</span> <span class="kw">sort</span> <span class="kw">|</span> <span class="kw">uniq</span> -c <span class="kw">|</span> <span class="kw">\</span>
+        <span class="kw">sed</span> -e <span class="st">&#39;s/^  *//&#39;</span> -e <span class="st">&#39;s/  */\t/&#39;</span> 
+<span class="kw">2</span>   Epigenetic
+<span class="kw">1</span>   Neuron
+<span class="kw">1</span>   Oncogene
+<span class="kw">2</span>   Pluripotency</code></pre></div>
+<ul>
+<li>之前也提到过的<a href="http://mp.weixin.qq.com/s/rZ26i19hiS5ZOqIoqkL1Wg">列操作</a>，从GTF文件中提取启动子区域</li>
+</ul>
+<p>GRCh38.gtf可以从<a href="ftp://ftp.ensembl.org/pub/release-91/gtf/homo_sapiens/Homo_sapiens.GRCh38.91.gtf.gz" class="uri">ftp://ftp.ensembl.org/pub/release-91/gtf/homo_sapiens/Homo_sapiens.GRCh38.91.gtf.gz</a>下载，或使用提供的测试文件。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;s/&quot;/\t/g&#39;</span> GRCh38.gtf <span class="kw">|</span> <span class="kw">\</span>
+    <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{if($3==&quot;gene&quot;) {ensn=$10; symbol=$16; \</span>
+<span class="st">        if($7==&quot;+&quot;) {start=$4-1; up=start-1000; if(up&lt;0) up=0; dw=start+500; \</span>
+<span class="st">        print $1,up, dw, ensn, symbol, $7;} else \</span>
+<span class="st">        if($7==&quot;-&quot;) {start=$5-1; up=start+1000; dw=start-500; \</span>
+<span class="st">        if(dw&lt;0) dw=0; print $1,dw,up,ensn,symbol,$7}}}&#39;</span> <span class="kw">|</span> <span class="kw">sort</span> -k1,1 -k2,2n \
+        <span class="kw">&gt;</span>GRCh38.promoter.bed</code></pre></div>
+<ul>
+<li>数据矩阵的格式化输出</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat numeric.matrix 
+<span class="kw">ID</span>  A   B   C
+<span class="kw">a</span>   1.002   1.234   1.999
+<span class="kw">b</span>   2.333   4.232   0.889
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;{if(FNR==1) print $0; \</span>
+<span class="st">    else {printf &quot;%s%s&quot;,$1,FS; for (i=2; i&lt;=NF; i++) \</span>
+<span class="st">        printf &quot;%.1f %s&quot;, $i, (i==NF?RS:FS)}}&#39;</span> numeric.matrix 
+<span class="kw">ID</span>  A   B   C
+<span class="kw">a</span> 1.0  1.2  2.0 
+<span class="kw">b</span> 2.3  4.2  0.9 </code></pre></div>
+<ul>
+<li>判断FASTQ文件中，输出质量值的长度是与序列长度不一致的序列ID</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END | gzip -c &gt;Test_2.fq.gz
+&gt;ehbio1
+ACGTCGACGACGAGAGGAGAGGAGCCCTCTCGCCCGCCCTACTACCACCCACACACAACACAAGTGT
++
+FFFFFFA<span class="ot">$A</span>#<span class="ot">$$</span>AFEEEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+&gt;ehbio2
+ACGTCGACGACGAGAGGAGAGGAGCCCTCTCGCCCGCCCTACTACCACCCACACACAACACAAGTGT
++
+FFFFFF<span class="ot">$A</span>#<span class="ot">$$</span>AFEEEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+&gt;ehbio3
+ACGTCGACGACGAGAGGAGAGGAGCCTCTCGCCCGCCCTACTACCACCCACACACAACACAAGTGT
++
+FFFFFFA<span class="ot">$A</span>#<span class="ot">$$</span>AFEEEEFFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+END</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ zcat Test_2.fq.gz <span class="kw">|</span> <span class="kw">\</span>
+    <span class="kw">awk</span> <span class="st">&#39;{if(FNR%4==1) ID=$0; else if(FNR%4==2) seq_len=length($0); \</span>
+<span class="st">        else if(FNR%4==0) {quality_len=length($0); if(seq_len!=quality_len) print ID; }}&#39;</span> </code></pre></div>
+<ul>
+<li>筛选差异基因</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TAB键分割的文件</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat de_gene
+<span class="kw">ID</span>  log2fc  padj
+<span class="kw">A</span>   1   0.001
+<span class="kw">B</span>   -1  0.001
+<span class="kw">C</span>   1   0.001
+<span class="kw">D</span>   2   0.0001
+<span class="kw">E</span>   -0.51   0.051
+<span class="kw">F</span>   0.1 0.1
+<span class="kw">G</span>   1   0.1
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;$3&lt;0.05 || NR==1&#39;</span> de_gene 
+<span class="kw">ID</span>  log2fc  padj
+<span class="kw">A</span>   1   0.001
+<span class="kw">B</span>   -1  0.001
+<span class="kw">C</span>   1   0.001
+<span class="kw">D</span>   2   0.0001
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{if(FNR==1) print $0; \</span>
+<span class="st">    else {abs_log2fc=($2&lt;0?$2*(-1):$2);if(abs_log2fc&gt;=1 &amp;&amp; $3&lt;0.05) print $0;}}&#39;</span> de_gene 
+<span class="kw">ID</span>  log2fc  padj
+<span class="kw">A</span>   1   0.001
+<span class="kw">B</span>   -1  0.001
+<span class="kw">C</span>   1   0.001
+<span class="kw">D</span>   2   0.0001</code></pre></div>
+<ul>
+<li>筛选差异基因存储到不同的文件</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;; up=&quot;up&quot;; dw=&quot;dw&quot;;}\</span>
+<span class="st">    {if(FNR==1) {print $0 &gt;up; print $0 &gt;dw;} else \</span>
+<span class="st">    if ($3&lt;0.05) {if ($2&gt;=1) print $0 &gt;up; else if($2&lt;=-1) print $0 &gt;dw;}}&#39;</span> de_gene 
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ head up dw
+==<span class="kw">&gt;</span> <span class="kw">up</span> <span class="kw">&lt;</span>==
+<span class="kw">ID</span>  log2fc  padj
+<span class="kw">A</span>   1   0.001
+<span class="kw">C</span>   1   0.001
+<span class="kw">D</span>   2   0.0001
+
+==<span class="kw">&gt;</span> <span class="kw">dw</span> <span class="kw">&lt;</span>==
+<span class="kw">ID</span>  log2fc  padj
+<span class="kw">B</span>   -1  0.001</code></pre></div>
+<ul>
+<li>筛选差异基因存储到不同的文件(自动版)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;; up=ARGV[1]&quot;.up&quot;; dw=ARGV[1]&quot;.dw&quot;;}\</span>
+<span class="st">    {if(FNR==1) {print $0 &gt;up; print $0 &gt;dw;} \</span>
+<span class="st">    else if ($3&lt;=0.05) {if($2&lt;=-1) print $0 &gt;up; else if ($2&gt;=1) print $0 &gt;dw;}}&#39;</span> de_gene</code></pre></div>
+<ul>
+<li>ID map，常用于转换序列的ID、提取信息、合并信息等</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TAB键分割的文件</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat id_map 
+<span class="kw">ENSM</span>    Symbol  Entrez
+<span class="kw">ENSG00000280516</span> TMEM42  693149
+<span class="kw">ENSG00000281886</span> TGM4    7047
+<span class="kw">ENSG00000280873</span> DGKD    8527
+<span class="kw">ENSG00000281244</span> ADAMTS13    11093
+<span class="kw">ENSG00000280701</span> RP11-272D20.2   
+<span class="kw">ENSG00000280674</span> ZDHHC3  51304
+<span class="kw">ENSG00000281623</span> Y_RNA   
+<span class="kw">ENSG00000280479</span> CACFD1  11094
+<span class="kw">ENSG00000281165</span> SLC2A6  11182
+<span class="kw">ENSG00000281879</span> ABO 28
+<span class="kw">ENSG00000282873</span> BCL7A   605
+<span class="kw">ENSG00000280651</span> AC156455.1  100506691
+<span class="kw">ct@ehbio</span>:~/sxbd$ vim ensm
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat ensm 
+<span class="kw">ENSG00000281244</span>
+<span class="kw">ENSG00000281165</span>
+<span class="kw">ENSG00000282873</span>
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}ARGIND==1{if(FNR&gt;1) ensm2entrez[$1]=$3;}\</span>
+<span class="st">        ARGIND==2{print ensm2entrez[$1];}&#39;</span> id_map ensm
+<span class="kw">11093</span>
+<span class="kw">11182</span>
+<span class="kw">605</span>
+
+<span class="co"># 替代解决方案，注意 -w的使用，避免部分匹配。最稳妥的方式还是使用awk。</span>
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ grep -w -f ensm id_map <span class="kw">|</span> <span class="kw">cut</span> -f 3
+<span class="kw">11093</span>
+<span class="kw">11182</span>
+<span class="kw">605</span></code></pre></div>
+<ul>
+<li>转换大小写, <code>toupper</code>, <code>tolower</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat symbol 
+<span class="kw">Tgm4</span>
+<span class="kw">Dgkd</span>
+<span class="kw">Abo</span>
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}ARGIND==1{if(FNR&gt;1) ensm2entrez[$2]=$3;}\</span>
+<span class="st">        ARGIND==2{print ensm2entrez[toupper($1)];}&#39;</span> id_map symbol 
+<span class="kw">7047</span>
+<span class="kw">8527</span>
+<span class="kw">28</span></code></pre></div>
+<ul>
+<li>awk数值操作</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END &gt;file
+2
+4
+3.1
+4.5
+5.4
+7.6
+8
+END
+
+# log2对数
+ct@ehbio:~/sxb<span class="kw">d</span>$ <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print log($0)/log(2)}&#39;</span> file
+
+# 取整,四舍五入
+ct@ehbio:~/sxb<span class="kw">d</span>$ <span class="kw">awk</span> <span class="st">&#39;BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print int($1+0.5);}&#39;</span> file</code></pre></div>
+<ul>
+<li>awk定义函数</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END | se<span class="kw">d</span> <span class="st">&#39;s/  */\t/g&#39;</span><span class="kw">&gt;file</span>
+1   2   3   4
+5   6   7   8
+9   10  11  12
+END</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;function abs(x){return ((x &lt; 0.0) ? -x : x)}BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}\</span>
+<span class="st">    {pos[1]=$1;pos[2]=$2;pos[3]=$3;pos[4]=$4; len=asort(pos); \</span>
+<span class="st">    for(i=len;i&gt;1;i--) print abs(pos[i]-pos[i-1]);}&#39;</span> file</code></pre></div>
+<ul>
+<li>字符串匹配</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TAB键分割的文件</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat ens.bed
+<span class="kw">1</span>   100 105
+<span class="kw">2</span>   100 105
+<span class="kw">3</span>   100 105
+<span class="kw">Mt</span>  100 105
+<span class="kw">X</span>   100 105
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{if($1~/^[0-9XY]/) $1=&quot;chr&quot;$1; else \</span>
+<span class="st">    if($1~/M.*/) gsub(/M.*/, &quot;chrM&quot;, $1); print $0}&#39;</span> ens.bed 
+<span class="kw">chr1</span>    100 105
+<span class="kw">chr2</span>    100 105
+<span class="kw">chr3</span>    100 105
+<span class="kw">chrM</span>    100 105
+<span class="kw">chrX</span>    100 105</code></pre></div>
+<ul>
+<li>字符串分割</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat trinity_id
+<span class="kw">Trinity_C1_g1_i1</span>
+<span class="kw">Trinity_C1_g1_i2</span>
+<span class="kw">Trinity_C1_g1_i3</span>
+<span class="kw">Trinity_C2_g1_i1</span>
+<span class="kw">Trinity_C3_g1_i1</span>
+<span class="kw">Trinity_C3_g3_i2</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=FS=&quot;\t&quot;}{count=split($1, geneL, &quot;_&quot;); gene=geneL[1]; \</span>
+<span class="st">    for(i=2;i&lt;count;i++) gene=gene&quot;_&quot;geneL[i]; print gene,$1;}&#39;</span> trinity_id 
+<span class="kw">Trinity_C1_g1</span>   Trinity_C1_g1_i1
+<span class="kw">Trinity_C1_g1</span>   Trinity_C1_g1_i2
+<span class="kw">Trinity_C1_g1</span>   Trinity_C1_g1_i3
+<span class="kw">Trinity_C2_g1</span>   Trinity_C2_g1_i1
+<span class="kw">Trinity_C3_g1</span>   Trinity_C3_g1_i1
+<span class="kw">Trinity_C3_g3</span>   Trinity_C3_g3_i2</code></pre></div>
+<ul>
+<li>awk脚本</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END &gt;gra<span class="kw">de.awk</span>
+BEGIN{OFS=FS=&quot;\t&quot;; up=ARGV[1]&quot;.up&quot;; dw=ARGV[1]&quot;.dw&quot;;}
+    {if(FNR==1) {print <span class="ot">$0</span> &gt;up; print <span class="ot">$0</span> &gt;dw;} 
+                 else if (<span class="ot">$3</span>&lt;=0.05) {
+                         if(<span class="ot">$2</span>&lt;=-1) print <span class="ot">$0</span> &gt;up; 
+                         else if (<span class="ot">$2</span>&gt;=1) print <span class="ot">$0</span> &gt;dw;}
+    }
+END
+
+ct@ehbio:~/sxbd$ aw<span class="kw">k</span> <span class="kw">-f</span> grade.awk de_gene</code></pre></div>
+<ul>
+<li>awk给每行增加行号，使其变为唯一</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ awk <span class="st">&#39;BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}NR!=1{$4=$4&quot;_&quot;NR;print $0}&#39;</span> file</code></pre></div>
+</div>
+<div id="section-3.2.3" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> 糅合操作</h3>
+<ul>
+<li>awk中执行系统命令 (注意引号的使用)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># input_mat</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END | se<span class="kw">d</span> <span class="st">&#39;s/  */\t/g&#39;</span> <span class="kw">&gt;input_mat</span>
+SRR1    roo<span class="kw">t</span>
+SRR2    leaf
+SRR3    s<span class="kw">tem</span>
+END
+
+ct@ehbio:~/sxbd$ touch SRR1.fq SRR2.fq SRR3.fq
+
+ct@ehbio:~/sxbd$ ls
+SRR1.fq SRR2.fq SRR3.fq 
+
+# 系统命令组成字符串，交给syste<span class="kw">m</span>函数运行
+ct@ehbio:~/sxbd$ awk &#39;BEGIN{OFS=FS=&quot;\t&quot;}{syste<span class="kw">m(</span><span class="st">&quot;mv &quot;</span><span class="ot">$1</span><span class="st">&quot;.fq &quot;</span><span class="ot">$2</span><span class="st">&quot;.fq&quot;</span><span class="kw">)</span>;}<span class="st">&#39; input_mat</span>
+
+<span class="st"># </span>
+<span class="st">ct@ehbio:~/sxbd$ ls</span>
+<span class="st">leaf.fq root.fq stem.fq</span></code></pre></div>
+<ul>
+<li>awk 引用系统变量</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ echo 1 <span class="kw">|</span> <span class="kw">awk</span> -v ehbio=<span class="st">&quot;shengxinbaodian&quot;</span> \
+                        -v ehbio2=<span class="st">&quot;sxbd&quot;</span> <span class="st">&#39;{print ehbio, ehbio2;}&#39;</span>
+<span class="kw">shengxinbaodian</span> sxbd</code></pre></div>
+</div>
+</div>
+<div id="sed" class="section level2">
+<h2><span class="header-section-number">3.3</span> SED命令</h2>
+<div id="sed" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> sed基本参数解释</h3>
+<p>sed是<code>stream editor</code>的简称，擅长对文件进行各种正则操作、插入操作、替换操作和删除操作，可以全局，可以指定特定范围的行或者特定特征的行。</p>
+<p><code>s/pat/replace/</code>: 正则替换</p>
+<p>前插行<code>i</code>, 后插行<code>a</code>, 替换行<code>c</code>, 删除行<code>d</code>, 输出行<code>p</code></p>
+<p><code>N</code>: 读入下一行，同时存储；<code>n</code>:读入下一行，抛弃当前行</p>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> 常见操作</h3>
+<ul>
+<li>替换特定的文本</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 空格是我们不太喜欢出现在文件中的一个符号，尤其是作为列名字时</span>
+<span class="co"># 列使用TAB键分割</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat &lt;&lt;END | se<span class="kw">d</span> <span class="st">&#39;s/;/\t/g&#39;</span> <span class="kw">mat</span>
+ID;2 cell;4 cell;8 cell;embryo
+Pou5f1_1;2;3;4;5
+Nanog_1;2;3.2;4.3;5
+c-Myc;2;3;4;5
+Te<span class="kw">t1_3;2;3;4;5</span>
+END
+
+# 一次替换
+ct@ehbio:~/sxbd$ sed &#39;s/ /_/&#39; mat 
+ID  2_cell  4 cell  8 cell  embryo
+Pou<span class="kw">5f1_1</span>    2   3   4   5
+Nanog_<span class="kw">1</span> <span class="kw">2</span>   3.2 4.3 5
+c-Myc   <span class="kw">2</span>   <span class="kw">3</span>   4   5
+Tet1_<span class="kw">3</span>  <span class="kw">2</span>   3   4   5
+
+# 全部替换
+ct@ehbio:~/sxbd$ sed &#39;s/ /_/g&#39; mat 
+ID  <span class="kw">2_cell</span>  4_cell  8_cell  embryo
+Pou5f1_1    2   3   4   5
+Nanog_1 2   3.2 4.3 5
+c-Myc   2   3   4   5
+Tet1_3  2   3   4   5</code></pre></div>
+<ul>
+<li>获得逗号分隔的一组数</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ echo <span class="kw">`seq</span> 1 10<span class="kw">`</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/ /,/g&#39;</span>
+<span class="kw">1</span>,2,3,4,5,6,7,8,9,10</code></pre></div>
+<ul>
+<li>针对指定行替换</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;2,$ s/_[0-9]//g&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1</span>  2   3   4   5
+<span class="kw">Nanog</span>   2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1</span>    2   3   4   5</code></pre></div>
+<ul>
+<li>替换特定出现位置</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 替换第一个空格</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;s/ /_/1&#39;</span> mat 
+<span class="kw">ID</span>  2_cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="co"># 替换第二个空格</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;s/ /_/2&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4_cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="co"># 替换第二个及以后的空格</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;s/ /_/2g&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4_cell  8_cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>给序列起名字</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat seq
+<span class="kw">ACDGTFGGCATGCDTGD</span>
+<span class="kw">ACDGAGCDTAGCDGTA</span>
+<span class="kw">CAGDTAGDCTADTG</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed = seq
+<span class="kw">1</span>
+<span class="kw">ACDGTFGGCATGCDTGD</span>
+<span class="kw">2</span>
+<span class="kw">ACDGAGCDTAGCDGTA</span>
+<span class="kw">3</span>
+<span class="kw">CAGDTAGDCTADTG</span>
+<span class="co"># 同时缓冲两行，但只对第一行行首操作</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed = seq <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/^/&gt;/;&#39;</span>
+<span class="kw">&gt;1</span>
+<span class="kw">ACDGTFGGCATGCDTGD</span>
+<span class="kw">&gt;2</span>
+<span class="kw">ACDGAGCDTAGCDGTA</span>
+<span class="kw">&gt;3</span>
+<span class="kw">CAGDTAGDCTADTG</span></code></pre></div>
+<ul>
+<li>给文件增加标题行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ tail -n +2 mat <span class="kw">|</span> <span class="kw">sort</span> -k2,2n
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="co"># 1 表示第一行</span>
+<span class="co"># i 表示插入，在指定行前面插入新行</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ tail -n +2 mat <span class="kw">|</span> <span class="kw">sort</span> -k2,2n <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;1 i ID\t2_cell\t4_cell\t8_cell\tembryo&#39;</span>
+<span class="kw">ID</span>  2_cell  4_cell  8_cell  embryo
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>提取特定或指定范围的行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># -n是必须的，阻止程序自动输出匹配行，不然会导致重复输出</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed -n <span class="st">&#39;2,4p&#39;</span> mat
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed -n <span class="st">&#39;4p&#39;</span> mat
+<span class="kw">c-Myc</span>   2   3   4   5</code></pre></div>
+<ul>
+<li>提取符合特定模式的行</li>
+</ul>
+<p><code>/pattern/</code>支持普通字符串和正则表达式匹配</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ sed -n <span class="st">&#39;/_/ p&#39;</span> mat
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed -n <span class="st">&#39;/-/ p&#39;</span> mat
+<span class="kw">c-Myc</span>   2   3   4   5</code></pre></div>
+<ul>
+<li>去除文件中的空行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+
+<span class="co"># 空行就是只有行首和行尾的行</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;/^$/d&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>原位删除</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="co"># -i 参数的使用</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed -i <span class="st">&#39;/^$/d&#39;</span> mat 
+<span class="kw">ct@ehbio</span>:~/sxbd$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>删除指定范围的行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc_2</span> 2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;2,3d&#39;</span> mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">c-Myc_2</span> 2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>记忆匹配</li>
+</ul>
+<p><code>\(\)</code>启动记忆匹配；<code>\1</code>为第一个匹配项，<code>\2</code>为第二个匹配项；匹配项的计数根据左括号出现的位置来定，第一个<code>(</code>包括起来的为<code>\1</code>。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ echo <span class="st">&quot;hah ehbio hah&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/ \(.*\) /\t\1\t\1\t/&#39;</span>
+<span class="kw">hah</span> ehbio   ehbio   hah</code></pre></div>
+<ul>
+<li>奇偶数行处理</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span>
+<span class="kw">odd</span>
+<span class="kw">even</span>
+<span class="kw">odd</span>
+<span class="kw">even</span>
+
+<span class="co"># 奇偶数行合并</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/\n/\t/&#39;</span>
+<span class="kw">odd</span> even
+<span class="kw">odd</span> even
+
+<span class="co"># 取出偶数行，比较简单</span>
+<span class="co"># 注意 n (小写)撇掉了奇数行</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> -n <span class="st">&#39;n;p&#39;</span>
+<span class="kw">even</span>
+<span class="kw">even</span>
+
+<span class="co"># 取出奇数行</span>
+<span class="co"># 先都读进去，然后替换偶数行为空值，再输出</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> -n <span class="st">&#39;N;s/\n.*//;p&#39;</span>
+<span class="kw">odd</span>
+<span class="kw">odd</span></code></pre></div>
+<ul>
+<li>Windows/Linux换行符困境</li>
+</ul>
+<p>Windows下的换行符是<code>\r\n</code>, Linux下换行符是<code>\n</code>, MAC下换行符是<code>\r</code>。所以Windows下的文件拷贝到Linux后，常会出现行尾多一个<code>^M</code>符号的情况，从而引起匹配或其它解析问题。</p>
+<p><code>^M</code>的输是 <code>ctrl+v+M</code> <code>ctrl+v;ctrl+m</code>，不是简单的输入<code>^</code>,再输入<code>M</code>。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/sxbd$ cat -A windows.txt 
+<span class="kw">ID</span>^M$
+<span class="kw">A</span>^M$
+<span class="kw">B</span>^M$
+<span class="kw">C</span>^M$
+<span class="kw">ct@ehbio</span>:~/sxbd$ sed <span class="st">&#39;s/^M//&#39;</span> windows.txt <span class="kw">|</span> <span class="kw">cat</span> -A
+<span class="kw">ID</span>$
+<span class="kw">A</span>$
+<span class="kw">B</span>$
+<span class="kw">C</span>$</code></pre></div>
+<ul>
+<li>sed中使用bash变量</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 注意双引号的使用</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ bash_variable=<span class="st">&#39;ehbio&#39;</span>
+<span class="kw">ct@ehbio</span>:~/sxbd$ echo <span class="st">&quot;sheng xin bao dan &quot;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&quot;s/$/</span><span class="ot">$bash_variable</span><span class="st">/&quot;</span>
+<span class="kw">sheng</span> xin bao dan ehbio</code></pre></div>
+</div>
+</div>
+<div id="vim" class="section level2">
+<h2><span class="header-section-number">3.4</span> VIM的使用</h2>
+<p><code>VIM</code>是一款功能强大的文本编辑工具，也是我在<code>Linux</code>，<code>Windows</code>下编辑程序和文本最常用的工具。</p>
+<div id="vim" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> 初识VIM</h3>
+<p>VIM分多种状态模式，<code>写入</code>模式，<code>正常</code>模式，<code>可视化</code>模式。</p>
+<ul>
+<li><code>正常</code>模式：打开或新建文件默认在<code>正常</code>模式，可以浏览，但不可以写入内容。这个模式也可以称作<code>命令行</code>模式，这个模式下可以使用VIM强大的命令行和快捷键功能。其它模式下按<code>ESC</code>就可以到<code>正常</code>模式。</li>
+<li><code>写入</code>模式：在<code>正常</code>模式下按字母<code>i</code> (光标前插入), <code>o</code> (当前光标的下一行操作), <code>O</code> (当前光标的上一行操作)，<code>a</code> (光标后插入)都可以进入<code>写入</code>模式，就可以输入内容了。</li>
+<li><code>可视化</code>模式：通常用于选择特定的内容。</li>
+</ul>
+<p>进入<code>写入</code>模式后，VIM使用起来可以跟<code>记事本</code>一样了。在写入文字时，可以利用组合键<code>CTRL+n</code>和<code>CTRL+p</code>完成写作单词的自动匹配补全，从而加快输入速度，保证输入的前后一致。</p>
+<p><code>正常</code>模式有更强大的快捷键编辑功能，把手从鼠标上解放出来。</p>
+<ul>
+<li><code>dd</code>: 删除一行</li>
+<li><code>3dd</code>: 删除一行</li>
+<li><code>dw</code>: 删除一个单词</li>
+<li><code>d3w</code>: 删除3个单词</li>
+<li><code>yy</code>: 复制一行</li>
+<li><code>3yy</code>: 复制三行</li>
+<li><code>yw</code>: 复制一个单词</li>
+<li><code>p</code>: (小写p)粘贴到下一行</li>
+<li><code>P</code>: (大写P)粘贴到上一行</li>
+<li><code>&gt;&gt;</code>: 当前行右缩进一个TAB</li>
+<li><code>3&gt;&gt;</code>: 当前行及后2行都向右缩进一个TAB</li>
+<li><code>&lt;&lt;</code>: 当前行左缩进一个TAB</li>
+<li><code>3&lt;&lt;</code>: 当前行及后2行都向左缩进一个TAB</li>
+<li><p><code>/word</code>: 查找特定单词</p></li>
+<li><code>u</code>: 撤销上一次操作</li>
+<li><code>.</code>: 重复上一次操作</li>
+<li><p><code>CTRL+r</code>: 重做撤销的操作</p></li>
+<li><code>y$</code>: 从当前复制到行尾</li>
+<li><p><code>d$</code>: 从当前删除到行尾</p></li>
+</ul>
+<p>跳转操作</p>
+<ul>
+<li><code>gg</code>: 跳到文件开头</li>
+<li><code>G</code>: 跳到文件结尾</li>
+<li><code>zt</code>: 当前行作为可视屏幕的第一行</li>
+<li><code>5G</code>: 跳到第5行</li>
+</ul>
+<p><code>正常</code>模式下输入<code>冒号</code>进入更强大的命令行定制功能。</p>
+<ul>
+<li><code>:5d</code>: 删除第5行</li>
+<li><code>:20,24y</code>：复制20到24行</li>
+<li><code>:.,+3y</code>：复制当前行和下面3行</li>
+<li><code>:2,11&gt;</code>: 右缩进</li>
+<li><code>:w</code>: 保存文件</li>
+<li><p><code>:q</code>: 退出编辑器</p></li>
+<li><p><code>:vsplit</code>: 分屏</p></li>
+</ul>
+<p>键盘操作不容易被捕获，看右下角可以得到一点信息。动图请<a href="//blog.genesino.com/images/vim/vim_basic_operation.gif">点击查看</a>。</p>
+<p><img src="http://blog.genesino.com/images/vim/vim_basic_operation.gif" width="100%" style="display: block; margin: auto;" /></p>
+<p>VIM还有不少<strong>魔性</strong>操作，具体可以看这两个帖子：</p>
+<ul>
+<li><a href="http://coolshell.cn/articles/5426.html" class="uri">http://coolshell.cn/articles/5426.html</a></li>
+<li><a href="http://coolshell.cn/articles/11312.html" class="uri">http://coolshell.cn/articles/11312.html</a></li>
+</ul>
+</div>
+<div id="vim" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> VIM中使用正则表达式</h3>
+<p>这儿以提取生信宝典公众号中发过的原创文章的HTML代码为例子，获得原创文章的名字和链接，用以制作文章列表。</p>
+<p>部分数据如下所示，利用正则表达式的第一步就是找规律。</p>
+<ul>
+<li>这段文字是JSON格式，列表和字典的组合，使用<code>json</code>函数可以很容易解析。但我们这通过正则表达式解析。</li>
+<li><code>title</code>后面跟随的文章的题目; <code>url</code>后面跟随的是文章的链接。</li>
+<li><code>{&quot;</code>和<code>&quot;}</code>标记每篇文章的信息的开始和结束。</li>
+<li><code>auth_apply_num</code>是目前不关注的信息。</li>
+</ul>
+<p><img src="http://blog.genesino.com/images/vim/wechatSXBD_source.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>下面的<a href="http://blog.genesino.com/images/vim/vim_bregexpr.gif">动画</a>展示了如何通过正则表达式，把这段文字只保留题目和链接，并转成<code>Markdown</code>的格式。</p>
+<p><img src="http://blog.genesino.com/images/vim/vim_bregexpr.gif" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><code>:set wrap</code>: 折行显示</li>
+<li><code>:s/&quot;}, {&quot;/\r/g</code>: <code>:</code>开启命令行模式；<code>s</code>: 是替换，之前讲Linux命令时也多次提及；<code>/</code>作为分割符，三个一起出现，前两个<code>/</code>中的内容为被替换内容，后两个<code>/</code>中的内容为替换成的内容；这里没有使用正则表达式，直接是原字符的替换，<code>\r</code>表示换行符。这样把每篇文章的信息单行显示，方便后续处理。</li>
+<li><code>:%s/auth_apply.*&quot;title&quot;:&quot;/[/</code>：<code>%</code>表示对所有行进行操作；被替换的内容是<code>auth_apply</code>和<code>title&quot;:&quot;</code>及其之间的内容(<code>.*</code>表示，<code>.</code>表示任意字符，<code>*</code>表示其前面的字符出现任意次)</li>
+<li><code>:%s/&quot;.*&quot;url&quot;:&quot;/](/</code>：从题目到url之间的内容替换掉；第一次替换时忘记了第一行中开头还有引号，结果出现了误操作，后面又退回去，手动删除特殊部分，其它部分继续匹配。</li>
+<li><code>:%s/$/)/</code>：表示在行尾(<code>$</code>)加上<code>)</code>, 就组成了Markdown中完整的链接形式<code>[context](link)</code>。</li>
+<li><code>:%s/^/* /</code>：表示在行首(<code>^</code>)加上<code>*</code>变成Markdown格式的列表</li>
+</ul>
+<p>至此就完成了生信宝典公众号文章到Markdown链接的转换，可以放到菜单栏<code>文章集锦</code>里面方便快速查询了。</p>
+<p>一步步的处理也有些麻烦，有没有办法更简单些呢？ 动画可查看<a href="http://blog.genesino.com/images/vim/vim_bregexpr_record.gif">链接</a>。</p>
+<p><img src="http://blog.genesino.com/images/vim/vim_bregexpr_record.gif" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>首先也是把每篇文章的信息处理为单行显示，一样的模式更容易操作，去掉第一行行首不一致的部分</li>
+<li>使用上下箭头可以回溯之前的命令，类似于Linux终端下的操作</li>
+<li><code>%s/.*title&quot;:&quot;\([^&quot;]*\).*url&quot;:&quot;\(.*\)/* [\1](\2)/c</code>: 这个是记忆匹配，记录下匹配的内容用于替换，<code>\(</code>和<code>\)</code>表示记忆匹配的开始和结束，自身不匹配任何字符，只做标记使用；从左只右, 第一个<code>\(</code>中的内容记录为<code>\1</code>, 第二个<code>\(</code>中的内容记录为<code>\2</code>,以此类推。尤其在存在括号嵌套的情况下，注意匹配位置，左括号出现的顺序为准。在匹配文章题目时使用了<code>[^&quot;]*</code>而不是<code>.*</code>，是考虑到正则表达式的匹配是贪婪的，会囊括更多的内容进来，就有可能出现非预期情况，所以做这么个限定，匹配所有非<code>&quot;</code>内容。</li>
+</ul>
+<p>正则表达式在数据分析中有很多灵活的应用，可以解决复杂的字符串抽提工作。常用的程序语言或命令如<code>pytho</code>, <code>R</code>, <code>grep</code>, <code>awk</code>, <code>sed</code>都支持正则表达式操作，语法也大体相似。进一步学习可参考一下链接：</p>
+<ul>
+<li>VIM正则表达式 <a href="http://blog.csdn.net/u014015972/article/details/50688837" class="uri">http://blog.csdn.net/u014015972/article/details/50688837</a></li>
+<li>Pyton正则表达式 <a href="https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" class="uri">https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html</a></li>
+</ul>
+</div>
+</div>
+<div id="references-2" class="section level2">
+<h2><span class="header-section-number">3.5</span> References</h2>
+<ul>
+<li><a href="www.ehbio.com/Training" class="uri">www.ehbio.com/Training</a></li>
+<li><a href="http://mp.weixin.qq.com/s/8wD14FXt7fLDo1BjJyT0ew">Linux学习 - 常用和不太常用的实用awk命令</a></li>
+<li><a href="http://mp.weixin.qq.com/s/hEYU80fPf1eD5OWL3fO4Bg">Linux-总目录</a></li>
+<li><a href="http://mp.weixin.qq.com/s/yKP1Kboji9N4p2Sl1Ovj0Q">Linux-文件和目录</a></li>
+<li><a href="http://mp.weixin.qq.com/s/4bYMzJclf_xHpqdrlbvAdA">Linux-文件操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/QFgINAYcQA9kYYSA28wK-Q">Linux文件内容操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/poFpNHQgHDr0qr2wqfVNdw">Linux-环境变量和可执行属性</a></li>
+<li><a href="http://mp.weixin.qq.com/s/zL9Mw_2ig48gHrIjKM0CMw">Linux - 管道、标准输入输出</a></li>
+<li><a href="http://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA">Linux - 命令运行监测和软件安装</a></li>
+<li><a href="http://mp.weixin.qq.com/s/cDIN4_R4nETEB5irmIGFAQ">Linux-常见错误和快捷操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/1QaroFE7AH1pREuq-k2YAw">Linux-文件列太多，很难识别想要的信息在哪列；别焦急，看这里。</a></li>
+<li><a href="http://mp.weixin.qq.com/s/R1OHRhZoDJuAdyVdJr2xHg">Linux-文件排序和FASTA文件操作</a></li>
+<li><a href="http://mp.weixin.qq.com/s/HLHiWMLaWtB7SOJe_jP3mA">Linux-应用Docker安装软件</a></li>
+<li><a href="http://mp.weixin.qq.com/s/c2cspK5b4sQScWYMBtG63g">Linux服务器数据定期同步和备份方式</a></li>
+<li><a href="https://mp.weixin.qq.com/s/4lUiZ60-aXLilRk9--iQhA">VIM的强大文本处理方法</a></li>
+<li><a href="http://mp.weixin.qq.com/s/A4_j8ZbyprMr1TT_wgisQQ">Linux - Conda软件安装方法</a></li>
+<li><a href="http://mp.weixin.qq.com/s/xq0JfkHJJeHQk1acjOAJUQ">查看服务器配置信息</a></li>
+<li><a href="http://mp.weixin.qq.com/s/cywkIeRbhkYTZvkwTeIVSA">Linux - SED操作，awk的姊妹篇</a></li>
+<li><a href="http://mp.weixin.qq.com/s/8wD14FXt7fLDo1BjJyT0ew">Linux - 常用和不太常用的实用awk命令</a></li>
+<li><a href="http://mp.weixin.qq.com/s/lWNp_6W_jLiogmtlk9nO2A">Bash概论 - Linux系列教程补充篇</a></li>
+<li><a href="http://mp.weixin.qq.com/s/OEBJU3BiQdQOeN_tD2o7sA">CIRCOS圈图绘制 - circos安装</a></li>
+<li><a href="http://mp.weixin.qq.com/s/2E1Y5-cEdptkQGVm0bxKbQ">CIRCOS圈图绘制 - 最简单绘图和解释</a></li>
+<li><a href="https://mp.weixin.qq.com/s/o_3DyYdSubWCh5FfoVKBOg">CIRCOS圈图绘制 - 染色体信息展示和调整</a></li>
+<li><a href="http://mp.weixin.qq.com/s/6L8wmsy0eOxtiAEs3hYgCA">CIRCOS增加热图、点图、线图和区块属性</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="softinstall.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bash-string.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Bash.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

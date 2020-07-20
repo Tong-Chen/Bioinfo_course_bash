@@ -1,0 +1,26 @@
+**小练习**： 尝试源码安装`EMBOSS`, 下载地址 <ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz>.
+
+`EMBOSS`是欧洲分子生物学开放软件包，主要做序列比对，数据库搜搜，蛋白motif分析和功能域分析，序列模式搜索，引物设计等。
+
+```{r}
+emboss= "Popular applications;Functions
+prophet;Gapped alignment for profiles.
+infoseq;Displays some simple information about sequences.
+water;Smith-Waterman local alignment.
+pepstats;Protein statistics.
+showfeat;Show features of a sequence.
+palindrome;Looks for inverted repeats in a nucleotide sequence.
+eprimer3;Picks PCR primers and hybridization oligos.
+profit;Scan a sequence or database with a matrix or profile.
+extractseq;Extract regions from a sequence.
+marscan;Finds MAR/SAR sites in nucleic sequences.
+tfscan;Scans DNA sequences for transcription factors.
+patmatmotifs;Compares a protein sequence to the PROSITE motif database.
+showdb;Displays information on the currently available databases.
+wossname;Finds programs by keywords in their one-line documentation.
+abiview;Reads ABI file and display the trace.
+tranalign;Align nucleic coding regions given the aligned proteins."
+
+emboss = read.table(text=emboss,sep=";",row.names=NULL,header=T)
+knitr::kable(emboss, booktabs=T, caption="Popular applications of EMBOSS.")
+```

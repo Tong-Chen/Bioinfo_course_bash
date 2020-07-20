@@ -1,0 +1,6 @@
+```{r, fig.cap="正则表达式基本语法"}
+if(!file.exists(pic_file <- "pyre.png")){
+  download.file("http://www.ehbio.com/ehbio_resource/pyre.png", pic_file, mode="wb")
+}
+knitr::include_graphics(if(identical(knitr:::pandoc_to(),'html')) url else pic_file)
+```

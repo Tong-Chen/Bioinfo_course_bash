@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Linux学习</title>
+  <meta name="description" content="Linux学习">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Linux学习" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linux学习" />
+  
+  
+  
+
+<meta name="author" content="易生信">
+<meta name="author" content="www.ehbio.com/Training">
+<meta name="author" content="train@ehbio.com">
+
+
+<meta name="date" content="2018-04-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="bash-string.html">
+<link rel="next" href="bioinfo-questions.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.ehbio.com"><img src="http://www.ehbio.com/logos/ehbio_gitbook_logo.png" width="95%"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>EHBIO Gene Technology</a></li>
+<li class="chapter" data-level="1" data-path="linux-basic.html"><a href="linux-basic.html"><i class="fa fa-check"></i><b>1</b> Linux基础内容</a><ul>
+<li class="chapter" data-level="1.1" data-path="linux-basic.html"><a href="linux-basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
+<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统简介</a></li>
+<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.3</b> 如何获取Linux系统</a></li>
+<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录</a></li>
+<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统</a></li>
+<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
+<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.7"><i class="fa fa-check"></i><b>1.1.7</b> 硬件信息查看</a></li>
+<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.8"><i class="fa fa-check"></i><b>1.1.8</b> 目录内容查看</a></li>
+<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.9"><i class="fa fa-check"></i><b>1.1.9</b> 新建目录</a></li>
+<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.10"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
+<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.11"><i class="fa fa-check"></i><b>1.1.11</b> 获取可用命令行参数</a></li>
+<li class="chapter" data-level="1.1.12" data-path="linux-basic.html"><a href="linux-basic.html#a"><i class="fa fa-check"></i><b>1.1.12</b> 小结</a></li>
+<li class="chapter" data-level="1.1.13" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.13"><i class="fa fa-check"></i><b>1.1.13</b> 练习题</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="linux-basic.html"><a href="linux-basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 文件上下翻转和左右翻转</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 其它新建文件的方式</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些异常情况</a></li>
+<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.5</b> Linux下文件内容操作</a></li>
+<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.6"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="linux-basic.html"><a href="linux-basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
+<li class="chapter" data-level="1.4" data-path="linux-basic.html"><a href="linux-basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.4</b> Linux下的标准输入、输出、重定向、管道</a></li>
+<li class="chapter" data-level="1.5" data-path="linux-basic.html"><a href="linux-basic.html#filecontent"><i class="fa fa-check"></i><b>1.5</b> Linux文件内容操作</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.1"><i class="fa fa-check"></i><b>1.5.1</b> 文件生成</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.2"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#fasta"><i class="fa fa-check"></i><b>1.5.3</b> FASTA序列提取</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> 命令运行监测</a></li>
+<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a><ul>
+<li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="softinstall.html"><a href="softinstall.html#fileattribute"><i class="fa fa-check"></i><b>2.1.1</b> 文件属性</a></li>
+<li class="chapter" data-level="2.1.2" data-path="softinstall.html"><a href="softinstall.html#executable"><i class="fa fa-check"></i><b>2.1.2</b> 可执行属性</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#path"><i class="fa fa-check"></i><b>2.2</b> 环境变量</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 环境变量的补充</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种方式</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
+<li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
+<li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#section-2.3.3"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
+<li class="chapter" data-level="2.3.4" data-path="softinstall.html"><a href="softinstall.html#pythonpac"><i class="fa fa-check"></i><b>2.3.4</b> Python包的安装</a></li>
+<li class="chapter" data-level="2.3.5" data-path="softinstall.html"><a href="softinstall.html#anaconda"><i class="fa fa-check"></i><b>2.3.5</b> Anaconda的两个福利</a></li>
+<li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#rr"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="softinstall.html"><a href="softinstall.html#condaInstallConfig"><i class="fa fa-check"></i><b>2.4.1</b> Conda安装和配置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
+<li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#condachannel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
+<li class="chapter" data-level="2.4.4" data-path="softinstall.html"><a href="softinstall.html#section-2.4.4"><i class="fa fa-check"></i><b>2.4.4</b> 创建不同的软件运行环境</a></li>
+<li class="chapter" data-level="2.4.5" data-path="softinstall.html"><a href="softinstall.html#condar"><i class="fa fa-check"></i><b>2.4.5</b> Conda配置R</a></li>
+<li class="chapter" data-level="2.4.6" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.6</b> Conda环境简化运行</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.5</b> Makefile知识</a></li>
+<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6</b> Docker安装</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.1</b> Docker能做什么</a></li>
+<li class="chapter" data-level="2.6.2" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.2</b> Docker的几个基本概念</a></li>
+<li class="chapter" data-level="2.6.3" data-path="softinstall.html"><a href="softinstall.html#section-2.6.3"><i class="fa fa-check"></i><b>2.6.3</b> 安装和配置</a></li>
+<li class="chapter" data-level="2.6.4" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.4</b> Docker用户权限</a></li>
+<li class="chapter" data-level="2.6.5" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.5</b> Docker试用</a></li>
+<li class="chapter" data-level="2.6.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.6</b> Docker系统基本操作</a></li>
+<li class="chapter" data-level="2.6.7" data-path="softinstall.html"><a href="softinstall.html#dockerfile"><i class="fa fa-check"></i><b>2.6.7</b> 使用Dockerfile自动构建镜像</a></li>
+<li class="chapter" data-level="2.6.8" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.8</b> Docker的特征</a></li>
+<li class="chapter" data-level="2.6.9" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.9</b> Docker使用注意</a></li>
+<li class="chapter" data-level="2.6.10" data-path="softinstall.html"><a href="softinstall.html#section-2.6.10"><i class="fa fa-check"></i><b>2.6.10</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="softinstall.html"><a href="softinstall.html#references-1"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html"><i class="fa fa-check"></i><b>3</b> Linux神器</a><ul>
+<li class="chapter" data-level="3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#regularExpr"><i class="fa fa-check"></i><b>3.1</b> 正则表达式</a></li>
+<li class="chapter" data-level="3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2</b> awk命令</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2.1</b> awk基本参数解释</a></li>
+<li class="chapter" data-level="3.2.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.2"><i class="fa fa-check"></i><b>3.2.2</b> 常见操作</a></li>
+<li class="chapter" data-level="3.2.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.3"><i class="fa fa-check"></i><b>3.2.3</b> 糅合操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3</b> SED命令</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3.1</b> sed基本参数解释</a></li>
+<li class="chapter" data-level="3.3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>3.3.2</b> 常见操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4</b> VIM的使用</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.1</b> 初识VIM</a></li>
+<li class="chapter" data-level="3.4.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.2</b> VIM中使用正则表达式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#references-2"><i class="fa fa-check"></i><b>3.5</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bash-string.html"><a href="bash-string.html"><i class="fa fa-check"></i><b>4</b> Bash 字符串处理</a><ul>
+<li class="chapter" data-level="4.1" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
+<li class="chapter" data-level="4.2" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
+<li class="chapter" data-level="4.3" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
+<li class="chapter" data-level="4.4" data-path="bash-string.html"><a href="bash-string.html#shelltest"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
+<li class="chapter" data-level="4.5" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
+<li class="chapter" data-level="4.6" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
+<li class="chapter" data-level="4.7" data-path="bash-string.html"><a href="bash-string.html#section-4.7"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
+<li class="chapter" data-level="4.8" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令:</a></li>
+<li class="chapter" data-level="4.9" data-path="bash-string.html"><a href="bash-string.html#section-4.9"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html"><i class="fa fa-check"></i><b>5</b> Bioinfo tools</a><ul>
+<li class="chapter" data-level="5.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#cas9"><i class="fa fa-check"></i><b>5.1</b> 寻找Cas9的同源基因并进行进化分析</a></li>
+<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#emboss"><i class="fa fa-check"></i><b>5.2</b> emboss的使用</a></li>
+<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#samtoolssnp"><i class="fa fa-check"></i><b>5.3</b> 使用samtools计算SNP</a></li>
+<li class="chapter" data-level="5.4" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bedtools"><i class="fa fa-check"></i><b>5.4</b> Bedtools使用</a></li>
+<li class="chapter" data-level="5.5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#sra-toolkit"><i class="fa fa-check"></i><b>5.5</b> SRA toolkit使用</a></li>
+<li class="chapter" data-level="5.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 生信流程开发</a></li>
+<li class="chapter" data-level="5.7" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 数据同步和备份</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#scp"><i class="fa fa-check"></i><b>5.7.1</b> scp</a></li>
+<li class="chapter" data-level="5.7.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.7.2</b> rsync</a></li>
+<li class="chapter" data-level="5.7.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rdiff-backup"><i class="fa fa-check"></i><b>5.7.3</b> rdiff-backup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bioinfo-questions.html"><a href="bioinfo-questions.html"><i class="fa fa-check"></i><b>6</b> Bioinfo questions</a></li>
+<li class="chapter" data-level="7" data-path="supplemental.html"><a href="supplemental.html"><i class="fa fa-check"></i><b>7</b> Supplemental</a></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="section-8.html"><a href="section-8.html#section-8.1.1"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
+<li class="chapter" data-level="8.1.2" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
+<li class="chapter" data-level="8.1.3" data-path="section-8.html"><a href="section-8.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
+<li class="chapter" data-level="8.1.4" data-path="section-8.html"><a href="section-8.html#section-8.1.4"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
+<li class="chapter" data-level="8.1.5" data-path="section-8.html"><a href="section-8.html#section-8.1.5"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
+<li class="chapter" data-level="8.1.6" data-path="section-8.html"><a href="section-8.html#section-8.1.6"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
+<li class="chapter" data-level="8.1.7" data-path="section-8.html"><a href="section-8.html#linux-1"><i class="fa fa-check"></i><b>8.1.7</b> Linux</a></li>
+<li class="chapter" data-level="8.1.8" data-path="section-8.html"><a href="section-8.html#circos"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
+<li class="chapter" data-level="8.1.9" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
+<li class="chapter" data-level="8.1.10" data-path="section-8.html"><a href="section-8.html#section-8.1.10"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
+<li class="chapter" data-level="8.1.11" data-path="section-8.html"><a href="section-8.html#section-8.1.11"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.1.12" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
+<li class="chapter" data-level="8.1.13" data-path="section-8.html"><a href="section-8.html#section-8.1.13"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
+<li class="chapter" data-level="8.1.14" data-path="section-8.html"><a href="section-8.html#python"><i class="fa fa-check"></i><b>8.1.14</b> Python</a></li>
+<li class="chapter" data-level="8.1.15" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
+<li class="chapter" data-level="8.1.16" data-path="section-8.html"><a href="section-8.html#cytoscape"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
+<li class="chapter" data-level="8.1.17" data-path="section-8.html"><a href="section-8.html#section-8.1.17"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
+<li class="chapter" data-level="8.1.18" data-path="section-8.html"><a href="section-8.html#section-8.1.18"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
+<li class="chapter" data-level="8.1.19" data-path="section-8.html"><a href="section-8.html#section-8.1.19"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
+<li class="chapter" data-level="8.1.20" data-path="section-8.html"><a href="section-8.html#section-8.1.20"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
+<li class="chapter" data-level="8.1.21" data-path="section-8.html"><a href="section-8.html#section-8.1.21"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.html"><a href="section-8.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-8.html"><a href="section-8.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-8.html"><a href="section-8.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.html"><a href="section-8.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.html"><a href="section-8.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
+<li class="chapter" data-level="8.2.6" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="section-8.html"><a href="section-8.html#section-8.2.8"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
+<li class="chapter" data-level="8.2.9" data-path="section-8.html"><a href="section-8.html#section-8.2.9"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
+<li class="chapter" data-level="8.2.10" data-path="section-8.html"><a href="section-8.html#section-8.2.10"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
+<li class="chapter" data-level="8.2.11" data-path="section-8.html"><a href="section-8.html#section-8.2.11"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
+<li class="chapter" data-level="8.2.12" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
+<li class="chapter" data-level="8.2.13" data-path="section-8.html"><a href="section-8.html#section-8.2.13"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="mailto:ct@ehbio.com" target="blank">ct@ehbio.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linux学习</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bioinfo-tools" class="section level1">
+<h1><span class="header-section-number">5</span> Bioinfo tools</h1>
+<div id="cas9" class="section level2">
+<h2><span class="header-section-number">5.1</span> 寻找Cas9的同源基因并进行进化分析</h2>
+<p>见PPT</p>
+</div>
+<div id="emboss" class="section level2">
+<h2><span class="header-section-number">5.2</span> emboss的使用</h2>
+<p><code>EMBOSS</code>是欧洲分子生物学开放软件包，主要做序列比对，数据库搜搜，蛋白motif分析和功能域分析，序列模式搜索，引物设计等。</p>
+<table>
+<caption><span id="tab:unnamed-chunk-12">Table 5.1: </span>Popular applications of EMBOSS.</caption>
+<thead>
+<tr class="header">
+<th align="left">Popular.applications</th>
+<th align="left">Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">prophet</td>
+<td align="left">Gapped alignment for profiles.</td>
+</tr>
+<tr class="even">
+<td align="left">infoseq</td>
+<td align="left">Displays some simple information about sequences.</td>
+</tr>
+<tr class="odd">
+<td align="left">water</td>
+<td align="left">Smith-Waterman local alignment.</td>
+</tr>
+<tr class="even">
+<td align="left">pepstats</td>
+<td align="left">Protein statistics.</td>
+</tr>
+<tr class="odd">
+<td align="left">showfeat</td>
+<td align="left">Show features of a sequence.</td>
+</tr>
+<tr class="even">
+<td align="left">palindrome</td>
+<td align="left">Looks for inverted repeats in a nucleotide sequence.</td>
+</tr>
+<tr class="odd">
+<td align="left">eprimer3</td>
+<td align="left">Picks PCR primers and hybridization oligos.</td>
+</tr>
+<tr class="even">
+<td align="left">profit</td>
+<td align="left">Scan a sequence or database with a matrix or profile.</td>
+</tr>
+<tr class="odd">
+<td align="left">extractseq</td>
+<td align="left">Extract regions from a sequence.</td>
+</tr>
+<tr class="even">
+<td align="left">marscan</td>
+<td align="left">Finds MAR/SAR sites in nucleic sequences.</td>
+</tr>
+<tr class="odd">
+<td align="left">tfscan</td>
+<td align="left">Scans DNA sequences for transcription factors.</td>
+</tr>
+<tr class="even">
+<td align="left">patmatmotifs</td>
+<td align="left">Compares a protein sequence to the PROSITE motif database.</td>
+</tr>
+<tr class="odd">
+<td align="left">showdb</td>
+<td align="left">Displays information on the currently available databases.</td>
+</tr>
+<tr class="even">
+<td align="left">wossname</td>
+<td align="left">Finds programs by keywords in their one-line documentation.</td>
+</tr>
+<tr class="odd">
+<td align="left">abiview</td>
+<td align="left">Reads ABI file and display the trace.</td>
+</tr>
+<tr class="even">
+<td align="left">tranalign</td>
+<td align="left">Align nucleic coding regions given the aligned proteins.</td>
+</tr>
+</tbody>
+</table>
+<p>emboss可以使用源码编译安装或用Conda安装，在前面的基础课中已有过讲述。</p>
+<p>下载地址 <a href="ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz" class="uri">ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz</a>。</p>
+<p>下载地址 <a href="http://primer3.sourceforge.net/" class="uri">http://primer3.sourceforge.net/</a>。</p>
+<pre><code># Make sure bioconda channel has added
+# http://blog.genesino.com/2017/09/bioconda/
+ct@ehbio:~$ conda install emboss
+ct@ehbio:~$ url=https://sourceforge.net/projects/primer3/files/primer3/2.3.7/
+ct@ehbio:~$ wget ${url}primer3-2.3.7.tar.gz -O primer3-2.3.7.tar.gz
+ct@ehbio:~$ tar xvzf primer3-2.3.7.tar.gz
+ct@ehbio:~$ cd primer3-2.3.7/src
+ct@ehbio:~$ make all
+# 确保~/bin在环境变量中
+ct@ehbio:~$ ln -s `pwd`/primer3_core ~/bin/primer32_core
+
+# Error: thermodynamic approach chosen,  but path to thermodynamic parameters not specified
+ct@ehbio:~$ mkdir /opt/primer3_config
+ct@ehbio:~$ cp -R primer3-2.3.7/src/primer3_config/* /opt/primer3_config</code></pre>
+<p>测试数据</p>
+<pre><code>ct@ehbio:~$ cat &lt;&lt;END &gt;test.fa
+&gt;comp24_c0_seq1
+TTACTCTCATCCTCCCCTTGTTGAAAGATTGGCTGCAATTGATGAACCCGATAAGAAGGTCAACTAAGAGAAGTGTAC
+TTTTACGCATGGCATGGCATGGCGAGATATGGCTGTAATATGAGTATTATTTTCCTATGTTGCTACCGATATTTTCTA
+TTTGCATATGAAAATTCCAAACCCAGAGTTAGGGGCCATATCTAAAGGGAATTTGCTAACGAGTAAATGGGAAAATAG
+GAAATGTCAGAGGAGAtagcctagcctagcctagcctagccTCGCCTCATGTAACGAAATACAATTTAAATTTTGCTT
+TACAGCTAATAGTCAGACTTTACATTTTGCTAAAA
+END</code></pre>
+<p>设计引物</p>
+<pre><code>ct@ehbio:~$ eprimer32 -sequence test.fa -outfile test.fa.primer \
+    -targetregion 0,371 -optsize 20 -numreturn 3 \
+    -minsize 15 -maxsize 25 \
+    -opttm 50 -mintm 45 -maxtm 55 \
+    -psizeopt 200 -prange 100-280</code></pre>
+<p>引物结果</p>
+<pre><code># EPRIMER32 RESULTS FOR comp24_c0_seq1
+
+#                      Start  Len   Tm     GC%   Sequence
+
+   1 PRODUCT SIZE: 200
+     FORWARD PRIMER     126   20  50.17  35.00  TATTTTCCTATGTTGCTACC
+
+     REVERSE PRIMER     306   20  50.01  30.00  ACTATTAGCTGTAAAGCAAA
+
+
+   2 PRODUCT SIZE: 199
+     FORWARD PRIMER     134   20  49.88  30.00  TATGTTGCTACCGATATTTT
+
+     REVERSE PRIMER     313   20  50.30  35.00  AAGTCTGACTATTAGCTGTA
+
+
+   3 PRODUCT SIZE: 198
+     FORWARD PRIMER     134   20  49.88  30.00  TATGTTGCTACCGATATTTT
+
+     REVERSE PRIMER     312   20  50.30  35.00  AGTCTGACTATTAGCTGTAA</code></pre>
+<p>整理引物格式位PrimerSearch需要的格式</p>
+<pre><code>ct@ehbio:~$ awk &#39;{if($0~/EPRIMER32/) {seq_name=$5;count=1;} else \
+    if($0~/FORWARD PRIMER/) forward=$7; else if ($0~/REVERSE PRIMER/) \
+    {reverse=$7; printf(&quot;%s@%d\t%s\t%s\n&quot;, seq_name,count,forward, reverse); \
+    count+=1;} }&#39; test.fa.primer &gt;all_primer_file</code></pre>
+<pre><code>ct@ehbio:~$ cat all_primer_file
+comp24_c0_seq1@1        TATTTTCCTATGTTGCTACC    ACTATTAGCTGTAAAGCAAA
+comp24_c0_seq1@2        TATGTTGCTACCGATATTTT    AAGTCTGACTATTAGCTGTA
+comp24_c0_seq1@3        TATGTTGCTACCGATATTTT    AGTCTGACTATTAGCTGTAA</code></pre>
+<p>模拟PCR</p>
+<pre><code>ct@ehbio:~$ primersearch -seqall test.fa -infile all_primer_file \
+    -mismatchpercent 5 -outfile test.database.primerSearch</code></pre>
+<pre><code>Primer name comp24_c0_seq1@1
+Amplimer 1
+    Sequence: comp24_c0_seq1  
+    
+    TATTTTCCTATGTTGCTACC hits forward strand at 126 with 0 mismatches
+    ACTATTAGCTGTAAAGCAAA hits reverse strand at [23] with 0 mismatches
+    Amplimer length: 200 bp
+
+Primer name comp24_c0_seq1@2
+Amplimer 1
+    Sequence: comp24_c0_seq1  
+    
+    TATGTTGCTACCGATATTTT hits forward strand at 134 with 0 mismatches
+    AAGTCTGACTATTAGCTGTA hits reverse strand at [16] with 0 mismatches
+    Amplimer length: 199 bp
+
+Primer name comp24_c0_seq1@3
+Amplimer 1
+    Sequence: comp24_c0_seq1  
+    
+    TATGTTGCTACCGATATTTT hits forward strand at 134 with 0 mismatches
+    AGTCTGACTATTAGCTGTAA hits reverse strand at [17] with 0 mismatches
+    Amplimer length: 198 bp</code></pre>
+<p><strong>needleall</strong> 读入两个文件，第一个文件的每个序列都与第二个文件的每个序列进行全局比对，采用<code>Needleman-Wunsch</code>算法。</p>
+<pre><code># 生成测试数据
+ct@ehbio:~$ cat &lt;&lt;END &gt;generateRandom.awk
+BEGIN{srand(seed); seq[0]=&quot;A&quot;; seq[1]=&quot;C&quot;; seq[2]=&quot;G&quot;; seq[3]=&quot;T&quot;}
+    {for(i=1;i&lt;=chrNum;i++) 
+        {print &quot;&gt;&quot;label&quot;&quot;i; len=(10-int(rand()*10)%2)/10*expected_len; 
+        for(j=0;j&lt;=len;j++) printf(&quot;%s&quot;, seq[int(rand()*10)%4]); print &quot;&quot;;
+        }
+    } 
+END
+
+ct@ehbio:~$ echo 1 | awk -v seed=$RANDOM -v label=mm -v chrNum=2 \
+              -v expected_len=40 -f generateRandom.awk &gt;test1.fa
+ct@ehbio:~$ echo 1 | awk -v seed=$RANDOM -v label=hs -v chrNum=2 \
+              -v expected_len=40 -f generateRandom.awk &gt;test2.fa</code></pre>
+<pre><code>ct@ehbio:~$ cat test1.fa
+&gt;mm1
+GTATACATCCGTAATCGGATAAAAGCGTACTATGGCG
+&gt;mm2
+TAATTTCCCATGCACTATCACAACCCCTCGGATCAGACGCC
+ct@ehbio:~$ cat test2.fa
+&gt;hs1
+GCAAACGATTGGCCGGACGTCATCACTCCCCTCCGCGGATG
+&gt;hs2
+CACAGTCCACGCTTTAAACGTACGAACAGACTTCCTT</code></pre>
+<pre><code># 输出格式见： http://emboss.sourceforge.net/docs/themes/AlignFormats.html
+# Both fa and fq are supported
+# -auto: 关闭弹出选项
+ct@ehbio:~$ needleall -asequence test1.fa -bsequence test2.fa -gapopen 10 -gapextend 0.5 \
+    -outfile test12.needle.alignment -auto -aformat3 pair</code></pre>
+<pre><code>ct@ehbio:~$ cat test12.needle.alignment
+########################################
+# Program: needleall
+# Rundate: Fri 30 Mar 2018 13:49:30
+# Commandline: needleall
+#    -asequence test1.fa
+#    -bsequence test2.fa
+#    -auto
+#    -aformat3 pair
+# Align_format: pair
+# Report_file: test1.needleall
+########################################
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: mm1
+# 2: hs1
+# Matrix: EDNAFULL
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 62
+# Identity:      15/62 (24.2%)
+# Similarity:    15/62 (24.2%)
+# Gaps:          46/62 (74.2%)
+# Score: 27.0
+# 
+#
+#=======================================
+
+mm1                1 ------------------GT-ATACA------TCCGTAATCGGATAAAAG     25
+                                       || || ||      ||||    |||||.    
+hs1                1 GCAAACGATTGGCCGGACGTCAT-CACTCCCCTCCG----CGGATG----     41
+
+mm1               26 CGTACTATGGCG     37
+                                 
+hs1               42 ------------     41
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: mm2
+# 2: hs1
+# Matrix: EDNAFULL
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 51
+# Identity:      23/51 (45.1%)
+# Similarity:    23/51 (45.1%)
+# Gaps:          20/51 (39.2%)
+# Score: 41.0
+# 
+#
+#=======================================
+
+mm2                1 -----TAATTTCCCATGCAC--TATCACAACCCCT---CGGATCAGACGC     40
+                          ..|||..||  |.||  .||||| .|||||   |||||.      
+hs1                1 GCAAACGATTGGCC--GGACGTCATCAC-TCCCCTCCGCGGATG------     41
+
+mm2               41 C     41
+                      
+hs1               42 -     41
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: mm1
+# 2: hs2
+# Matrix: EDNAFULL
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 51
+# Identity:      18/51 (35.3%)
+# Similarity:    18/51 (35.3%)
+# Gaps:          28/51 (54.9%)
+# Score: 26.0
+# 
+#
+#=======================================
+
+mm1                1 GTATACA-TCCGTAATCGGATAAAAGCGTACTATGGCG------------     37
+                        .||| |||    .||..|.||| ||||      ||            
+hs2                1 ---CACAGTCC----ACGCTTTAAA-CGTA------CGAACAGACTTCCT     36
+
+mm1               38 -     37
+                      
+hs2               37 T     37
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: mm2
+# 2: hs2
+# Matrix: EDNAFULL
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 55
+# Identity:      18/55 (32.7%)
+# Similarity:    18/55 (32.7%)
+# Gaps:          32/55 (58.2%)
+# Score: 36.0
+# 
+#
+#=======================================
+
+mm2                1 TAATTTCCCATGCACTATCACAACCC---CT-----CG---GATCAGACG     39
+                                       ||||..||   ||     ||   ||.|||||.
+hs2                1 ------------------CACAGTCCACGCTTTAAACGTACGAACAGACT     32
+
+mm2               40 CC---     41
+                     .|   
+hs2               33 TCCTT     37
+
+
+#---------------------------------------
+#---------------------------------------</code></pre>
+<pre><code>ct@ehbio:~$ needleall -asequence test1.fa -bsequence test2.fa -gapopen 10 -gapextend 0.5 \
+    -outfile test12.needle.score -auto</code></pre>
+<pre><code># 序列1 序列2 比对长度 比对得分
+ct@ehbio:~$ cat test12.needle.score
+mm1 hs1 62 (27.0)
+mm2 hs1 51 (41.0)
+mm1 hs2 51 (26.0)
+mm2 hs2 55 (36.0)</code></pre>
+</div>
+<div id="samtoolssnp" class="section level2">
+<h2><span class="header-section-number">5.3</span> 使用samtools计算SNP</h2>
+<ol style="list-style-type: decimal">
+<li>安装samtools和bedtools</li>
+</ol>
+<pre><code>ct@ehbio:~$ conda install samtools
+ct@ehbio:~$ conda install bedtools</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>产生随机的基因组文件。</li>
+</ol>
+<pre><code># srand: 随机数发生器。设置固定的种子，保证每次出来的结果一致
+# rand: 返回[0,1)之间的随机数，包含0不包含1
+ct@ehbio:~$ echo 1 | awk -v seed=1 -v label=chr -v chrNum=4 \
+              -v expected_len=60000 -f generateRandom.awk &gt;genome.fa
+# 显示前60个碱基
+ct@ehbio:~$ ct@ehbio:~/bio$ head genome.fa | cut -c 1-60
+&gt;chr1
+GACCCACACTACGAGGCTCCCAACGATCAGGATTCCTATTCCCTCCTCGCTACCGGAAAA
+&gt;chr2
+AGCCCTTACACCATCTGAGTCTGGCACACTTTTAGAACATCTACCCGTCACGAACAAGAA
+&gt;chr3
+GTACAAGGCCCGGGGCTCGGACATTAAGCTCCTCCACTCAGCAGTCAAGTCAAACGAACA
+&gt;chr4
+ACGCCCGTCAATTAGAGGCATTCAAAGACACCCGCCCGTGCTACAATAGGTACTACAACC</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>产生随机的测序文件</li>
+</ol>
+<pre><code># -N: 获得40K read pairs
+# mut.txt: 突变位点或区域
+ct@ehbio:~$ wgsim -N 40000 genome.fa ehbio_1.fq ehbio_2.fq &gt; mut.txt</code></pre>
+<pre><code># FASTQ格式序列，4行一组
+# 第一行以@开头，后面为序列名字，
+# 第二行为序列
+# 第三行+开头，后面一般无内容；若有，也是序列名字
+# 第四行，质量值，对应序列中每个碱基的测序准确度
+ct@ehbio:~$ head ehbio_1.fq
+@chr1_17674_18124_2:0:0_2:0:0_0/1
+TCGTTCAGTGGTGGTTACTCGTAGGGTCTTCCATCTGAGGCGGGCGAGCGGACGCCTTTTCTGCCTCCAG
++
+2222222222222222222222222222222222222222222222222222222222222222222222
+@chr1_29806_30221_2:0:0_0:0:0_1/1
+TTAAGTGTGCTTGGACAACGGATATGCAAGTGTCTTTGATATATCGTTAGGGATAGGTTAATTAAGGGTC
++
+2222222222222222222222222222222222222222222222222222222222222222222222</code></pre>
+<pre><code># 获得的突变文件如下
+# Check IUPAC here: http://www.bioinformatics.org/sms/iupac.html
+Col1: chromosome
+Col2: position
+Col3: original base
+Col4: new base (IUPAC codes indicate heterozygous)
+Col5: which genomic copy/haplotype 
+ct@ehbio:~$ head mut.txt
+chr1    6274    T   C   -
+chr1    6923    C   Y   +
+chr1    7022    C   Y   +
+chr1    10426   A   W   +
+chr1    11130   C   S   +
+chr1    12135   G   R   +</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>创建基因组索引</li>
+</ol>
+<pre><code>ct@ehbio:~$ bwa index genome.fa
+# samtools fadix快速获取某区域序列
+ct@ehbio:~$ samtools faidx genome.fa</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>序列比对回基因组</li>
+</ol>
+<pre><code>ct@ehbio:~$ bwa mem -t 3 genome.fa ehbio_1.fq ehbio_2.fq | gzip &gt;map.sam.gz</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>筛选比对上的高质量reads</li>
+</ol>
+<pre><code>ct@ehbio:~$ samtools view -F4 -q1 -b map.sam.gz -o map.bam
+# 下面2个排序用法都可以，看使用的samtools版本
+ct@ehbio:~$ #samtools sort -@ 2 map.bam map.sortP
+ct@ehbio:~$ samtools sort -@ 2 -o map.sortP.bam map.bam
+ct@ehbio:~$ samtools index map.sortP.bam</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>统计比对reads数</li>
+</ol>
+<pre><code>ct@ehbio:~$ samtools view -c map.sortP.bam
+79998</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>统计未比对上的reads数</li>
+</ol>
+<pre><code>ct@ehbio:~$ samtools view -c -f 4 map.sam.gz</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>统计比对到正链的reads数</li>
+</ol>
+<pre><code>ct@ehbio:~$ samtools view -c -F 16 map.sam.gz
+40001</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>获取properly-paired的reads数</li>
+</ol>
+<pre><code>ct@ehbio:~$ samtools view -f2 -F 256 -c map.sortP.bam
+79996</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>查看每个位置碱基比对或错配情况</li>
+</ol>
+<pre><code># -Q 0: 测试数据使用，默认为-Q 13，表示过滤掉低质量测序碱基
+ct@ehbio:~$ samtools mpileup -f genome.fa -Q 0 map.sortP.bam | less
+# chrName   coordinate  ref_base    coverage    reads_base  reads_quality
+chr1    5       C       1       ^].     2
+chr1    6       A       2       .^].    22
+chr1    7       C       2       ..      22
+chr1    8       A       2       ..      22
+chr1    9       C       2       G.      22
+chr1    10      T       3       ..^].   222
+chr1    11      A       3       ...     222
+chr1    12      C       4       ...^].  2222
+chr1    13      G       4       ....    2222
+chr1    14      A       4       ....    2222
+chr1    15      G       4       ....    2222
+chr1    16      G       4       ....    2222</code></pre>
+<p>mpileup format (<a href="http://samtools.sourceforge.net/pileup.shtml" class="uri">http://samtools.sourceforge.net/pileup.shtml</a>)</p>
+<p>测序碱基列解释：</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>点(<code>.</code>)代表匹配正链碱基</li>
+<li>逗号(<code>,</code>)代表匹配负链碱基</li>
+<li>大写字母(<code>ACGTN</code>)表示正链错配</li>
+<li>小写字母(<code>acgtn</code>)表示负链错配</li>
+<li>模式<code>\+[0-9]+[ACGTNacgtn]+</code>表示在当前参考位置和下一个参考位置之间有插入，插入碱基数是<code>+</code>后面的证书，插入碱基是数字后面的字母串。下面展示的是<code>2 bp</code>的插入</li>
+</ol>
+<blockquote>
+<p>seq2 156 A 11 .$……+2AG.+2AG.+2AGGG &lt;975;:&lt;&lt;&lt;&lt;&lt;</p>
+</blockquote>
+<ol start="6" style="list-style-type: decimal">
+<li>模式<code>-[0-9]+[ACGTNacgtn]+'参考基因组存在碱基缺失。下面展示的是</code>4 bp`缺失：</li>
+</ol>
+<blockquote>
+<p>seq3 200 A 20 ,,,,,..,.-4CACC.-4CACC….,.,,.^~. ==&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;::&lt;;2&lt;&lt;</p>
+</blockquote>
+<ol start="7" style="list-style-type: decimal">
+<li>符号<code>^</code>表示测序序列起始位置落于此 (A symbol <code>^' marks the start of a read segment which is a contiguous subsequence on the read separated by</code>N/S/H’ CIGAR operations). 后面跟随的符号的ASCII值减去33表示该位置碱基的质量。符号`$’表示测序序列片段的终止。主要用于从pileup文件中获得原始测序reads。</li>
+</ol>
+</blockquote>
+<ol start="12" style="list-style-type: decimal">
+<li>输出vcf格式</li>
+</ol>
+<pre><code># 获得未压缩的vcf格式，方便查看
+ct@ehbio:~$ samtools mpileup -f genome.fa -Q 0 -vu map.sortP.bam &gt;snp.vcf</code></pre>
+</div>
+<div id="bedtools" class="section level2">
+<h2><span class="header-section-number">5.4</span> Bedtools使用</h2>
+<p><a href="http://bedtools.readthedocs.io/en/latest/">Bedtools</a>是处理基因组信息分析的强大工具集合。</p>
+<pre><code>bedtools: flexible tools for genome arithmetic and DNA sequence analysis.
+usage:    bedtools &lt;subcommand&gt; [options]
+
+The bedtools sub-commands include:
+
+[ Genome arithmetic ]
+    intersect     Find overlapping intervals in various ways.
+                  求区域之间的交集，可以用来注释peak，计算reads比对到的基因组区域
+                  不同样品的peak之间的peak重叠情况。
+    window        Find overlapping intervals within a window around an interval.
+    closest       Find the closest, potentially non-overlapping interval.
+                  寻找最近但可能不重叠的区域
+    coverage      Compute the coverage over defined intervals.
+                  计算区域覆盖度
+    map           Apply a function to a column for each overlapping interval.
+    genomecov     Compute the coverage over an entire genome.
+    merge         Combine overlapping/nearby intervals into a single interval.
+                  合并重叠或相接的区域
+    cluster       Cluster (but don&#39;t merge) overlapping/nearby intervals.
+    complement    Extract intervals _not_ represented by an interval file.
+                  获得互补区域
+    subtract      Remove intervals based on overlaps b/w two files.
+                  计算区域差集
+    slop          Adjust the size of intervals.
+                  调整区域大小，如获得转录起始位点上下游3 K的区域
+    flank         Create new intervals from the flanks of existing intervals.
+    sort          Order the intervals in a file.
+                  排序，部分命令需要排序过的bed文件
+    random        Generate random intervals in a genome.
+                  获得随机区域，作为背景集
+    shuffle       Randomly redistrubute intervals in a genome.
+                  根据给定的bed文件获得随机区域，作为背景集
+    sample        Sample random records from file using reservoir sampling.
+    spacing       Report the gap lengths between intervals in a file.
+    annotate      Annotate coverage of features from multiple files.
+
+[ Multi-way file comparisons ]
+    multiinter    Identifies common intervals among multiple interval files.
+    unionbedg     Combines coverage intervals from multiple BEDGRAPH files.
+
+[ Paired-end manipulation ]
+    pairtobed     Find pairs that overlap intervals in various ways.
+    pairtopair    Find pairs that overlap other pairs in various ways.
+
+[ Format conversion ]
+    bamtobed      Convert BAM alignments to BED (&amp; other) formats.
+    bedtobam      Convert intervals to BAM records.
+    bamtofastq    Convert BAM records to FASTQ records.
+    bedpetobam    Convert BEDPE intervals to BAM records.
+    bed12tobed6   Breaks BED12 intervals into discrete BED6 intervals.
+
+[ Fasta manipulation ]
+    getfasta      Use intervals to extract sequences from a FASTA file.
+                  提取给定位置的FASTA序列
+    maskfasta     Use intervals to mask sequences from a FASTA file.
+    nuc           Profile the nucleotide content of intervals in a FASTA file.
+
+[ BAM focused tools ]
+    multicov      Counts coverage from multiple BAMs at specific intervals.
+    tag           Tag BAM alignments based on overlaps with interval files.
+
+[ Statistical relationships ]
+    jaccard       Calculate the Jaccard statistic b/w two sets of intervals.
+                  计算数据集相似性
+    reldist       Calculate the distribution of relative distances b/w two files.
+    fisher        Calculate Fisher statistic b/w two feature files.
+
+[ Miscellaneous tools ]
+    overlap       Computes the amount of overlap from two intervals.
+    igv           Create an IGV snapshot batch script.
+                  用于生成一个脚本，批量捕获IGV截图
+    links         Create a HTML page of links to UCSC locations.
+    makewindows   Make interval &quot;windows&quot; across a genome.
+                  把给定区域划分成指定大小和间隔的小区间 (bin)
+    groupby       Group by common cols. &amp; summarize oth. cols. (~ SQL &quot;groupBy&quot;)
+                  分组结算，不只可以用于bed文件。
+    expand        Replicate lines based on lists of values in columns.
+    split         Split a file into multiple files with equal records or base pairs.
+
+[ General help ]
+    --help        Print this help menu.
+    --version     What version of bedtools are you using?.
+    --contact     Feature requests, bugs, mailing lists, etc.</code></pre>
+<ol style="list-style-type: decimal">
+<li>安装bedtools</li>
+</ol>
+<pre><code>ct@ehbio:~$ conda install bedtools</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>获得测试数据集(<a href="http://quinlanlab.org/tutorials/bedtools/bedtools.html" class="uri">http://quinlanlab.org/tutorials/bedtools/bedtools.html</a>)</li>
+</ol>
+<pre><code>ct@ehbio:~$ mkdir bedtools
+ct@ehbio:~$ cd bedtools
+ct@ehbio:~$ url=https://s3.amazonaws.com/bedtools-tutorials/web
+ct@ehbio:~/bedtools$ curl -O ${url}/maurano.dnaseI.tgz
+ct@ehbio:~/bedtools$ curl -O ${url}/cpg.bed
+ct@ehbio:~/bedtools$ curl -O ${url}/exons.bed
+ct@ehbio:~/bedtools$ curl -O ${url}/gwas.bed
+ct@ehbio:~/bedtools$ curl -O ${url}/genome.txt
+ct@ehbio:~/bedtools$ curl -O ${url}/hesc.chromHmm.bed</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>交集 (intersect)</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="http://bedtools.readthedocs.io/en/latest/_images/intersect-glyph.png" alt="bedtools intersect" width="100%" />
+<p class="caption">
+Figure 5.1: bedtools intersect
+</p>
+</div>
+<p>查看输入文件，<code>bed</code>格式，至少三列，分别是<code>染色体</code>，<code>起始位置</code>(0-based, 包括)，<code>终止位置</code> (1-based，不包括)。第四列一般为区域名字，第五列一般为空，第六列为链的信息。更详细解释见<a href="http://www.genome.ucsc.edu/FAQ/FAQformat.html#format1" class="uri">http://www.genome.ucsc.edu/FAQ/FAQformat.html#format1</a>。</p>
+<p>自己做研究CpG岛信息可以从UCSC的Table Browser获得，具体操作见<a href="http://blog.genesino.com/2013/05/ucsc-usages/" class="uri">http://blog.genesino.com/2013/05/ucsc-usages/</a>。</p>
+<pre><code>ct@ehbio:~/bedtools$ head -n 3 cpg.bed exons.bed
+==&gt; cpg.bed &lt;==
+chr1    28735   29810   CpG:_116
+chr1    135124  135563  CpG:_30
+chr1    327790  328229  CpG:_29
+
+==&gt; exons.bed &lt;==
+chr1    11873   12227   NR_046018_exon_0_0_chr1_11874_f 0   +
+chr1    12612   12721   NR_046018_exon_1_0_chr1_12613_f 0   +
+chr1    13220   14409   NR_046018_exon_2_0_chr1_13221_f 0   +</code></pre>
+<p>获得重叠区域(既是外显子，又是CpG岛的区域)</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed | head -5
+chr1    29320   29370   CpG:_116
+chr1    135124  135563  CpG:_30
+chr1    327790  328229  CpG:_29
+chr1    327790  328229  CpG:_29
+chr1    327790  328229  CpG:_29</code></pre>
+<p>输出重叠区域对应的原始区域(与外显子存在交集的CpG岛)</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wa -wb &gt; | head -5</code></pre>
+<ul>
+<li>chr1 28735 29810 CpG:_116 chr1 29320 29370 NR_024540_exon_10_0_chr1_29321_r 0 -</li>
+<li>chr1 135124 135563 CpG:_30 chr1 134772 139696 NR_039983_exon_0_0_chr1_134773_r 0 -</li>
+<li>chr1 327790 328229 CpG:_29 chr1 324438 328581 NR_028322_exon_2_0_chr1_324439_f 0 +</li>
+<li>chr1 327790 328229 CpG:_29 chr1 324438 328581 NR_028325_exon_2_0_chr1_324439_f 0 +</li>
+<li>chr1 327790 328229 CpG:_29 chr1 327035 328581 NR_028327_exon_3_0_chr1_327036_f 0 +</li>
+</ul>
+<p>计算重叠碱基数</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wo | head -10</code></pre>
+<ul>
+<li>chr1 28735 29810 CpG:_116 chr1 29320 29370 NR_024540_exon_10_0_chr1_29321_r 0 - 50</li>
+<li>chr1 135124 135563 CpG:_30 chr1 134772 139696 NR_039983_exon_0_0_chr1_134773_r 0 - 439</li>
+<li>chr1 327790 328229 CpG:_29 chr1 324438 328581 NR_028322_exon_2_0_chr1_324439_f 0 + 439</li>
+<li>chr1 327790 328229 CpG:_29 chr1 324438 328581 NR_028325_exon_2_0_chr1_324439_f 0 + 439</li>
+<li>chr1 327790 328229 CpG:_29 chr1 327035 328581 NR_028327_exon_3_0_chr1_327036_f 0 + 439</li>
+<li>chr1 713984 714547 CpG:_60 chr1 713663 714068 NR_033908_exon_6_0_chr1_713664_r 0 - 84</li>
+<li>chr1 762416 763445 CpG:_115 chr1 761585 762902 NR_024321_exon_0_0_chr1_761586_r 0 - 486</li>
+<li>chr1 762416 763445 CpG:_115 chr1 762970 763155 NR_015368_exon_0_0_chr1_762971_f 0 + 185</li>
+<li>chr1 762416 763445 CpG:_115 chr1 762970 763155 NR_047519_exon_0_0_chr1_762971_f 0 + 185</li>
+<li>chr1 762416 763445 CpG:_115 chr1 762970 763155 NR_047520_exon_0_0_chr1_762971_f 0 + 185</li>
+</ul>
+<p>计算第一个(-a)bed区域有多少个重叠的第二个(-b)bed文件中有多少个区域</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -c | head
+chr1    28735   29810   CpG:_116    1
+chr1    135124  135563  CpG:_30 1
+chr1    327790  328229  CpG:_29 3
+chr1    437151  438164  CpG:_84 0
+chr1    449273  450544  CpG:_99 0
+chr1    533219  534114  CpG:_94 0
+chr1    544738  546649  CpG:_171    0
+chr1    713984  714547  CpG:_60 1
+chr1    762416  763445  CpG:_115    10
+chr1    788863  789211  CpG:_28 9</code></pre>
+<p>另外还有<code>-v</code>取出不重叠的区域, <code>-f</code>限定重叠最小比例，<code>-sorted</code>可以对按<code>sort -k1,1 -k2,2n</code>排序好的文件加速操作。</p>
+<p>同时对多个区域求交集 (可以用于peak的多维注释)</p>
+<pre><code># -names标注注释来源
+# -sorted: 如果使用了这个参数，提供的一定是排序好的bed文件
+ct@ehbio:~/bedtools$ bedtools intersect -a exons.bed \
+    -b cpg.bed gwas.bed hesc.chromHmm.bed -sorted -wa -wb -names cpg gwas chromhmm \
+    | head -10000  | tail -10</code></pre>
+<ul>
+<li>chr1 27632676 27635124 NM_001276252_exon_15_0_chr1_27632677_chromhmm chr1 27633213 27635013 5_Strong_Enhancer</li>
+<li>chr1 27632676 27635124 NM_001276252_exon_15_0_chr1_27632677_chromhmm chr1 27635013 27635413 7_Weak_Enhancer</li>
+<li>chr1 27632676 27635124 NM_015023_exon_15_0_chr1_27632677_f chromhmm chr1 27632613 27632813 6_Weak_Enhancer</li>
+<li>chr1 27632676 27635124 NM_015023_exon_15_0_chr1_27632677_f chromhmm chr1 27632813 27633213 7_Weak_Enhancer</li>
+<li>chr1 27632676 27635124 NM_015023_exon_15_0_chr1_27632677_f chromhmm chr1 27633213 27635013 5_Strong_Enhancer</li>
+<li>chr1 27632676 27635124 NM_015023_exon_15_0_chr1_27632677_f chromhmm chr1 27635013 27635413 7_Weak_Enhancer</li>
+<li>chr1 27648635 27648882 NM_032125_exon_0_0_chr1_27648636_f cpg chr1 27648453 27649006 CpG:_63</li>
+<li>chr1 27648635 27648882 NM_032125_exon_0_0_chr1_27648636_f chromhmm chr1 27648613 27649413 1_Active_Promoter</li>
+<li>chr1 27648635 27648882 NR_037576_exon_0_0_chr1_27648636_f cpg chr1 27648453 27649006 CpG:_63</li>
+<li>chr1 27648635 27648882 NR_037576_exon_0_0_chr1_27648636_f chromhmm chr1 27648613 27649413 1_Active_Promoter</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>合并区域</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<img src="http://bedtools.readthedocs.io/en/latest/_images/merge-glyph.png" alt="bedtools merge" width="100%" />
+<p class="caption">
+Figure 5.2: bedtools merge
+</p>
+</div>
+<p><code>bedtools merge</code>输入的是按<code>sort -k1,1 -k2,2n</code>排序好的bed文件。</p>
+<p>只需要输入一个排序好的bed文件，默认合并重叠或邻接区域。</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools merge -i exons.bed | head -n 5
+chr1    11873   12227
+chr1    12612   12721
+chr1    13220   14829
+chr1    14969   15038
+chr1    15795   15947</code></pre>
+<p>合并区域并输出此合并后区域是由几个区域合并来的</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools merge -i exons.bed -c 1 -o count | head -n 5
+chr1    11873   12227   1
+chr1    12612   12721   1
+chr1    13220   14829   2
+chr1    14969   15038   1
+chr1    15795   15947   1</code></pre>
+<p>合并相距<code>90 nt</code>内的区域，并输出是由哪些区域合并来的</p>
+<pre><code># -c: 指定对哪些列进行操作
+# -o: 与-c对应，表示对指定列进行哪些操作
+# 这里的用法是对第一列做计数操作，输出这个区域是由几个区域合并来的
+# 对第4列做收集操作，记录合并的区域的名字，并逗号分隔显示出来
+ct@ehbio:~/bedtools$ bedtools merge -i exons.bed -d 340 -c 1,4 -o count,collapse | head -4
+chr1    11873   12227   1   NR_046018_exon_0_0_chr1_11874_f
+chr1    12612   12721   1   NR_046018_exon_1_0_chr1_12613_f
+chr1    13220   15038   3   NR_046018_exon_2_0_chr1_13221_f,NR_024540_exon_0_0_chr1_14362_r,NR_024540_exon_1_0_chr1_14970_r
+chr1    15795   15947   1   NR_024540_exon_2_0_chr1_15796_r</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>计算互补区域</li>
+</ol>
+<p>给定一个全集，再给定一个子集，求另一个子集。比如给定每条染色体长度和外显子区域，求非外显子区域。给定基因区，求非基因区。给定重复序列，求非重复序列等。</p>
+<p>重复序列区域的获取也可以用上面提供的链接 <a href="http://blog.genesino.com/2013/05/ucsc-usages/" class="uri">http://blog.genesino.com/2013/05/ucsc-usages/</a>。</p>
+<pre><code>ct@ehbio:~/bedtools$ head genome.txt 
+chr1    249250621
+chr10   135534747
+chr11   135006516
+chr11_gl000202_random   40103
+chr12   133851895
+chr13   115169878
+chr14   107349540
+chr15   102531392
+
+ct@ehbio:~/bedtools$ bedtools complement -i exons.bed -g genome.txt | head -n 5
+chr1    0   11873
+chr1    12227   12612
+chr1    12721   13220
+chr1    14829   14969
+chr1    15038   15795</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>基因组覆盖广度和深度</li>
+</ol>
+<p>计算基因组某个区域是否被覆盖，覆盖深度多少。有下图多种输出格式，也支持RNA-seq数据，计算junction-reads覆盖。</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<img src="http://bedtools.readthedocs.io/en/latest/_images/genomecov-glyph.png" alt="bedtools genomecov" width="100%" />
+<p class="caption">
+Figure 5.3: bedtools genomecov
+</p>
+</div>
+<p><code>genome.txt</code>里面的内容就是染色体及对应的长度。</p>
+<pre><code># 对单行FASTA，可如此计算
+# 如果是多行FASTA，则需要累加
+ct@ehbio:~/bedtools$ awk &#39;BEGIN{OFS=FS=&quot;\t&quot;}{\
+    if($0~/&gt;/) {seq_name=$0;sub(&quot;&gt;&quot;,&quot;&quot;,seq_name);} \
+    else {print seq_name,length;} }&#39; ../bio/genome.fa | tee ../bio/genome.txt 
+chr1    60001
+chr2    54001
+chr3    54001
+chr4    60001
+ct@ehbio:~/bedtools$ bedtools genomecov -ibam ../bio/map.sortP.bam -bga \
+    -g ../bio/genome.txt | head
+
+# 这个warning很有意思，因为BAM中已经有这个信息了，就不需要提供了
+*****
+*****WARNING: Genome (-g) files are ignored when BAM input is provided. 
+*****
+# bedgraph文件，前3列与bed相同，最后一列表示前3列指定的区域的覆盖度。
+chr1    0   11  0
+chr1    11  17  1
+chr1    17  20  2
+chr1    20  31  3
+chr1    31  36  4
+chr1    36  43  6
+chr1    43  44  7
+chr1    44  46  8
+chr1    46  48  9
+chr1    48  54  10</code></pre>
+<p>两个问题：</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>怎么计算有多少基因组区域被测到了？</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>怎么计算平均测序深度是多少？</li>
+</ol>
+</blockquote>
+<ol start="7" style="list-style-type: decimal">
+<li>数据集相似性</li>
+</ol>
+<p><code>bedtools jaccard</code>计算的是给定的两个<code>bed</code>文件之间交集区域(intersection)占总区域(union-intersection)的比例(jaccard)和交集的数目(n_intersections)。</p>
+<pre><code>ct@ehbio:~/bedtools$ bedtools jaccard \
+    -a fHeart-DS16621.hotspot.twopass.fdr0.05.merge.bed \
+    -b fHeart-DS15839.hotspot.twopass.fdr0.05.merge.bed
+intersection    union-intersection  jaccard n_intersections
+81269248    160493950   0.50637 130852</code></pre>
+<p>小问题：1. 如何用bedtools其它工具算出这个结果？2. 如果需要比较的文件很多，怎么充分利用计算资源？</p>
+<p>一个办法是使用<code>for</code>循环, 双层嵌套。这种用法也很常见，不管是单层还是双层for循环，都有利于简化重复运算。</p>
+<pre><code>ct@ehbio:~/bedtools$ for i in *.merge.bed; do \
+    for j in *.merge.bed; do \
+    bedtools jaccard -a $i -b $j | cut -f3 | tail -n +2 | sed &quot;s/^/$i\t$j\t/&quot;; \
+    done; done &gt;total.similarity</code></pre>
+<p>另一个办法是用<code>parallel</code>，不只可以批量，更可以并行。</p>
+<pre><code>root@ehbio:~# yum install parallel.noarch</code></pre>
+<pre><code># parallel 后面双引号(&quot;&quot;)内的内容为希望用parallel执行的命令，
+# 整体写法与Linux下命令写法一致。
+# 双引号后面的 三个相邻冒号 (:::)默认用来传递参数的，可多个连写。
+# 每个三冒号后面的参数会被循环调用，而在命令中的引用则是根据其出现的位置，分别用{1}, {2}
+# 表示第一个三冒号后的参数，第二个三冒号后的参数。
+#
+# 这个命令可以替换原文档里面的整合和替换, 相比于原文命令生成多个文件，这里对每个输出结果
+# 先进行了比对信息的增加，最后结果可以输入一个文件中。
+#
+ct@ehbio:~/bedtools$ parallel &quot;bedtools jaccard -a {1} -b {2} | awk &#39;NR&gt; | cut -f 3 \
+    | sed &#39;s/^/{1}\t{2}\t/&#39;&quot; ::: `ls *.merge.bed` ::: `ls *.merge.bed`  &gt;totalSimilarity.2
+
+# 替换掉无关信息
+ct@ehbio:~/bedtools$ sed -i -e &#39;s/.hotspot.twopass.fdr0.05.merge.bed//&#39; \
+    -e &#39;s/.hg19//&#39; totalSimilarity.2  </code></pre>
+<p>原文档的命令，稍微有些复杂，利于学习不同命令的组合。使用时推荐使用上面的命令。</p>
+<pre><code>ct@ehbio:~/bedtools$ parallel &quot;bedtools jaccard -a {1} -b {2} \
+      | awk &#39;NR&gt;1&#39; | cut -f 3 \
+      &gt; {1}.{2}.jaccard&quot; \
+     ::: `ls *.merge.bed` ::: `ls *.merge.bed`</code></pre>
+<p>This command will create a single file containing the pairwise Jaccard measurements from all 400 tests.</p>
+<pre><code>find . \
+    | grep jaccard \
+    | xargs grep &quot;&quot; \
+    | sed -e s&quot;/\.\///&quot; \
+    | perl -pi -e &quot;s/.bed./.bed\t/&quot; \
+    | perl -pi -e &quot;s/.jaccard:/\t/&quot; \
+    &gt; pairwise.dnase.txt</code></pre>
+<p>A bit of cleanup to use more intelligible names for each of the samples.</p>
+<pre><code>cat pairwise.dnase.txt \
+| sed -e &#39;s/.hotspot.twopass.fdr0.05.merge.bed//g&#39; \
+| sed -e &#39;s/.hg19//g&#39; \
+&gt; pairwise.dnase.shortnames.txt</code></pre>
+<p>Now let’s make a 20x20 matrix of the Jaccard statistic. This will allow the data to play nicely with R.</p>
+<pre><code>awk &#39;NF==3&#39; pairwise.dnase.shortnames.txt \
+| awk &#39;$1 ~ /^f/ &amp;&amp; $2 ~ /^f/&#39; \
+| python make-matrix.py \
+&gt; dnase.shortnames.distance.matrix</code></pre>
+</div>
+<div id="sra-toolkit" class="section level2">
+<h2><span class="header-section-number">5.5</span> SRA toolkit使用</h2>
+<p>SRA toolkit <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software" class="uri">https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software</a>根据服务器下载对应的二进制编码包。</p>
+<p>CentOS下地址：<a href="https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-centos_linux64.tar.gz" class="uri">https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-centos_linux64.tar.gz</a>。</p>
+<p>常用的是<code>fastq-dump</code>，从NCBI的SRA数据库下载测序原始文件并转化为FASTQ格式供后续分析使用。</p>
+<pre><code># --split-3: 若是双端测序则拆分
+# --gzip: 拆分后压缩文件
+# fastq-dump -v --split-3 --gzip SRR_number
+fastq-dump -v --split-3 --gzip SRR502564</code></pre>
+<p>下面是我写的一个脚本，有3个用途。一是在<code>fastq-dump</code>下载过程中，如果断了可以再次启动下载；二是下载完成之后，给下载的文件进行重命名为方便识别的名字；三是清空下载缓存。</p>
+<p>所需要的输入文件是一个2列文件，第一列为SRR号，第二列为样品名字，TAB键分割。</p>
+<pre><code>SRR2952884      Y25_root
+SRR2952883      Y18_root
+SRR2952882      Y12_root
+SRR2952881      Y05_root</code></pre>
+<pre><code>#!/bin/bash
+
+set -x
+set -e
+set -u
+
+usage()
+{
+cat &lt;&lt;EOF &gt;&amp;2
+${txtcyn}
+Usage:
+
+$0 options${txtrst}
+
+${bldblu}Function${txtrst}:
+
+This script is used to download sra files from a file containing SRA
+accession numbers and transfer SRA to fastq format.
+
+The format of input file:
+
+SRR2952884      Y25_root
+SRR2952883      Y18_root
+SRR2952882      Y12_root
+SRR2952881      Y05_root
+
+The second column will be treated as the prefix of final fastq files.
+
+${txtbld}OPTIONS${txtrst}:
+    -f  Data file with format described above${bldred}[NECESSARY]${txtrst}
+    -z  Is there a header[${bldred}Default TRUE${txtrst}]
+EOF
+}
+
+file=
+
+while getopts &quot;hf:z:&quot; OPTION
+do
+    case $OPTION in
+        h)
+            usage
+            exit 1
+            ;;
+        f)
+            file=$OPTARG
+            ;;
+        ?)
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+if [ -z $file ]; then
+    usage
+    exit 1
+fi
+
+
+#IFS=&quot;\t&quot;
+
+cat $file | while read -r -a array 
+do
+    sra=&quot;${array[0]}&quot;
+    name=&quot;${array[1]}&quot;
+    #echo $sra, $name
+    #prefetch -v $sra
+    #prefetch -v $sra
+    #prefetch -v $sra
+    #/bin/cp ~/ncbi/public/sra/${sra}.sra ${name}.sra
+    while true
+    do
+        fastq-dump -v --split-3 --gzip ${sra}
+        a=$?
+        if [ &quot;$a&quot; == &quot;0&quot; ]; then break; fi
+        sleep 5m
+    done
+    
+    #/bin/cp ~/ncbi/public/sra/${sra}* .
+    if [ &quot;$a&quot; == &quot;0&quot; ]
+    then
+        rename &quot;${sra}&quot; &quot;${name}&quot; ${sra}*
+        /bin/rm ~/ncbi/public/sra/${sra}.sra
+    fi
+done</code></pre>
+</div>
+<div id="section-5.6" class="section level2">
+<h2><span class="header-section-number">5.6</span> 生信流程开发</h2>
+<p>最基本的是<code>Bash</code>脚本，把上面<code>call SNP</code>的命令放到一个<code>Bash</code>脚本文件中即可。另外可以使用<code>Makefile</code>和<code>Airflow</code>进行更高级一些的开发。</p>
+<p>Airflow使用见 <a href="http://blog.genesino.com/2016/05/airflow/" class="uri">http://blog.genesino.com/2016/05/airflow/</a>。</p>
+<p>一篇不错的英文Makefile教程 <a href="http://blog.genesino.com/2011/04/introduction-to-making-makefiles/" class="uri">http://blog.genesino.com/2011/04/introduction-to-making-makefiles/</a>。</p>
+</div>
+<div id="section-5.7" class="section level2">
+<h2><span class="header-section-number">5.7</span> 数据同步和备份</h2>
+<div id="scp" class="section level3">
+<h3><span class="header-section-number">5.7.1</span> scp</h3>
+<p>最简单的备份方式，就是使用<code>cp</code> (本地硬盘)或 <code>scp</code> (远程硬盘)命令，给自己的结果文件新建一个拷贝；每有更新，再拷贝一份。具体命令如下：</p>
+<pre><code>cp -fur source_project project_bak
+scp -r source_project user@remote_server_ip:project_bak</code></pre>
+<p>为了实现定期备份，我们可以把上述命令写入crontab程序中，设置每天的晚上23:00执行。对于远程服务器的备份，我们可以配置免密码登录，便于自动备份。后台输入免密码登录服务器，获取免密码登录服务器的方法。</p>
+<pre><code># Crontab format
+# Minute　　Hour　　Day　　Month　　Week　　command 
+# * 表示每分/时/天/月/周
+# 每天23:00 执行cp命令
+0   23  *   *   *   cp -fur source_project project_bak
+#   */2 表示每隔2分分/时/天/月/周执行命令
+#   每隔24小时执行cp命令
+0   */24    *   *   *   cp  -fur    source_project  project_bak
+0   0   */1 *   *   scp -r  source_project  user@remote_server_ip:project_bak
+
+# 另外crotab还有个特殊的时间
+# @reboot: 开机运行指定命令
+@reboot cmd</code></pre>
+</div>
+<div id="rsync" class="section level3">
+<h3><span class="header-section-number">5.7.2</span> rsync</h3>
+<p>cp或scp使用简单，但每次执行都会对所有文件进行拷贝，耗时耗力，尤其是需要拷贝的内容很多时，重复拷贝对时间和硬盘都是个损耗。</p>
+<p>rsync则是一个增量备份工具，只针对修改过的文件的修改过的部分进行同步备份，大大缩短了传输的文件的数量和传输时间。具体使用如下 ：</p>
+<pre><code># 把本地project目录下的东西备份到远程服务器的/backup/project目录下
+# 注意第一个project后面的反斜线，表示拷贝目录内的内容，不在目标目录新建project文件夹。注意与第二个命令的比较，两者实现同样的功能。
+# -a: archive mode, quals -rlptgoD
+# -r: 递归同步
+# -p: 同步时保留原文件的权限设置
+# -u: 若文件在远端做过更新，则不同步，避免覆盖远端的修改
+# -L: 同步符号链接链接的文件，防止在远程服务器出现文件路径等不匹配导致的软连接失效
+# -t: 保留修改时间
+# -v: 显示更新信息
+# -z: 传输过程中压缩文件，对于传输速度慢时适用
+rsync -aruLptvz --delete project/ user@remoteServer:/backup/project
+rsync -aruLptvz --delete project user@remoteServer:/backup/</code></pre>
+<p>rsync所做的工作为镜像，保证远端服务器与本地文件的统一。如果本地文件没问题，远端也不会有问题。但如果发生误删或因程序运行错误，导致文件出问题，而在同步之前又没有意识到的话，远端的备份也就没了备份的意义，因为它也被损坏了。误删是比较容易发现的，可以及时矫正。但程序运行出问题，则不一定了。</p>
+</div>
+<div id="rdiff-backup" class="section level3">
+<h3><span class="header-section-number">5.7.3</span> rdiff-backup</h3>
+<p>这里推荐一个工具rdiff-backup不只可以做增量备份，而且会保留每次备份的状态，新备份和上一次备份的差别，可以轻松回到之前的某个版本。唯一的要求就是，本地服务器和远端服务器需要安装统一版本的rdiff-backup。另外还有2款工具 duplicity和`Rsnapshot也可以做类似工作，但方法不一样，占用的磁盘空间也不一样，具体可查看原文链接中的比较。</p>
+<p>具体的rdiff-backup安装和使用见<a href="http://mp.weixin.qq.com/s/c2cspK5b4sQScWYMBtG63g" class="uri">http://mp.weixin.qq.com/s/c2cspK5b4sQScWYMBtG63g</a>。</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bash-string.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bioinfo-questions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Bash.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

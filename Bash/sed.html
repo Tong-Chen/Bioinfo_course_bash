@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Linux学习</title>
+  <meta name="description" content="Linux学习">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Linux学习" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linux学习" />
+  
+  
+  
+
+<meta name="author" content="train">
+
+
+<meta name="date" content="2018-03-23">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="awk.html">
+<link rel="next" href="bash-string.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.ehbio.com"><img src="http://www.ehbio.com/logos/ehbio_gitbook_logo.png" width="95%"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>EHBIO Gene Technology</a></li>
+<li class="chapter" data-level="1" data-path="linux-basic.html"><a href="linux-basic.html"><i class="fa fa-check"></i><b>1</b> Linux基础内容</a><ul>
+<li class="chapter" data-level="1.1" data-path="linux-basic.html"><a href="linux-basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
+<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统简介</a></li>
+<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.3</b> 如何获取Linux系统</a></li>
+<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.4</b> 初识Linux系统</a></li>
+<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.5"><i class="fa fa-check"></i><b>1.1.5</b> 我的电脑在哪？</a></li>
+<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> 硬件信息查看</a></li>
+<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.7"><i class="fa fa-check"></i><b>1.1.7</b> 目录内容查看</a></li>
+<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.8"><i class="fa fa-check"></i><b>1.1.8</b> 新建目录</a></li>
+<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.9"><i class="fa fa-check"></i><b>1.1.9</b> 访问文件</a></li>
+<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.10"><i class="fa fa-check"></i><b>1.1.10</b> 获取可用命令行参数</a></li>
+<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#a"><i class="fa fa-check"></i><b>1.1.11</b> 小结</a></li>
+<li class="chapter" data-level="1.1.12" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.12"><i class="fa fa-check"></i><b>1.1.12</b> 练习题</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="linux-basic.html"><a href="linux-basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 文件上下翻转和左右翻转</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 其它新建文件的方式</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些异常情况</a></li>
+<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.5</b> Linux下文件内容操作</a></li>
+<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.6"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="linux-basic.html"><a href="linux-basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
+<li class="chapter" data-level="1.4" data-path="linux-basic.html"><a href="linux-basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.4</b> Linux下的标准输入、输出、重定向、管道</a></li>
+<li class="chapter" data-level="1.5" data-path="linux-basic.html"><a href="linux-basic.html#filecontent"><i class="fa fa-check"></i><b>1.5</b> Linux文件内容操作</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.1"><i class="fa fa-check"></i><b>1.5.1</b> 文件生成</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.2"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#fasta"><i class="fa fa-check"></i><b>1.5.3</b> FASTA序列提取</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> 命令运行监测</a></li>
+<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a><ul>
+<li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="softinstall.html"><a href="softinstall.html#fileattribute"><i class="fa fa-check"></i><b>2.1.1</b> 文件属性</a></li>
+<li class="chapter" data-level="2.1.2" data-path="softinstall.html"><a href="softinstall.html#executable"><i class="fa fa-check"></i><b>2.1.2</b> 可执行属性</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#path"><i class="fa fa-check"></i><b>2.2</b> 环境变量</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 环境变量的补充</a></li>
+<li class="chapter" data-level="2.2.2" data-path="softinstall.html"><a href="softinstall.html#-1"><i class="fa fa-check"></i><b>2.2.2</b> 小结和练习</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种方式</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
+<li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
+<li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#section-2.3.3"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
+<li class="chapter" data-level="2.3.4" data-path="softinstall.html"><a href="softinstall.html#pythonpac"><i class="fa fa-check"></i><b>2.3.4</b> Python包的安装</a></li>
+<li class="chapter" data-level="2.3.5" data-path="softinstall.html"><a href="softinstall.html#anaconda"><i class="fa fa-check"></i><b>2.3.5</b> Anaconda的两个福利</a></li>
+<li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#rr"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="softinstall.html"><a href="softinstall.html#condaInstallConfig"><i class="fa fa-check"></i><b>2.4.1</b> Conda安装和配置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
+<li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#condachannel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
+<li class="chapter" data-level="2.4.4" data-path="softinstall.html"><a href="softinstall.html#section-2.4.4"><i class="fa fa-check"></i><b>2.4.4</b> 创建不同的软件运行环境</a></li>
+<li class="chapter" data-level="2.4.5" data-path="softinstall.html"><a href="softinstall.html#condar"><i class="fa fa-check"></i><b>2.4.5</b> Conda配置R</a></li>
+<li class="chapter" data-level="2.4.6" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.6</b> Conda环境简化运行</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.5</b> Makefile知识</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="softinstall.html"><a href="softinstall.html#references-1"><i class="fa fa-check"></i><b>2.5.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="awk.html"><a href="awk.html"><i class="fa fa-check"></i><b>3</b> awk命令</a><ul>
+<li class="chapter" data-level="3.1" data-path="awk.html"><a href="awk.html#awk"><i class="fa fa-check"></i><b>3.1</b> awk基本参数解释</a></li>
+<li class="chapter" data-level="3.2" data-path="awk.html"><a href="awk.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 常见操作</a></li>
+<li class="chapter" data-level="3.3" data-path="awk.html"><a href="awk.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 糅合操作</a></li>
+<li class="chapter" data-level="3.4" data-path="awk.html"><a href="awk.html#section-3.4"><i class="fa fa-check"></i><b>3.4</b> 生信宝典</a></li>
+<li class="chapter" data-level="3.5" data-path="awk.html"><a href="awk.html#rpythoncytoscape"><i class="fa fa-check"></i><b>3.5</b> 生信宝典，生物信息学习系列教程，转录组，宏基因组，外显子组，R作图，Python学习，Cytoscape视频教程</a></li>
+<li class="chapter" data-level="3.6" data-path="awk.html"><a href="awk.html#section-3.6"><i class="fa fa-check"></i><b>3.6</b> 生信宝典，最好的生物信息培训课程，培训课程资料</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sed.html"><a href="sed.html"><i class="fa fa-check"></i><b>4</b> SED命令</a><ul>
+<li class="chapter" data-level="4.1" data-path="sed.html"><a href="sed.html#sed"><i class="fa fa-check"></i><b>4.1</b> sed基本参数解释</a></li>
+<li class="chapter" data-level="4.2" data-path="softinstall.html"><a href="softinstall.html#-1"><i class="fa fa-check"></i><b>4.2</b> 常见操作</a></li>
+<li class="chapter" data-level="4.3" data-path="sed.html"><a href="sed.html#rpythoncytoscape-1"><i class="fa fa-check"></i><b>4.3</b> 生信宝典，生物信息学习系列教程，转录组，宏基因组，外显子组，R作图，Python学习，Cytoscape视频教程</a></li>
+<li class="chapter" data-level="4.4" data-path="softinstall.html"><a href="softinstall.html#-1"><i class="fa fa-check"></i><b>4.4</b> 生信宝典，最好的生物信息培训课程，培训课程资料</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bash-string.html"><a href="bash-string.html"><i class="fa fa-check"></i><b>5</b> Bash 字符串处理</a><ul>
+<li class="chapter" data-level="5.1" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>5.1</b> Bash特殊字符</a></li>
+<li class="chapter" data-level="5.2" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>5.2</b> Bash变量</a></li>
+<li class="chapter" data-level="5.3" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>5.3</b> Bash操作符</a></li>
+<li class="chapter" data-level="5.4" data-path="bash-string.html"><a href="bash-string.html#shelltest"><i class="fa fa-check"></i><b>5.4</b> Shell中条件和test命令</a></li>
+<li class="chapter" data-level="5.5" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>5.5</b> Shell流控制</a></li>
+<li class="chapter" data-level="5.6" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>5.6</b> Shell函数</a></li>
+<li class="chapter" data-level="5.7" data-path="bash-string.html"><a href="bash-string.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 输入输出</a></li>
+<li class="chapter" data-level="5.8" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>5.8</b> 命令行处理 命令行处理命令:</a></li>
+<li class="chapter" data-level="5.9" data-path="bash-string.html"><a href="bash-string.html#section-5.9"><i class="fa fa-check"></i><b>5.9</b> 进程和作业控制</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="others.html"><a href="others.html"><i class="fa fa-check"></i><b>6</b> 其它</a></li>
+<li class="chapter" data-level="7" data-path="bioinfo-questions.html"><a href="bioinfo-questions.html"><i class="fa fa-check"></i><b>7</b> Bioinfo questions</a></li>
+<li class="chapter" data-level="8" data-path="supplemental.html"><a href="supplemental.html"><i class="fa fa-check"></i><b>8</b> Supplemental</a></li>
+<li class="divider"></li>
+<li><a href="mailto:ct@ehbio.com" target="blank">ct@ehbio.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linux学习</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sed" class="section level1">
+<h1><span class="header-section-number">4</span> SED命令</h1>
+<div id="sed" class="section level2">
+<h2><span class="header-section-number">4.1</span> sed基本参数解释</h2>
+<p>sed是<code>stream editor</code>的简称，擅长对文件进行各种正则操作、插入操作、替换操作和删除操作，可以全局，可以指定特定范围的行或者特定特征的行。</p>
+<p><code>s/pat/replace/</code>: 正则替换</p>
+<p>前插行<code>i</code>, 后插行<code>a</code>, 替换行<code>c</code>, 删除行<code>d</code>, 输出行<code>p</code></p>
+<p><code>N</code>: 读入下一行，同时存储；<code>n</code>:读入下一行，抛弃当前行</p>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.2</span> 常见操作</h2>
+<ul>
+<li>替换特定的文本</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;s/ /_/&#39;</span> mat 
+<span class="kw">ID</span>  2_cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;s/ /_/g&#39;</span> mat 
+<span class="kw">ID</span>  2_cell  4_cell  8_cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>获得逗号分隔的一组数</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ echo <span class="kw">`seq</span> 1 10<span class="kw">`</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/ /,/g&#39;</span>
+<span class="kw">1</span>,2,3,4,5,6,7,8,9,10</code></pre></div>
+<ul>
+<li>针对指定行替换</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;2,$ s/_[0-9]//g&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1</span>  2   3   4   5
+<span class="kw">Nanog</span>   2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1</span>    2   3   4   5</code></pre></div>
+<ul>
+<li>替换特定出现位置</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 替换第一个空格</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;s/ /_/1&#39;</span> mat 
+<span class="kw">ID</span>  2_cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="co"># 替换第二个空格</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;s/ /_/2&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4_cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="co"># 替换第二个及以后的空格</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;s/ /_/2g&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4_cell  8_cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>给序列起名字</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ cat seq
+<span class="kw">ACDGTFGGCATGCDTGD</span>
+<span class="kw">ACDGAGCDTAGCDGTA</span>
+<span class="kw">CAGDTAGDCTADTG</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed = seq
+<span class="kw">1</span>
+<span class="kw">ACDGTFGGCATGCDTGD</span>
+<span class="kw">2</span>
+<span class="kw">ACDGAGCDTAGCDGTA</span>
+<span class="kw">3</span>
+<span class="kw">CAGDTAGDCTADTG</span>
+<span class="co"># 同时缓冲两行，但只对第一行行首操作</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed = seq <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/^/&gt;/;&#39;</span>
+<span class="kw">&gt;1</span>
+<span class="kw">ACDGTFGGCATGCDTGD</span>
+<span class="kw">&gt;2</span>
+<span class="kw">ACDGAGCDTAGCDGTA</span>
+<span class="kw">&gt;3</span>
+<span class="kw">CAGDTAGDCTADTG</span></code></pre></div>
+<ul>
+<li>给文件增加标题行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ tail -n +2 mat <span class="kw">|</span> <span class="kw">sort</span> -k2,2n
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="co"># 1 表示第一行</span>
+<span class="co"># i 表示插入，在指定行前面插入新行</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ tail -n +2 mat <span class="kw">|</span> <span class="kw">sort</span> -k2,2n <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;1 i ID\t2_cell\t4_cell\t8_cell\tembryo&#39;</span>
+<span class="kw">ID</span>  2_cell  4_cell  8_cell  embryo
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>提取特定或指定范围的行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># -n是必须的，阻止程序自动输出匹配行，不然会导致重复输出</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed -n <span class="st">&#39;2,4p&#39;</span> mat
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed -n <span class="st">&#39;4p&#39;</span> mat
+<span class="kw">c-Myc</span>   2   3   4   5</code></pre></div>
+<ul>
+<li>提取符合特定模式的行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ sed -n <span class="st">&#39;/_/ p&#39;</span> mat
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed -n <span class="st">&#39;/-/ p&#39;</span> mat
+<span class="kw">c-Myc</span>   2   3   4   5</code></pre></div>
+<ul>
+<li>去除文件中的空行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+<span class="co"># 空行就是只有行首和行尾的行</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;/^$/d&#39;</span> mat 
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>原位删除</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="co"># -i 参数的使用</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed -i <span class="st">&#39;/^$/d&#39;</span> mat 
+<span class="kw">ct@ehbio</span>:~/SXBD$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc</span>   2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>删除指定范围的行</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ cat mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">Pou5f1_1</span>    2   3   4   5
+<span class="kw">Nanog_1</span> 2   3.2 4.3 5
+<span class="kw">c-Myc_2</span> 2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5
+
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;2,3d&#39;</span> mat
+<span class="kw">ID</span>  2 cell  4 cell  8 cell  embryo
+<span class="kw">c-Myc_2</span> 2   3   4   5
+<span class="kw">Tet1_3</span>  2   3   4   5</code></pre></div>
+<ul>
+<li>记忆匹配</li>
+</ul>
+<p><code>\(\)</code>启动记忆匹配；<code>\1</code>为第一个匹配项，<code>\2</code>为第二个匹配项；匹配项的计数根据左括号出现的位置来定，第一个<code>(</code>包括起来的为<code>\1</code>。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ echo <span class="st">&quot;hah ehbio hah&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/ \(.*\) /\t\1\t\1\t/&#39;</span>
+<span class="kw">hah</span> ehbio   ehbio   hah</code></pre></div>
+<ul>
+<li>奇偶数行处理</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span>
+<span class="kw">odd</span>
+<span class="kw">even</span>
+<span class="kw">odd</span>
+<span class="kw">even</span>
+
+<span class="co"># 奇偶数行合并</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;N;s/\n/\t/&#39;</span>
+<span class="kw">odd</span> even
+<span class="kw">odd</span> even
+
+<span class="co"># 取出偶数行，比较简单</span>
+<span class="co"># 注意 n (小写)撇掉了奇数行</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> -n <span class="st">&#39;n;p&#39;</span>
+<span class="kw">even</span>
+<span class="kw">even</span>
+
+<span class="co"># 取出奇数行</span>
+<span class="co"># 先都读进去，然后替换偶数行为空值，再输出</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ echo -e <span class="st">&quot;odd\neven\nodd\neven&quot;</span> <span class="kw">|</span> <span class="kw">sed</span> -n <span class="st">&#39;N;s/\n.*//;p&#39;</span>
+<span class="kw">odd</span>
+<span class="kw">odd</span></code></pre></div>
+<ul>
+<li>Windows/Linux换行符困境</li>
+</ul>
+<p>Windows下的换行符是<code>\r\n</code>, Linux下换行符是<code>\n</code>, MAC下换行符是<code>\r</code>。所以Windows下的文件拷贝到Linux后，常会出现行尾多一个<code>^M</code>符号的情况，从而引起匹配或其它解析问题。</p>
+<p><code>^M</code>的输是 <code>ctrl+v+M</code> <code>ctrl+v;ctrl+m</code>，不是简单的输入<code>^</code>,再输入<code>M</code>。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ct@ehbio</span>:~/SXBD$ cat -A windows.txt 
+<span class="kw">ID</span>^M$
+<span class="kw">A</span>^M$
+<span class="kw">B</span>^M$
+<span class="kw">C</span>^M$
+<span class="kw">ct@ehbio</span>:~/SXBD$ sed <span class="st">&#39;s/^M//&#39;</span> windows.txt <span class="kw">|</span> <span class="kw">cat</span> -A
+<span class="kw">ID</span>$
+<span class="kw">A</span>$
+<span class="kw">B</span>$
+<span class="kw">C</span>$</code></pre></div>
+<ul>
+<li>sed中使用bash变量</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># 注意双引号的使用</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ bash_variable=<span class="st">&#39;ehbio&#39;</span>
+<span class="kw">ct@ehbio</span>:~/SXBD$ echo <span class="st">&quot;sheng xin bao dan &quot;</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&quot;s/$/</span><span class="ot">$bash_variable</span><span class="st">/&quot;</span>
+<span class="kw">sheng</span> xin bao dan ehbio</code></pre></div>
+<p>正则表达式不同语言略有差别，但整体相近，更多正则操作见：<a href="http://mp.weixin.qq.com/s?__biz=MzI5MTcwNjA4NQ==&amp;mid=2247484250&amp;idx=1&amp;sn=d4759dc05a55643549646c77318c4f96&amp;chksm=ec0dc6d0db7a4fc64791896914547b5ce818e8bd3cca98f0fb7bf6ebd9029fe6fd08a4d55255#rd">不用Linux也可以的强大文本处理方法</a>。</p>
+</div>
+<div id="rpythoncytoscape-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> 生信宝典，生物信息学习系列教程，转录组，宏基因组，外显子组，R作图，Python学习，Cytoscape视频教程</h2>
+<p><a href="http://mp.weixin.qq.com/s/d1KCETQZ88yaOLGwAtpWYg" class="uri">http://mp.weixin.qq.com/s/d1KCETQZ88yaOLGwAtpWYg</a></p>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> 生信宝典，最好的生物信息培训课程，培训课程资料</h2>
+<p><a href="www.ehbio.com/Training" class="uri">www.ehbio.com/Training</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="awk.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bash-string.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Bash.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
