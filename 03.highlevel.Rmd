@@ -942,6 +942,354 @@ if (identical(knitr:::pandoc_to(), "html")){
 * VIM正则表达式 [http://blog.csdn.net/u014015972/article/details/50688837](http://blog.csdn.net/u014015972/article/details/50688837)
 * Pyton正则表达式 [https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html](https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html)
 
+## 有了这些，文件批量重命名还需要求助其它工具吗？
+
+### 简单重命名
+
+Linux下文件重命名可以通过两个命令完成，`mv`和`rename`。
+
+* `mv`: 直接运行可以进行单个文件的重命名，如 `mv old_name.txt new_name.txt`
+* `rename`: 默认支持单个文件或有固定规律的一组文件的批量重命名，示例如下：
+
+#### rename演示
+
+使用`touch`新建文件，两个样品（分别是易生信a，易生信b），各自双端测序的FASTQ文件
+
+```
+ysx@ehbio:~/test$ touch YSX_a_1.fq.gz YSX_a_2.fq.gz YSX_b_2.fq.gz YSX_b_1.fq.gz
+ysx@ehbio:~/test$ ls
+YSX_a_1.fq.gz  YSX_a_2.fq.gz  YSX_b_1.fq.gz  YSX_b_2.fq.gz
+```
+
+把文件名中的 易生信(`YSX`)改为易汉博 (`ehbio`)
+
+```
+# rename '被替换文字' '要替换成的文字' 操作对象
+ysx@ehbio:~/test$ rename 'YSX' 'ehbio' *.gz
+ysx@ehbio:~/test$ ls
+ehbio_a_1.fq.gz  ehbio_a_2.fq.gz  ehbio_b_1.fq.gz  ehbio_b_2.fq.gz
+```
+
+不同操作系统，`rename`的使用方法略有不同。印象中:
+
+* 在CentOS都是上面的语法 `rename old new file_list`
+
+* 在Ubuntu都是下面的语法 `rename s/old/new/ file_list`
+
+```
+# 在Centos下，该命令未起作用
+ysx@ehbio:~/test$ rename 's/ehbio_//' *
+ysx@ehbio:~/test$ ls
+ehbio_a_1.fq.gz  ehbio_a_2.fq.gz  ehbio_b_1.fq.gz  ehbio_b_2.fq.gz
+
+# 如果写的rename命令没发挥作用，使用man rename查看写看其具体使用方法, 个人经验，无外乎上面提到的两种用法。
+ysx@ehbio:~/test$ man rename
+
+# NAME
+#        rename - rename files
+# 
+# SYNOPSIS
+#        rename [options] expression replacement file...
+```
+
+替换后缀
+
+```
+# 替换后缀
+ysx@ehbio:~/test$ rename 'fq' 'fastq' *.gz
+ysx@ehbio:~/test$ ls
+ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz
+```
+
+### 复杂重命名
+
+但有时，需要重命名的文件不像上面那样有很清晰的模式，直接可以替换，需要多几步处理获得对应关系。
+
+#### 假如已经有对应关系
+
+如下`name.map.txt`是自己手动编写的文件，`a`对应`Control`, `b`对应`Treatment`。
+
+```
+ysx@ehbio:~/test$ ls
+name.map.txt ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz
+
+ysx@ehbio:~/test$ cat name.map.txt
+a	Control
+b	Treatment
+```
+
+##### 组合文件名，使用mv重命名
+
+首先组合出原名字和最终名字
+
+```
+ysx@ehbio:~/test$ awk '{print "ehbio_"$1"_1.fastq.gz", "ehbio_"$2"_1.fastq.gz", "ehbio_"$1"_2.fastq.gz",  "ehbio_"$2"_2.fastq.gz"}' name.map.txt
+ehbio_a_1.fastq.gz ehbio_Control_1.fastq.gz ehbio_a_2.fastq.gz ehbio_Control_2.fastq.gz
+ehbio_b_1.fastq.gz ehbio_Treatment_1.fastq.gz ehbio_b_2.fastq.gz ehbio_Treatment_2.fastq.gz
+```
+
+加上`mv`
+
+```
+ysx@ehbio:~/test$ awk '{print "mv ehbio_"$1"_1.fastq.gz ehbio_"$2"_1.fastq.gz"; print "mv ehbio_"$1"_2.fastq.gz ehbio_"$2"_2.fastq.gz";}' name.map.txt
+mv ehbio_a_1.fastq.gz ehbio_Control_1.fastq.gz
+mv ehbio_a_2.fastq.gz ehbio_Control_2.fastq.gz
+mv ehbio_b_1.fastq.gz ehbio_Treatment_1.fastq.gz
+mv ehbio_b_2.fastq.gz ehbio_Treatment_2.fastq.gz
+```
+
+可以直接拷贝上面的输出再粘贴运行，或存储为文件运行
+
+```
+ysx@ehbio:~/test$ awk '{print "mv ehbio_"$1"_1.fastq.gz ehbio_"$2"_1.fastq.gz"; print "mv ehbio_"$1"_2.fastq.gz ehbio_"$2"_2.fastq.gz";}' name.map.txt >rename.sh
+ysx@ehbio:~/test$ #bash rename.sh
+```
+
+也可以把`print`改为`system`直接运行
+
+```
+ysx@ehbio:~/test$ ls
+ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz  name.map.txt  rename.sh
+ysx@ehbio:~/test$ awk '{system("mv ehbio_"$1"_1.fastq.gz ehbio_"$2"_1.fastq.gz"); system("mv ehbio_"$1"_2.fastq.gz ehbio_"$2"_2.fastq.gz");}' name.map.txt
+ysx@ehbio:~/test$ ls
+ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  ehbio_Treatment_2.fastq.gz  name.map.txt  rename.sh
+```
+
+##### 使用rename会不会稍微简单一点？
+
+一定注意符号匹配和避免误匹配。
+
+```
+# 注意引号和空格
+ysx@ehbio:~/test$ awk '{print("rename "$1" "$2" *.fastq.gz"); }' name.map.txt
+rename a Control *.fastq.gz
+rename b Treatment *.fastq.gz
+
+# 上面的命令有什么问题吗？
+# fastq中也存在a，是否也会被替换
+# ehbio中也存在b，是否也会倍替换
+
+ysx@ehbio:~/test$ awk '{system("rename "$1" "$2" *.fastq.gz"); }' name.map.txt
+
+# 执行后，文件名都乱套了
+ysx@ehbio:~/test$ ls
+ehbio_b_1.fControlstq.gz  ehbio_b_2.fControlstq.gz  ehTreatmentio_Control_1.fastq.gz  ehTreatmentio_Control_2.fastq.gz  name.map.txt  rename.sh
+
+# 再重命名回去，再次尝试
+ysx@ehbio:~/test$ rename 'Control' 'a' *
+ysx@ehbio:~/test$ rename 'Treatment' 'b' *
+ysx@ehbio:~/test$ ls
+ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz  name.map.txt  rename.sh
+
+# 重命名两侧加下划线, 这也是我们做匹配时常需要注意的，尽量限制让匹配更准确
+ysx@ehbio:~/test$ awk '{system("rename _"$1"_ _"$2"_ *.fastq.gz"); }' name.map.txt
+
+# 打印出来看下
+ysx@ehbio:~/test$ awk '{print("rename _"$1"_ _"$2"_ *.fastq.gz"); }' name.map.txt
+# rename _a_ _Control_ *.fastq.gz
+# rename _b_ _Treatment_ *.fastq.gz
+
+# 这次没问题了
+ysx@ehbio:~/test$ ls
+ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  ehbio_Treatment_2.fastq.gz  name.map.txt  rename.sh
+```
+
+
+#### 从原文件名获取对应关系
+
+##### 基于paste
+
+像上面自己写好对应文件是一个方法，有时也可以从文件名推测规律，生成对应文件。
+
+如下有一堆测序原始数据，选择A组样品来查看:
+
+```
+# 如下有一堆测序原始数据，选择A组样品来查看
+ysx@ehbio:~/test2# ls A*
+
+A1_FRAS192317015-1a_1.fq.gz  A2_FRAS192320421-1a_1.fq.gz  A3_FRAS192317017-1a_1.fq.gz
+A1_FRAS192317015-1a_2.fq.gz  A2_FRAS192320421-1a_2.fq.gz  A3_FRAS192317017-1a_2.fq.gz
+```
+
+中间的那一串字符`FRA...-`是我们不需要的。
+
+观察规律，按下划线分割(`_`)，获取第`1,3`个元素；另外习惯性给生物重复前面也加上下划线（用到了`sed`的记忆匹配）。
+
+```
+ysx@ehbio:~/test2# ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/'
+A_1_1.fq.gz
+A_1_2.fq.gz
+A_2_1.fq.gz
+A_2_2.fq.gz
+```
+
+把原样品名字与新样品名字对应起来，这里用到了`paste`和输入重定向 (`<`):
+
+```
+ysx@ehbio:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/')
+A1_FRAS192317015-1a_1.fq.gz	A_1_1_fq.gz
+A1_FRAS192317015-1a_2.fq.gz	A_1_2_fq.gz
+A2_FRAS192320421-1a_1.fq.gz	A_2_1_fq.gz
+A2_FRAS192320421-1a_2.fq.gz	A_2_2_fq.gz
+A3_FRAS192317017-1a_1.fq.gz	A_3_1_fq.gz
+A3_FRAS192317017-1a_2.fq.gz	A_3_2_fq.gz
+```
+
+使用`mv`直接重命名 （还可以把这个脚本保存下来，保留原始名字和新名字的对应关系，万一操作错了，在看到结果异常时也可以方便回溯）
+
+```
+ysx@ehbio:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/') | sed 's#^#/bin/mv #'
+/bin/mv A1_FRAS192317015-1a_1.fq.gz	A_1_1_fq.gz
+/bin/mv A1_FRAS192317015-1a_2.fq.gz	A_1_2_fq.gz
+/bin/mv A2_FRAS192320421-1a_1.fq.gz	A_2_1_fq.gz
+/bin/mv A2_FRAS192320421-1a_2.fq.gz	A_2_2_fq.gz
+/bin/mv A3_FRAS192317017-1a_1.fq.gz	A_3_1_fq.gz
+/bin/mv A3_FRAS192317017-1a_2.fq.gz	A_3_2_fq.gz
+```
+
+软链接也是常用的 (但一定注意源文件使用全路径)
+
+```
+ysx@ehbio:~/test2# paste <(ls *.gz) <(ls *.gz | sed 's/\./_/' | cut -f 1,3,4 -d '_' | sed 's/\([A-E]\)/analysis\/\1_/') | sed 's#^#ln -s `pwd`/#'
+ln -s `pwd`/A1_FRAS192317015-1a_1.fq.gz	analysis/A_1_1_fq.gz
+ln -s `pwd`/A1_FRAS192317015-1a_2.fq.gz	analysis/A_1_2_fq.gz
+ln -s `pwd`/A2_FRAS192320421-1a_1.fq.gz	analysis/A_2_1_fq.gz
+.
+.
+.
+ln -s `pwd`/E15_FRAS192317028-1a_1.fq.gz	analysis/E_15_1_fq.gz
+ln -s `pwd`/E15_FRAS192317028-1a_2.fq.gz	analysis/E_15_2_fq.gz
+```
+
+##### 基于awk
+
+转换下输入数据的格式，字符处理在`awk`也可以操作，但我更习惯使用命令组合，每一步都用最简单的操作，不容易出错。
+
+```
+ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/'
+A_1_FRAS192317015-1a_1.fq.gz
+A_1_FRAS192317015-1a_2.fq.gz
+A_2_FRAS192320421-1a_1.fq.gz
+A_2_FRAS192320421-1a_2.fq.gz
+A_3_FRAS192317017-1a_1.fq.gz
+A_3_FRAS192317017-1a_2.fq.gz
+ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./'
+A_1_FRAS192317015-1a_1_.fq.gz
+A_1_FRAS192317015-1a_2_.fq.gz
+A_2_FRAS192320421-1a_1_.fq.gz
+A_2_FRAS192320421-1a_2_.fq.gz
+A_3_FRAS192317017-1a_1_.fq.gz
+A_3_FRAS192317017-1a_2_.fq.gz
+```
+
+采用`awk`生成对应关系
+
+```
+# 生成样品重复，计数出错了，每行记了一个数，而实际两行是一个样本。
+ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}'
+A_1_FRAS192317015-1a_1_.fq.gz A_1_1.fq.gz
+A_1_FRAS192317015-1a_2_.fq.gz A_2_2.fq.gz
+A_2_FRAS192320421-1a_1_.fq.gz A_3_1.fq.gz
+A_2_FRAS192320421-1a_2_.fq.gz A_4_2.fq.gz
+A_3_FRAS192317017-1a_1_.fq.gz A_5_1.fq.gz
+A_3_FRAS192317017-1a_2_.fq.gz A_6_2.fq.gz
+```
+
+```
+# 稍微改进下
+ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}'
+A_1_FRAS192317015-1a_1.fq.gz A_1_1.fq.gz
+A_1_FRAS192317015-1a_2.fq.gz A_2_2.fq.gz
+A_2_FRAS192320421-1a_1.fq.gz A_3_1.fq.gz
+A_2_FRAS192320421-1a_2.fq.gz A_4_2.fq.gz
+A_3_FRAS192317017-1a_1.fq.gz A_5_1.fq.gz
+A_3_FRAS192317017-1a_2.fq.gz A_6_2.fq.gz
+
+# 记得源文件名字的替换
+ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}' | sed -e 's/_//' -e 's/_\././' -e 's#^#ln -s `pwd`/#' |head
+ln -s `pwd`/A1_FRAS192317015-1a_1.fq.gz A_1_1.fq.gz
+ln -s `pwd`/A1_FRAS192317015-1a_2.fq.gz A_2_2.fq.gz
+```
+
+好了，重命名就到这了。有了这个思路，关键是如何根据自己的文件名字特征，构造对应的匹配关系。
+
+另外，Window下使用`Git for windows`应该也可以实现对应的操作。
+
+## 耗时很长的程序忘加nohup就运行了怎么办？ 
+
+在[NGS基础：测序原始数据下载](https://mp.weixin.qq.com/s/6oJYGxuBE850PyjMhRi3xg)一文中提到可以使用`SRA-toolkit`中的命令`fastq-dump`从NCBI下载原始测序数据，命令如下。
+
+```
+nohup fastq-dump -v --split-3 --gzip SRR5908360 &
+nohup fastq-dump -v --split-3 --gzip SRR5908361 &
+```
+
+这个代码，给我们4个提示：
+
+1. `fastq-dump`不只可以转换下载好的`sra`文件为`fastq`文件，还可以顺带下载`sra`文件。只需提供`SRR`号，就可以获得`FASTQ`序列。不需要先调用`prefetch`下载，然后再转换。其它参数解释见引用文章。
+2. 每一行命令后面`&`号表示把命令放入后台运行，当前终端可以继续输入其它命令；此处也相当于实现了一个手动并行下载多样本，配合`for`可以自动并行下载。
+3. `nohup`表示让程序在终端因人为原因或网络原因断开后不挂断，适用于运行时间比较长的命令，一般与`&`连用，形式如`nohup 你的命令 &` (注意空格的存在)。如果程序运行输出错误信息，则会写入当前目录下`nohup.out`文件里面，供后续查看和调试。
+4. 经常会有一些培训班“拿来主义”比较严重，以上推文和生信宝典的其它推文都被发现过直接用于某些培训班的教材，但从未申请过授权，也未引用过出处。更有甚者，盗版易生信早期培训教案和视频，用于自己的课程或在全网发布，希望大家多多举报。
+
+言归正传，通常我们运行程序前，会有个预判，如前面那个例子，运行时间比较长，会使用`nohup 我的命令 &`的形式进行运行，从而保证程序不受网络或终端异常退出的影响。
+
+但有时也会有误判，如没想到某个程序运行了半个小时还没结束，或数据传输时网太慢，需要传输很久，这时怎么办？中止程序，然后加上`nohup`再从头运行？还是有更好的办法？
+
+下面看这个例子：马上要去吃午饭了，把文件同步到另一个服务器，饭后回来继续操作：
+
+```
+ysx@ehbio:~/test/Bigwig$ rsync -av * ysx@46.93.19.14:/tmp
+ysx@46.93.19.14's password: 
+sending incremental file list
+test1Y_DK10.bw
+```
+
+输入密码后，发现同步速度太慢了，`1`分钟只同步了`1`个文件，后面还有`99`个文件，待会离开后，如果网断了，终端退出，程序终止怎么办？同步不能完成，饭后怎么愉快的工作？
+
+还好我们有下面的方案，一步步跟着操作，补救一下。
+
+第一步，按`ctrl+z`把程序挂起，操作后屏幕会出现如下提示(`[1]`中的`1`表示命令的作业号，后面会用到)：
+
+```
+^Z
+[1]+  已停止               rsync -av * ysx@46.93.19.14:/tmp
+```
+
+第二步（可选），用`jobs`命令查看下任务状态，跟刚才的屏幕提示一致，程序被暂时终止，作业号还是`1`：
+
+```
+ysx@ehbio:~/test/Bigwig$ jobs
+[1]+  已停止               rsync -av * ysx@46.93.19.14:/tmp
+```
+
+第三步，使用`bg %1`命令把作业号为`1`的任务放入后台，并从**停止**状态变为**运行**状态，相当于加了`&`后接着运行。再用`jobs`查看，任务状态变成了`运行中`，这一步很关键。如果没有运行`bg %1`则程序处于停止状态，一直不会运行，吃几顿饭都不会运行。
+
+```
+ysx@ehbio:~/test/Bigwig$ bg %1
+[1]+ rsync -av * ysx@46.93.19.14:/tmp &
+ysx@ehbio:~/test/Bigwig$ jobs
+[1]+  运行中               rsync -av * ysx@46.93.19.14:/tmp &
+```
+
+第四步，运行`disown -h %1`，表示在终端关闭时不对作业号为`1`的程序发送终止信号，外部因素将不影响程序的运行。通过`ps`命令查看下任务进程 (可选)。
+
+```
+ysx@ehbio:~/test/Bigwig$ disown -h %1
+ysx@ehbio:~/test/Bigwig$ ps -auwx | grep 'rsync'
+ysx       18214  0.0  0.0 117844  1720 ?        S    09:43   0:01 rsync -av *.bw ysx@46.93.19.14:/tmp
+ysx       18215  0.1  0.0 182376  8360 ?        S    09:43   0:04 ssh -l ysx 46.93.19.14 rsync --server -vlogDtpre.iLsfxC . /tmp
+ysx       18340  0.0  0.0 112724   984 pts/1    S+   10:17   0:00 grep --color=auto rsync
+```
+
+通过以上4步就完成了对这次操作的事后补救。以后遇到同类问题，试一试这个新方案吧！
+
+同时还有5点提示：
+
+1. 例子中使用的是`rsync`同步，从节省时间来看，不是一个很好的例子。因为把命令停掉再运行一次时，已经同步完整的数据不会再同步，时间损失不会太大。这也是使用同步命令`rsync`相比于`scp`的一个好处。更多同步方式见([Linux服务器数据定期同步和备份方式](https://mp.weixin.qq.com/s/c2cspK5b4sQScWYMBtG63g)。
+2. 例子中的`rsync`或其它涉及两个服务器交互的命令，都需要我们人为输入登录密码，因此直接加`nohup  &`运行是行不通的，无法接受密码的输入。因此通过上面这个操作先在前台启动运行、输入密码，再放入后台不挂断运行。从这个角度看，是一个不错的例子。当然解决这个问题也有其它方式，具体见[ssh免密码登录远程服务器](https://mp.weixin.qq.com/s/wTM8J9zVEdl1PcGpJQbeEw)。
+3. 如果程序运行时，已加了`&`号，放入后台了，则只需运行`jobs`获得作业号，再运行`disown`不挂断即可。
+4. 程序作业号不一定都是`1`，如果之前就有程序在后台运行，作业号相应的会自加。后面用到作业号时也需要相应修改，不要刻板总用`1`。
+5. `nohup`和`disown`都可以使程序不挂断，可以获得一样的效果，但原理不太一致。`nohup`可以使程序忽略挂断信号(`SIGHUP`)或者使程序脱离终端的控制，从而终端不能再对其发送挂断信号(`SIGHUP`)；`disown`则是内生于`shell`，告诉`shell`在终止时不对对应程序发送挂断信号(`SIGHUP`)。
 
 
 
@@ -971,3 +1319,5 @@ if (identical(knitr:::pandoc_to(), "html")){
 * [CIRCOS圈图绘制 - 最简单绘图和解释](http://mp.weixin.qq.com/s/2E1Y5-cEdptkQGVm0bxKbQ)
 * [CIRCOS圈图绘制 - 染色体信息展示和调整](https://mp.weixin.qq.com/s/o_3DyYdSubWCh5FfoVKBOg)
 * [CIRCOS增加热图、点图、线图和区块属性](http://mp.weixin.qq.com/s/6L8wmsy0eOxtiAEs3hYgCA)
+* [有了这些，文件批量重命名还需要求助其它工具吗？ ](https://mp.weixin.qq.com/s/hyiGxm0jx6xEc90nHLN4dQ)
+* [耗时很长的程序忘加nohup就运行了怎么办？ ](https://mp.weixin.qq.com/s/kt_e-DCq7xBfh9tTCJinZQ)

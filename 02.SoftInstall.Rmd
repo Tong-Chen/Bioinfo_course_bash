@@ -2,6 +2,8 @@
 
 视频课见 <http://bioinfo.ke.qq.com>。
 
+软件安装的几个概念：环境变量、可执行属性、编译安装、Conda安装。
+
 ## 文件属性和可执行属性 {#fileattributeplusX}
 
 ### 文件属性 {#fileattribute}
@@ -10,7 +12,7 @@
 
 `chmod`可以修改文件或文件夹属性。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ ls -l /home
 -rwxr-xr-x 1 ct ct 26 12月  7 2016  ct
 
@@ -36,7 +38,7 @@ Linux下文件有一个特殊的属性即可执行属性，用来指示这个文
 
 `which`: 表示查看命令的路径。一般用于当我们想知道使用的命令来源于什么地方时，比如安装了多个R或多个python，但又分不清用的是哪个时，`which`一下，立即明了。在这儿我们用which获取的是可执行的命令所在的路径，进而查看其属性。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ ls -l "`which cd`"
 #rwx: 文件所有者可读、可写、可执行
 #r-x: 文件所有者所在组其它成员可读、可执行，不可修改
@@ -72,7 +74,7 @@ ct@ehbio:~$ ls -l "`which python2.7`"
 
 具体使用`man chmod`查看其它参数使用。
 
-```bash
+```{bash eval=F}
 # 新建个文件
 ct@ehbio:~$ cat <<END >run.sh
 > echo " I am a script created by ehbio." 
@@ -115,11 +117,9 @@ ct@ehbio:~$ ls -l run.sh
 -rwxr-xr-x 1 ct ct 39 6月  14 23:12 run.sh
 ```
 
-## 环境变量 {#path}
-
 如果一个文件有了可执行权限，是不是就可以执行了，我们来检测下。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ run.sh
 -bash: run.sh: 未找到命令
 ```
@@ -128,43 +128,163 @@ ct@ehbio:~$ run.sh
 
 这就涉及到**环境变量**的概念，通俗的讲，环境变量就是告诉电脑 (实际是操作系统)几个目录。这几个目录下存储又可执行文件，如前面显示的`/usr/bin`目录，大部分的系统命令都在这个目录下。
 
-当我们输入命令`mkdir`时，系统就会在环境变量所代表的几个目录从前都厚去查找，哪个里面有`mkdir`文件，然后去执行`mkdir`命令。
+## PATH和path，傻傻分不清
 
-系统中环境变量的名字是`PATH`，其内容可通过下面的命令显示 (根据操作系统不同和配置不同，略有差别，但格式是统一的，`:`分割的一堆路径)：
+习惯了Windows电脑下的所见即所得，找到程序或文件双击即可运行或打开；于是我们被惯得以为电脑会像人一样聪明，给他一个名字就可以运行程序或打开文件；于是在命令行下或程序里不断碰壁，为啥这个命令不运行了呢？
 
-```bash
-ct@ehbio:~$ echo $PATH
-/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+我们不能太高估电脑（或操作系统），不要以为只要输入一个程序名或文件名，电脑（或操作系统）就可以满硬盘的去找这个文件在哪；这一来效率太低了，二来重名了怎么办？比如有2个文件都叫“子房.txt”，一个存储汉初三杰之张良，一个存储被子植物生长种子的器官；可能打开前我们自己也不知道要开哪个吧。
+
+想一下，我们在Windows下寻找文件时，是不是先打开`我的电脑`，然后打开`D盘`，打开`学习`目录，再打开`学习计划.docx`这个文件。即便我们从来没有执行过这个计划，每天我们还是不厌其烦的一层层打开然后制定新的计划。只是，我们忽略了这个`一层层`打开。
+
+`path`我们一般指文件的路径，也就是`一层层`打开的过程。以Linux为例：
+
+我们要查看一个在自己家目录下的文件 `I_am_home.txt`，那登录后，直接可见：
+
+```
+YSX@ehbio:~$ tree
+.
+├── I_am_home.txt
+└── train
+    ├── amplicon
+    │   └── pipeline_amplicon.sh
+    ├── metagenome
+    │   └── pipeline_metagenome.sh
+    ├── population_genomics
+    │   └── pipeline_gatk.sh
+    ├── single_cell
+    │   ├── Scanpy.ipynb
+    │   └── Seurat.Rmd
+    └── transcriptome
+        └── pipeline_salmon.sh
+YSX@ehbio:~$ head I_am_home.txt
+I am home!
 ```
 
-所以如果我们想让自己的命令能被系统找到，就需要把命令所在的目录加到环境变量里面，怎么操作呢？
+那如果想看`Seurat.Rmd`，怎么查看？一步步找下去就对了。
+
+```
+YSX@ehbio:~$ less Seurat.Rmd
+Seurat.Rmd: 没有那个文件或目录
+YSX@ehbio:~$ less train/Seurat.Rmd
+train/Seurat.Rmd: 没有那个文件或目录
+YSX@ehbio:~$ less train/single_cell/Seurat.Rmd
+```
+
+也可以一步步先做目录切换，然后再查看
+
+```
+YSX@ehbio:~$ cd train
+YSX@ehbio:~/train$ cd single_cell/
+YSX@ehbio:~/train/single_cell$ less Seurat.Rmd
+```
+
+那如果你这时你想运行`pipeline_metagenome.sh`快速分析宏基因组数据怎么办？
 
 
-加到环境变量的路径必须是全路径，全路径指以`/`开头或已`~`开头的路径 (`~`开头的路径只能个人用户有效)。
+```
+YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+-bash: pipeline_metagenome.sh: 未找到命令
+```
 
-```bash
+`pipeline_metagenome.sh`命令去哪儿了？上面我们都看到了，就在`metagenome`目录下，为啥电脑（操作系统）这么笨却找不到？另外为什么运行`head`就可以找到？难道有一些黑魔法在里面？
+
+确实是有一些黑魔法的，不过我们一般称之为**规则**。
+
+操作系统为了便捷性和安全性，定义了一系列环境变量，存储常用信息，`PATH` (注意全是大写字母)是其中一个。
+
+`PATH`: 是存放有(可执行)命令和程序的目录集合；在操作系统接到用户输入的命令时，会对PATH**存储的目录**进行查找，看下是否有与用户输入的命令同名的文件存在，而且是**从前到后**一个个查找，而且是**查到就停**，最后查不到就报错。（从这几个加粗的文字，可以看到操作系统很懒，当然懒是好的程序员的必备属性。）
+
+我们先看下`PATH`里面存了哪些目录？
+
+```
+YSX@ehbio:~/train/single_cell$ echo $PATH
+/usr/bin:/usr/local/bin
+```
+
+在我们前面输入`head`命令时，操作系统收到`回车`指令后，先去看下`$PATH`里面有哪些目录，然后从第一个`/usr/bin`开始寻找，很幸运，一下找到了`/usr/bin/head`文件，尝试运行，成功。所以在这个情况下，我们输入`head`等同于输入`/usr/bin/head`。那这个会不会给我们一些启发呢？
+
+我们只要提供`pipeline_metagenome.sh`的路径就可以运行了。
+
+```
+# 相对路径
+YSX@ehbio:~/train/single_cell$ ../metagenome/pipeline_metagenome.sh
+# 绝对路径
+YSX@ehbio:~/train/single_cell$ ~/train/metagenome/pipeline_metagenome.sh
+# 再绝对一些
+YSX@ehbio:~/train/single_cell$ /home/YSX/train/metagenome/pipeline_metagenome.sh
+```
+
+程序可以运行了，但是不是写起来太麻烦了？既然`head`可以只写命令，系统就可以帮着我们去找，那么我们是否也可以把`/home/YSX/train/metagenome/`放到`PATH`里面。这就是如何去设置环境变量了。
+
+```
 # 加到环境变量的路径必须是全路径，全路径指以/开头或已~开头的路径
 # 注意第一个PATH不含$, 第二个PATH有$符号
 # 我们后面会讲什么时候用$, 什么时候不用$
-ct@ehbio:~$ export PATH=$PATH:/home/ct
-ct@ehbio:~$ echo $PATH
-/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ct
+
+# 给原变量PATH后面加一个路径（绝对路径），冒号(:)分割
+YSX@ehbio:~/train/single_cell$ PATH=$PATH:/home/YSX/train/metagenome/
+# 导出变量，使其对系统（Shell）可见
+YSX@ehbio:~/train/single_cell$ export PATH
+# 上面两句可以合并为一句，如下：
+YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/
+# 再次运行，可以运行了
+YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+# 看下PATH存储的目录，多了我们的新增
+YSX@ehbio:~/train/single_cell$ echo $PATH
+/usr/bin:/usr/local/bin:/home/YSX/train/metagenome/
 ```
 
-这时，我们在执行那个命令试试，成功运行了。
+这样就新增一个目录到环境变量里面了，可以依次继续增加更多目录。
 
-```bash
-ct@ehbio:~$ run.sh 
-I am a script created by ehbio.
+```
+YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/
 ```
 
-所以在以后安装了新的软件，或者写了新的脚本后，都把软件的**可执行程序**和**可执行的脚本**所在的目录，加到环境变量里面就可以了。
+加到环境变量的路径必须是全路径，全路径指以`/`开头或以`~`或`${HOME}`开头的路径 (注意：`~`开头的路径只能个人用户有效)。
 
-但是，在命令行中执行`export`，对环境变量所做的修改，只对当前终端有效，退出后就无效了。为了使得这一操作，长期有效，我们需要把这句话写入一个文件中，一个登陆服务器就会被自动读取的文件中。
+有时我们也会看的这样的写法：`export PATH=my_path:$PATH`，这与`export PATH=$PATH:my_path`有什么区别呢？
 
-对于普通用户，在远程登录终端时，家目录下的`~/.bash_profile` (不是`~/.bashrc`, 在本地登录时才会被读取)会自动被读取，所以我们需要把`export`语句加入到这个文件中。
 
-```bash
+回顾下这几个关键字：**从前到后**，**查到就停**。写出官话就是：PATH中越靠前的路径优先级越高。这有什么用处呢？
+
+比如，一般的操作系统都会有系统的`python`和`R`，通常版本比较老，我们作为普通用户也没权限修改。
+
+那怎么办？自己装一份新的`python`和`R`，然后用自己的，这时就涉及到优先级问题了。
+
+假如我在`/home/YSX/soft/anaconda/bin`下安装了一个`python`，那么我需要设置优先调用我自己的`python`，设置环境变量时，我就得把`/home/YSX/soft/anaconda/bin`放到前面，如`export PATH=/home/YSX/soft/anaconda/bin:$PATH`。如果反过来写，那么`/usr/bin/python`就会优先被调用了。
+
+```
+# which 常用工具，查看当前调用的程序的具体来源
+YSX@ehbio:~/train/single_cell$ which python
+/usr/bin/python
+# 优先调用自己的python
+YSX@ehbio:~/train/single_cell$ export PATH=/home/YSX/soft/anaconda/bin:$PATH
+YSX@ehbio:~/train/single_cell$ which python
+/home/YSX/soft/anaconda/bin/python
+```
+
+环境变量学会怎么设置了，关机，下班，睡觉。
+
+第二天早上起来，打开电脑，再运行程序
+
+```
+YSX@ehbio:~/train/single_cell$ which python
+/usr/bin/python
+YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+-bash: pipeline_metagenome.sh: 未找到命令
+```
+
+结果发现昨天的设置都无效了，去生信宝典群里提问 "有谁对Linux比较精通？"。半晌，无人响应，敢说自己精通的不多。提问还是不能这么问，应该怎么问，具体见：[如何优雅的提问](https://mp.weixin.qq.com/s/B8JO4GjvzZP5BUMoaKPrZw)。
+
+后来，有好心人回复“你遇到什么问题，具体描述下？”
+
+经过半个小时的沟通，理清了，关键点：*环境变量设置后失效了，怎么长期有效？*
+
+如果早这么问，估计程序都运行完了。
+
+这时需要用到另一个规则: 登录远程服务器时，系统会自动运行`~/.bash_profile`里面的命令，所以把前面写的这句话`export PATH=/home/YSX/soft/anaconda/bin:$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/`放到文件`~/.bash_profile`里面就好了。
+
+```{bash, eval=F}
 # 这是我的~/.bash_profile中的内容，主要是最好一行。可以连续的加入多个路径。
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
@@ -174,34 +294,27 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 		
-export PATH=$PATH:/home/ct:/home/bin:/home/soft/bowtie2/bin
+export PATH=/home/YSX/soft/anaconda/bin:$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/
 ```
 
-前面提到，系统查找命令的顺序是从环境变量的第一个目录到最后一个目录，在第一次碰到查询的命令后，就调用执行。假如系统存在一个`python`命令，我们自己又安装了一个`python` (假如在/home/ct/anaconda/bin目录下)，如果我们想执行自己的`python`程序，就需要把`/home/ct/anaconda/bin`写在`$PATH`前面，如下
+文件输入后，不要忘记`source ~/.bash_profile`使设置生效（当然，关掉登录窗口，再次登录也可以）。
 
-```bash
-# 注意$PATH的顺序
+### 其它被忽略的事情
 
-ct@ehbio:~$ export PATH=/home/ct/anaconda/bin:$PATH
-```
-
-环境变量设置的两种方式：1. 不同给`$PATH`后面新增目录；2. 建议一个目录，放在`$PATH`中，之后新安装的软件采用软链方式。
-
-至此，我们可以熟练使用**环境变量**来简化命令的输入过程了，因为如果没有环境变量，我们就得需要运行`/home/ct/anaconda/bin/python`来运行`python`命令了。
-
-环境变量这块，自己多操作下，就会慢慢理解熟练了。
-
-### 环境变量的补充
-
-`PATH`只是众多环境变量中的一个变量，用于存储可执行文件所在的目录，以便在用户输入命令时可以查询的到。尤其是自己写的脚本或安装的程序，系统不会知道它们在哪个路径下，需要我们去提供给系统这些新的路径，学名叫设置环境变量。
-
-此外常用到的环境变量还有`LD_LIBARY_PATH`: 指定动态链接库 (so文件)的位置，一般在安装软件出错时会用到；`PYTHONPATH`: 指定Python的安装包的路径；`PERL5LIB`: 指定perl的安装包的路径。
-
-设置环境变量要注意2点：1. 设置新的环境变量时一般要包含原始的环境变量，不能覆盖；2. 注意自己的目录和系统环境变量的目录的顺序，想让哪个先被找到，就先放哪个。
+2. 其它环境变量 
+   * 环境变量PATH：定义可执行程序的目录
+   * LD_LIBRARY_PATH：定义动态库的目录
+   * PYTHONPATH：定义Python包的目录
+   * PERL5LIB：定义Perl模块的目录
+3. .bashrc和.bash_profile
+   * ~/.bashrc本地登录时读取 （文件若无，可新建）
+   * ~/.bash_profile远程登录时读取（文件若无，可新建）
+4. 如果想在系统层面设置环境变量，应该写到`/etc/profile.d/custom.sh`里面（文件若无，可新建）。
+5. 设置环境变量要注意2点：1. 设置新的环境变量时一般要包含原始的环境变量，不能覆盖；2. 注意自己的目录和系统环境变量的目录的顺序，想让哪个先被找到，就先放哪个。
+6. 每次安装一个软件都设置一次环境变量有些麻烦，假如我们已经把`/home/ct/bin`目录放在环境变量中了，以后新安装的软件，只要把可执行命令软连到`/home/ct/bin`目录下就好了，简单方便，即时生效 (操作可见下面`NCBI-blast`的安装)。
 
 
-
-## 软件安装的几种方式 {#softInstallways}
+## 软件安装的几种传统方式 {#softInstallways}
 
 不同于windows，Linux下软件安装的方式比较多样，有些也比较复杂。每种安装方式都有自己的优点和局限，也都有可能遇到问题。在我们理解了原理之后，借助谷歌，可以更好地帮助解决问题。
 
@@ -227,11 +340,11 @@ yum search soft_official_name
 
 ### 下载二进制文件
 
-解决这些问题，就需要自己去软件官网查找最新的分法包，又有两种可能，一种是分法包直接就是编译好的软件，下载下来设置下可执行属性并放入环境变量就可以运行了，如于`blast`或`bowtie`这样的工具。
+解决这些问题，就需要自己去软件官网查找最新的分法包，又有两种可能，一种是分发包直接就是编译好的软件，下载下来设置下可执行属性并放入环境变量就可以运行了，如于`blast`或`bowtie`这样的工具。
 
 blast的链接为<ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz>。
 
-```bash
+```{bash eval=F}
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz
 tar xvzf ncbi-blast-2.7.1+-x64-linux.tar.gz
 cd ncbi*
@@ -265,7 +378,7 @@ ln -s `pwd`/* ~/bin
 
 举一个例子，编译安装`samtools`。具体看视频解释<http://bioinfo.ke.qq.com>。
 
-```bash
+```{bash eval=F}
 wget https://jaist.dl.sourceforge.net/project/samtools/samtools/1.7/samtools-1.7.tar.bz2
 tar xvzf samtools-1.7.tar.bz2
 cd samtoo*
@@ -349,105 +462,47 @@ libasan.so               libmkl_avx.so         libQtSql.so.4.8.7
 
 2. bioconda
 
-bioconda提供了一个虚拟环境，方便软件的编译安装，随后会具体介绍。
+bioconda生物分析软件安装的通道，后面专门介绍。
 
 
 ### R和R包的安装
 
-如果使用的是新版的操作系统。直接可以用`sudo apt-get install r-base` 或者`yum install r-base`来安装。
+见[R系列教程](http://www.ehbio.com/Bioinfo_R_course)。
 
-若系统版本老，或没有根用户权限，则需要下载编译源码安装，最新地址为<https://cran.r-project.org/src/base/R-latest.tar.gz>。
-
-具体编译方式为 (Linux下软件安装见 <http://blog.genesino.com/2016/06/bash1>):
+### Perl包的安装
 
 ```
-# configure是收集系统信息，生成Makefile的过程
-# --enable-R-shlib 需要设置，使得其他程序包括Rstudio可以使用R的动态库
-# --prefix指定软件安装目录，需使用绝对路径
-./configure --prefix=/home/ehbio/R/3.4.0 --enable-R-shlib
-
-# 也可以使用这个命令，共享系统的blas库，提高运输速度
-#./configure --prefix=/home/ehbio/R/3.4.0 --enable-R-shlib --with-blas --with-lapack
-
-# make是编译的过程
-make
-
-# 安装到指定目录的过程
-make install
+# 假设~/bin已在环境变量中
+cd ~/bin
+curl -L https://cpanmin.us/ -o cpanm
+chmod +x cpanm
+cpanm List::MoreUtils Bio::Perl
 ```
 
-安装完成之后，在Linux终端输入`R`即可启动交互式运行界面，`ctrl+d`退出`R`运行界面。若提示`找不到命令`，需要判断有没有加入进环境变量。
 
+## Conda安装配置生物信息软件 {#condaInstall}
 
-如何安装R包
+Conda是一种通用包管理系统，旨在构建和管理任何语言的任何类型的软件。通常与Anaconda (集成了更多软件包，[https://www.anaconda.com/products/individual](https://www.anaconda.com/products/individual))和Miniconda (只包含基本功能软件包, [https://conda.io/miniconda.html](https://conda.io/miniconda.html))一起分发。
 
-```
-install.packages("package_name")
-# 指定安装来源
-install.packages("package_name", repo="http://cran.us.r-project.org")
+最初接触到Anaconda是用于Python包的安装。Anaconda囊括了100多个常用的Python包，一键式安装，解决Python包安装的痛苦。但后来发现，其还有更多的功能，尤其是其增加了`bionconda` ([https://bioconda.github.io/index.html](https://bioconda.github.io/index.html))通道后，生物信息分析的7925多个软件都可以一键安装了 (具体列表在：<https://anaconda.org/bioconda/repo>)，免去了编译时间浪费和解决库文件安装的问题。另外其最有吸引力的是它的`虚拟软件环境`概念，可以简单的配置不同Python版本的环境、不同Python包的环境、不同R环境和R包的环境，对于生物信息软件繁杂的应用和频繁的更新提供了很大的便利。
 
-# 安装Bioconductor的包
-source('https://bioconductor.org/biocLite.R')
-biocLite('BiocInstaller')
-biocLite(c("RUVSeq","pcaMethods"))
-
-# 安装Github的R包
-install.packages("devtools")
-devtools::install_github("JustinaZ/pcaReduce")
-
-# 手动安装, 首先下载包的源文件（压缩版就可），然后在终端运行下面的命令。
-ct@ehbio:~$ R CMD INSTALL package.tar.gz
-
-# 移除包
-remove.packages("package_name")
-
-# 查看所有安装的包
-library()
-
-# 查看特定安装包的版本
-installed.packages()[c("ggplot2"), c("Package", "Version")]
-
-#  Package  Version 
-# "DESeq2" "1.14.1" 
-
-# 查看默认安装包的位置
-.libPaths()
-
-# 查看已加载的包
-.packages()
-
-# 调用安装的包
-library(package_name)
-```
-
-自动安装包
-
-```r
-usePackage <- function(p) {
-	if (!is.element(p, installed.packages()[,1])) {
-		install.packages(p, dep = TRUE)
-	}
-	require(p, character.only = TRUE)
-}
-```
-
-需要注意的也是依赖的软件或库文件的版本，同样的Anaconda提供的lib库也可以直接拿来用。
-
-## Conda安装 {#condaInstall}
-
-Conda是一种通用包管理系统，旨在构建和管理任何语言的任何类型的软件。通常与Anaconda (集成了更多软件包，[https://www.anaconda.com/download/#download](https://www.anaconda.com/download/#download))和Miniconda(只包含基本功能软件包, [https://conda.io/miniconda.html](https://conda.io/miniconda.html))一起分发。
-
-最初接触到Anaconda是用于Python包的安装。Anaconda囊括了100多个常用的Python包，一键式安装，解决Python包安装的痛苦。但后来发现，其还有更多的功能，尤其是其增加了bionconda ([https://bioconda.github.io/index.html](https://bioconda.github.io/index.html))频道后，生物信息分析的1500多个软件都可以一键安装了，免去了编译时间浪费和解决库文件安装的问题。[对于经常编译软件的人，这一点还不够有吸引力](http://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA)。最有吸引力的是它的`工作环境`概念，可以简单的配置不同Python版本的环境、不同Python包的环境、不同R环境和R包的环境，对于生物信息软件繁杂的应用和频繁的更新提供了很大的便利。
+![](image/conda.png)
 
 ### Conda安装和配置 {#condaInstallConfig}
 
-在上面给出的链接下载Anaconda或Conda对应版本的分发包之后，安装就是运行下面的命令，根据提示一步步操作，主要是修改安装路径 (如果是根用户，可以安装到/anaconda下，其它任意目录都可以，但路径短还是有好处的；普通用户安装到自己有权限的目录下)
+在链接<https://www.anaconda.com/products/individual>下载`Anaconda`或`Miniconda`对应版本的分发包之后，安装就是运行下面的命令，根据提示一步步操作，主要是修改安装路径 (如果是根用户，可以安装到`/anaconda`下，其它任意目录都可以，但路径短还是有好处的；普通用户安装到自己有权限的目录下，如`~/miniconda2`)。
+
 
 ```
-bash Miniconda2-latest-Linux-x86_64.sh
+# soft目录为conda安装的目录，可自己修改
+soft=~/miniconda2
+echo 'export PATH="'${soft}'/bin:$PATH"' >>~/.bash_profile
+export PATH="${soft}/bin:$PATH"
+wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda2-latest-Linux-x86_64.sh -b -f -p ${soft}
 ```
 
-安装完成之后，记得把安装路径下的`bin`文件夹加入到环境变量中。
+安装完成之后，记得把安装路径下的`bin`文件夹加入到环境变量中 (上面命令中我们已经帮您加进去了)。
 
 
 ### Conda基本使用
@@ -456,6 +511,7 @@ bash Miniconda2-latest-Linux-x86_64.sh
 
 ```
 conda list # 列出安装的软件包
+# conda所有软件名都是小写
 conda search <package ambigious name> # 搜索需要安装的软件包，获取其完成名字
 ```
 
@@ -492,20 +548,30 @@ xnumpy                       0.0.1                    py27_0  conda-forge
 
 ```
 conda install <package name> # 安装软件包
-conda install numpy=1.7.2 # 安装特定版本的软件包
+# -y是同意安装，不写的话会弹出提示，需要再次确认
+conda install numpy=1.7.2 -y # 安装特定版本的软件包
 conda remove <package name> # 移除软件包
 ```
+
 
 安装R
 
 ```
 # 具体见下面
 # 安装R,及80多个常用的数据分析包, 包括idplyr, shiny, ggplot2, tidyr, caret 和 nnet
-conda install -c r r-essentials 
+conda install -c r r-base=4.0.2 r-essentials 
 # 安装单个包
 # conda install -c https://conda.binstar.org/bokeh ggplot 
 ```
 
+更新包
+
+```
+# 更新基础conda，新版本conda使用起来更快
+conda update -n base -c defaults conda
+
+conda update r-base
+```
 
 获取帮助信息
 
@@ -518,23 +584,24 @@ conda install -h #查看install子命令的帮助
 
 ### Conda的channel
 
-Conda默认的源访问速度有些慢，可以增加国内的源；另外还可以增加几个源，以便于安装更多的软件，尤其是`bioconda`安装生信类工具。`conda-forge`通道是Conda社区维护的包含很多不在默认通道里面的通用型软件。`r`通道是向后兼容性通道，尤其是使用R3.3.1版本时会用到。后加的通道优先级更高，因此一般用下面列出的顺序添加。清华镜像具体见<https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/>。
+Conda默认的源访问速度有些慢，可以增加国内的源；另外还可以增加几个源，以便于安装更多的软件，尤其是`bioconda`安装生信类工具。`conda-forge`通道是Conda社区维护的包含很多不在默认通道里面的通用型软件。`r`通道是向后兼容性通道，尤其是使用`R3.3.1`版本时会用到，现在则不需要单独添加了。后加的通道优先级更高，因此一般用下面列出的顺序添加。清华镜像具体见<https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/> (有时清华镜像也不稳定，不稳定时直接用官方镜像，早上下载速度还是好的)。
 
 ```
-conda config --add channels conda-forge # Lowest priority
-conda config --add channels \
-		  https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-conda config --add channels r # Optional
+conda config --add channels r # Optional # Lowest priority
 conda config --add channels defaults
+conda config --add channels conda-forge 
 conda config --add channels bioconda 
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
 # Anocanda清华镜像
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ 
+conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/cond-forge
 # 清华通道, 最高优先级
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/ 
 conda config --set show_channel_urls yes
 ```
+
+注意通道的顺序是会影响`solving environment`和软件包下载的速度的。
 
 ```
 # 显示已有的通道
@@ -546,13 +613,13 @@ conda通道的配置文件一般在`~/.condarc`里面，内容如下。全局控
 ```
 channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/cond-forge
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ # Anocanda清华镜像
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
   - bioconda
-  - defaults
-  - r
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
   - conda-forge
+  - r
 ```
 
 ### 创建不同的软件运行环境
@@ -561,10 +628,73 @@ channels:
 
 新创建的软件环境的目录为`anaconda_path/envs/enrironment_name`，具体见下面的3个例子。
 
+* 创建一个环境`transcriptome`安装常用转录组分析软件
 
-* 安装`ete3`
+```
+# 新建一个环境，命名为transcriptome
+# 环境名字为 transcriptome
+# 环境中安装 samtools multiqc rseqc
+conda create -n transcriptome samtools multiqc rseqc
 
-使用官方的推荐命令安装时出了问题，py3.5的包装到了py2.7环境下。解决办法，新建一个`py2.7`的环境，然后安装。
+# 如果还想继续安装
+conda install -n transcriptome fastqc salmon star stringtie sra-tools trimmomatic rmats rmats2sashimiplot
+
+# 启动新环境
+source activate transcriptome
+salmon -h
+
+# 默认安装到了anaconda_path下面的envs/transcriptome目录下（在屏幕输出也会有显示）
+# 这个目录下存在bin文件夹，一般使用全路径就可以调用，如下
+# anaconda_path/envs/transcriptome/bin/salmon -h # 但有时会因为依赖关系而失败
+
+source deactivate transcriptome
+```
+
+不少软件不激活环境也可以使用全路径调用，比如`anaconda_path/envs/transcriptome/bin/salmon`就可以直接使用`salmon`程序，这样我们就可以根据前面的`PATH`介绍，把目录`anaconda_path/envs/transcriptome/bin/`放入环境变量，就可以直接调用这个环境中的大部分程序了。
+
+新版的`conda`默认会使用`conda activate transcriptome`激活环境。
+
+初次使用时会弹出一个提示，需要运行`conda init`：
+
+```
+conda activate qiime2-2020.6
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+```
+
+不过，个人更喜欢用`source anaconda_path/bin/activate transcriptome`激活环境，用起来更灵活一些。而且如果是根用户安装时，**不建议把`conda`环境默认加到环境变量中**，会引起不必要的系统冲突。可以给个用户自己使用是自己配置对应的环境变量。 
+
+激活环境后，会看到命令行提示前多了一个环境名字，比如下面激活`qiime2-2020.6`环境后的展示。
+
+```
+ct@ehbio:~# source /anaconda3/bin/activate qiime2-2020.6
+(qiime2-2020.6) ct@ehbio:~# which python
+/anaconda3/envs/qiime2-2020.6/bin/python
+(qiime2-2020.6) ct@ehbio:~# source /anaconda3/bin/deactivate
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
+ct@ehbio:~# which python
+/usr/bin/python
+```
+
+
+* 在环境`phylo`中安装`ete3`
+
+起因是使用官方的推荐命令安装时出了问题，py3.5的包装到了py2.7环境下。解决办法，新建一个`py2.7`的环境，然后安装。
 
 ```
 # 新建一个环境，命名为phylo，指定其内安装的python版本为2.7
@@ -617,25 +747,26 @@ conda install -c https://conda.binstar.org/bokeh ggplot
 source deactivate r
 ```
 
-* 创建比对工具环境 (bioconda中的例子，[https://bioconda.github.io/index.html#set-up-channels](https://bioconda.github.io/index.html#set-up-channels))
+列出所有的环境
 
 ```
-# 环境名字为 aligners
-# 环境中安装 bwa bowtie hisat star
-conda create -n aligners bwa bowtie hisat star
+conda env list
 
-# 如果还想继续安装
-conda install -n aligners hisat2
-
-# 启动新环境
-source activate aligners
-star -h
-
-source deactivate aligners
+# conda environments:
+#
+                         /anaconda2
+                         /anaconda2/envs/lefse
+                         /anaconda2/envs/metagenome_env
+                         /anaconda2/envs/metawrap
+                         /anaconda2/envs/prokka_env
+                         /anaconda2/envs/py3
+                         /anaconda2/envs/r-environment
+                         /anaconda2/envs/reseq
+                         /anaconda2/envs/sourmash_env
+                         /anaconda3/envs/qiime2-2020.6
 ```
 
-
-* 移除环境
+### 移除某个conda环境
 
 如果环境不需要了，或出了错，则可以移除。比如需要移除`phylo`环境，执行`conda remove -n phylo --all`。
 
@@ -687,13 +818,13 @@ r-essentials                 1.0                    r3.2.1_0  r
 
 ```
 
-从上面可以看到清华的源版本同步于conda-forge, 都比较老，还是指定`r`通道安装。
+从上面可以看到清华的源版本同步于`conda-forge`, 都比较老，还是指定`r`通道安装。
 
 ```
 conda install -c r -n r r-essentials=1.6.0
 ```
 
-`R`会安装于`conda_path/envs/r/bin`中，软链到位于环境变量的目录中即可正常使用。
+`R`会安装于`conda_path/envs/r/bin`中，软链到位于环境变量的目录中即可正常使用。这就是环境变量的活学活用。
 
 
 ### Conda环境简化运行
@@ -711,7 +842,7 @@ conda_env_run.sh -c  'bwa mem -h' -e aligner -b "/usr/local/anaconda2/bin"
 
 `conda_env_run.sh`内容如下
 
-```bash
+```{bash eval=F}
 #!/bin/bash
 
 #set -x
@@ -788,41 +919,183 @@ ${command_cmd}
 source deactivate ${environment}
 ```
 
+### Conda环境备份
 
-## Makefile知识
+有的时候会出现装一个新包，装着装着就把当前环境搞装崩了的情况，所以备份一个环境还是必要的，`conda create -n python35copy --clone python35`，把`python35`备份为`python35copy`。
 
-Makefile通常的格式和布局如下，有兴趣的可以自己去学，或者我们再出一个教程。
+### Conda环境导出和导入
 
-```make
-# 假设当前文件夹下Makefile文件中内容如下 
-ct@ehbio:~$ cat Makefile
-# first: target名字
-# echo "compile first": target对应的命令，任何Linux命令都可以
-first:
-echo "compile first"
-all: first second
-echo "compile all"
-second:
-echo "compile second"
+做培训时需要给参加培训的老师提供配置环境的脚本，之前都是提供一个`Bash`文件全部运行下来就可以完成整个环境的配置，更简单的方式是可以导出环境，自己配置时再导入就好了。
 
-# 直接运行make，会make第一个出现的target
-ct@ehbio:~$ make
-echo "compile first"
-compile first
-# make first与直接make相同，因为它出现在第一个 
-ct@ehbio:~$ make first
-echo "compile first"
-compile first
-# all依赖于first, second，因此make all会先执行make first, make second
-# 然后才是自己所代表的命令 
-ct@ehbio:~$ make all
-echo "compile first"
-compile first
-echo "compile second"
-compile second
-echo "compile all"
-compile all
 ```
+# 假设我们有一个环境叫 ehbio，可以导出为一个yml文件
+conda env export --file ehbio_env.yml --name ehbio
+
+# 然后换一台电脑，就可以完全重现这个环境了
+# 这么做的另一个优势是yml中明确列出了软件的版本，
+# 使用 conda solving environment时速度会快很多
+conda env create -f ehbio_env.yml
+```
+
+### Conda软件安装 core dump error/Segment fault/段错误 怎么办
+
+```
+# 清空缓存
+# https://github.com/conda/conda/issues/7815
+conda clean -a
+```
+
+
+### Conda为什么越来越慢？
+
+Conda中包含的软件越来越多，而且软件的不同版本都保留了下来，软件的索引文件越来越大，安装一个新软件时搜索满足环境中所有软件依赖的软件的搜索空间也会越来越大，导致`solving environment`越来越慢。
+
+### Conda是如何工作的
+
+1. 从设定的通道 (`channel`)处下载通道中所有软件的索引信息 (`repodata.json`) (*Collecting package metadata (repodata.json)*)
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~
+   "packages" : {
+    "moto-1.3.7-py_0.tar.bz2" : {
+      "build" : "py_0",
+      "build_number" : 0,
+      "depends" : [ "aws-xray-sdk !=0.96,>=0.93", "backports.tempfile", "boto >=2.36.0", "boto3 >=1.6.15", "botocore >=1.12.13", "cookies", "dicttoxml", "docker-py", "flask", "jinja2 >=2.7.3", "jsondiff 1.1.1.*", "mock", "pyaml", "python", "python-dateutil", "python-jose <3.0.0", "pytz", "requests >=2.5", "responses >=0.9.0", "six", "werkzeug", "xmltodict" ],
+      "license" : "Apache-2.0",
+      "md5" : "17b424658cd07e678b5feebdc932eb52",
+      "name" : "moto",
+      "sha256" : "5924666f8c1758472dc4c3d22b270b46cd1c4b66c50a9ba50d5c636d2237bdd1",
+      "size" : 399973,
+      "subdir" : "noarch",
+      "timestamp" : 1552438392680,
+      "version" : "1.3.7"
+    }
+  }
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+2. 解析`repodata`中的信息获取所有依赖的包的信息
+3. 采用`SAT-solver`算法决定需要下载包的哪个版本和它们的安装顺序
+4. 下载并安装包
+
+### Conda哪一步慢？
+
+主要是第`3`步，确定待安装包的依赖包之间的兼容和已安装软件之间的兼容，获得需要下载的包和对应版本。
+
+
+### 如何提速Conda
+
+
+* 采用最新版的`conda` (Conda4.7相比Conda4.6提速**3.5**倍, Conda 4.8应该不会比4.7慢)
+* 安装时指定版本减少搜索空间 `conda install python=3.7.4`
+* 安装R包时指定R的版本也会极大减小搜索空间 (R包因其数目众多，也是生物类软件依赖解析较慢的原因之一) `conda install r-base=4.0.2 r-ggplot2=3.3.2`
+* 采用`mamba`加速软件依赖解析 [mamba采用`c++`重写了部分解析过程，这个提速效果是很明显的] (安装好`mamba`后就可以用`mamba`替换`conda`进行安装了)
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  conda install mamba -c conda-forge
+  mamba install python=3.7.4
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* ，默认conda解析软件依赖时优先考虑允许的最高版本，设置通道优先级权限高于软件版本新旧后，conda会能更快的解决依赖关系，避免`defaults`和`conda-forge`通道的奇怪组合导致软件依赖解析迟迟不能将结束的问题: `conda config --set channel_priority strict` (这个命令只需要运行一次)。
+* 创建一个新环境 (`conda env create -n env_name`)再安装软件，这样就不用考虑与已有的软件的兼容问题了，也可以大大降低搜索空间和提高解析软件依赖的速度。
+* 如果安装的软件提供了`environment.yaml`那么用起来，文件中对应的软件版本都很明确，解析依赖关系时更快。也可以按前面提供的方式导出一个已经配置好的环境的`yaml`文件，在其它电脑配置时直接读取。 (具体导出方式见[Bioconda软件安装神器：多版本并存、环境复制、环境导出](https://mp.weixin.qq.com/s/XZf652njPMg9qUTjcVCMgQ)。
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  channels:
+   - qiime2/label/r2020.6
+   - conda-forge
+   - bioconda
+   - defaults
+  dependencies:
+   - _libgcc_mutex=0.1
+   - _openmp_mutex=4.5
+   - _r-mutex=1.0.1
+   - alsa-lib=1.1.5
+   - arb-bio-tools=6.0.6
+   - attrs=19.3.0
+   - backcall=0.2.0
+   - bibtexparser=1.1.0
+   - binutils_impl_linux-64=2.34
+   - binutils_linux-64=2.34
+   - bioconductor-biobase=2.42.0
+   - bioconductor-biocgenerics=0.28.0
+   - bioconductor-biocparallel=1.16.6
+   - bioconductor-biostrings=2.50.2
+   - bioconductor-dada2=1.10.0
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* 添加Bioconda通道时，注意顺序，给予`conda-forge`最高优先级，其次是`bioconda`。如果之前已经添加好了通道，自己在`~/.condarc`中调整顺序。
+
+  ~~~~~~~~~~~~~~~~~~~~~~~
+  conda config --add channels defaults
+  conda config --add channels bioconda
+  conda config --add channels conda-forge
+  ~~~~~~~~~~~~~~~~~~~~~
+
+* 综合以上组合，之前尝试多次都没安装好的工具，直接搞定。
+
+### 下载提速
+
+1. 国内镜像，见*[软件安装不上，可能是网速慢！Conda/R/pip/brew等国内镜像大全拿走不谢~~](https://mp.weixin.qq.com/s/eIw-k6RcR5KQFbrNmBsWBw)*
+2. 换个网或从朋友处拷贝已经下载好的压缩包一般在`anaconda_root_dir/pkgs`下，拷贝放在自己的`anaconda3/pkgs`下面，再次下载时系统会识别已经下载好的包而跳过 (并不总是有效)。
+3. 获取所有相关包的名字，从朋友处拷贝下载好的安装包，自己手动安装。
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   mamba install r-base=4.0.2 r-ggplot2=3.3.2 --dry-run >package_solving_result
+   
+   
+   # _anaconda_depends  pkgs/main/linux-64::_anaconda_depends-2020.07-py37_0
+   # _r-mutex           conda-forge/noarch::_r-mutex-1.0.1-anacondar_1
+   # binutils_impl_lin~ pkgs/main/linux-64::binutils_impl_linux-64-2.33.1-he6710b0_7
+   # binutils_linux-64  conda-forge/linux-64::binutils_linux-64-2.33.1-h9595d00_17
+   # brotlipy           conda-forge/linux-64::brotlipy-0.7.0-py37h516909a_1000
+   # bwidget            conda-forge/linux-64::bwidget-1.9.14-0
+   # gcc_impl_linux-64  pkgs/main/linux-64::gcc_impl_linux-64-7.3.0-habb00fd_1
+   # gcc_linux-64       conda-forge/linux-64::gcc_linux-64-7.3.0-h553295d_17
+   
+   # 获取所有包的名字
+   grep '::' a | sed 's/.*:://' | sed 's/$/.tar.bz2/'
+   
+   # 手动安装
+   for i in `grep '::' a | sed 's/.*:://' | sed 's/$/.tar.bz2/'`; do conda install --offline /anaconda3/pkgs/$i; done
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+4. 如果拷贝过来未能自动识别，可手动安装 `conda install --offline local_path`。
+
+### 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统)
+
+安装`conda-pack`
+
+```
+conda install -c conda-forge conda-pack
+# pip install git+https://github.com/conda/conda-pack.git
+```
+
+打包已经安装好的环境
+
+```
+conda pack -n my_env_name -o my_env_name.tar.gz
+```
+
+拷贝打包好的环境`my_env_name.tar.gz`到目标机器，并解压到任何目录，一般推荐放到`envs`目录下 `(anaconda_root/envs)`。(注意：*anaconda_root*改为自己的conda安装路径。)
+
+```
+# 解压打包好的环境
+# 默认是全都解压到当前目录，场面很壮观
+# -C 一定要指定
+mkdir -p anaconda_root/envs/my_env
+tar -xzf my_env.tar.gz -C anaconda_root/envs/my_env
+
+# 激活环境
+source my_env/bin/activate
+
+# Unpack
+conda-unpack
+
+# 至此环境就完全拷贝过来了
+
+# 去激活
+source deactivate
+```
+
 
 ## Docker安装
 
@@ -876,7 +1149,7 @@ software development.
 
 * Centos 6.5 安装Docker
 
-  ```bash
+  ```{bash eval=F}
 
   #添加epel的源
   su -c 'rpm -Uvh  http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm'
@@ -898,7 +1171,7 @@ software development.
 * 其他新版操作系统的安装可以直接使用系统自带的`yum`或`apt`工具，
   启动和配置如上。
 
-  ```bash
+  ```{bash eval=F}
   apt-get install docker.io
   ```
 
@@ -909,7 +1182,7 @@ software development.
 `660`、用户组设为`docker`。当把用户加入到`docker`用户组后，就无需使用
 `sudo`或`su`命令切换获取根用户权限。[check here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#create-a-docker-group)
 
-```bash
+```{bash eval=F}
 ###以下操作都是在根用户下进行的
 
 ###增加一个用户组docker
@@ -925,7 +1198,7 @@ software development.
 
 如果打算只允许用户访问一个特定的容器，可以写一个简单脚本
 
-```bash
+```{bash eval=F}
 # cat /bin/docker_container1
 #!/bin/sh
 docker run -ti --rm container_name /bin/sh
@@ -933,7 +1206,7 @@ docker run -ti --rm container_name /bin/sh
 
 脚本完成后，配置sudoers
 
-```bash
+```{bash eval=F}
 # grep username /etc/sudoers
 username   ALL=(ALL)  NOPASSWD: /bin/docker_container1
 ```
@@ -953,7 +1226,7 @@ username   ALL=(ALL)  NOPASSWD: /bin/docker_container1
 * 搜索镜像 `docker search ubuntu`; 镜像的名字通常由`用户名/镜像名`构成,
   无用户名的为官方认证镜像。	
 
-```bash
+```{bash eval=F}
 root@server:~# docker search ubuntu
 NAME              DESCRIPTION      STARS     OFFICIAL   AUTOMATED
 ubuntu            Ubuntu is ...    4595      [OK]       
@@ -978,14 +1251,14 @@ ubuntu       latest   37b164bb431e   4 days ago   126.6 MB
   在容器中运行单个命令或程序, 通常加`--rm`参数，容器运行结束之后就自动
   删除。如果我们想保留容器的修改，则不能加`--rm`参数。
 
-```bash
+```{bash eval=F}
 docker run --rm ubuntu echo "Hello from docker"
 Hello from docker
 ```
 
   交互式运行容器 `docker run -it ubuntu`, 这时可以发现终端的用户名变了
   
-```bash
+```{bash eval=F}
 root@server:~# docker run -it ubuntu
 root@57cb695e904f:/# ls
 bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
@@ -999,7 +1272,7 @@ root@57cb695e904f:/#
   *build-essential* 是编译软件包的基础，提供需要的编译器、头文件和库文件。
   *r-base* 是编译R语言程序包的基础。
 
-```bash
+```{bash eval=F}
 apt-get update
 #apt-get install -y build-essential r-base
 apt-get install toliet
@@ -1134,7 +1407,41 @@ CMD ["rc-service apache2 start"]
 * 每个容器都只运行一个进程。
 
 * 最小化层：每执行一个命令，都会产生一个层。
- 
+
+## Makefile知识
+
+Makefile通常的格式和布局如下，有兴趣的可以自己去学，或者我们再出一个教程。
+
+```make
+# 假设当前文件夹下Makefile文件中内容如下 
+ct@ehbio:~$ cat Makefile
+# first: target名字
+# echo "compile first": target对应的命令，任何Linux命令都可以
+first:
+echo "compile first"
+all: first second
+echo "compile all"
+second:
+echo "compile second"
+
+# 直接运行make，会make第一个出现的target
+ct@ehbio:~$ make
+echo "compile first"
+compile first
+# make first与直接make相同，因为它出现在第一个 
+ct@ehbio:~$ make first
+echo "compile first"
+compile first
+# all依赖于first, second，因此make all会先执行make first, make second
+# 然后才是自己所代表的命令 
+ct@ehbio:~$ make all
+echo "compile first"
+compile first
+echo "compile second"
+compile second
+echo "compile all"
+compile all
+```
 
 ### 参考
 
@@ -1161,5 +1468,12 @@ CMD ["rc-service apache2 start"]
 * [http://www.bioinfo-scrounger.com/archives/209](http://www.bioinfo-scrounger.com/archives/209)
 * [清华大学开源镜像站](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
 * [Linux学习 - 又双叒叕一个软件安装方法](http://mp.weixin.qq.com/s/A4_j8ZbyprMr1TT_wgisQQ)
-
+* [Linux - 命令运行监测和软件安装](http://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA)
+* [Linux - 应用Docker安装软件](http://mp.weixin.qq.com/s/HLHiWMLaWtB7SOJe_jP3mA)
+* [Linux - Conda软件安装方法](http://mp.weixin.qq.com/s/A4_j8ZbyprMr1TT_wgisQQ)
+* [Nature Method：Bioconda解决生物软件安装的烦恼](https://mp.weixin.qq.com/s/VeexRyguwozqrMaOeeMF7Q)
+* [手把手教你生信分析平台搭建](https://mp.weixin.qq.com/s/6BPvNOw854pkdJCklelGWQ)
+* [Windows轻松实现linux shell环境：gitforwindows](https://mp.weixin.qq.com/s/KtM4c4o4iLfD4ZkEnMi1pg)
+* [Bioconda软件安装神器：多版本并存、环境复制、环境导出](https://mp.weixin.qq.com/s?__biz=MzI5MTcwNjA4NQ==&mid=2247489108&idx=1&sn=0d0ec3dc931271a509fed07cb0efcfd7&scene=21#wechat_redirect)
+* [软件安装不上，可能是网速慢！Conda/R/pip/brew等国内镜像大全拿走不谢~~ ](https://mp.weixin.qq.com/s/eIw-k6RcR5KQFbrNmBsWBw)
 

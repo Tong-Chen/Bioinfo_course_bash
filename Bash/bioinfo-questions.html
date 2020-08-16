@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Linux学习</title>
-  <meta name="description" content="Linux学习">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Bioinfo questions | Linux学习</title>
+  <meta name="description" content="6 Bioinfo questions | Linux学习" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Linux学习" />
+  <meta property="og:title" content="6 Bioinfo questions | Linux学习" />
   <meta property="og:type" content="book" />
   
   
@@ -17,31 +16,33 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Linux学习" />
+  <meta name="twitter:title" content="6 Bioinfo questions | Linux学习" />
   
   
   
 
-<meta name="author" content="易生信">
-<meta name="author" content="www.ehbio.com/Training">
-<meta name="author" content="train@ehbio.com">
+<meta name="author" content="易生信" />
+<meta name="author" content="www.ehbio.com/Training" />
+<meta name="author" content="train@ehbio.com" />
 
 
-<meta name="date" content="2018-04-01">
+<meta name="date" content="2020-08-16" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bioinfo-tools.html">
-<link rel="next" href="supplemental.html">
+<link rel="prev" href="bioinfo-tools.html"/>
+<link rel="next" href="supplemental.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -49,44 +50,74 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -108,158 +139,199 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>EHBIO Gene Technology</a></li>
 <li class="chapter" data-level="1" data-path="linux-basic.html"><a href="linux-basic.html"><i class="fa fa-check"></i><b>1</b> Linux基础内容</a><ul>
 <li class="chapter" data-level="1.1" data-path="linux-basic.html"><a href="linux-basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
-<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统简介</a></li>
-<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.3</b> 如何获取Linux系统</a></li>
-<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录</a></li>
-<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统</a></li>
-<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
-<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.7"><i class="fa fa-check"></i><b>1.1.7</b> 硬件信息查看</a></li>
-<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.8"><i class="fa fa-check"></i><b>1.1.8</b> 目录内容查看</a></li>
-<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.9"><i class="fa fa-check"></i><b>1.1.9</b> 新建目录</a></li>
-<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.10"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
-<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.11"><i class="fa fa-check"></i><b>1.1.11</b> 获取可用命令行参数</a></li>
+<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#为什么要用linux系统"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
+<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux系统简介"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统简介</a></li>
+<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#如何获取linux系统"><i class="fa fa-check"></i><b>1.1.3</b> 如何获取Linux系统</a></li>
+<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux系统登录"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录</a></li>
+<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#初识linux系统"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统</a></li>
+<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#我的电脑在哪"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
+<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#硬件信息查看"><i class="fa fa-check"></i><b>1.1.7</b> 硬件信息查看</a></li>
+<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#目录内容查看"><i class="fa fa-check"></i><b>1.1.8</b> 目录内容查看</a></li>
+<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#新建目录"><i class="fa fa-check"></i><b>1.1.9</b> 新建目录</a></li>
+<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#访问文件"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
+<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#获取可用命令行参数"><i class="fa fa-check"></i><b>1.1.11</b> 获取可用命令行参数</a></li>
 <li class="chapter" data-level="1.1.12" data-path="linux-basic.html"><a href="linux-basic.html#a"><i class="fa fa-check"></i><b>1.1.12</b> 小结</a></li>
-<li class="chapter" data-level="1.1.13" data-path="linux-basic.html"><a href="linux-basic.html#section-1.1.13"><i class="fa fa-check"></i><b>1.1.13</b> 练习题</a></li>
+<li class="chapter" data-level="1.1.13" data-path="linux-basic.html"><a href="linux-basic.html#练习题"><i class="fa fa-check"></i><b>1.1.13</b> 练习题</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="linux-basic.html"><a href="linux-basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 文件上下翻转和左右翻转</a></li>
-<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 其它新建文件的方式</a></li>
-<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名</a></li>
-<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些异常情况</a></li>
-<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#linux"><i class="fa fa-check"></i><b>1.2.5</b> Linux下文件内容操作</a></li>
-<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.2.6"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
+<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#文件上下翻转和左右翻转"><i class="fa fa-check"></i><b>1.2.1</b> 文件上下翻转和左右翻转</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#其它新建文件的方式"><i class="fa fa-check"></i><b>1.2.2</b> 其它新建文件的方式</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#文件拷贝移动重命名"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux下命令的一些异常情况"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些异常情况</a></li>
+<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#linux下文件内容操作"><i class="fa fa-check"></i><b>1.2.5</b> Linux下文件内容操作</a></li>
+<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#小结和练习"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="linux-basic.html"><a href="linux-basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
 <li class="chapter" data-level="1.4" data-path="linux-basic.html"><a href="linux-basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.4</b> Linux下的标准输入、输出、重定向、管道</a></li>
 <li class="chapter" data-level="1.5" data-path="linux-basic.html"><a href="linux-basic.html#filecontent"><i class="fa fa-check"></i><b>1.5</b> Linux文件内容操作</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.1"><i class="fa fa-check"></i><b>1.5.1</b> 文件生成</a></li>
-<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#section-1.5.2"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序</a></li>
-<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#fasta"><i class="fa fa-check"></i><b>1.5.3</b> FASTA序列提取</a></li>
+<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#文件生成"><i class="fa fa-check"></i><b>1.5.1</b> 文件生成</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#文件排序"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#fasta序列提取"><i class="fa fa-check"></i><b>1.5.3</b> FASTA序列提取</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> 命令运行监测</a></li>
-<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.7</b> References</a></li>
+<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#linux下的查找命令"><i class="fa fa-check"></i><b>1.6</b> Linux下的查找命令</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="linux-basic.html"><a href="linux-basic.html#命令可执行程序查找"><i class="fa fa-check"></i><b>1.6.1</b> 命令/可执行程序查找</a></li>
+<li class="chapter" data-level="1.6.2" data-path="linux-basic.html"><a href="linux-basic.html#普通文件快速定位-locate"><i class="fa fa-check"></i><b>1.6.2</b> 普通文件快速定位 locate</a></li>
+<li class="chapter" data-level="1.6.3" data-path="linux-basic.html"><a href="linux-basic.html#普通文件多条件查找-find"><i class="fa fa-check"></i><b>1.6.3</b> 普通文件多条件查找 find</a></li>
+<li class="chapter" data-level="1.6.4" data-path="linux-basic.html"><a href="linux-basic.html#按文件内容查找-grep"><i class="fa fa-check"></i><b>1.6.4</b> 按文件内容查找 grep</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#一句话加速grep近30倍"><i class="fa fa-check"></i><b>1.7</b> 一句话加速grep近30倍</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="linux-basic.html"><a href="linux-basic.html#获取单基因表达量"><i class="fa fa-check"></i><b>1.7.1</b> 获取单基因表达量</a></li>
+<li class="chapter" data-level="1.7.2" data-path="linux-basic.html"><a href="linux-basic.html#那如果获取多个基因怎么操作呢"><i class="fa fa-check"></i><b>1.7.2</b> 那如果获取多个基因怎么操作呢？</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="linux-basic.html"><a href="linux-basic.html#命令运行监测"><i class="fa fa-check"></i><b>1.8</b> 命令运行监测</a></li>
+<li class="chapter" data-level="1.9" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.9</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a><ul>
 <li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="softinstall.html"><a href="softinstall.html#fileattribute"><i class="fa fa-check"></i><b>2.1.1</b> 文件属性</a></li>
 <li class="chapter" data-level="2.1.2" data-path="softinstall.html"><a href="softinstall.html#executable"><i class="fa fa-check"></i><b>2.1.2</b> 可执行属性</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#path"><i class="fa fa-check"></i><b>2.2</b> 环境变量</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 环境变量的补充</a></li>
+<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#path和path傻傻分不清"><i class="fa fa-check"></i><b>2.2</b> PATH和path，傻傻分不清</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#其它被忽略的事情"><i class="fa fa-check"></i><b>2.2.1</b> 其它被忽略的事情</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种方式</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
-<li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
-<li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#section-2.3.3"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
+<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种传统方式</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#系统包管理器安装"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
+<li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#下载二进制文件"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
+<li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#源码编译安装"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
 <li class="chapter" data-level="2.3.4" data-path="softinstall.html"><a href="softinstall.html#pythonpac"><i class="fa fa-check"></i><b>2.3.4</b> Python包的安装</a></li>
-<li class="chapter" data-level="2.3.5" data-path="softinstall.html"><a href="softinstall.html#anaconda"><i class="fa fa-check"></i><b>2.3.5</b> Anaconda的两个福利</a></li>
-<li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#rr"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
+<li class="chapter" data-level="2.3.5" data-path="softinstall.html"><a href="softinstall.html#anaconda的两个福利"><i class="fa fa-check"></i><b>2.3.5</b> Anaconda的两个福利</a></li>
+<li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#r和r包的安装"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
+<li class="chapter" data-level="2.3.7" data-path="softinstall.html"><a href="softinstall.html#perl包的安装"><i class="fa fa-check"></i><b>2.3.7</b> Perl包的安装</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装</a><ul>
+<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装配置生物信息软件</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="softinstall.html"><a href="softinstall.html#condaInstallConfig"><i class="fa fa-check"></i><b>2.4.1</b> Conda安装和配置</a></li>
-<li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
-<li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#condachannel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
-<li class="chapter" data-level="2.4.4" data-path="softinstall.html"><a href="softinstall.html#section-2.4.4"><i class="fa fa-check"></i><b>2.4.4</b> 创建不同的软件运行环境</a></li>
-<li class="chapter" data-level="2.4.5" data-path="softinstall.html"><a href="softinstall.html#condar"><i class="fa fa-check"></i><b>2.4.5</b> Conda配置R</a></li>
-<li class="chapter" data-level="2.4.6" data-path="softinstall.html"><a href="softinstall.html#conda"><i class="fa fa-check"></i><b>2.4.6</b> Conda环境简化运行</a></li>
+<li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda基本使用"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
+<li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#conda的channel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
+<li class="chapter" data-level="2.4.4" data-path="softinstall.html"><a href="softinstall.html#创建不同的软件运行环境"><i class="fa fa-check"></i><b>2.4.4</b> 创建不同的软件运行环境</a></li>
+<li class="chapter" data-level="2.4.5" data-path="softinstall.html"><a href="softinstall.html#移除某个conda环境"><i class="fa fa-check"></i><b>2.4.5</b> 移除某个conda环境</a></li>
+<li class="chapter" data-level="2.4.6" data-path="softinstall.html"><a href="softinstall.html#conda配置r"><i class="fa fa-check"></i><b>2.4.6</b> Conda配置R</a></li>
+<li class="chapter" data-level="2.4.7" data-path="softinstall.html"><a href="softinstall.html#conda环境简化运行"><i class="fa fa-check"></i><b>2.4.7</b> Conda环境简化运行</a></li>
+<li class="chapter" data-level="2.4.8" data-path="softinstall.html"><a href="softinstall.html#conda环境备份"><i class="fa fa-check"></i><b>2.4.8</b> Conda环境备份</a></li>
+<li class="chapter" data-level="2.4.9" data-path="softinstall.html"><a href="softinstall.html#conda环境导出和导入"><i class="fa fa-check"></i><b>2.4.9</b> Conda环境导出和导入</a></li>
+<li class="chapter" data-level="2.4.10" data-path="softinstall.html"><a href="softinstall.html#conda软件安装-core-dump-errorsegment-fault段错误-怎么办"><i class="fa fa-check"></i><b>2.4.10</b> Conda软件安装 core dump error/Segment fault/段错误 怎么办</a></li>
+<li class="chapter" data-level="2.4.11" data-path="softinstall.html"><a href="softinstall.html#conda为什么越来越慢"><i class="fa fa-check"></i><b>2.4.11</b> Conda为什么越来越慢？</a></li>
+<li class="chapter" data-level="2.4.12" data-path="softinstall.html"><a href="softinstall.html#conda是如何工作的"><i class="fa fa-check"></i><b>2.4.12</b> Conda是如何工作的</a></li>
+<li class="chapter" data-level="2.4.13" data-path="softinstall.html"><a href="softinstall.html#conda哪一步慢"><i class="fa fa-check"></i><b>2.4.13</b> Conda哪一步慢？</a></li>
+<li class="chapter" data-level="2.4.14" data-path="softinstall.html"><a href="softinstall.html#如何提速conda"><i class="fa fa-check"></i><b>2.4.14</b> 如何提速Conda</a></li>
+<li class="chapter" data-level="2.4.15" data-path="softinstall.html"><a href="softinstall.html#下载提速"><i class="fa fa-check"></i><b>2.4.15</b> 下载提速</a></li>
+<li class="chapter" data-level="2.4.16" data-path="softinstall.html"><a href="softinstall.html#使用conda-pack直接从已经安装好的地方拷贝一份-同一操作系统"><i class="fa fa-check"></i><b>2.4.16</b> 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.5</b> Makefile知识</a></li>
-<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6</b> Docker安装</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.1</b> Docker能做什么</a></li>
-<li class="chapter" data-level="2.6.2" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.2</b> Docker的几个基本概念</a></li>
-<li class="chapter" data-level="2.6.3" data-path="softinstall.html"><a href="softinstall.html#section-2.6.3"><i class="fa fa-check"></i><b>2.6.3</b> 安装和配置</a></li>
-<li class="chapter" data-level="2.6.4" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.4</b> Docker用户权限</a></li>
-<li class="chapter" data-level="2.6.5" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.5</b> Docker试用</a></li>
-<li class="chapter" data-level="2.6.6" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.6</b> Docker系统基本操作</a></li>
-<li class="chapter" data-level="2.6.7" data-path="softinstall.html"><a href="softinstall.html#dockerfile"><i class="fa fa-check"></i><b>2.6.7</b> 使用Dockerfile自动构建镜像</a></li>
-<li class="chapter" data-level="2.6.8" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.8</b> Docker的特征</a></li>
-<li class="chapter" data-level="2.6.9" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.6.9</b> Docker使用注意</a></li>
-<li class="chapter" data-level="2.6.10" data-path="softinstall.html"><a href="softinstall.html#section-2.6.10"><i class="fa fa-check"></i><b>2.6.10</b> 参考</a></li>
+<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#docker安装"><i class="fa fa-check"></i><b>2.5</b> Docker安装</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="softinstall.html"><a href="softinstall.html#docker能做什么"><i class="fa fa-check"></i><b>2.5.1</b> Docker能做什么</a></li>
+<li class="chapter" data-level="2.5.2" data-path="softinstall.html"><a href="softinstall.html#docker的几个基本概念"><i class="fa fa-check"></i><b>2.5.2</b> Docker的几个基本概念</a></li>
+<li class="chapter" data-level="2.5.3" data-path="softinstall.html"><a href="softinstall.html#安装和配置"><i class="fa fa-check"></i><b>2.5.3</b> 安装和配置</a></li>
+<li class="chapter" data-level="2.5.4" data-path="softinstall.html"><a href="softinstall.html#docker用户权限"><i class="fa fa-check"></i><b>2.5.4</b> Docker用户权限</a></li>
+<li class="chapter" data-level="2.5.5" data-path="softinstall.html"><a href="softinstall.html#docker试用"><i class="fa fa-check"></i><b>2.5.5</b> Docker试用</a></li>
+<li class="chapter" data-level="2.5.6" data-path="softinstall.html"><a href="softinstall.html#docker系统基本操作"><i class="fa fa-check"></i><b>2.5.6</b> Docker系统基本操作</a></li>
+<li class="chapter" data-level="2.5.7" data-path="softinstall.html"><a href="softinstall.html#使用dockerfile自动构建镜像"><i class="fa fa-check"></i><b>2.5.7</b> 使用Dockerfile自动构建镜像</a></li>
+<li class="chapter" data-level="2.5.8" data-path="softinstall.html"><a href="softinstall.html#docker的特征"><i class="fa fa-check"></i><b>2.5.8</b> Docker的特征</a></li>
+<li class="chapter" data-level="2.5.9" data-path="softinstall.html"><a href="softinstall.html#docker使用注意"><i class="fa fa-check"></i><b>2.5.9</b> Docker使用注意</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="softinstall.html"><a href="softinstall.html#references-1"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#makefile知识"><i class="fa fa-check"></i><b>2.6</b> Makefile知识</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="softinstall.html"><a href="softinstall.html#参考"><i class="fa fa-check"></i><b>2.6.1</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html"><i class="fa fa-check"></i><b>3</b> Linux神器</a><ul>
 <li class="chapter" data-level="3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#regularExpr"><i class="fa fa-check"></i><b>3.1</b> 正则表达式</a></li>
 <li class="chapter" data-level="3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2</b> awk命令</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2.1</b> awk基本参数解释</a></li>
-<li class="chapter" data-level="3.2.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.2"><i class="fa fa-check"></i><b>3.2.2</b> 常见操作</a></li>
-<li class="chapter" data-level="3.2.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#section-3.2.3"><i class="fa fa-check"></i><b>3.2.3</b> 糅合操作</a></li>
+<li class="chapter" data-level="3.2.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk基本参数解释"><i class="fa fa-check"></i><b>3.2.1</b> awk基本参数解释</a></li>
+<li class="chapter" data-level="3.2.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#常见操作"><i class="fa fa-check"></i><b>3.2.2</b> 常见操作</a></li>
+<li class="chapter" data-level="3.2.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#糅合操作"><i class="fa fa-check"></i><b>3.2.3</b> 糅合操作</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3</b> SED命令</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3.1</b> sed基本参数解释</a></li>
-<li class="chapter" data-level="3.3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>3.3.2</b> 常见操作</a></li>
+<li class="chapter" data-level="3.3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed基本参数解释"><i class="fa fa-check"></i><b>3.3.1</b> sed基本参数解释</a></li>
+<li class="chapter" data-level="3.3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#常见操作-1"><i class="fa fa-check"></i><b>3.3.2</b> 常见操作</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4</b> VIM的使用</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.1</b> 初识VIM</a></li>
-<li class="chapter" data-level="3.4.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4.2</b> VIM中使用正则表达式</a></li>
+<li class="chapter" data-level="3.4.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#初识vim"><i class="fa fa-check"></i><b>3.4.1</b> 初识VIM</a></li>
+<li class="chapter" data-level="3.4.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim中使用正则表达式"><i class="fa fa-check"></i><b>3.4.2</b> VIM中使用正则表达式</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#references-2"><i class="fa fa-check"></i><b>3.5</b> References</a></li>
+<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#有了这些文件批量重命名还需要求助其它工具吗"><i class="fa fa-check"></i><b>3.5</b> 有了这些，文件批量重命名还需要求助其它工具吗？</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#简单重命名"><i class="fa fa-check"></i><b>3.5.1</b> 简单重命名</a></li>
+<li class="chapter" data-level="3.5.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#复杂重命名"><i class="fa fa-check"></i><b>3.5.2</b> 复杂重命名</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#耗时很长的程序忘加nohup就运行了怎么办"><i class="fa fa-check"></i><b>3.6</b> 耗时很长的程序忘加nohup就运行了怎么办？</a></li>
+<li class="chapter" data-level="3.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>3.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="bash-string.html"><a href="bash-string.html"><i class="fa fa-check"></i><b>4</b> Bash 字符串处理</a><ul>
-<li class="chapter" data-level="4.1" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
-<li class="chapter" data-level="4.2" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
-<li class="chapter" data-level="4.3" data-path="bash-string.html"><a href="bash-string.html#bash"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
-<li class="chapter" data-level="4.4" data-path="bash-string.html"><a href="bash-string.html#shelltest"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
-<li class="chapter" data-level="4.5" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
-<li class="chapter" data-level="4.6" data-path="bash-string.html"><a href="bash-string.html#shell"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
-<li class="chapter" data-level="4.7" data-path="bash-string.html"><a href="bash-string.html#section-4.7"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
-<li class="chapter" data-level="4.8" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令:</a></li>
-<li class="chapter" data-level="4.9" data-path="bash-string.html"><a href="bash-string.html#section-4.9"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
+<li class="chapter" data-level="4.1" data-path="bash-string.html"><a href="bash-string.html#bash特殊字符"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
+<li class="chapter" data-level="4.2" data-path="bash-string.html"><a href="bash-string.html#bash变量"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
+<li class="chapter" data-level="4.3" data-path="bash-string.html"><a href="bash-string.html#bash操作符"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
+<li class="chapter" data-level="4.4" data-path="bash-string.html"><a href="bash-string.html#shell中条件和test命令"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
+<li class="chapter" data-level="4.5" data-path="bash-string.html"><a href="bash-string.html#shell流控制"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
+<li class="chapter" data-level="4.6" data-path="bash-string.html"><a href="bash-string.html#shell函数"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
+<li class="chapter" data-level="4.7" data-path="bash-string.html"><a href="bash-string.html#输入输出"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
+<li class="chapter" data-level="4.8" data-path="bash-string.html"><a href="bash-string.html#命令行处理-命令行处理命令"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令:</a></li>
+<li class="chapter" data-level="4.9" data-path="bash-string.html"><a href="bash-string.html#进程和作业控制"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html"><i class="fa fa-check"></i><b>5</b> Bioinfo tools</a><ul>
-<li class="chapter" data-level="5.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#cas9"><i class="fa fa-check"></i><b>5.1</b> 寻找Cas9的同源基因并进行进化分析</a></li>
-<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#emboss"><i class="fa fa-check"></i><b>5.2</b> emboss的使用</a></li>
-<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#samtoolssnp"><i class="fa fa-check"></i><b>5.3</b> 使用samtools计算SNP</a></li>
-<li class="chapter" data-level="5.4" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bedtools"><i class="fa fa-check"></i><b>5.4</b> Bedtools使用</a></li>
-<li class="chapter" data-level="5.5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#sra-toolkit"><i class="fa fa-check"></i><b>5.5</b> SRA toolkit使用</a></li>
-<li class="chapter" data-level="5.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 生信流程开发</a></li>
-<li class="chapter" data-level="5.7" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 数据同步和备份</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#scp"><i class="fa fa-check"></i><b>5.7.1</b> scp</a></li>
-<li class="chapter" data-level="5.7.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.7.2</b> rsync</a></li>
-<li class="chapter" data-level="5.7.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rdiff-backup"><i class="fa fa-check"></i><b>5.7.3</b> rdiff-backup</a></li>
+<li class="chapter" data-level="5.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#寻找cas9的同源基因并进行进化分析"><i class="fa fa-check"></i><b>5.1</b> 寻找Cas9的同源基因并进行进化分析</a></li>
+<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#如何获取目标基因的转录因子上biomart下载基因和motif位置信息"><i class="fa fa-check"></i><b>5.2</b> 如何获取目标基因的转录因子（上）——biomart下载基因和motif位置信息</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#文件准备"><i class="fa fa-check"></i><b>5.2.1</b> 1. 文件准备</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#什么是bed文件"><i class="fa fa-check"></i><b>5.2.2</b> 2. 什么是bed文件？</a></li>
+<li class="chapter" data-level="5.2.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart数据下载"><i class="fa fa-check"></i><b>5.2.3</b> 3. BioMart数据下载</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#如何获取目标基因的转录因子下linux命令获取目标基因tf"><i class="fa fa-check"></i><b>5.3</b> 如何获取目标基因的转录因子（下）——Linux命令获取目标基因TF</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#基础回顾"><i class="fa fa-check"></i><b>5.3.1</b> 1. 基础回顾</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#文件格式处理"><i class="fa fa-check"></i><b>5.3.2</b> 2. 文件格式处理</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#计算基因的启动子区"><i class="fa fa-check"></i><b>5.3.3</b> 3. 计算基因的启动子区</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#取两文件的交集"><i class="fa fa-check"></i><b>5.3.4</b> 4. 取两文件的交集</a></li>
+<li class="chapter" data-level="5.3.5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#提取我们关注的基因"><i class="fa fa-check"></i><b>5.3.5</b> 5. 提取我们关注的基因</a></li>
+<li class="chapter" data-level="5.3.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#重点总结"><i class="fa fa-check"></i><b>5.3.6</b> 重点总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#emboss的使用"><i class="fa fa-check"></i><b>5.4</b> emboss的使用</a></li>
+<li class="chapter" data-level="5.5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#使用samtools计算snp"><i class="fa fa-check"></i><b>5.5</b> 使用samtools计算SNP</a></li>
+<li class="chapter" data-level="5.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bedtools使用"><i class="fa fa-check"></i><b>5.6</b> Bedtools使用</a></li>
+<li class="chapter" data-level="5.7" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#sra-toolkit使用"><i class="fa fa-check"></i><b>5.7</b> SRA toolkit使用</a></li>
+<li class="chapter" data-level="5.8" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#生信流程开发"><i class="fa fa-check"></i><b>5.8</b> 生信流程开发</a></li>
+<li class="chapter" data-level="5.9" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#数据同步和备份"><i class="fa fa-check"></i><b>5.9</b> 数据同步和备份</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#scp"><i class="fa fa-check"></i><b>5.9.1</b> scp</a></li>
+<li class="chapter" data-level="5.9.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.9.2</b> rsync</a></li>
+<li class="chapter" data-level="5.9.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rdiff-backup"><i class="fa fa-check"></i><b>5.9.3</b> rdiff-backup</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>5.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="bioinfo-questions.html"><a href="bioinfo-questions.html"><i class="fa fa-check"></i><b>6</b> Bioinfo questions</a></li>
 <li class="chapter" data-level="7" data-path="supplemental.html"><a href="supplemental.html"><i class="fa fa-check"></i><b>7</b> Supplemental</a></li>
-<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a><ul>
-<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="section-8.html"><a href="section-8.html#section-8.1.1"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
-<li class="chapter" data-level="8.1.2" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
-<li class="chapter" data-level="8.1.3" data-path="section-8.html"><a href="section-8.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
-<li class="chapter" data-level="8.1.4" data-path="section-8.html"><a href="section-8.html#section-8.1.4"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
-<li class="chapter" data-level="8.1.5" data-path="section-8.html"><a href="section-8.html#section-8.1.5"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
-<li class="chapter" data-level="8.1.6" data-path="section-8.html"><a href="section-8.html#section-8.1.6"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
-<li class="chapter" data-level="8.1.7" data-path="section-8.html"><a href="section-8.html#linux-1"><i class="fa fa-check"></i><b>8.1.7</b> Linux</a></li>
-<li class="chapter" data-level="8.1.8" data-path="section-8.html"><a href="section-8.html#circos"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
-<li class="chapter" data-level="8.1.9" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
-<li class="chapter" data-level="8.1.10" data-path="section-8.html"><a href="section-8.html#section-8.1.10"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
-<li class="chapter" data-level="8.1.11" data-path="section-8.html"><a href="section-8.html#section-8.1.11"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
-<li class="chapter" data-level="8.1.12" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
-<li class="chapter" data-level="8.1.13" data-path="section-8.html"><a href="section-8.html#section-8.1.13"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
-<li class="chapter" data-level="8.1.14" data-path="section-8.html"><a href="section-8.html#python"><i class="fa fa-check"></i><b>8.1.14</b> Python</a></li>
-<li class="chapter" data-level="8.1.15" data-path="section-8.html"><a href="section-8.html#ngs"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
-<li class="chapter" data-level="8.1.16" data-path="section-8.html"><a href="section-8.html#cytoscape"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
-<li class="chapter" data-level="8.1.17" data-path="section-8.html"><a href="section-8.html#section-8.1.17"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
-<li class="chapter" data-level="8.1.18" data-path="section-8.html"><a href="section-8.html#section-8.1.18"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
-<li class="chapter" data-level="8.1.19" data-path="section-8.html"><a href="section-8.html#section-8.1.19"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
-<li class="chapter" data-level="8.1.20" data-path="section-8.html"><a href="section-8.html#section-8.1.20"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
-<li class="chapter" data-level="8.1.21" data-path="section-8.html"><a href="section-8.html#section-8.1.21"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
+<li class="chapter" data-level="8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a><ul>
+<li class="chapter" data-level="8.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信宝典"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#系列教程"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
+<li class="chapter" data-level="8.1.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs分析工具评估"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
+<li class="chapter" data-level="8.1.3" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组教程"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
+<li class="chapter" data-level="8.1.4" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#系列宣传"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
+<li class="chapter" data-level="8.1.5" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信生物知识"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
+<li class="chapter" data-level="8.1.6" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#文献精读"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
+<li class="chapter" data-level="8.1.7" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#linux"><i class="fa fa-check"></i><b>8.1.7</b> Linux</a></li>
+<li class="chapter" data-level="8.1.8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#circos系列"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
+<li class="chapter" data-level="8.1.9" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#r统计和作图"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
+<li class="chapter" data-level="8.1.10" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#扩增子三步曲"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
+<li class="chapter" data-level="8.1.11" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组分析专题"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.1.12" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs基础"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
+<li class="chapter" data-level="8.1.13" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#癌症数据库"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
+<li class="chapter" data-level="8.1.14" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#python"><i class="fa fa-check"></i><b>8.1.14</b> Python</a></li>
+<li class="chapter" data-level="8.1.15" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs软件"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
+<li class="chapter" data-level="8.1.16" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#cytoscape网络图"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
+<li class="chapter" data-level="8.1.17" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#分子对接"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
+<li class="chapter" data-level="8.1.18" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信宝典之傻瓜式"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
+<li class="chapter" data-level="8.1.19" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信人写程序"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
+<li class="chapter" data-level="8.1.20" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#小技巧系列"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
+<li class="chapter" data-level="8.1.21" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#招聘"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="section-8.html"><a href="section-8.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
-<li class="chapter" data-level="8.2.2" data-path="section-8.html"><a href="section-8.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
-<li class="chapter" data-level="8.2.3" data-path="section-8.html"><a href="section-8.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
-<li class="chapter" data-level="8.2.4" data-path="section-8.html"><a href="section-8.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
-<li class="chapter" data-level="8.2.5" data-path="section-8.html"><a href="section-8.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
-<li class="chapter" data-level="8.2.6" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
-<li class="chapter" data-level="8.2.7" data-path="section-8.html"><a href="section-8.html#r"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
-<li class="chapter" data-level="8.2.8" data-path="section-8.html"><a href="section-8.html#section-8.2.8"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
-<li class="chapter" data-level="8.2.9" data-path="section-8.html"><a href="section-8.html#section-8.2.9"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
-<li class="chapter" data-level="8.2.10" data-path="section-8.html"><a href="section-8.html#section-8.2.10"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
-<li class="chapter" data-level="8.2.11" data-path="section-8.html"><a href="section-8.html#section-8.2.11"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
-<li class="chapter" data-level="8.2.12" data-path="bash-string.html"><a href="bash-string.html#-"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
-<li class="chapter" data-level="8.2.13" data-path="section-8.html"><a href="section-8.html#section-8.2.13"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
+<li class="chapter" data-level="8.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#精选文章推荐"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
+<li class="chapter" data-level="8.2.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#培训会议征稿招聘"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
+<li class="chapter" data-level="8.2.3" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#科研经验"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
+<li class="chapter" data-level="8.2.4" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#软件和数据库使用"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
+<li class="chapter" data-level="8.2.5" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#扩增子学习三步曲"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
+<li class="chapter" data-level="8.2.6" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组分析专题-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.2.7" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#r统计绘图"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#实验设计与技术"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
+<li class="chapter" data-level="8.2.9" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#基础知识"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
+<li class="chapter" data-level="8.2.10" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#必读综述"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
+<li class="chapter" data-level="8.2.11" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#高分文章套路解读"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
+<li class="chapter" data-level="8.2.12" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#科普视频-寓教于乐"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
+<li class="chapter" data-level="8.2.13" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#友军文章汇总推荐"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -295,53 +367,53 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <pre><code>ct@ehbio:~/sxbd$ cut -f1 GRCh38.new.gtf | uniq -c &gt;chrCount.txt
 ct@ehbio:~/sxbd$ awk &#39;{print $2&quot;\t&quot;$1}&#39; chrCount.txt 
-chr1    236802
-chr2    194223
-chr3    160954
-chr4    106152
-chr5    115953
-chr6    116635
-chr7    122750
-chrX    81525
-chr8    95038
-chr9    91333
-chr11   159595
-chr10   94467
-chr12   154317
-chr13   38817
-chr14   93293
-chr15   97353
-chr16   125435
-chr17   166619
-chr18   47336
-chr20   57175
-chr19   163738
-chrY    7167
-chr22   56380
-chr21   28928
-chrMT   144
-chrKI270728.1   120
-chrKI270727.1   88
-chrKI270442.1   6
-chrGL000225.1   3
-chrGL000009.2   8
-chrGL000194.1   26
-chrGL000205.2   17
-chrGL000195.1   27
-chrKI270733.1   12
-chrGL000219.1   12
-chrGL000216.2   3
-chrKI270744.1   3
-chrKI270734.1   96
-chrGL000213.1   52
-chrGL000220.1   12
-chrGL000218.1   8
-chrKI270731.1   11
-chrKI270750.1   3
-chrKI270721.1   25
-chrKI270726.1   11
-chrKI270711.1   151
-chrKI270713.1   20
+chr1	236802
+chr2	194223
+chr3	160954
+chr4	106152
+chr5	115953
+chr6	116635
+chr7	122750
+chrX	81525
+chr8	95038
+chr9	91333
+chr11	159595
+chr10	94467
+chr12	154317
+chr13	38817
+chr14	93293
+chr15	97353
+chr16	125435
+chr17	166619
+chr18	47336
+chr20	57175
+chr19	163738
+chrY	7167
+chr22	56380
+chr21	28928
+chrMT	144
+chrKI270728.1	120
+chrKI270727.1	88
+chrKI270442.1	6
+chrGL000225.1	3
+chrGL000009.2	8
+chrGL000194.1	26
+chrGL000205.2	17
+chrGL000195.1	27
+chrKI270733.1	12
+chrGL000219.1	12
+chrGL000216.2	3
+chrKI270744.1	3
+chrKI270734.1	96
+chrGL000213.1	52
+chrGL000220.1	12
+chrGL000218.1	8
+chrKI270731.1	11
+chrKI270750.1	3
+chrKI270721.1	25
+chrKI270726.1	11
+chrKI270711.1	151
+chrKI270713.1	20
 ct@ehbio:~/sxbd$ awk &#39;/chr[0-9XYM]/&#39; chrCount.txt 
  236802 chr1
  194223 chr2
@@ -369,31 +441,31 @@ ct@ehbio:~/sxbd$ awk &#39;/chr[0-9XYM]/&#39; chrCount.txt
   28928 chr21
     144 chrMT
 ct@ehbio:~/sxbd$ awk &#39;/chr[0-9XYM]/&#39; chrCount.txt | sed &#39;s/  *\([0-9]*\) \(chr.*\)/\2\t\1/&#39; 
-chr1    236802
-chr2    194223
-chr3    160954
-chr4    106152
-chr5    115953
-chr6    116635
-chr7    122750
-chrX    81525
-chr8    95038
-chr9    91333
-chr11   159595
-chr10   94467
-chr12   154317
-chr13   38817
-chr14   93293
-chr15   97353
-chr16   125435
-chr17   166619
-chr18   47336
-chr20   57175
-chr19   163738
-chrY    7167
-chr22   56380
-chr21   28928
-chrMT   144</code></pre>
+chr1	236802
+chr2	194223
+chr3	160954
+chr4	106152
+chr5	115953
+chr6	116635
+chr7	122750
+chrX	81525
+chr8	95038
+chr9	91333
+chr11	159595
+chr10	94467
+chr12	154317
+chr13	38817
+chr14	93293
+chr15	97353
+chr16	125435
+chr17	166619
+chr18	47336
+chr20	57175
+chr19	163738
+chrY	7167
+chr22	56380
+chr21	28928
+chrMT	144</code></pre>
 <ul>
 <li>统计GTF文件中基因数目？</li>
 </ul>
@@ -408,9 +480,9 @@ chrMT   144</code></pre>
  137545 three_prime_utr
  200310 transcript
 
-real    0m8.314s
-user    0m8.259s
-sys 0m0.679s
+real	0m8.314s
+user	0m8.259s
+sys	0m0.679s
 # 更快
 ct@ehbio:~/sxbd$ time awk &#39;{a[$3]+=1}END{for(i in a) print i,a[i];}&#39; GRCh38.new.gtf
 five_prime_utr 144659
@@ -423,21 +495,24 @@ Selenocysteine 119
 stop_codon 75493
 transcript 200310
 
-real    0m1.898s
-user    0m1.504s
-sys 0m0.394s</code></pre>
+real	0m1.898s
+user	0m1.504s
+sys	0m0.394s
+
+
+ct@ehbio:~/sxbd$ awk &#39;{if(a[$3]==&quot;&quot;) a[$3]=1; else a[$3]=a[$3]+1;}END{for(i in a) print i,a[i];}&#39; GRCh38.new.gtf</code></pre>
 <ul>
 <li>计算GTF中外显子总长度？</li>
 </ul>
 <pre><code># 这个是冗余的外显子，后面在计算非冗余外显子
 ct@ehbio:~/sxbd$ awk &#39;{if($3==&quot;exon&quot;) sum+=$5-$4+1;}END\
-    {print &quot;Total redundant exon length&quot;, sum;}&#39; GRCh38.new.gtf</code></pre>
+	{print &quot;Total redundant exon length&quot;, sum;}&#39; GRCh38.new.gtf</code></pre>
 <ul>
 <li>计算GTF文件中每个基因的转录本数目？</li>
 </ul>
 <pre><code># 第一个办法：基因和对应的转录本是排序好的，直接判断计算就可以
 awk &#39;BEGIN{OFS=FS=&quot;\t&quot;;}{if($3==&quot;gene&quot; &amp;&amp; count&gt;0) {print count; count=0;} else \
-    {if($3==&quot;transcript&quot;) count+=1;}}END{print count}&#39; GRCh38.new.gtf
+	{if($3==&quot;transcript&quot;) count+=1;}}END{print count}&#39; GRCh38.new.gtf
 
 # 第二个方法：取出所有基因和转录本名字
 sed &#39;s/&quot;/\t/g&#39; GRCh38.new.gtf | awk &#39;$3==&quot;transcript&quot;&#39; | cut -f 10,14 | cut -f 1 | uniq -c
@@ -445,20 +520,20 @@ sed &#39;s/&quot;/\t/g&#39; GRCh38.new.gtf | awk &#39;$3==&quot;transcript&quot;
 # 第三个方法：与第二个类似，但使用了groupBy
 
 sed &#39;s/&quot;/\t/g&#39; GRCh38.new.gtf | awk &#39;$3==&quot;transcript&quot;&#39; | cut -f 10,14 | \
-    bedtools groupby -g 1 -c 1,2 -o count,collapse | head
-ENSG00000223972 2   ENST00000456328,ENST00000450305
-ENSG00000227232 1   ENST00000488147
-ENSG00000278267 1   ENST00000619216
-ENSG00000243485 2   ENST00000473358,ENST00000469289
-ENSG00000284332 1   ENST00000607096
-ENSG00000237613 2   ENST00000417324,ENST00000461467
-ENSG00000268020 1   ENST00000606857
-ENSG00000240361 2   ENST00000642116,ENST00000492842
-ENSG00000186092 2   ENST00000641515,ENST00000335137
-ENSG00000238009 5   ENST00000466430,ENST00000477740,ENST00000471248,ENST00000610542,ENST00000453576
+	bedtools groupby -g 1 -c 1,2 -o count,collapse | head
+ENSG00000223972	2	ENST00000456328,ENST00000450305
+ENSG00000227232	1	ENST00000488147
+ENSG00000278267	1	ENST00000619216
+ENSG00000243485	2	ENST00000473358,ENST00000469289
+ENSG00000284332	1	ENST00000607096
+ENSG00000237613	2	ENST00000417324,ENST00000461467
+ENSG00000268020	1	ENST00000606857
+ENSG00000240361	2	ENST00000642116,ENST00000492842
+ENSG00000186092	2	ENST00000641515,ENST00000335137
+ENSG00000238009	5	ENST00000466430,ENST00000477740,ENST00000471248,ENST00000610542,ENST00000453576
 
 sed &#39;s/&quot;/\t/g&#39; GRCh38.new.gtf | awk &#39;$3==&quot;transcript&quot;&#39; | cut -f 10,14 | \
-    bedtools groupby -g 1 -c 1,2 -o count,collapse &gt;geneTrCount.txt
+	bedtools groupby -g 1 -c 1,2 -o count,collapse &gt;geneTrCount.txt
 </code></pre>
 <ul>
 <li>计算GTF文件中基因所拥有的平均转录本数目</li>
@@ -488,9 +563,14 @@ sed -i &#39;/^[^&gt;]/ s/.*/\U&amp;/&#39; test.fa</code></pre>
 <ul>
 <li>计算多行FASTA文件<code>test.fa</code>中每条序列长度，输出类似<code>genome.txt</code>格式的文件(文件有两列，第一列为序列ID，第二列为序列长度)</li>
 </ul>
-<pre><code>awk &#39;BEGIN{OFS=&quot;\t&quot;; size=0;}{if($0~/&gt;/) {if(size&gt;0) print geneName,size; \
-    geneName=$0; sub(&quot;&gt;&quot;,&quot;&quot;,geneName); size=0;} else \
-    {size+=length}}END{print geneName,size}&#39; test.fa</code></pre>
+<pre><code># 计算一个输出一个
+awk &#39;BEGIN{OFS=&quot;\t&quot;; size=0;}{if($0~/&gt;/) {if(size&gt;0) print geneName,size; \
+	geneName=$0; sub(&quot;&gt;&quot;,&quot;&quot;,geneName); size=0;} else \
+	{size+=length}}END{print geneName,size}&#39; test.fa</code></pre>
+<pre><code># 全部计算完存储起来再输出
+awk &#39;BEGIN{OFS=&quot;\t&quot;;}{if($0~/&gt;/) {geneName=$0; sub(&quot;&gt;&quot;,&quot;&quot;,geneName); size[geneName]=0;} \
+	else {size[geneName]+=length($0)}}END\
+	{for (geneName in size) print geneName,size[geneName]}&#39; test.fa</code></pre>
 <ul>
 <li>多行FASTA转单行FASTA序列</li>
 </ul>
@@ -501,7 +581,7 @@ awk &#39;/^&gt;/&amp;&amp;NR&gt;1{print &quot;&quot;;}{printf &quot;%s&quot;,/^&
 <li>取出单行FASTA文件中序列长度大于40的序列的名字？</li>
 </ul>
 <pre><code>awk &#39;BEGIN{OFS=&quot;\t&quot;;}{if($0~/&gt;/) {geneName=$0; sub(&quot;&gt;&quot;,&quot;&quot;,geneName); } else \
-    {if (length($0)&gt;40) print geneName;}}&#39; singleLine.fa</code></pre>
+	{if (length($0)&gt;40) print geneName;}}&#39; singleLine.fa</code></pre>
 <ul>
 <li>分别用<code>awk</code>和<code>grep</code>从<code>test.fa</code>中提取给定ID对应的序列。</li>
 </ul>
@@ -512,19 +592,20 @@ id21</code></pre>
 <li>利用AWK对基因表达数据进行标准化</li>
 </ul>
 <pre><code>cat &lt;&lt;END | sed &#39;s/  */\t/g&#39; &gt;test.expr
-ID  sampleA sampleB sampleC
-A   1   2   3
-B   4   5   6
-C   6   7   8
-D   10  11  12
+ID	sampleA	sampleB	sampleC
+A	1	2	3
+B	4	5	6
+C	6	7	8
+D	10	11	12
 END</code></pre>
 <pre><code># 单列
 awk &#39;ARGIND==1{if(FNR&gt;1) sum=sum+$2;}\
-     ARGIND==2{if(FNR&gt;1) {$3=$2/sum;} print $0;}&#39; test.expr test.expr
+	 ARGIND==2{if(FNR&gt;1) {$3=$2/sum;} print $0;}&#39; test.expr test.expr
 
 # 多列
 awk &#39;ARGIND==1{if(FNR&gt;1) {for(i=2;i&lt;=NF;i++) sum[i]=sum[i]+$i;}}\
-     ARGIND==2{if(FNR&gt;1) for(i=2;i&lt;=NF;i++) {$i=$i/sum[i];} print $0;}&#39; test.expr test.expr</code></pre>
+	 ARGIND==2{if(FNR&gt;1) for(i=2;i&lt;=NF;i++) {$i=$i/sum[i];} print $0;}&#39; \
+	 test.expr test.expr</code></pre>
 <ul>
 <li>写出3种写法，去掉上一题<code>test.expr</code>矩阵中的第一行？</li>
 </ul>
@@ -546,19 +627,19 @@ awk &#39;{if(FNR==1} print &quot;headerline&quot;; print $0&#39; test.expr</code
 <li>如何使用<code>bedtools</code>的其它工具或其它Linux命令实现<code>bedtools jaccard</code>子功能？ <code>bedtools jaccard</code>计算的是给定的两个<code>bed</code>文件之间交集区域(intersection)占总区域(union-intersection)的比例(jaccard)和交集的数目(n_intersections)。</li>
 </ul>
 <pre><code>ct@localhost:~/bedtools$ cat test1.bed 
-chr1    1   100
-chr2    1   50
-chr3    20  50
+chr1	1	100
+chr2	1	50
+chr3	20	50
 ct@localhost:~/bedtools$ cat test2.bed 
-chr1    50  150
-chr3    1   50
-chr4    1   50
-chr5    1   50
+chr1	50	150
+chr3	1	50
+chr4	1	50
+chr5	1	50
 ct@localhost:~/bedtools$ bedtools jaccard -a test1.bed -b test2.bed 
-intersection    union-intersection  jaccard n_intersections
-80  296 0.27027 2
+intersection	union-intersection	jaccard	n_intersections
+80	296	0.27027	2
 ct@localhost:~/bedtools$ bedtools intersect -a test1.bed -b test2.bed -wao \
-    | awk &#39;{sum+=$NF}END{print sum;}&#39;
+	| awk &#39;{sum+=$NF}END{print sum;}&#39;
 80
 ct@localhost:~/bedtools$ cat test1.bed test2.bed | awk &#39;{sum+=$3-$2}END{print sum;}&#39;
 376</code></pre>
@@ -575,11 +656,13 @@ ct@localhost:~/bedtools$ cat test1.bed test2.bed | awk &#39;{sum+=$3-$2}END{prin
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -587,11 +670,11 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": false,
-"google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -599,6 +682,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

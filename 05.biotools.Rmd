@@ -4,6 +4,246 @@
 
 见PPT
 
+## 如何获取目标基因的转录因子（上）——biomart下载基因和motif位置信息
+
+科研过程中我们经常会使用Ensembl(http://asia.ensembl.org/index.html) 网站来获取物种的参考基因组，其中`BioMart`工具可以获取物种的基因注释信息，以及跨数据库的`ID`匹配和注释等。
+
+在[参考基因组和基因注释文件](https://mp.weixin.qq.com/s/2OoXy4f1t0hE8OUqsAt1kw)一文中有详细介绍如何在Ensembel数据库中获取参考基因组和基因注释文件。（点击蓝字即可阅读）
+
+生信分析中，想要找到感兴趣基因的转录因子结合位点，该怎么做呢？
+
+### 1. 文件准备
+
+首先需要准备以下3个文件，后面两个文件可以在ensembl网站中下载：
+
+1. 感兴趣基因的名称列表（1列基因名即可）
+2. 基因组中各基因位置信息列表（6列的bed文件）
+3. 基因组中各转录因子结合位点信息列表（5列的bed文件）
+
+### 2. 什么是bed文件？
+
+bed格式文件提供了一种灵活的方式来定义数据行，以此描述基因注释的信息。BED行有3个必须的列和9个可选的列。 每行的数据格式要求一致。
+
+关于bed文件格式的介绍，在<https://genome.ucsc.edu/FAQ/FAQformat.html#format1>中有详细说明。
+
+我们需要下载的**基因位置信息列表**是一个6列的bed文件，每列信息如下：
+
+Chromosome/scaffold name | Gene start (bp) | Gene end (bp) | Gene stable ID | Gene name | Strand
+---|---|---|---|---|---
+染色体的名称（例如chr3） | Gene起始位点 | Gene终止位点 | Gene stable ID | Gene name | 定义基因所在链的方向，+或-
+
+注：起始位置和终止位置以0为起点，前闭后开。
+
+**转录因子结合位点列表**是一个5列的bed文件，每列信息如下：
+
+Chromosome/scaffold name | Start (bp) | End (bp) | Score | Feature Type
+---|---|---|---|---
+染色体的名称（例如chr3） | TF起始位点 | TF终止位点 | Score |  转录因子的名字
+
+具体内容见后面示例，更方便理解。
+
+### 3. BioMart数据下载
+
+1. 进入Ensembl主页后点击**BioMart**
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/1.png)
+
+2. 使用下拉框-`CHOOSE DATASET`- 选择数据库，我们选则**Ensembl Genes 93**；这时出现新的下拉框-`CHOOSE DATASET`- ，选择目的物种，以**Human gene GRCh38.p12**为例。如果自己实际操作，需要选择自己的数据常用的基因组版本。如果没有历史包袱，建议选择**GRCh38**最新版。
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/2.png)
+
+3. 选择数据库后，点击Filters对数据进行筛选，如果是对全基因组进行分析可不用筛选, **略过不填**。
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/3.png)   
+
+4. 点击**Attributes**，在GENE处依次选择1-6列的内容，勾选顺序便是结果矩阵中每列的顺序。
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/4.png)   
+
+5. 如上图中所示，点击**results**后跳转下载页面，中间展示了部分所选的数据矩阵，确定格式无误后点击**GO**即可下载。
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/5.png) 
+
+6. **转录因子结合位点矩阵的下载**类似上面，不过在下拉框-CHOOSE DATASET- 选择数据库时，我们选则**Ensembl Regulation 93**，再选择**Human Binding Motif (GRCh38.p12) **
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/6.png) 
+
+7. 在Attributes处选择需要的信息列，点击**Results**和**GO**进行数据下载
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/7.png) 
+
+   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/8.png) 
+
+将上述下载的两个文件分别命名为 `GRCh38.gene.bed`和 `GRCh38.TFmotif_binding.bed` ，在Shell中查看一下：
+
+基因组中每个基因所在的染色体、位置和链的信息，以及对应的ENSG编号和Gene symbol。
+
+```
+Chromosome/scaffold name        Gene start (bp) Gene end (bp)   Gene stable ID  Gene
+3       124792319       124792562       ENSG00000276626 RF00100 -1
+1       92700819        92700934        ENSG00000201317 RNU4-59P        -1
+14      100951856       100951933       ENSG00000200823 SNORD114-2      1
+22      45200954        45201019        ENSG00000221598 MIR1249 -1
+1       161699506       161699607       ENSG00000199595 RF00019 1
+```
+
+第五列为人中的转录因子，每一行表示每个转录因子在基因组范围的结合位点分布，即其可能在哪些区域有结合motif。这些区域是与TF的结合motif矩阵相似性比较高的区域，被视为潜在结合位点。有程序`MEME-FIMO`或`Homer-Findmotifs.pl`可以完成对应的工作。
+
+```
+Chromosome/scaffold name        Start (bp)      End (bp)        Score   Feature Type
+14      23034888        23034896        7.391   THAP1
+3       10026599        10026607        7.054   THAP1
+10      97879355        97879363        6.962   THAP1
+3       51385016        51385024        7.382   THAP1
+16      20900537        20900545        6.962   THAP1
+```
+
+
+## 如何获取目标基因的转录因子（下）——Linux命令获取目标基因TF
+
+
+我们知道有很多数据库可以[查找启动子、UTR、TSS等区域以及预测转录因子结合位点](https://mp.weixin.qq.com/s/vFO7uAtI6nh-zTW7RHCixA)，但是怎么用**Linux命令处理**基因信息文件来**得到关注基因的启动子和启动子区结合的TF**呢？
+
+### 1. 基础回顾
+
+**转录起始位点（TSS）**：转录时，mRNA链第一个核苷酸相对应DNA链上的碱基，通常为一个嘌呤；(不考虑转录启动复合体的预转录情况)
+
+**启动子（promoter）**：与RNA聚合酶结合并能起始mRNA合成的序列。与传统的核心启动子概念不同，做生信分析时，一般选择转录起始位点上游1 kb，下游 200 nt，也有选上下游各1 kb或者 2 kb的（记住这两个数，之后计算要用到）；总体上生信中选择的启动子更长，范围更广一些。
+
+**文件准备**：感兴趣的基因列表（命名为`targetGene.list`）、还有上一期下载的`GRCh38.gene.bed`和`GRCh38.TFmotif_binding.bed`
+
+### 2. 文件格式处理
+
+
+删除文件`GRCh38.gene.bed`首行，第六列正负链表示形式改为`-`和`+`，并在第一列染色体位置加上`chr`；
+
+```
+sed -i '1d' GRCh38.gene.bed 
+# 如果用sed，注意下面2列的顺序，为什么不能颠倒过来？
+sed -i 's/-1$/-/' GRCh38.gene.bed
+sed -i 's/1$/+/' GRCh38.gene.bed 
+sed -i 's/^/chr/' GRCh38.gene.bed
+```
+
+删除文件`GRCh38.TFmotif_binding.bed`首行,并在第一列染色体位置加上`chr`
+
+```
+sed -i '1d' GRCh38.TFmotif_binding.bed
+sed -i 's/^/chr/' GRCh38.TFmotif_binding.bed
+```
+
+
+`less -S filename`查看一下两个矩阵内容，发现已转换完成
+
+```
+chr3    124792319       124792562       ENSG00000276626 RF00100 -
+chr1    92700819        92700934        ENSG00000201317 RNU4-59P        -
+chr14   100951856       100951933       ENSG00000200823 SNORD114-2      +
+chr22   45200954        45201019        ENSG00000221598 MIR1249 -
+chr1    161699506       161699607       ENSG00000199595 RF00019 +
+```
+
+```
+chr14   23034888        23034896        7.391   THAP1
+chr3    10026599        10026607        7.054   THAP1
+chr10   97879355        97879363        6.962   THAP1
+chr3    51385016        51385024        7.382   THAP1
+chr16   20900537        20900545        6.962   THAP1
+```
+
+### 3. 计算基因的启动子区
+
+
+上面已提过，根据经验一般启动子区域在转录起始位点（TSS）上游1 kb、下游 200 nt处，注意**正负链的运算方式是不一样的**，切忌出错。
+
+```
+awk 'BEGIN{OFS=FS="\t"}{if($6=="+") {tss=$2; tss_up=tss-1000; tss_dw=tss+200;} else {tss=$3; tss_up=tss-200; tss_dw=tss+1000;} if(tss_up<0) tss_up=0;print $1, tss_up, tss_dw,$4,$5,$6;}' GRCh38.gene.bed > GRCh38.gene.promoter.U1000D200.bed
+```
+
+关于`awk`命令的使用方法，可以参考[Linux学习 - 常用和不太常用的实用awk命令](https://mp.weixin.qq.com/s/8wD14FXt7fLDo1BjJyT0ew)一文。
+
+`head GRCh38.gene.bed GRCh38.gene.promoter.U1000D200.bed`检查一下计算是否有误。自己选取正链和负链的一个或多个基因做下计算，看看结果是否一致。做分析不是出来结果就完事了，一定谨防程序中因为不注意核查引起的bug。
+
+```
+==> GRCh38.gene.bed <==
+chr3	124792319	124792562	ENSG00000276626	RF00100	-
+chr1	92700819	92700934	ENSG00000201317	RNU4-59P	-
+chr14	100951856	100951933	ENSG00000200823	SNORD114-2	+
+chr22	45200954	45201019	ENSG00000221598	MIR1249	-
+chr1	161699506	161699607	ENSG00000199595	RF00019	+
+
+==> GRCh38.gene.promoter.U1000D200.bed <==
+chr3	124792362	124793562	ENSG00000276626	RF00100	-
+chr1	92700734	92701934	ENSG00000201317	RNU4-59P	-
+chr14	100950856	100952056	ENSG00000200823	SNORD114-2	+
+chr22	45200819	45202019	ENSG00000221598	MIR1249	-
+chr1	161698506	161699706	ENSG00000199595	RF00019	+
+```
+
+### 4. 取两文件的交集
+
+本条命令我们使用了`bedtools`程序中的子命令`intersect`
+
+`intersect`可用来求区域之间的交集，可以用来注释peak，计算reads比对到的基因组区域不同样品的peak之间的peak重叠情况；[Bedtools使用简介](https://mp.weixin.qq.com/s/bIXom5bSDov-4sPqsTRc6A)一文中有关于bedtools的详细介绍；
+
+两文件取完交集后，`cut -f`取出交集文件的第5列和第11列，`sort -u`去处重复项，并将这两列内容小写全转变为大写，最终**得到一个两列的文件**。第一列是基因名，第二列是能与基因结合的TF名字。
+
+程序不细解释，具体看文后的Linux系列教程。[Bedtools使用简介](https://mp.weixin.qq.com/s/bIXom5bSDov-4sPqsTRc6A)
+
+```
+# cut时注意根据自己的文件选择对应的列
+# tr转换大小写。
+bedtools intersect -a GRCh38.gene.promoter.U1000D200.bed -b GRCh38.TFmotif_binding.bed -wa -wb | cut -f 5,11 | sort -u | tr 'a-z' 'A-Z' > GRCh38.gene.promoter.U1000D200.TF_binding.txt
+```
+
+
+### 5. 提取我们关注的基因
+
+上一步中，我们将`GRCh38.gene.promoter.U1000D200.TF_binding.txt`文件中的基因名和TF名都转换成了大写。
+
+为了接下来提取目标基因转录因子时不会因大小写差别而漏掉某些基因，我们将`targetGene.list`中的基因名也全部转换成大写。
+
+```
+# 基因名字转换为大写，方便比较。不同的数据库不同的写法，只有统一了才不会出现不必要的失误
+tr 'a-z' 'A-Z' targetGene.list > GeneUP.list
+```
+
+目标基因列表和基因-TF对应表都好了，内容依次如下：
+
+```
+==> GeneUP.list <==
+ACAT2
+ACTA1
+ACTA2
+ADM
+AEBP1
+
+==> GRCh38.gene.promoter.U1000D200.TF_binding.txt <==
+A1BG	RXRA
+A2M-AS1	GABP
+A2M	SRF
+A4GALT	GABP
+AAAS	CTCF
+```
+
+用`awk`命令，根据第一个文件`GeneUP.list`建立索引，若第二个文件`GRCh38.gene.promoter.U1000D200.TF_binding.txt`第一列中检索到第一个文件中的基因，则把第二个文件中检索到目标基因的整行存储起来，最终得到了目标基因和基因对应TF的文件`targetGene.TF_binding.txt`。这也是常用的取子集操作。
+
+```
+awk 'BEGIN{OFS=FS="\t"}ARGIND==1{save[$1]=1;}ARGIND==2{if(save[$1==1]) print $0}' GeneUP.list GRCh38.gene.promoter.U1000D200.TF_binding.txt > targetGene.TF_binding.txt
+```
+
+
+获取目标基因的转录因子是生信分析中常见的分析，希望[如何获取目标基因的转录因子（上）]()和本文能够帮助到各位小伙伴
+
+### 重点总结
+
+1. 什么是bed文件
+
+2. awk命令的使用
+
+3. bedtools使用 ([Bedtools使用简介](https://mp.weixin.qq.com/s/bIXom5bSDov-4sPqsTRc6A))
+
+
 ## emboss的使用
 
 
@@ -1121,3 +1361,21 @@ rsync所做的工作为镜像，保证远端服务器与本地文件的统一。
 
 具体的rdiff-backup安装和使用见<http://mp.weixin.qq.com/s/c2cspK5b4sQScWYMBtG63g>。
 
+## References
+
+* [高通量数据分析必备-基因组浏览器使用介绍 - 1](https://mp.weixin.qq.com/s/_5zoRvjku5pb9qtwrvlWYw)
+* [高通量数据分析必备-基因组浏览器使用介绍 - 2](https://mp.weixin.qq.com/s/uzyccMorR6XWqjMsMd3Oaw)
+* [高通量数据分析必备-基因组浏览器使用介绍 - 3](https://mp.weixin.qq.com/s/qdKxBAU__nbq8Ua0rLCEow)
+* [测序文章数据上传找哪里](http://mp.weixin.qq.com/s/aDINq43Xwas_l4-AdY7xXg)
+* [GO、GSEA富集分析一网打进](http://mp.weixin.qq.com/s/d1KCETQZ88yaOLGwAtpWYg)
+* [GSEA富集分析 - 界面操作](http://mp.weixin.qq.com/s/3Nd3urhfRGkw-F0LGZrlZQ)
+* [Bedtools使用简介](https://mp.weixin.qq.com/s/bIXom5bSDov-4sPqsTRc6A)
+* [OrthoMCL鉴定物种同源基因 （安装+使用）](https://mp.weixin.qq.com/s/lC1KiRygr5RefMZLVPREdQ)
+* [Rfam 12.0+本地使用 （最新版教程）](http://mp.weixin.qq.com/s/5OIRHA22ZLr5Z8bEhDiBqg)
+* [轻松绘制各种Venn图](http://mp.weixin.qq.com/s/zn654JqG9OeO71rJUTDr2Q)
+* [ETE构建、绘制进化树](http://mp.weixin.qq.com/s/DD1nZnx5mYxWGrohNgdPvQ)
+* [psRobot：植物小RNA分析系统](http://mp.weixin.qq.com/s/kWkEQOX-6SKMAUQmAuc86w)
+* [生信软件系列 - NCBI使用](http://mp.weixin.qq.com/s/4a5U8GdBoNFXkykL6m2EeA)
+* [去东方，最好用的在线GO富集分析工具](https://mp.weixin.qq.com/s/l6j2encDfEQkt2UeNCMFhg)
+* [2018 升级版Motif数据库Jaspar](https://mp.weixin.qq.com/s/S1SlhNfPvcXOwRQZvrm6GQ)
+* [一文教会你查找基因的启动子、UTR、TSS等区域以及预测转录因子结合位点](https://mp.weixin.qq.com/s/vFO7uAtI6nh-zTW7RHCixA)

@@ -22,6 +22,7 @@ if (output=="latex") {
 	opts_chunk$set(out.width="95%", out.height='0.7\\textheight', out.extra='keepaspectratio=true', fig.pos='H')
 	latex = TRUE
 }
+html = TRUE
 knitr::opts_chunk$set(cache=TRUE, autodep=TRUE)
 mtime <- function(files){
   lapply(Sys.glob(files), function(x) file.info(x)$mtime)
