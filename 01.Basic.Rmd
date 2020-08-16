@@ -48,7 +48,7 @@ knitr::include_graphics(c("image/Linux_xshell2.png"))
 
 登录Linux系统后，呈现在眼前的是这样一个界面:
 
-```bash
+```{bash eval=F}
 Last login: Mon Jun  5 16:56:56 2017 from 239.241.208.209
 
 Welcome to aliyun Elastic Compute Service!
@@ -79,7 +79,7 @@ Linux的文件系统组织方式与Windows略有不同，登录进去就是家�
 knitr::include_graphics("image/Linux_dir.png")
 ```
 
-```bash
+```{bash eval=F}
 # 若提示命令找不到，运行下面语句安装tree
 # 需要有根用户权限
 # yum install tree.x86_64
@@ -126,7 +126,7 @@ knitr::kable(directory, booktabs=T,caption="Linux下目录简介")
 
 看完目录结构了，来看一下硬盘有多大，有多少可用空间，只需要运行`df -h`命令。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ df -h
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/sda2             193G   61G  122G  34% /
@@ -139,7 +139,7 @@ tmpfs                 127G  344K  127G   1% /dev/shm
 
 除了看硬盘，还想看下CPU、内存、操作系统呢？
 
-```bash
+```{bash eval=F}
 # serverInfo.sh是我写的一个脚本，这个脚本怎么实现的会是一个考核题目。
 ct@ehbio:~$ serverInfo.sh
 ```
@@ -164,14 +164,14 @@ The memory of this server is 252G.
 
 通常登陆后直接进入家目录，下面大部分操作也是在家目录下完成的。如果想查看当前目录下都有什么内容，输入命令 `ls`，回车即可 (ls可以理解为单词list的缩写)。当前目录下什么也没有，所以没有任何输出。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ ls
 
 ```
 
 如果错把`l`看成了`i`，输入了`is`，则会出现下面的提示`未找到命令`。如果输入的是Linux基本命令，出现这个提示，基本可以判定是命令输入错了，瞪大眼睛仔细看就是了。 **在敲完命令回车后，注意查看终端的输出，以判断是否有问题。**
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ is
 -bash: is: 未找到命令
 # 大小写敏感
@@ -186,7 +186,7 @@ ct@ehbio:~$ lS
 `mkdir`是新建一个目录 (`m`a`k`e a `dir`ectory)；`data`是目录的名字。
 如果目录存在，则会出现提示，"无法创建已存在的目录"。这时可以使用参数`-p`忽略这个错误。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ mkdir data
 ct@ehbio:~$ ls
 data
@@ -199,7 +199,7 @@ ct@ehbio:~$ mkdir -p data
 
 `cat`是一个命令，主要用来查看文件；在这与`<<END`连用用于读入大段数据。输入`cat <<END`之后，回车，会看到终端出现一个大于号，大于号后面可以输入内容，再回车，继续输入内容，直到我们输入`END` (大写的，与上面一致)，输入过程结束，我们输入的内容都显示在了屏幕上。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ mkdir data
 ct@ehbio:~$ cat <<END
 a
@@ -215,7 +215,7 @@ bc
 
 `ls -l`列出文件的详细信息；`-l`表示命令行参数，是程序预留的一些选项，保证在不更改程序的情况下获得更灵活的操作。可使用`man ls`查看`ls`所有的命令行参数, **上下箭头翻页**，按`q`退出查看。(man: manual, 手册)
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ cat <<END >data/test.fa
 >SOX2
 ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT
@@ -254,7 +254,7 @@ ct@ehbio:~$ ls -l data
 查看写入的文件的内容，`cat 文件名`；需要注意的是文件所在的目录，默认是当前目录；如下面第一个命令，会提示`cat: test.fa: 没有那个文件或目录`，是因为当前目录下不存在文件`test.fa`。(注意文件末尾的end)
 
 
-```bash
+```{bash eval=F}
 # 这个应该是最常见的错误之一，程序不可能知道你的输入文件在什么地方，
 # 需要人为指定。
 # 如果未指定路径，表示当前目录
@@ -295,7 +295,7 @@ end
 
 `head`查看文件最开始的几行，默认为10行，可使用`-n 6`指定查看前6行。
 
-```bash
+```{bash eval=F}
 # 记住输出
 ct@ehbio:~$ pwd
 /home/ct
@@ -316,7 +316,7 @@ AGAGTAGAGAGA
 
 另外`less`和`more`也可以用来查看文件，尤其是文件内容特别多的时候。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/data$ less test.fa 
 # q: 退出
 # 上下箭头、空格翻页
@@ -328,7 +328,7 @@ ct@ehbio:~/data$ less test.fa
 
 终端运行`man ls`可以查看`ls`所有可用的参数，上下箭头翻页，按`q`退出查看。(man: manual, 手册)
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/data$ man ls
 NAME
  ls - list directory contents
@@ -381,7 +381,7 @@ DESCRIPTION
 
 两个有意思的命令，`tac`: 文件翻转，第一行变为最后一行，第二行变为倒数第二行；`rev`每列反转，第一个字符变为最后一个字符，第二个字符变为倒数第二个字符。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/data$ cat <<END | tac
 > first
 > second
@@ -429,7 +429,7 @@ zyx
 > -u: 更新复制，若源文件和目标文件都存在，只在源文件的修改时间比较新时才复制
 
 
-```bash
+```{bash eval=F}
 # 列出当前目录下有的文件和文件夹
 ct@ehbio:~$ ls
 data
@@ -468,7 +468,7 @@ test.fa
 
 > -u: 更新移动
 
-```bash
+```{bash eval=F}
 # 重命名data目录下的文件test.fa为first.fa
 # mv除了可以移动文件，也可以做单个文件的重命名
 ct@ehbio:~$ mv data/test.fa data/first.fa
@@ -484,7 +484,7 @@ test.fa
 
 `rename`: 文件重命名 (常用于批量重命名，不同的系统可能用法略有不同，使用前先`man rename`查看使用方法)
 
-```bash
+```{bash eval=F}
 # 进入另一个目录
 ct@ehbio:~$ cd ehbio_project/
 ct@ehbio:~/ehbio_project$ ls
@@ -535,7 +535,7 @@ ehbio2.fa  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
 `\``为键盘`Esc`下第一个按键 (与家目录`~`符号同一个键)，写在反引号内的命令会被运行，运行结果会放置在反引号所在的位置
 
 
-```bash
+```{bash eval=F}
 # 建立软连接，把当前目录下的ehbio2.fa，链接到上一层目录的data下面
 
 # 这是一个无效的软连接，
@@ -548,6 +548,9 @@ ct@ehbio:~/ehbio_project$ ls -l ../data/
 总用量 4
 lrwxrwxrwx 1 ct ct   9 6月   9 17:55 ehbio2.fa -> ehbio2.fa
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 first.fa
+
+ct@ehbio:~/ehbio_project$ less ../data/ehbio2.fa
+xxxxx 符号连接的层数过多
 
 # 输出当前所在的目录
 ct@ehbio:~/ehbio_project$ pwd
@@ -579,6 +582,9 @@ lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ehbio2.fa -> /home/ct/ehbio_project/ehbio2
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 first.fa
 ```
 
+
+使用全路径名，尤其使用家目录 `~` 符号时，只限操作用户自身有效。另外不同用户之间建立软连接，需要考虑**访问权限**问题，任意一层目录都需要可读权限 (目录的可读为`rx`都有)。
+
 复制、移动或创建软连接时，如果目标已存在，除了使用`-f`强制覆盖外，还可以使用`rm`命令删除。
 
 `rm`可以删除一个或多个文件和目录，也可以递归删除所有子目录，使用时一定要慎重。`rm`命令删除的文件很难恢复。
@@ -593,7 +599,7 @@ lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ehbio2.fa -> /home/ct/ehbio_project/ehbio2
 
 > -r: 递归删除
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ ln -s `pwd`/ehbio2.fa ../data
 ln: 无法创建符号链接" ../data/ehbio2.fa" : 文件已存在
 
@@ -625,7 +631,7 @@ ct@ehbio:~/ehbio_project$ rm -rf tmp
 
 **命令不全**：在命令没有输入完 (引号或括号没有配对)，就不小心按下了`Enter`键，终端会提示出一个`>`代表命令不完整，这是可以继续输入，也可以`ctrl+c`终止输入，重新再来。(下面sed命令使用时，还有另外一种命令不全的问题)
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ rename 'ehbio2
 >'
 ct@ehbio:~/ehbio_project$ rename 'ehbio2
@@ -635,7 +641,7 @@ ct@ehbio:~/ehbio_project$
 
 **文件名输入错误**: 多一个字母、少一个字母、大小写问题
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ls
 ehbio2.fa  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
 
@@ -653,7 +659,7 @@ ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio.fa  second.fa
 
 **所在目录不对**: 访问的文件不存在于当前目录，而又没有提供绝对路径, 或软连接失效
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ ls
 ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
 ct@ehbio:~/ehbio_project$ ls ../data
@@ -686,7 +692,7 @@ end
 
 `gzip`: 压缩文件; `gunzip`: 解压缩文件
 
-```bash
+```{bash eval=F}
 # gzip -c 把压缩的文件输出到标准输出 (一般是屏幕)
 # '>' 输出重定向，输出写入文件
 
@@ -706,7 +712,7 @@ ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio.fa  second.fa
 
 `wc` (word count): 一般使用`wc -l`获取文件的行数。
 
-```bash
+```{bash eval=F}
 # 输出文件有14行
 ct@ehbio:~/ehbio_project$ wc -l ehbio.fa
 14 ehbio.fa
@@ -716,7 +722,7 @@ ct@ehbio:~/ehbio_project$ wc -l ehbio.fa
 
 `grep`的用法很多，支持正则表达式匹配，这个后面我们会详细讲解。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ grep '>' ehbio.fa
 >SOX2
 >OCT4
@@ -753,7 +759,7 @@ CAGGACAGGAGCTA
 
 `|` 为管道符，在相邻命令之间传递数据流，表示把上一个命令的输出作为下一个命令的输入。
 
-```bash
+```{bash eval=F}
 # 第一个错误，漏掉了文件名
 # 程序静止在这，等待用户的进一步输入
 # ctrl+c杀掉当前命令
@@ -781,7 +787,7 @@ end
 
 `-d`: 设定分隔符, 默认为TAB键。如果某一行没有指定的分隔符，整行都为第一列。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
@@ -805,7 +811,7 @@ end
 * 上下箭头：使用上下箭头可以回溯之前的命令，增加命令的重用，减少输入工作量
 * `!`加之前输入过的命令的前几个字母，快速获取前面的命令
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
@@ -823,7 +829,7 @@ end
 
 * `ctrl+a`回到命令的行首，`ctrl+e`到命令行尾，(`home`和`end`也有类似功能)，用于修改命令或注释掉命令
 
-```bash
+```{bash eval=F}
 # 写完下面的命令，突然不想运行了，又不想一个个删掉
 ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio.fa | tail -n 4
 
@@ -833,7 +839,7 @@ ct@ehbio:~/ehbio_project$ #cut -f 1 -d ' ' ehbio.fa | tail -n 4
 
 * `!!` 表示上一条命令。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~/ehbio_project$ ls
 ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
 ct@ehbio:~/ehbio_project$ !!
@@ -843,7 +849,7 @@ ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
 
 * 替换上一个命令中的字符，再运行一遍命令，用于需要对多个文件执行同样的命令，又不想写循环的情况
 
-```bash
+```{bash eval=F}
 # 输入一个命令
 ct@ehbio:~/ehbio_project$ #cut -f 1 -d ' ' ehbio.fa | tail -n 4
 
@@ -889,7 +895,7 @@ end
 
 下面我们通过一个程序`stdout_error.sh`来解释上面的文字 (Bash脚本写作，后面会有专门介绍)，内容如下
 
-```bash
+```{bash eval=F}
 #!/bin/bash
 
 echo "I am std output" 
@@ -899,7 +905,7 @@ unexisted_command
 
 运行这个脚本
 
-```bash
+```{bash eval=F}
 # 标准输出和标准错误默认都会显示到屏幕上
 ct@ehbio:~$ bash stdout_error.sh 
 I am std output
@@ -927,7 +933,7 @@ stdout_error.sh: line 5: unexisted_command: command not found
 
 下面看管道符和标准输入的使用。
 
-```bash
+```{bash eval=F}
 # 管道符的使用
 # 第一个命令的输出作为第二个的输入
 # 前面的例子中也有使用
@@ -975,7 +981,7 @@ ct@ehbio:~$ diff firstfile secondfile
 
 管道符的更多应用
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ echo  "actg aaaaa cccccg" | tr ' ' '\n' | wc -l
 3
 
@@ -1030,7 +1036,7 @@ cccccg
 
 `seq`: 产生一系列的数字; `man seq`查看其具体使用。我们这使用`seq`产生下游分析所用到的输入文件。
 
-```bash
+```{bash eval=F}
 # 产生从1到10的数，步长为1
 ct@ehbio:~$ seq 1 10
 1
@@ -1090,7 +1096,7 @@ ct@ehbio:~$ cat test
 
 > -u: 重复行只保留一次
 
-```bash
+```{bash eval=F}
 # 系统默认按ASCII码排序，首先排0，然后排1, 3, 6, 9
 ct@ehbio:~$ sort test
 0
@@ -1118,7 +1124,7 @@ ct@ehbio:~$ sort -n test
 
 `sort -u`: 去除重复的行，等同于`sort | uniq`。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ sort -nu test
 0
 3
@@ -1130,7 +1136,7 @@ ct@ehbio:~$ sort -nu test
 
 `sort file | uniq -d`: 获得重复的行。(`d`=`duplication`)
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ sort -n test | uniq -d
 3
 9
@@ -1139,7 +1145,7 @@ ct@ehbio:~$ sort -n test | uniq -d
 
 `sort file | uniq -c`: 获得每行重复的次数。
 
-```bash
+```{bash eval=F}
 # 第一列为每行出现的次数，第二列为原始的行
 ct@ehbio:~$ sort -n test | uniq -c
   1 0
@@ -1191,7 +1197,7 @@ ct@ehbio:~$ cat test2 | uniq -c
 * `BEGIN`表示在文件读取前先设置基本参数；与之相对应的是`END`，只文件读取完成之后进行操作；
 * 不以`BEGIN`, `END`开头的`{}`就是文件读取、处理的部分。每次对一行进行处理。后面会详细讲解。
 
-```bash
+```{bash eval=F}
 # 管道符还记得吧
 # awk的操作就是读入上一步的结果，去除多余的空白，然后调换2列
 #
@@ -1205,7 +1211,7 @@ e	1
 
 对两列文件，按照第二列进行排序, `sort -k2,2n`。
 
-```bash
+```{bash eval=F}
 # 第二列按数值大小排序
 ct@ehbio:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2, $1}' | sort -k2, 2n
 c	1
@@ -1232,7 +1238,7 @@ a	3
 
 `grep`在前面也提到过，以后还会经常提到，主要用途是匹配文件中的字符串，以此为基础，进行一系列的操作。如果会使用正则表达式，将会非常强大。正则表达式版本很多，几乎每种语言都有自己的规则，后面会详细展开。
 
-```bash
+```{bash eval=F}
 # 生成单行序列FASTA文件
 # 开头的大于号是为了还原命令的输入过程，可以复制下面cat出来的结果，方便输入。
 ct@ehbio:~$ cat <<END >test.fasta
@@ -1284,7 +1290,7 @@ ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 
 `sed`和`tr`都为最常用的字符替换工具。
 
-```bash
+```{bash eval=F}
 ct@ehbio:~$ cat <<END >test.fasta
 > >SOX2
 > ACGAGGGACGCATCGGACGACTGCAGGACTGTC
@@ -1347,7 +1353,7 @@ ct@ehbio:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g' \
 
 或者简单点，直接用前面的`awk`略微做下修改。
 
-```bash
+```{bash eval=F}
 # 差别只在一点
 # 对于单行fasta文件，只需要记录一行，seq[name]=$0
 # 对于多好fasta文件，需要把每一行序列都加到前面的序列上，seq[name]=seq[name]$0
@@ -1356,6 +1362,319 @@ ct@ehbio:~$ awk 'BEGIN{OFS=FS="\t"}{if($0~/>/) {name=$0; sub(">", "", name);} \
 >SOX2
 ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGAC
 ```
+
+## Linux下的查找命令
+
+查找是我们每天都在做的事情，早上醒来找下手机，出门之前查下公交，坐下之后查下资料，分析数据查下模式。
+
+查找文件，查找信息，查找错误是应用起来更为具体的一些工作，而Linux命令行为我们提供了很多快捷强大的查找方式。
+
+### 命令/可执行程序查找
+
+`whereis program_name`: 会在系统默认安装目录(一般是有root权限时默认安装的软件)和`$PATH`, `$MANPATH`指定的目录中查找二进制文件、源码、文档中包含给定查询关键词的文件。(默认目录有 `/bin`, `/sbin`, `/usr/bin`, `/usr/lib`, `/usr/local/man`等类似路径)
+
+`which program_name`: 会给出所有在[环境变量](http://mp.weixin.qq.com/s/poFpNHQgHDr0qr2wqfVNdw)中的程序的路径，一来方便知道运行的程序在哪，二来方便修改。比如[vim \`which sp_pheatmap.sh\`](https://mp.weixin.qq.com/s/_9LKs6t6rcjzokF_0gneSA)就可以直接修改绘制热图的脚本，`cp \`which sp_pheatmap.sh\` .`可以直接把源码拷贝到当前目录，省去了写全路径的麻烦。
+
+如果运行`which bwa`，系统返回是 `/usr/bin/which: no bwa in (/home/usr/bin:/bin)`则说明bwa没有安装或安装后没有放置在环境变量中，不可以直接写名字调用。
+
+```{bash eval=F}
+# 列出了所有的R
+ct@ehbio:~$ whereis R
+R: /usr/bin/R /usr/local/bin/R /bin/R/4.0.2/bin/R /soft/R.sys /soft/R
+
+# 列出我们默认调用的R
+ct@ehbio:~$ which R
+/bin/R/4.0.2/bin/R
+
+ct@ehbio:~$ which bwa
+/soft/bin/bwa
+
+ct@ehbio:~$ which bwa2
+/usr/bin/which: no bwa2 in (/home/usr/bin:/bin:/soft/bin/)
+```
+
+### 普通文件快速定位 locate
+
+`locate`是快速查找定位文件的好方法，但其依赖于`updatedb`建立的索引。而`updatedb`一般是每天运行一次，所以当天新建的文件是索引不到的。如果有根用户权限，可以手动运行`updatedb`做个更新，然后再`locate bwa`。(个人用户也可以构建自己的`updatedb`, 使用`locate`在局部环境中查找。)
+
+```
+ct@ehbio:~$ locate R.sys
+/soft/R.sys
+```
+
+### 普通文件多条件查找 find
+
+`find / -name bwa`可以搜索根目录下所有名字为bwa的文件
+
+运行上面的命令时会输出很多`Permission denied`，是因为 作为普通用户，无权限访问一些目录，因此会有提示输出，可以使用`find / -name bwa 2>/dev/null`重定向标准错误到空设备，报错信息就被扔掉了，还不影响正常输出。
+
+```
+ct@ehbio:~$ find / -name R 2>/dev/null
+/usr/bin/R
+/usr/lib/rstudio-server/R
+/usr/share/groff/1.22.2/font/devascii/R
+/usr/share/groff/1.22.2/font/devhtml/R
+/usr/share/groff/1.22.2/font/devlatin1/R
+/usr/share/groff/1.22.2/font/devutf8/R
+/usr/local/bin/R
+/usr/local/lib64/R
+/usr/local/lib64/R/share/R
+/usr/local/lib64/R/bin/R
+```
+
+#### 按时间查找
+
+我们开发的在线画图网站 ([www.ehbio.com/ImageGP](http://mp.weixin.qq.com/s/pTHHqxuf0y1MCCCBaZjt9A))，为了追踪每天用户使用时碰到了什么问题，需要每天定时去查看日志。
+
+这个命令`find . -name *.log -mmin  -60`可以查看当前目录下(包括所有子目录)一小时内修改的日志文件。再配合`head`就可以查看每个日志文件的内容，以方便查看使用过程中出现了哪些错误，如何增加提示或修改画图程序。
+
+正是有了这个利器，前台的错误提示中才出现了这么一句话，**如果您核对后数据和参数没问题，请过1天再进行尝试。若是程序问题，我们通常会在1天内修复。**
+
+当然后台数据都是用时间戳存储的，而且若无报错，数据会直接删掉，有报错的才会保留日志，不会泄露用户信息，这点大家不用担心。
+
+现在画图网站越来越稳定，出现的问题越来越少，前台提示也越来越完善，希望大家使用时多看下提示，查看日志的频率也少了，就使用`find . -name *.log -mtime -1`查看从现在起24小时内的日志了。
+
+```{bash, eval=F}
+ct@ehbio:/log# find . -name *.log -mtime -1 | head
+./upsetView/1597502345.upsetView.log
+./upsetView/1597502776.upsetView.log
+./Scatter/1597485169.Scatter.log
+./Scatter/1597484912.Scatter.log
+./Scatter/1597495448.Scatter.log
+./Scatter/1597485405.Scatter.log
+./Scatter/1597485338.Scatter.log
+./Scatter/1597485526.Scatter.log
+```
+
+这个也有个问题，每次查看的时间可能不一致，会漏查或有重叠，于是在某次查看完日志后，使用`touch check`在当前目录下新建了个空文件。以后再查日志文件时，只要使用`find . -name *.log -newer check`就可以获得所有上次查看过之后的新日志。每次查看完之后，都做个书签，就方便多了。
+
+慢慢发现有空日志文件, 使用`find . -name *.log -newer check -size +0`过滤掉, 只保留大小大于0的文件。就这样在小伙伴聪明勤奋地维持下，我们绘图网站为**7万**多用户提供了近**100万**次服务 ([画图手册 | ImageGP：今天你“plot”了吗？](https://mp.weixin.qq.com/s/ekTLcXSJh14Bm3PtVc9Mpg))。
+
+
+#### 按类型和大小查找
+
+如果我想得到当前目录下所有`png`和`jpg`照片呢？ 
+
+使用 `find . \( -name "*.png" -o -name "*.jpg" \) | less`
+
+或 `find . -regex ".*\(\.png\|\.jpg\)$"`  
+
+
+`find . -type f -size +100G`可以获取大小超过100G的文件。
+
+#### 限制查找深度
+
+只看当前目录2层子目录内的文件`find . -maxdepth 2 -name *.log`。
+
+查看不是`log`结尾的文件`find . -not -name *.log`。还有更多组合操作，详见find文档。
+
+### 按文件内容查找 grep
+
+find可以查找包含某句话的文件吗？ 还是拿我们的日志说事吧，`find . -name *.log -exec grep -l 'Error' {} \;`就可以返回所有包含`Error`单词的文件名。
+
+`find . -name *.log | xargs grep -l 'Error'`也可以。
+
+`grep -rl 'Error' *`也可以，不加`-l`还可以顺便返回匹配的行。
+
+**匹配行的前后行**
+
+`grep -A 5 -B 1 'Bioinfo' ehbio.log`可以查看匹配行的前1行(B, before)和后5行(A, after)。
+
+**匹配次数**
+
+`grep -c 'Bioinfo' ehbio.log`可以统计包含Bioinfo的行数
+
+`grep -ci 'Bioinfo' ehbio.log`则会在匹配时忽略大小写。
+
+统计FASTA序列中的序列数 `grep '^>' ehbio.fa`
+
+统计FASTQ序列中的序列数 `grep '^+$' ehbio.fq`。(^表示以什么开头，$表示以什么结尾)。
+
+**获取未匹配行**
+
+`grep -v 'Bioinfo' ehbio.log`，读读手册(`man grep`)，可以看到更多参数使用。
+
+**序列提取**
+
+假设有个基因列表文件 (ID)，有个单行序列的FASTA文件 (ehbio.fa)， 运行如下命令`grep -A 1 -Fw -f id ehbio.fa | grep -v -- '--'`就可以批量提取序列了。
+
+`-f id`表示把id文件中的每一行作为一个匹配模式。`-F`表示匹配模式作为原始字符串，而非正则表达式，这是以防有特殊字符被解析。`-w`则表示作为一个单词匹配，即假如id中有`Sox2`，那么它会匹配`Sox2`，也会匹配`Sox21`；如果加了`-w`，则不会匹配`Sox21`。
+
+更好的序列批量提取见 [awk的使用](http://mp.weixin.qq.com/s/R1OHRhZoDJuAdyVdJr2xHg)。
+
+**模式匹配**
+
+grep强大的功能是支持正则匹配，默认使用基本正则表达式，`-E`使用扩展的正则表达式，`-P`使用perl格式的正则表达式。
+
+比如想去掉文件中所有的空行`grep -v '^$' ehbio.fa >ehbio.clean.fa`;
+
+从公众号文章中搜索跟文章写作相关的文章 `grep 'writ.*' *.md` (可以匹配write, writing等字)；
+
+正则表达式就比较多了，具体可以看<http://mp.weixin.qq.com/s/4lUiZ60-aXLilRk9--iQhA>。
+
+
+
+## 一句话加速grep近30倍
+
+最近做一个项目，需要从表达矩阵中提取单个特定基因的表达值。最开始时文件比较小，使用`awk`单个读取处理也很快，但后来数据多了，从一个`1.2 G`的文件中提取单个基因的表达需要`30 s`，用`grep`来写需要`25 S`，这在平时写程序是可以接受的，但在网站上是接受不了的。所以就想着如何优化一下。
+
+探索下来优化也很简单，把`grep`换为`LC_ALL=C grep`再加其它参数速度就快了近**30**倍，把时间控制在`1 s`左右。
+
+下面是整个探索过程 （写这篇总结文章是在早晨，服务器不繁忙，所以下面的示例中只能看出来快了`5`倍左右。这也表明不加`LC_All=C`时`grep`受服务器负载影响较大，加了之后则几乎不受影响。）
+
+### 获取单基因表达量
+
+查看下文件大小
+
+```
+ls -sh 334d41a7-e34a-4bab-841c-eb07bd84513f.txt
+
+# 1.2G 334d41a7-e34a-4bab-841c-eb07bd84513f.txt
+```
+
+查看下文件内容
+
+```
+head 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | cut -f 1,2
+
+# Rnu2-1	-0.52
+# Tmsb4Xp6	11.81
+# S100A14	1.99
+# Krt17	1.26
+# Aldh1A1	6.92
+# Fxyd3	0.56
+# Rnu2-2P	0.35
+# Rarres1	6.03
+# Rnvu1-7	9.53
+# Lcn2	3.44
+```
+
+
+假设基因名字大小写一致时使用`awk`提取其表达信息，用时`14 s`。
+
+```
+time awk '{if($1=="Tmsb4Xp6") print $2;}' 334d41a7-e34a-4bab-841c-eb07bd84513f.txt >1
+
+real	0m14.569s
+user	0m12.943s
+sys	0m0.626s
+```
+
+实际上大小写可能不一致而需要转换，耗时`17 s`。
+
+```
+time awk '{if(tolower($1)=="tmsb4xp6") print $2;}' 334d41a7-e34a-4bab-841c-eb07bd84513f.txt >2
+
+real	0m17.638s
+user	0m17.031s
+sys	0m0.595s
+```
+
+
+采用`grep`命令提取 (`-i`忽略大小写)，用时`5 s`。
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | grep -i 'Tmsb4Xp6' >4
+
+real	0m5.454s
+user	0m5.134s
+sys	0m1.272s
+```
+
+上面的`grep`是全句匹配，想着加上`^`匹配行首是否会减少匹配量，速度能快一些，效果不明显，用时`4 s`。
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | grep -iP '^Tmsb4Xp6' >5
+
+real	0m4.262s
+user	0m3.984s
+sys	0m1.233s
+```
+
+`grep`是处理匹配关系，获得的是包含关键词但不一定全等于关键词，加一个`-w`参数，匹配更精确些，耗时`6.7 s`。
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | grep -iPw '^Tmsb4Xp6' >6
+
+real	0m6.723s
+user	0m6.390s
+sys	0m1.348s
+```
+
+从上面来看，采用正则限定并不能提速，还是采用固定字符串方式提取，速度也差不多，耗时`5 s`。(`fgrep`等同于`grep -F`)
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | fgrep -i 'Tmsb4Xp6' >7
+
+real	0m5.496s
+user	0m5.128s
+sys	0m1.366s
+```
+
+主角出场，加上`LC_ALL=C`后，速度明显提升了，只需要`1 s`时间。
+
+```
+time LC_ALL=C fgrep -i '^Tmsb4Xp6' 334d41a7-e34a-4bab-841c-eb07bd84513f.txt >8
+
+real	0m1.027s
+user	0m0.671s
+sys	0m0.355s
+```
+
+多次测试下来，发现添加`LC_ALL=C`后`grep`命令快了很多，而且多次测试速度都很稳定 (不论服务器是繁忙还是空闲)。这里面的原理是涉及字符搜索空间的问题，我们操作的文件只包含字母、字符、数字，没有中文或其它复杂符号时都是适用的，具体原理和更多评估可查看文末的两篇参考链接，了解更多信息。
+
+为了简化应用，我们可以`alias grep='LC_ALL=C grep'` (把这句话放到`~/.bashrc`或`~/.bahs_profile`里面)，后续再使用`grep`时就可以直接得到速度提升了。
+
+```
+time grep -F -i '^Tmsb4Xp6' 334d41a7-e34a-4bab-841c-eb07bd84513f.txt 
+
+real	0m1.013s
+user	0m0.679s
+sys	0m0.334s
+```
+
+### 那如果获取多个基因怎么操作呢？
+
+一个方式是使用正则表达式，多个基因一起传递过去，分别匹配，耗时`4.6 s`。
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | LC_ALL=C grep -iP 'Tmsb4Xp6|Sox1|Sox2|Sox3'
+
+real	0m4.654s
+user	0m4.366s
+sys	0m1.227s
+```
+
+或者还是使用固定字符串查找模式，把所有基因每行一个写入文件`a`，然后再去匹配，耗时`2.5 s`，且测试发现在基因数目少于`10`时（这是通常的应用场景），基因多少影响不大 (这也说明能用固定字符串查找时最好显示指定)。
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | LC_ALL=C fgrep -i -f a >11
+
+real	0m2.539s
+user	0m2.191s
+sys	0m1.249s
+```
+
+这里还比较了另外2个号称比`grep`快的命令`ag`和`rg`在这个应用场景没体现出性能优势。
+
+```
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | LC_ALL=C ag -i '^Tmsb4Xp6|Sox1|Sox2|Sox3' >10
+
+real	0m11.281s
+user	0m9.713s
+sys	0m5.326s
+
+time cat 334d41a7-e34a-4bab-841c-eb07bd84513f.txt | rg -iF -f a >12
+
+real	0m4.337s
+user	0m3.444s
+sys	0m2.787s
+```
+
+
+
+* https://www.inmotionhosting.com/support/website/speed-up-grep-searches-with-lc-all/
+* https://stackoverflow.com/questions/42239179/fastest-way-to-find-lines-of-a-file-from-another-larger-file-in-bash#
 
 ## 命令运行监测
 
@@ -1420,3 +1739,6 @@ Swap: 86472700k total, 73226016k used, 13246684k free, 193383748k cached
 * [Linux - SED操作，awk的姊妹篇](http://mp.weixin.qq.com/s/cywkIeRbhkYTZvkwTeIVSA)
 * [Linux - 常用和不太常用的实用awk命令](http://mp.weixin.qq.com/s/8wD14FXt7fLDo1BjJyT0ew)
 * [Bash概论 - Linux系列教程补充篇](http://mp.weixin.qq.com/s/lWNp_6W_jLiogmtlk9nO2A)
+* [原来你是这样的软连接 ](https://mp.weixin.qq.com/s/q3ic5WSfLdAnqIhFQX-bUQ)
+* [一网打进Linux下那些查找命令](https://mp.weixin.qq.com/s/xWwj04h4W6yEqQLOfuQ8qA?)
+* [有了这些，文件批量重命名还需要求助其它工具吗？](https://mp.weixin.qq.com/s/hyiGxm0jx6xEc90nHLN4dQ)
