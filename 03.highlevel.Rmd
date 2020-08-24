@@ -2,7 +2,7 @@
 
 视频课见 <http://bioinfo.ke.qq.com>。
 
-## 正则表达式 {#regularExpr}
+## 正则表达式替换文本随心所欲 {#regularExpr}
 
 正则表达式 (regular expression)是用来做模糊匹配的，匹配符合特定模式的文本。最早来源于Unix系统中的`sed`和`grep`命令，在各个程序语言，如`perl`, `python`中也都有实现。不同程序语言中正则表达式语法大体通用，细节上又各自有自己的特色。
 
@@ -136,11 +136,11 @@ http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html
 ```
 
 
-## awk命令 {#awk}
+## awk-生信分析不可缺少 {#awk}
 
 前面的学习过程中已经提到了`awk`和`sed`的使用，作为一个引子。现在则详细列举关于`awk`常用的操作和一些偏门的操作。
 
-### awk基本参数解释
+### awk基本参数解释 {#awk_explain}
 
 awk擅长于对文件按行操作，每次读取一行，然后进行相应的操作。
 
@@ -166,7 +166,7 @@ awk后面的命令部分是用引号括起来的，可以单引号，可以双�
 
 * `a[$1]=1`: 索引操作，类似于python中的字典，在`ID map`，`统计`中有很多应用。
 
-### 常见操作
+### awk基本常见操作 {#awk_common_op}
 
 * 针对特定列的计算，比如wig文件的标准化
 
@@ -485,7 +485,7 @@ ct@ehbio:~/sxbd$ awk -f grade.awk de_gene
 ct@ehbio:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}NR!=1{$4=$4"_"NR;print $0}' file
 ```
 
-### 糅合操作
+### awk糅合操作 - 命令组合体现魅力 {#awk_combine}
 
 * awk中执行系统命令 (注意引号的使用)
 
@@ -519,9 +519,9 @@ shengxinbaodian sxbd
 ```
 
 
-## SED命令 {#sed}
+## SED命令 - 文本替换舍我其谁 {#sed}
 
-### sed基本参数解释
+### sed基本参数解释 {#sed_basic}
 
 sed是`stream editor`的简称，擅长对文件进行各种正则操作、插入操作、替换操作和删除操作，可以全局，可以指定特定范围的行或者特定特征的行。
 
@@ -531,7 +531,7 @@ sed是`stream editor`的简称，擅长对文件进行各种正则操作、插�
 
 `N`: 读入下一行，同时存储；`n`:读入下一行，抛弃当前行
 
-### 常见操作
+### 常见操作 {#sed_common}
 
 * 替换特定的文本
 
@@ -804,7 +804,7 @@ sheng xin bao dan ehbio
 
 `VIM`是一款功能强大的文本编辑工具，也是我在`Linux`，`Windows`下编辑程序和文本最常用的工具。
 
-### 初识VIM
+### 初识VIM {#vim_first}
 
 VIM分多种状态模式，`写入`模式，`正常`模式，`可视化`模式。
 
@@ -875,7 +875,7 @@ VIM还有不少**魔性**操作，具体可以看这两个帖子：
 * [http://coolshell.cn/articles/5426.html](http://coolshell.cn/articles/5426.html)
 * [http://coolshell.cn/articles/11312.html](http://coolshell.cn/articles/11312.html)
 
-### VIM中使用正则表达式
+### VIM中使用正则表达式 {#vim_re}
 
 这儿以提取生信宝典公众号中发过的原创文章的HTML代码为例子，获得原创文章的名字和链接，用以制作文章列表。
 
@@ -942,16 +942,16 @@ if (identical(knitr:::pandoc_to(), "html")){
 * VIM正则表达式 [http://blog.csdn.net/u014015972/article/details/50688837](http://blog.csdn.net/u014015972/article/details/50688837)
 * Pyton正则表达式 [https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html](https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html)
 
-## 有了这些，文件批量重命名还需要求助其它工具吗？
+## 有了这些，文件批量重命名还需要求助其它工具吗？{#rename_all}
 
-### 简单重命名
+### 简单重命名 {#rename_simple}
 
 Linux下文件重命名可以通过两个命令完成，`mv`和`rename`。
 
 * `mv`: 直接运行可以进行单个文件的重命名，如 `mv old_name.txt new_name.txt`
 * `rename`: 默认支持单个文件或有固定规律的一组文件的批量重命名，示例如下：
 
-#### rename演示
+#### rename演示 {#rename_simple1}
 
 使用`touch`新建文件，两个样品（分别是易生信a，易生信b），各自双端测序的FASTQ文件
 
@@ -1001,11 +1001,11 @@ ysx@ehbio:~/test$ ls
 ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz
 ```
 
-### 复杂重命名
+### 复杂重命名 {#rename_complex}
 
 但有时，需要重命名的文件不像上面那样有很清晰的模式，直接可以替换，需要多几步处理获得对应关系。
 
-#### 假如已经有对应关系
+#### 假如已经有对应关系 {#rename_for_known_relation}
 
 如下`name.map.txt`是自己手动编写的文件，`a`对应`Control`, `b`对应`Treatment`。
 
@@ -1018,7 +1018,7 @@ a	Control
 b	Treatment
 ```
 
-##### 组合文件名，使用mv重命名
+##### 组合文件名，使用mv重命名 {#rename_combine_name}
 
 首先组合出原名字和最终名字
 
@@ -1055,7 +1055,7 @@ ysx@ehbio:~/test$ ls
 ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  ehbio_Treatment_2.fastq.gz  name.map.txt  rename.sh
 ```
 
-##### 使用rename会不会稍微简单一点？
+##### 使用rename会不会稍微简单一点？ {#rename_for_complex_style}
 
 一定注意符号匹配和避免误匹配。
 
@@ -1095,9 +1095,9 @@ ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  
 ```
 
 
-#### 从原文件名获取对应关系
+#### 从原文件名获取对应关系 {#rename_relation_from_old_name}
 
-##### 基于paste
+##### 基于paste {#rename_paste}
 
 像上面自己写好对应文件是一个方法，有时也可以从文件名推测规律，生成对应文件。
 
@@ -1161,7 +1161,7 @@ ln -s `pwd`/E15_FRAS192317028-1a_1.fq.gz	analysis/E_15_1_fq.gz
 ln -s `pwd`/E15_FRAS192317028-1a_2.fq.gz	analysis/E_15_2_fq.gz
 ```
 
-##### 基于awk
+##### 基于awk {rename_awk}
 
 转换下输入数据的格式，字符处理在`awk`也可以操作，但我更习惯使用命令组合，每一步都用最简单的操作，不容易出错。
 
@@ -1215,7 +1215,7 @@ ln -s `pwd`/A1_FRAS192317015-1a_2.fq.gz A_2_2.fq.gz
 
 另外，Window下使用`Git for windows`应该也可以实现对应的操作。
 
-## 耗时很长的程序忘加nohup就运行了怎么办？ 
+## 耗时很长的程序忘加nohup就运行了怎么办？  {#nohup}
 
 在[NGS基础：测序原始数据下载](https://mp.weixin.qq.com/s/6oJYGxuBE850PyjMhRi3xg)一文中提到可以使用`SRA-toolkit`中的命令`fastq-dump`从NCBI下载原始测序数据，命令如下。
 

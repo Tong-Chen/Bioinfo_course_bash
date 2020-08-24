@@ -12,7 +12,7 @@ answer=T
 grep -v '^#' GRCh38.gtf | sed 's/^/chr/' >GRCh38.new.gtf
 ```
 
-* 统计GTF文件中染色体数目？
+## 统计GTF文件中染色体数目？ {#gtf_chr}
 
 ```
 ct@ehbio:~/sxbd$ cut -f1 GRCh38.new.gtf | uniq -c >chrCount.txt
@@ -118,7 +118,7 @@ chr21	28928
 chrMT	144
 ```
 
-* 统计GTF文件中基因数目？
+## 统计GTF文件中基因数目？ {#gtf_num_gene}
 
 ```
 ct@ehbio:~/sxbd$ time cut -f 3 GRCh38.new.gtf | sort | uniq -c
@@ -155,7 +155,7 @@ sys	0m0.394s
 ct@ehbio:~/sxbd$ awk '{if(a[$3]=="") a[$3]=1; else a[$3]=a[$3]+1;}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
 ```
 
-* 计算GTF中外显子总长度？
+## 计算GTF中外显子总长度？ {#gtf_exon_length}
 
 ```
 # 这个是冗余的外显子，后面在计算非冗余外显子
@@ -193,14 +193,14 @@ sed 's/"/\t/g' GRCh38.new.gtf | awk '$3=="transcript"' | cut -f 10,14 | \
 
 ```
 
-* 计算GTF文件中基因所拥有的平均转录本数目
+## 计算GTF文件中基因所拥有的平均转录本数目 {#gtf_transcript_num}
 
 ```
 awk 'BEGIN{OFS=FS="\t"}{sum+=$2}END{print sum/NR;}' geneTrCount.txt
 # 3.43573
 ```
 
-* 生成一个多行Fasta测试序列供后续运算 (也可使用我们前面提供的脚本生成)
+## 生成一个多行Fasta测试序列供后续运算 (也可使用我们前面提供的脚本生成) {#fasta}
 
 ```
 cat <<END >test.fa
@@ -216,7 +216,7 @@ cgactaggcagtctgagttga
 END
 ```
 
-* `test.fa`中的序列全转成大写。
+## `test.fa`中的序列全转成大写 {#fasta_uppercase}
 
 ```
 # \U 转换为大写
@@ -224,7 +224,9 @@ END
 sed -i '/^[^>]/ s/.*/\U&/' test.fa
 ```
 
-* 计算多行FASTA文件`test.fa`中每条序列长度，输出类似`genome.txt`格式的文件(文件有两列，第一列为序列ID，第二列为序列长度)
+## 计算多行FASTA文件`test.fa`中每条序列长度 {#fasta_len}
+
+输出类似`genome.txt`格式的文件(文件有两列，第一列为序列ID，第二列为序列长度) 
 
 ```
 # 计算一个输出一个
@@ -240,7 +242,7 @@ awk 'BEGIN{OFS="\t";}{if($0~/>/) {geneName=$0; sub(">","",geneName); size[geneNa
 	{for (geneName in size) print geneName,size[geneName]}' test.fa
 ```
 
-* 多行FASTA转单行FASTA序列
+## 多行FASTA转单行FASTA序列 {#fasta_format}
 
 ```
 # conditions?true_value:false_value 三目运算符，条件为真时，返回冒号前结果，否则冒号后结果
@@ -249,7 +251,7 @@ awk '/^>/&&NR>1{print "";}{printf "%s",/^>/?$0"\n":$0}' test.fa >singleLine.fa
 ```
 
 
-* 取出单行FASTA文件中序列长度大于40的序列的名字？
+## 取出单行FASTA文件中序列长度大于40的序列的名字 {#fasta_name}
 
 ```
 awk 'BEGIN{OFS="\t";}{if($0~/>/) {geneName=$0; sub(">","",geneName); } else \
@@ -257,7 +259,7 @@ awk 'BEGIN{OFS="\t";}{if($0~/>/) {geneName=$0; sub(">","",geneName); } else \
 ```
 
 
-* 分别用`awk`和`grep`从`test.fa`中提取给定ID对应的序列。
+## 分别用`awk`和`grep`从`test.fa`中提取给定ID对应的序列 {#id_extract}
 
 ```
 ID list:
@@ -265,7 +267,7 @@ id1
 id21
 ```
 
-* 利用AWK对基因表达数据进行标准化
+## 利用AWK对基因表达数据进行标准化 {#standard}
 
 ```
 cat <<END | sed 's/  */\t/g' >test.expr
@@ -288,7 +290,7 @@ awk 'ARGIND==1{if(FNR>1) {for(i=2;i<=NF;i++) sum[i]=sum[i]+$i;}}\
 	 test.expr test.expr
 ```
 
-* 写出3种写法，去掉上一题`test.expr`矩阵中的第一行？
+## 写出3种写法，去掉上一题`test.expr`矩阵中的第一行？ {#skip_first_row}
 
 ```
 awk 'FNR>1' test.expr
@@ -298,20 +300,22 @@ tail -n +2 test.expr
 sed -n '2,$p' test.expr
 ```
 
-* 分别用`awk`和`sed`给`test.expr`矩阵加上标题行？
+## 分别用`awk`和`sed`给`test.expr`矩阵加上标题行？ {#add_row}
 
 ```
 sed '1 iheaderline' test.expr
 awk '{if(FNR==1} print "headerline"; print $0' test.expr
 ```
 
-* 给定一个`BAM`文件，怎么计算有多少基因组区域被测到了？平均测序深度是多少？
+## 给定一个`BAM`文件，怎么计算有多少基因组区域被测到了？平均测序深度是多少？ {#bam}
 
 ```
 bedtools genomecov -ibam ../bio/map.sortP.bam -bga 
 ```
 
-* 如何使用`bedtools`的其它工具或其它Linux命令实现`bedtools jaccard`子功能？ `bedtools jaccard`计算的是给定的两个`bed`文件之间交集区域(intersection)占总区域(union-intersection)的比例(jaccard)和交集的数目(n_intersections)。
+## 如何使用`bedtools`的其它工具或其它Linux命令实现`bedtools jaccard`子功能？{#jaccard}
+
+`bedtools jaccard`计算的是给定的两个`bed`文件之间交集区域(intersection)占总区域(union-intersection)的比例(jaccard)和交集的数目(n_intersections)。
 
 ```
 ct@localhost:~/bedtools$ cat test1.bed 

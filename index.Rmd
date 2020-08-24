@@ -36,6 +36,7 @@ set.seed(0304)
 
 ```
 
+
 ```{r cover, eval=html, out.width="99%"}
 knitr::include_graphics("ehbio/cover.png")
 

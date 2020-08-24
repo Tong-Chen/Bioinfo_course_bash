@@ -2,7 +2,7 @@
 
 视频课见 <http://bioinfo.ke.qq.com>。
 
-## Bash特殊字符
+## Bash特殊字符 {#bash_specific}
 
 1. 通配符:   
 
@@ -38,7 +38,7 @@
 `$`: 变量表达式，变量解析
 `&`: 在后台执行命令，在`for`循环中也可用作命令分割符，取代`done`前面的`;`
 
-## Bash变量
+## Bash变量 {#bash_variable}
 
 1. 自定义变量
 
@@ -140,7 +140,7 @@ Each element in $@:
 	dian
 ```
 
-## Bash操作符
+## Bash操作符 {#bash_operator}
 
 1. 字符串操作符（替换操作符）
 
@@ -201,7 +201,7 @@ sheng xin bao dian great
 for i in `ls *_1.fq.gz`; do j=${i/_1.fq.gz/}; echo "$j"; done
 ```
 
-## Shell中条件和test命令
+## Shell中条件和test命令 {#bash_logic}
 
 Bash可以使用`[ … ]`结构或`test`命令测试复杂条件  
 格式: `[ expression ]` 或 `test expression`  
@@ -284,7 +284,7 @@ TRUE
 `expr1 || expr2` 对expr1与expr2求逻辑或, 当expr1为真时不再执行expr2  
 
 
-## Shell流控制
+## Shell流控制 {#bash_flow}
 
 1. 条件语句: if
 
@@ -408,7 +408,7 @@ sheng
 	xin bao dian
 ```
 
-## Shell函数
+## Shell函数 {#bash_function}
 
 `function function_name () { function body}`定义函数，函数参数的获取同命令行参数获取。
 
@@ -425,7 +425,7 @@ EHBIO great SXBD great
 EHBIO great
 ```
 
-## 输入输出
+## 输入输出 {#bash_inputoutput}
 
 1. I/O重定向  
 
@@ -482,7 +482,7 @@ ct@ehbio:~$ echo $password
 haha
 ```
 
-## 命令行处理 命令行处理命令: 
+## 命令行处理 命令行处理命令 {#command_parameter}
 
 `getopts` 有两个参数, 第一个为字母和冒号组成的选项列表字符串, 第二个为一个变量名
 
@@ -519,7 +519,7 @@ do
 done				
 ```
 
-## 进程和作业控制
+## 进程和作业控制 {#process_monitor}
 
 [命令行运行监测和软件安装](https://mp.weixin.qq.com/s/TNU7X2mhfVVffaJ7NRBuNA)文中讲述了部分监测命令。
 

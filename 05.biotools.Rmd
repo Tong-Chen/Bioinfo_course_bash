@@ -1,10 +1,10 @@
 # Bioinfo tools
 
-## 寻找Cas9的同源基因并进行进化分析
+## 寻找Cas9的同源基因并进行进化分析 {#cas9}
 
 见PPT
 
-## 如何获取目标基因的转录因子（上）——biomart下载基因和motif位置信息
+## 如何获取目标基因的转录因子（上）——biomart下载基因和motif位置信息 {#biomart_motif}
 
 科研过程中我们经常会使用Ensembl(http://asia.ensembl.org/index.html) 网站来获取物种的参考基因组，其中`BioMart`工具可以获取物种的基因注释信息，以及跨数据库的`ID`匹配和注释等。
 
@@ -12,7 +12,7 @@
 
 生信分析中，想要找到感兴趣基因的转录因子结合位点，该怎么做呢？
 
-### 1. 文件准备
+### 1. 文件准备 {#biomart_motif_1}
 
 首先需要准备以下3个文件，后面两个文件可以在ensembl网站中下载：
 
@@ -20,7 +20,7 @@
 2. 基因组中各基因位置信息列表（6列的bed文件）
 3. 基因组中各转录因子结合位点信息列表（5列的bed文件）
 
-### 2. 什么是bed文件？
+### 2. 什么是bed文件？{#biomart_motif_2}
 
 bed格式文件提供了一种灵活的方式来定义数据行，以此描述基因注释的信息。BED行有3个必须的列和9个可选的列。 每行的数据格式要求一致。
 
@@ -42,7 +42,7 @@ Chromosome/scaffold name | Start (bp) | End (bp) | Score | Feature Type
 
 具体内容见后面示例，更方便理解。
 
-### 3. BioMart数据下载
+### 3. BioMart数据下载 {#biomart_motif_3}
 
 1. 进入Ensembl主页后点击**BioMart**
 
@@ -99,12 +99,12 @@ Chromosome/scaffold name        Start (bp)      End (bp)        Score   Feature 
 ```
 
 
-## 如何获取目标基因的转录因子（下）——Linux命令获取目标基因TF
+## 如何获取目标基因的转录因子（下）——Linux命令获取目标基因TF {#biomart_motif_4}
 
 
 我们知道有很多数据库可以[查找启动子、UTR、TSS等区域以及预测转录因子结合位点](https://mp.weixin.qq.com/s/vFO7uAtI6nh-zTW7RHCixA)，但是怎么用**Linux命令处理**基因信息文件来**得到关注基因的启动子和启动子区结合的TF**呢？
 
-### 1. 基础回顾
+### 1. 基础回顾 {#biomart_motif_5}
 
 **转录起始位点（TSS）**：转录时，mRNA链第一个核苷酸相对应DNA链上的碱基，通常为一个嘌呤；(不考虑转录启动复合体的预转录情况)
 
@@ -112,7 +112,7 @@ Chromosome/scaffold name        Start (bp)      End (bp)        Score   Feature 
 
 **文件准备**：感兴趣的基因列表（命名为`targetGene.list`）、还有上一期下载的`GRCh38.gene.bed`和`GRCh38.TFmotif_binding.bed`
 
-### 2. 文件格式处理
+### 2. 文件格式处理 {#biomart_motif_6}
 
 
 删除文件`GRCh38.gene.bed`首行，第六列正负链表示形式改为`-`和`+`，并在第一列染色体位置加上`chr`；
@@ -151,7 +151,7 @@ chr3    51385016        51385024        7.382   THAP1
 chr16   20900537        20900545        6.962   THAP1
 ```
 
-### 3. 计算基因的启动子区
+### 3. 计算基因的启动子区 {#biomart_motif_7}
 
 
 上面已提过，根据经验一般启动子区域在转录起始位点（TSS）上游1 kb、下游 200 nt处，注意**正负链的运算方式是不一样的**，切忌出错。
@@ -180,7 +180,7 @@ chr22	45200819	45202019	ENSG00000221598	MIR1249	-
 chr1	161698506	161699706	ENSG00000199595	RF00019	+
 ```
 
-### 4. 取两文件的交集
+### 4. 取两文件的交集 {#biomart_motif_8}
 
 本条命令我们使用了`bedtools`程序中的子命令`intersect`
 
@@ -197,7 +197,7 @@ bedtools intersect -a GRCh38.gene.promoter.U1000D200.bed -b GRCh38.TFmotif_bindi
 ```
 
 
-### 5. 提取我们关注的基因
+### 5. 提取我们关注的基因 {#biomart_motif_9}
 
 上一步中，我们将`GRCh38.gene.promoter.U1000D200.TF_binding.txt`文件中的基因名和TF名都转换成了大写。
 
@@ -235,7 +235,7 @@ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{save[$1]=1;}ARGIND==2{if(save[$1==1]) print $0}
 
 获取目标基因的转录因子是生信分析中常见的分析，希望[如何获取目标基因的转录因子（上）]()和本文能够帮助到各位小伙伴
 
-### 重点总结
+### 重点总结 {#biomart_motif_10}
 
 1. 什么是bed文件
 
@@ -244,7 +244,7 @@ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{save[$1]=1;}ARGIND==2{if(save[$1==1]) print $0}
 3. bedtools使用 ([Bedtools使用简介](https://mp.weixin.qq.com/s/bIXom5bSDov-4sPqsTRc6A))
 
 
-## emboss的使用
+## emboss的使用 {#emboss}
 
 
 `EMBOSS`是欧洲分子生物学开放软件包，主要做序列比对，数据库搜搜，蛋白motif分析和功能域分析，序列模式搜索，引物设计等。
@@ -573,8 +573,8 @@ mm1 hs2 51 (26.0)
 mm2 hs2 55 (36.0)
 ```
 
-
-## 使用samtools计算SNP
+ 
+## 使用samtools计算SNP {#samtools_snp}
 
 1. 安装samtools和bedtools
 
@@ -741,7 +741,7 @@ mpileup format (http://samtools.sourceforge.net/pileup.shtml)
 ct@ehbio:~$ samtools mpileup -f genome.fa -Q 0 -vu map.sortP.bam >snp.vcf
 ```
 
-## Bedtools使用
+## Bedtools使用 {#bedtools}
 
 [Bedtools](http://bedtools.readthedocs.io/en/latest/)是处理基因组信息分析的强大工具集合。
 
@@ -1180,8 +1180,8 @@ awk 'NF==3' pairwise.dnase.shortnames.txt \
 > dnase.shortnames.distance.matrix
 ```
 
-## SRA toolkit使用
-
+## SRA toolkit使用 {#sra_tools}
+ 
 SRA toolkit <https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software>根据服务器下载对应的二进制编码包。
 
 CentOS下地址：<https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-centos_linux64.tar.gz>。
@@ -1295,7 +1295,7 @@ done
 ```
 
 
-## 生信流程开发
+## 生信流程开发 {#bioinfo_pipeline}
 
 最基本的是`Bash`脚本，把上面`call SNP`的命令放到一个`Bash`脚本文件中即可。另外可以使用`Makefile`和`Airflow`进行更高级一些的开发。
 
@@ -1303,9 +1303,9 @@ Airflow使用见 <http://blog.genesino.com/2016/05/airflow/>。
 
 一篇不错的英文Makefile教程 <http://blog.genesino.com/2011/04/introduction-to-making-makefiles/>。
 
-## 数据同步和备份
+## 数据同步和备份 {#rsync}
 
-### scp
+### 原创拷贝scp {#scp}
 
 最简单的备份方式，就是使用`cp` (本地硬盘)或 `scp` (远程硬盘)命令，给自己的结果文件新建一个拷贝；每有更新，再拷贝一份。具体命令如下：
 
@@ -1332,7 +1332,7 @@ scp -r source_project user@remote_server_ip:project_bak
 @reboot cmd
 ```
 
-### rsync
+### 镜像备份和增量同步 rsync {#rsync1}
 
 cp或scp使用简单，但每次执行都会对所有文件进行拷贝，耗时耗力，尤其是需要拷贝的内容很多时，重复拷贝对时间和硬盘都是个损耗。
 
@@ -1355,7 +1355,7 @@ rsync -aruLptvz --delete project user@remoteServer:/backup/
 
 rsync所做的工作为镜像，保证远端服务器与本地文件的统一。如果本地文件没问题，远端也不会有问题。但如果发生误删或因程序运行错误，导致文件出问题，而在同步之前又没有意识到的话，远端的备份也就没了备份的意义，因为它也被损坏了。误删是比较容易发现的，可以及时矫正。但程序运行出问题，则不一定了。
 
-### rdiff-backup
+### 增量备份，记录各个版本 rdiff-backup {#rdiff_backup}
 
 这里推荐一个工具rdiff-backup不只可以做增量备份，而且会保留每次备份的状态，新备份和上一次备份的差别，可以轻松回到之前的某个版本。唯一的要求就是，本地服务器和远端服务器需要安装统一版本的rdiff-backup。另外还有2款工具 duplicity和`Rsnapshot也可以做类似工作，但方法不一样，占用的磁盘空间也不一样，具体可查看原文链接中的比较。
 
