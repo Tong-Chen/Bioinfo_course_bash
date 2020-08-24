@@ -1,10 +1,10 @@
-# Linux基础内容 {#linux_basic}
+# Linux初探，打开新世界的大门 {#linux_basic}
 
 视频课见 <http://bioinfo.ke.qq.com>。
 
 ## Linux系统简介和目录理解 {#basicDir}
  
-### 为什么要用Linux系统
+### 为什么要用Linux系统 {#why_linux}
 
 个人认为，Linux操作系统和类Linux操作系统的命令行界面是最适合进行生物信息分析的操作系统。原因有三点：
 
@@ -16,21 +16,22 @@
 
 我们这篇教程就带大家学习、熟悉、体会Linux系统的使用。
 
-### Linux系统简介
+### Linux系统无处不在 {#linux_everywhere}
 
 * Linux是一种多用户、多任务的操作系统。最开始是由Linus Torvalds与1991年发布，后由社区维护，产生了不同的分发版。
 
 * 常见版本有`Centos`, `Ubuntu`, `RedHat`, `Debian`等。服务器多用`Centos`系统，免费，稳定，但更新慢。`Ubuntu`系统更新快，注重界面的体验，适合自己笔记本安装。有面向中国的"麒麟"系统。其它两个没用过，`Centos`与`RedHat`, `Debian`与`Ubuntu`同宗，命令行操作起来很相似。
 
-### 如何获取Linux系统
+### 免费的Linux系统来一套 {#free_linux}
 
 * 如果自己的单位有共有服务器，可以尝试申请账号。
 * 自己的电脑安装双系统或虚拟机。
 * 使用[gitforwindows](http://blog.csdn.net/woodcorpse/article/details/79313846)在windows下模拟使用Linux命令。
 * 购买一块云服务器
 * 试验下在线学习平台实验楼 <https://www.shiyanlou.com> (里面也有不少Linux教程，任意点一个进去，双击桌面的`Xfce`图标，都可以启动Linux终端)
+* [这里有2个免费Linux系统等你来用](https://mp.weixin.qq.com/s/rXjQfyEX2FnuW9HTM_Uc8Q)
 
-### Linux系统登录
+### Linux系统登录-联系远方的她 {#linux_login}
 
 登录服务器的IP是：192.168.1.107; 端口是：22；用户名是每个人的姓名全拼，如陈同为chentong (全小写，无空格)；密码是 yishengxin。
 
@@ -42,7 +43,7 @@ knitr::include_graphics(c("image/Linux_xshell1.png"))
 knitr::include_graphics(c("image/Linux_xshell2.png"))
 ```
 
-### 初识Linux系统
+### 初识Linux系统 - 黑夜中的闪烁是你的落脚点 {#linux_cmd}
 
 既然用Linux，我们就摒弃界面操作，体验其命令行的魅力和庞大。后续操作都是在命令行下进行的，主要靠键盘，少数靠鼠标。
 
@@ -65,8 +66,9 @@ ct@ehbio:~$
 * `$`: 用来指示普通用户输入命令的地方；对根用户来说一般是`#`
 * <http://bashrcgenerator.com/>可视化定制不同的显示方式。
 * 个人习惯的展示：`PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$`
+* 闪烁的光标处是你敲打键盘体验威力的地方 - 输入命令并按回车。
 
-### 我的电脑在哪？
+### 我的电脑在哪？ {#my_computer}
 
 打开Windows，首先看到的是桌面；不爱整理文件的我，桌面的东西已经多到需要2个屏幕才能显示的完。另外一个常用的就是我的电脑，然后打开D盘，依次点开对应的文件夹，然后点开文件。
 
@@ -122,7 +124,7 @@ knitr::kable(directory, booktabs=T,caption="Linux下目录简介")
 
 作为一个普通用户，通常只在`/home/usr`, `/tmp`下有**可写**的权限，其它目录最多是**可读、可执行**，部分目录连读的权限都没有。这种权限管理方式是Linux能成为真正多用户系统的一个原因。后面我们会讲解如何查看并修改这些权限。
 
-### 硬件信息查看
+### 系统配置怎样？来看看256M硬盘的服务器 {#linux_system_hardware}
 
 看完目录结构了，来看一下硬盘有多大，有多少可用空间，只需要运行`df -h`命令。
 
@@ -160,7 +162,7 @@ There are 96 logical cpu.
 The memory of this server is 252G.
 ```
 
-### 目录内容查看
+### 看下目录下都有什么 {#directpry_show}
 
 通常登陆后直接进入家目录，下面大部分操作也是在家目录下完成的。如果想查看当前目录下都有什么内容，输入命令 `ls`，回车即可 (ls可以理解为单词list的缩写)。当前目录下什么也没有，所以没有任何输出。
 
@@ -181,7 +183,7 @@ ct@ehbio:~$ lS
 
 当前目录下只有一个文件，看不出效果，我们可以新建几个文件和文件夹。
 
-### 新建目录
+### 新建一个目录 {#mkdir}
 
 `mkdir`是新建一个目录 (`m`a`k`e a `dir`ectory)；`data`是目录的名字。
 如果目录存在，则会出现提示，"无法创建已存在的目录"。这时可以使用参数`-p`忽略这个错误。
@@ -249,7 +251,7 @@ ct@ehbio:~$ ls -l data
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 test.fa
 ```
 
-### 访问文件
+### 访问文件 {#cat_file}
 
 查看写入的文件的内容，`cat 文件名`；需要注意的是文件所在的目录，默认是当前目录；如下面第一个命令，会提示`cat: test.fa: 没有那个文件或目录`，是因为当前目录下不存在文件`test.fa`。(注意文件末尾的end)
 
@@ -322,7 +324,7 @@ ct@ehbio:~/data$ less test.fa
 # 上下箭头、空格翻页
 ```
 
-### 获取可用命令行参数
+### 查看帮助，获取可用命令行参数 {#com_parameter_help}
 
 前面使用的命令，有几个用到了参数如`ls -l`, `head -n 6`等，需要注意的是命令跟参数之间要有**空格**。
 
@@ -357,7 +359,7 @@ DESCRIPTION
 	
 ```
 
-### 小结 {#a}
+### 小结 {#first_summary}
 
 1. Linux是多用户操作系统。这一点可以从我们每个人能同时登录到同一台Linux电脑各自进行操作而不相互干扰可以体会出来。大家可以尝试下是否可以看到其它人家目录下的东西。我们后期在**权限管理**部分会涉及如何开放或限制自己的文件被他人访问。
 
@@ -367,7 +369,7 @@ DESCRIPTION
 
 4. 访问一个文件需要指定这个文件的路径，当前目录下的文件可省略其路径`./`，其它目录下则需要指定全路径 (可以是相对路径，也可以是绝对路径)。
 
-### 练习题
+### 做个小测试 {#first_exercise}
 
 1. 在家目录下新建文件夹`bin`和`soft`。
 2. 在`bin`和`soft`目录下各自新建一个文件，名字都是`README`。
@@ -377,7 +379,7 @@ DESCRIPTION
 
 ## Linux下文件操作 {#fileoperation}
 
-### 文件上下翻转和左右翻转
+### 文件按行翻转和按列翻转 {#tac_rev}
 
 两个有意思的命令，`tac`: 文件翻转，第一行变为最后一行，第二行变为倒数第二行；`rev`每列反转，第一个字符变为最后一个字符，第二个字符变为倒数第二个字符。
 
@@ -399,14 +401,14 @@ edcba
 zyx
 ```
 
-### 其它新建文件的方式
+### 新建文件的n种方式 {#new_file}
 
 `nano`类似于Windows下记事本的功能，`nano filename`就可以新建一个文件，并在里面写内容；`ctrl+x`退出，根据提示按`Y`保存。
 
 `vim` 功能更强大的文本编辑器。`vim filename`就可以新建一个文件, 敲击键盘字母`i`，进入写作模式。写完后，敲击键盘`Esc`, 退出写作模式，然后输入`:w` (会显示在屏幕左下角)，回车保存。`vim`的常用方法，后面会有单独介绍。
 
 
-### 文件拷贝、移动、重命名
+### 文件拷贝、移动、重命名、软链 {#file_cp_mv_rename_link}
 
 常用的文件操作有移动文件到另一个文件夹、复制文件到另一个文件夹、文件重命名等。
 
@@ -627,7 +629,7 @@ ct@ehbio:~/ehbio_project$ touch tmp/b
 ct@ehbio:~/ehbio_project$ rm -rf tmp
 ```
 
-### Linux下命令的一些异常情况
+### Linux下命令的一些突发事故 {#linux_abnormal}
 
 **命令不全**：在命令没有输入完 (引号或括号没有配对)，就不小心按下了`Enter`键，终端会提示出一个`>`代表命令不完整，这是可以继续输入，也可以`ctrl+c`终止输入，重新再来。(下面sed命令使用时，还有另外一种命令不全的问题)
 
@@ -686,7 +688,7 @@ CAGGACAGGAGCTA
 end
 ```
 
-### Linux下文件内容操作
+### 了解和操作你的文件 {#file_op_gzip_wc}
 
 常用的文件内容操作有文件压缩解压缩、文件大小行数统计、文件内容查询等。
 
@@ -795,7 +797,7 @@ CAGGACAGGAGCTA
 end
 ```
 
-### 小结和练习
+### 小结和练习 {#second_exercise}
 
 1. Linux下文件拷贝、移动、重命名、软连接、压缩、替换等操作。
 2. Linux下常见问题
@@ -1032,7 +1034,7 @@ cccccg
 
 ## Linux文件内容操作 {#filecontent}
 
-### 文件生成
+### 命令组合生成文件 {#generate_file_seq}
 
 `seq`: 产生一系列的数字; `man seq`查看其具体使用。我们这使用`seq`产生下游分析所用到的输入文件。
 
@@ -1073,7 +1075,7 @@ ct@ehbio:~$ cat test
 15
 ```
 
-### 文件排序
+### 文件排序原来有暗仓 {#sort_par}
 
 `sort`: 排序，默认按字符编码排序。如果想按数字大小排序，需添加`-n`参数。
 
@@ -1232,7 +1234,12 @@ a	3
 
 ```
 
-### FASTA序列提取
+两个暗仓：
+
+1. sort默认文件列分隔符是所有空字符，若同时存在<tab>和<space>会有非预期结果。
+2. `sort -t '\t'`是错误用法，TAB键的正确输入方式是：先按<ctrl+v>再按<tab>。
+
+### 实战FASTA序列提取 [#fasta_extract}
 
 生成单行序列FASTA文件，提取特定基因的序列，最简单的是使用`grep`命令。
 
@@ -1363,13 +1370,13 @@ ct@ehbio:~$ awk 'BEGIN{OFS=FS="\t"}{if($0~/>/) {name=$0; sub(">", "", name);} \
 ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGAC
 ```
 
-## Linux下的查找命令
+## Linux下的查找命令 - 文件哪里跑 {#linux_search}
 
 查找是我们每天都在做的事情，早上醒来找下手机，出门之前查下公交，坐下之后查下资料，分析数据查下模式。
 
 查找文件，查找信息，查找错误是应用起来更为具体的一些工作，而Linux命令行为我们提供了很多快捷强大的查找方式。
 
-### 命令/可执行程序查找
+### 命令/可执行程序查找 - 定位脚本的位置 {#seach_cmmand}
 
 `whereis program_name`: 会在系统默认安装目录(一般是有root权限时默认安装的软件)和`$PATH`, `$MANPATH`指定的目录中查找二进制文件、源码、文档中包含给定查询关键词的文件。(默认目录有 `/bin`, `/sbin`, `/usr/bin`, `/usr/lib`, `/usr/local/man`等类似路径)
 
@@ -1393,7 +1400,7 @@ ct@ehbio:~$ which bwa2
 /usr/bin/which: no bwa2 in (/home/usr/bin:/bin:/soft/bin/)
 ```
 
-### 普通文件快速定位 locate
+### locate普通文件快速定位 {#locate}
 
 `locate`是快速查找定位文件的好方法，但其依赖于`updatedb`建立的索引。而`updatedb`一般是每天运行一次，所以当天新建的文件是索引不到的。如果有根用户权限，可以手动运行`updatedb`做个更新，然后再`locate bwa`。(个人用户也可以构建自己的`updatedb`, 使用`locate`在局部环境中查找。)
 
@@ -1402,7 +1409,7 @@ ct@ehbio:~$ locate R.sys
 /soft/R.sys
 ```
 
-### 普通文件多条件查找 find
+### find让文件无处可逃 find {#find}
 
 `find / -name bwa`可以搜索根目录下所有名字为bwa的文件
 
@@ -1422,7 +1429,7 @@ ct@ehbio:~$ find / -name R 2>/dev/null
 /usr/local/lib64/R/bin/R
 ```
 
-#### 按时间查找
+#### 按时间查找 {#find_by_time}
 
 我们开发的在线画图网站 ([www.ehbio.com/ImageGP](http://mp.weixin.qq.com/s/pTHHqxuf0y1MCCCBaZjt9A))，为了追踪每天用户使用时碰到了什么问题，需要每天定时去查看日志。
 
@@ -1451,7 +1458,7 @@ ct@ehbio:/log# find . -name *.log -mtime -1 | head
 慢慢发现有空日志文件, 使用`find . -name *.log -newer check -size +0`过滤掉, 只保留大小大于0的文件。就这样在小伙伴聪明勤奋地维持下，我们绘图网站为**7万**多用户提供了近**100万**次服务 ([画图手册 | ImageGP：今天你“plot”了吗？](https://mp.weixin.qq.com/s/ekTLcXSJh14Bm3PtVc9Mpg))。
 
 
-#### 按类型和大小查找
+#### 按类型和大小查找 {$find_by_type_size}
 
 如果我想得到当前目录下所有`png`和`jpg`照片呢？ 
 
@@ -1462,13 +1469,13 @@ ct@ehbio:/log# find . -name *.log -mtime -1 | head
 
 `find . -type f -size +100G`可以获取大小超过100G的文件。
 
-#### 限制查找深度
+#### 限制查找深度 {#find_maxdepth}
 
 只看当前目录2层子目录内的文件`find . -maxdepth 2 -name *.log`。
 
 查看不是`log`结尾的文件`find . -not -name *.log`。还有更多组合操作，详见find文档。
 
-### 按文件内容查找 grep
+### 按文件内容查找 grep {#grep_file}
 
 find可以查找包含某句话的文件吗？ 还是拿我们的日志说事吧，`find . -name *.log -exec grep -l 'Error' {} \;`就可以返回所有包含`Error`单词的文件名。
 
@@ -1514,7 +1521,7 @@ grep强大的功能是支持正则匹配，默认使用基本正则表达式，`
 
 
 
-## 一句话加速grep近30倍
+## 一句话加速grep近30倍 {#grep_faster}
 
 最近做一个项目，需要从表达矩阵中提取单个特定基因的表达值。最开始时文件比较小，使用`awk`单个读取处理也很快，但后来数据多了，从一个`1.2 G`的文件中提取单个基因的表达需要`30 s`，用`grep`来写需要`25 S`，这在平时写程序是可以接受的，但在网站上是接受不了的。所以就想着如何优化一下。
 
@@ -1522,7 +1529,7 @@ grep强大的功能是支持正则匹配，默认使用基本正则表达式，`
 
 下面是整个探索过程 （写这篇总结文章是在早晨，服务器不繁忙，所以下面的示例中只能看出来快了`5`倍左右。这也表明不加`LC_All=C`时`grep`受服务器负载影响较大，加了之后则几乎不受影响。）
 
-### 获取单基因表达量
+### 获取单基因表达量 {#grep_single_gene}
 
 查看下文件大小
 
@@ -1633,7 +1640,7 @@ user	0m0.679s
 sys	0m0.334s
 ```
 
-### 那如果获取多个基因怎么操作呢？
+### 那如果获取多个基因怎么操作呢？{#grep_multiple_gene}
 
 一个方式是使用正则表达式，多个基因一起传递过去，分别匹配，耗时`4.6 s`。
 
@@ -1676,7 +1683,7 @@ sys	0m2.787s
 * https://www.inmotionhosting.com/support/website/speed-up-grep-searches-with-lc-all/
 * https://stackoverflow.com/questions/42239179/fastest-way-to-find-lines-of-a-file-from-another-larger-file-in-bash#
 
-## 命令运行监测
+## 监控程序的运行时间和资源占用 {#top}
 
 1. 监测命令的运行时间 `time command`
 

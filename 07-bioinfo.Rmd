@@ -1,4 +1,4 @@
-# Bioinfo questions
+# 生物信息中Linux命令练习 {#bioinfo_linux}
 
 ```{r}
 answer=T
