@@ -128,7 +128,7 @@ ct@ehbio:~$ run.sh
 
 这就涉及到**环境变量**的概念，通俗的讲，环境变量就是告诉电脑 (实际是操作系统)几个目录。这几个目录下存储又可执行文件，如前面显示的`/usr/bin`目录，大部分的系统命令都在这个目录下。
 
-## PATH和path，傻傻分不清
+## PATH和path，傻傻分不清 {#PATH_path_which}
 
 习惯了Windows电脑下的所见即所得，找到程序或文件双击即可运行或打开；于是我们被惯得以为电脑会像人一样聪明，给他一个名字就可以运行程序或打开文件；于是在命令行下或程序里不断碰壁，为啥这个命令不运行了呢？
 
@@ -299,7 +299,7 @@ export PATH=/home/YSX/soft/anaconda/bin:$PATH:/home/YSX/train/metagenome/:/home/
 
 文件输入后，不要忘记`source ~/.bash_profile`使设置生效（当然，关掉登录窗口，再次登录也可以）。
 
-### 其它被忽略的事情
+### 小事也不能忽略 {#last_but_not_least}
 
 2. 其它环境变量 
    * 环境变量PATH：定义可执行程序的目录
@@ -318,7 +318,7 @@ export PATH=/home/YSX/soft/anaconda/bin:$PATH:/home/YSX/train/metagenome/:/home/
 
 不同于windows，Linux下软件安装的方式比较多样，有些也比较复杂。每种安装方式都有自己的优点和局限，也都有可能遇到问题。在我们理解了原理之后，借助谷歌，可以更好地帮助解决问题。
 
-### 系统包管理器安装
+### 系统包管理器安装 {#system_package}
 
 软件安装最方便的、一般也不容易出问题的是利用系统自带的包管理工具，可以解决大部分的依赖问题。
 
@@ -338,9 +338,9 @@ yum search soft_official_name
 2. 如果系统版本老，安装的软件版本也会比较老。使用新版本有时又会发生冲突。
 3. 生物信息学中不少软件不在系统的安装源里面。
 
-### 下载二进制文件
+### 下载二进制文件 {#binary}
 
-解决这些问题，就需要自己去软件官网查找最新的分法包，又有两种可能，一种是分发包直接就是编译好的软件，下载下来设置下可执行属性并放入环境变量就可以运行了，如于`blast`或`bowtie`这样的工具。
+解决这些问题，就需要自己去软件官网查找最新的分发包，又有两种可能，一种是分发包直接就是编译好的软件，下载下来设置下可执行属性并放入环境变量就可以运行了，如于`blast`或`bowtie`这样的工具。
 
 blast的链接为<ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz>。
 
@@ -356,7 +356,7 @@ ln -s `pwd`/* ~/bin
 
 另一种则是需要从源码编译安装，下面主要讲解下这个。
 
-### 源码编译安装
+### 源码编译安装 {#configure_make_install}
 
 源码编译经典的三部曲`configure`, `make`, `make install`。如果不出问题，一步步执行下来就安装好了，也不一定要知其所以然。但出了问题，就不是比较容易解决的。如果知道这背后的机制，还是会有帮助的。
 
@@ -429,7 +429,7 @@ knitr::kable(emboss, booktabs=T, caption="Popular applications of EMBOSS.")
 	* 如果使用的还是系统默认的python，则需要检查下环境变量的设置，尤其前面提到的环境变量里面不同目录放置的顺序。
 
 
-### Anaconda的两个福利
+### Anaconda的两个福利 {#anaconda_fear}
 
 1. 头文件和库文件库
 
@@ -465,11 +465,11 @@ libasan.so               libmkl_avx.so         libQtSql.so.4.8.7
 bioconda生物分析软件安装的通道，后面专门介绍。
 
 
-### R和R包的安装
+### R和R包的安装 {#R_install}
 
 见[R系列教程](http://www.ehbio.com/Bioinfo_R_course)。
 
-### Perl包的安装
+### Perl包的安装 {#perl_package}
 
 ```
 # 假设~/bin已在环境变量中
@@ -505,7 +505,7 @@ bash Miniconda2-latest-Linux-x86_64.sh -b -f -p ${soft}
 安装完成之后，记得把安装路径下的`bin`文件夹加入到环境变量中 (上面命令中我们已经帮您加进去了)。
 
 
-### Conda基本使用
+### Conda基本使用 {#conda_basic}
 
 在Conda安装配置好之后，就可以使用了。
 
@@ -582,7 +582,7 @@ conda install -h #查看install子命令的帮助
 
 只是这些命令就可以省去不少安装的麻烦了，但是如果软件没搜索到呢？
 
-### Conda的channel
+### Conda的channel {#conda_channel}
 
 Conda默认的源访问速度有些慢，可以增加国内的源；另外还可以增加几个源，以便于安装更多的软件，尤其是`bioconda`安装生信类工具。`conda-forge`通道是Conda社区维护的包含很多不在默认通道里面的通用型软件。`r`通道是向后兼容性通道，尤其是使用`R3.3.1`版本时会用到，现在则不需要单独添加了。后加的通道优先级更高，因此一般用下面列出的顺序添加。清华镜像具体见<https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/> (有时清华镜像也不稳定，不稳定时直接用官方镜像，早上下载速度还是好的)。
 
@@ -622,7 +622,7 @@ channels:
   - r
 ```
 
-### 创建不同的软件运行环境
+### 创建不同的软件运行环境 {#conda_environment}
 
 这是`Conda`最有特色的地方，可以通过创建不同的环境，同时运行不同软件的多个版本。
 
@@ -766,11 +766,11 @@ conda env list
                          /anaconda3/envs/qiime2-2020.6
 ```
 
-### 移除某个conda环境
+### 移除某个conda环境 {#remove_conda}
 
 如果环境不需要了，或出了错，则可以移除。比如需要移除`phylo`环境，执行`conda remove -n phylo --all`。
 
-### Conda配置R
+### Conda配置R {#conda-R}
 
 在添加了不同的源之后，有些源更新快，有些更新慢，经常会碰到版本不一的问题。而且软件版本的优先级，低于源的优先级。保险期间，先做下搜索，获得合适的版本号，然后再选择安装。
 
@@ -827,7 +827,7 @@ conda install -c r -n r r-essentials=1.6.0
 `R`会安装于`conda_path/envs/r/bin`中，软链到位于环境变量的目录中即可正常使用。这就是环境变量的活学活用。
 
 
-### Conda环境简化运行
+### Conda环境简化运行 {#conda_simple}
 
 为了方便不同环境里面程序的运行，我写了一个shell脚本 (`conda_env_run.sh`)，具体运行如下：
 
@@ -919,11 +919,11 @@ ${command_cmd}
 source deactivate ${environment}
 ```
 
-### Conda环境备份
+### Conda环境备份 {#conda_bak}
 
 有的时候会出现装一个新包，装着装着就把当前环境搞装崩了的情况，所以备份一个环境还是必要的，`conda create -n python35copy --clone python35`，把`python35`备份为`python35copy`。
 
-### Conda环境导出和导入
+### Conda环境导出和导入 {#conda_import}
 
 做培训时需要给参加培训的老师提供配置环境的脚本，之前都是提供一个`Bash`文件全部运行下来就可以完成整个环境的配置，更简单的方式是可以导出环境，自己配置时再导入就好了。
 
@@ -937,7 +937,7 @@ conda env export --file ehbio_env.yml --name ehbio
 conda env create -f ehbio_env.yml
 ```
 
-### Conda软件安装 core dump error/Segment fault/段错误 怎么办
+### Conda软件安装 core dump error/Segment fault/段错误 怎么办 {#cond_segment_fault}
 
 ```
 # 清空缓存
@@ -946,11 +946,11 @@ conda clean -a
 ```
 
 
-### Conda为什么越来越慢？
+### Conda为什么越来越慢？{#conda_slow}
 
 Conda中包含的软件越来越多，而且软件的不同版本都保留了下来，软件的索引文件越来越大，安装一个新软件时搜索满足环境中所有软件依赖的软件的搜索空间也会越来越大，导致`solving environment`越来越慢。
 
-### Conda是如何工作的
+### Conda是如何工作的 {#conda_how_work}
 
 1. 从设定的通道 (`channel`)处下载通道中所有软件的索引信息 (`repodata.json`) (*Collecting package metadata (repodata.json)*)
 
@@ -976,12 +976,12 @@ Conda中包含的软件越来越多，而且软件的不同版本都保留了下
 3. 采用`SAT-solver`算法决定需要下载包的哪个版本和它们的安装顺序
 4. 下载并安装包
 
-### Conda哪一步慢？
+### Conda哪一步慢？ {#cond_which_step_slow}
 
 主要是第`3`步，确定待安装包的依赖包之间的兼容和已安装软件之间的兼容，获得需要下载的包和对应版本。
 
 
-### 如何提速Conda
+### 如何提速Conda {#cond_accelarate}
 
 
 * 采用最新版的`conda` (Conda4.7相比Conda4.6提速**3.5**倍, Conda 4.8应该不会比4.7慢)
@@ -1032,7 +1032,7 @@ Conda中包含的软件越来越多，而且软件的不同版本都保留了下
 
 * 综合以上组合，之前尝试多次都没安装好的工具，直接搞定。
 
-### 下载提速
+### 下载提速 {#conda_downlaod_fast}
 
 1. 国内镜像，见*[软件安装不上，可能是网速慢！Conda/R/pip/brew等国内镜像大全拿走不谢~~](https://mp.weixin.qq.com/s/eIw-k6RcR5KQFbrNmBsWBw)*
 2. 换个网或从朋友处拷贝已经下载好的压缩包一般在`anaconda_root_dir/pkgs`下，拷贝放在自己的`anaconda3/pkgs`下面，再次下载时系统会识别已经下载好的包而跳过 (并不总是有效)。
@@ -1060,7 +1060,7 @@ Conda中包含的软件越来越多，而且软件的不同版本都保留了下
    
 4. 如果拷贝过来未能自动识别，可手动安装 `conda install --offline local_path`。
 
-### 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统)
+### 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统) {#conda_pack}
 
 安装`conda-pack`
 
@@ -1097,9 +1097,9 @@ source deactivate
 ```
 
 
-## Docker安装
+## Docker安装 {#docker}
 
-### Docker能做什么
+### Docker能做什么 {#docker_what}
 
 The key benefit of Docker is that it allows users to package an
 application with all of its dependencies into a standardized unit for
@@ -1113,7 +1113,7 @@ software development.
 * 提供一个系统资源分配手段，给不同用户的程序分配独立的计算资源。
 
 
-### Docker的几个基本概念
+### Docker的几个基本概念 {#docker_basic}
 
 * 镜像 (Images): 可以认为是超级轻量级的虚拟机的快照。
   镜像会有自己的唯一ID，名字和标签，比如`ubuntu:latest`, `django:1.6`等。
@@ -1145,7 +1145,7 @@ software development.
   那么我们可以在网络服务器容器 (webserver)中通过指定端口连接dbapp与数据库容器通讯。
 
 
-### 安装和配置
+### 安装和配置 {#docker_install}
 
 * Centos 6.5 安装Docker
 
@@ -1175,7 +1175,7 @@ software development.
   apt-get install docker.io
   ```
 
-### Docker用户权限
+### Docker用户权限 {#docker_priviledges}
 
 默认情况下，Docker命令的运行需要根用户权限。一个解决办法是把用户加入
 `docker`用户组，原因是Docker能够将`/run/docker.socket`的文件权限设为
@@ -1214,7 +1214,7 @@ username   ALL=(ALL)  NOPASSWD: /bin/docker_container1
 更多权限设置见<http://dockone.io/article/589>
 
 
-### Docker试用
+### Docker试用 {#docker_try}
 
 * 查看本地Docker的信息 `docker info`
 * 运行Docker需要有一个镜像和容器。镜像是容器的只读版本，
@@ -1313,7 +1313,7 @@ apt-get install toliet
 * 其它用户可以使用 `docker pull username/ubuntu-dev:v1`来获取安装好编
   译环境的ubuntu系统了。
   
-### Docker系统基本操作
+### Docker系统基本操作 {#docker_basic_operation}
 
 * 当一个容器不再使用时，运行`docker rm container_id`移除容器，以节省空间。
   这不会对镜像造成影响。
@@ -1365,7 +1365,7 @@ bedff16caee9   7 months ago        /bin/sh -c #(nop) ENV  PHP_UPLOAD_MAX_FILESIZ
 docker logs --tail=all container_id
 ```
 
-### 使用Dockerfile自动构建镜像
+### 使用Dockerfile自动构建镜像 {#Dockerfile}
 
 除了可以像上面那样一步步地获取镜像、修改容器、存储镜像、上传镜像等操作外，
 我们还可以使用Dockerfile自动实现上述操作。
@@ -1392,7 +1392,7 @@ CMD ["rc-service apache2 start"]
 最后的`.`表示Dockerfile在当前目录，也可指定其他目录。`public_html`必须
 与Dockerfile在同一目录。
 
-### Docker的特征
+### Docker的特征 {#docker_single_process}
 
 * Docker will watch only one single process. 
   If you need multiple processes, 
@@ -1400,7 +1400,7 @@ CMD ["rc-service apache2 start"]
   [Supervisor](http://supervisord.org/) at the top-level to take
   care of the others. But this is not recommended.
 
-### Docker使用注意
+### Docker使用注意 {#docker_attention}
 
 * 避免安装不必要的软件包。
 
@@ -1408,7 +1408,7 @@ CMD ["rc-service apache2 start"]
 
 * 最小化层：每执行一个命令，都会产生一个层。
 
-## Makefile知识
+## Makefile知识 {#makefile}
 
 Makefile通常的格式和布局如下，有兴趣的可以自己去学，或者我们再出一个教程。
 
@@ -1443,7 +1443,7 @@ echo "compile all"
 compile all
 ```
 
-### 参考
+### 参考 {#docker_ref}
 
 * 入门级 <http://blog.saymagic.cn/2015/06/01/learning-docker.html>
 
