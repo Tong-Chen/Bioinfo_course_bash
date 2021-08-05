@@ -1073,6 +1073,9 @@ conda install -c conda-forge conda-pack
 
 ```
 conda pack -n my_env_name -o my_env_name.tar.gz
+
+# 如果有多个同名环境，可指定目录打包
+# conda pack -p /path/my_env_name -o my_env_name.tar.gz
 ```
 
 拷贝打包好的环境`my_env_name.tar.gz`到目标机器，并解压到任何目录，一般推荐放到`envs`目录下 `(anaconda_root/envs)`。(注意：*anaconda_root*改为自己的conda安装路径。)

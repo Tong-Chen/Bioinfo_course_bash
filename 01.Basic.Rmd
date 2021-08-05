@@ -880,6 +880,54 @@ CAGGACAGGAGCTA
 end
 ```
 
+## Linux 命令中的特殊符号 {#linuxSpecialSymbols}
+
+Linux命令中有一些常用符号，看到时不一定好查询它们的功能和含义，这里列举一些常见的符号和解释，欢迎大家补充完善。
+
+`|`: 管道符，在两个相邻命令之间传递数据；如`ls | head`把`ls`命令的输出传给`head`命令，只显示前10个文件/文件夹。
+
+`*`: 通配符，通常用于匹配任意字符串，如`ls *.fq.gz`匹配当前目录下所有后缀为`.fq.gz`的文件，前缀可以是任何字符。
+
+`~`: 波浪线，指代家目录。键盘左上角`ESC`下的按键，配合`Shift`输入。
+
+`.`: 通常指代当前目录，如`./run.sh`运行当前目录下的`run.sh`脚本；` multiqc -d . -o multiqc`对当前目录下的文件执行`multiqc`汇总。
+
+`>`: 输出重定向。`ls > filename`把`ls`的输出结果写入文件`filename`。具体见[Linux学习 - 管道、标准输入输出](https://mp.weixin.qq.com/s/zL9Mw_2ig48gHrIjKM0CMw)。
+
+`<`: 输入重定向。`paste <(ls *_1.fq.gz) <(ls *_2.fq.gz)`把两个`ls`命令的输出传递给`paste`作为其输入。具体见[Linux学习 - 管道、标准输入输出](https://mp.weixin.qq.com/s/zL9Mw_2ig48gHrIjKM0CMw)。
+
+`^`: 用于正则表达式中表示以什么开头。`grep '^>' test.fa`获得所有`>`开头的行，也就是FASTA文件的名字行。`sed 's/^>//g'`替换开头的`>`为空，第一个和第二个`/`之间的为被替换的内容，第二个和第三个`/`之间的为要被替换成的内容。
+
+*注意*：`grep '>' file`和`grep > file`的区别。
+
+`` ` ``: 反引号，键盘左上角`ESC`下的按键。`` `ls` ``表示运行`ls`命令并捕获其输出。
+
+`$(ls)`: 等同于`` `ls` ``表示运行`ls`命令并捕获其输出。与把命令括在反引号中基本相似，但更推荐使用。个人是习惯了反引号了，少打一个字符。新学习时可直接使用此种方式。
+
+`;`: 多条语句写在一行需要加分号分割。如 `` for samp in `tail -n +2 sampleFile | cut -f 1`; do ${samp}_related_things; done`` 用分号分割开3个语句。循环 `` `tail -n +2 sampleFile | cut -f 1` ``的输出并进行一系列样品相关的操作。
+
+
+`$`或`${}`: 用于获取变量的值。如上面的`${samp}`。加和不加`{}`的通常无区别，但在一些情况会导致变量名字识别出错。如`${samp}_related_things`表示获取变量`samp`的值，而`$samp_related_things`表示获取变量`samp_related_things`的值。
+
+`\t`: TAB键
+
+`\n`: 换行
+
+`\r` `^M`: 回车符; `^M`的输入方式是`Ctrl+v;Ctrl+m`; 通常`windows`下的文件拷贝到`linux`系统上，需要执行`sed -i s/\r//g file`去掉末尾的回车符。
+
+`awk`中的`$0, $1`: `$0`表示整行，`$1`表示当前行第一列，`$2`表示当前行第二列，以此类推。
+
+`''`与`""`： 单引号和双引号通常混用，但双引号中的变量可以获取其值。
+
+`&`: 把程序放到后台运行，具体见[耗时很长的程序忘加nohup就运行了怎么办？](https://mp.weixin.qq.com/s/kt_e-DCq7xBfh9tTCJinZQ)章节。
+
+`\\`: 通常是转义符，把特殊变量转义为普通字符，如`${HOME}`表示获取家目录，`\${HOME}`就是一个字符串`${HOME}`。`\\`用于行尾时表示该行命令还未结束，后面还有跟随的命令语句，常用于命令太长一行写不下时。
+
+`a="a value"`: 等号用于bash中变量赋值时，前后都不能有空格。
+
+`<<`: 表示读入数据，具体见[Linux学习 - 管道、标准输入输出](https://mp.weixin.qq.com/s/zL9Mw_2ig48gHrIjKM0CMw)。
+
+
 
 ## Linux下的标准输入、输出、重定向、管道 {#stdinoutpipe}
 
