@@ -1733,6 +1733,144 @@ sys	0m2.787s
 * https://www.inmotionhosting.com/support/website/speed-up-grep-searches-with-lc-all/
 * https://stackoverflow.com/questions/42239179/fastest-way-to-find-lines-of-a-file-from-another-larger-file-in-bash#
 
+## Linux下的批量操作
+
+通常情况下我们的处理是针对多个样品的，比如多样品质控、多样品比对、多样品定量等。这时就需要用到循环来简化、优化计算了。
+
+假如我们有一个命令如下（这是群里的提问，这条命令是把质量值编码 Phred64 转为 Phred 33）
+
+```
+# 输入文件 sample1.fq
+# 输出文件 sample1_33.fq
+vsearch --fastq_convert sample1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample1_33.fq 
+```
+
+这条命令可以处理单个文件，假如有 3 个文件呢？这难不倒勤奋的小能手。
+
+把命令写 3 遍，改6 次样本名。
+
+```
+# 输入文件 sample1.fq
+# 输出文件 sample1_33.fq
+vsearch --fastq_convert sample1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample1_33.fq 
+vsearch --fastq_convert sample2.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample2_33.fq 
+vsearch --fastq_convert sample3.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample3_33.fq 
+```
+
+如果有 100 个文件呢？把命令写 100 遍，改200 次样本名。
+
+倒也不是太难的事！
+
+但应该有好一点的办法。
+
+这就用到我们前面提到的`for`循环了。`for`循环有个固定格式`for .. in .. do .. done`，我们看看是怎么工作的。
+
+```
+for i in `seq 1 3`; do echo $i; done
+```
+
+这个命令本身没啥意义，只是展示`for`的语法，变量`i`依次被赋值为了`1,2,3`，并且打印了出来，输出为：
+
+```
+1
+2
+3
+```
+
+假如你的样本名正好是`sample1`, `sample2`, `sample3`，那可以套用下。
+
+```
+for i in `seq 1 3`; do echo "sample"$i".fq"; done
+```
+
+输出为 各个样本的测序结果文件名
+
+```
+sample1.fq
+sample2.fq
+sample3.fq
+```
+
+这样就通过命令的方式实现了各个样本文件的遍历。下一步，怎么把上面转换编码格式的命令套进来呢？
+
+```
+# 把变量 i 把每次循环获得的值转换为样本名字
+for i in `seq 1 3`; do vsearch --fastq_convert "sample"$i".fq" --fastq_ascii 64 --fastq_asciiout 33 --fastqout "sample"$i"_33.fq"; done 
+```
+
+这个代码写好了，对不对呢，可以打印一下看看：
+
+
+```
+# 命令前加一个 echo
+for i in `seq 1 3`; do echo vsearch --fastq_convert "sample"$i".fq" --fastq_ascii 64 --fastq_asciiout 33 --fastqout "sample"$i"_33.fq"; done 
+```
+
+打印出来，与前面自己手写的比较下，一模一样。这样就实现了循环了，去掉 `echo` 就可以实际运行了。
+
+```
+vsearch --fastq_convert sample1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample1_33.fq
+vsearch --fastq_convert sample2.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample2_33.fq
+vsearch --fastq_convert sample3.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout sample3_33.fq
+```
+
+假如样本名没有统一的规律，或者更复杂一些呢？
+
+一般是需要准备一个`metadata.txt`的文件，里面至少包含两列信息，`样本名字`和`样本分组`。
+
+需要注意的是：*metadata.txt中样本名字需要与样本的测序结果文件存在统一的对应关系*
+
+```{r}
+knitr::include_graphics("image/sampleName.jpg")
+```
+
+假如我们有4个样品，名字如下，我们写一个`metadata.txt`文件 (这里我们只用到了第一列)：
+
+```
+Sample      Group
+WT1      WT
+WT2      WT
+KO1      KO
+KO2      KO
+```
+
+对应的序列分别为`WT1.fq`, `WT2.fq`, `KO1.fq`, `KO2.fq`。
+
+```
+# 命令前加一个 echo
+for i in `tail -n +2 metadata.txt | cut -f 1`; do echo vsearch --fastq_convert $i".fq" --fastq_ascii 64 --fastq_asciiout 33 --fastqout $i"_33.fq"; done 
+```
+
+输出如下，可以直接拷贝运行，或去掉上面语句中的`echo`就可以直接运行了。
+
+```
+vsearch --fastq_convert WT1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout WT1_33.fq
+vsearch --fastq_convert WT2.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout WT2_33.fq
+vsearch --fastq_convert KO1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout KO1_33.fq
+vsearch --fastq_convert KO2.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout KO2_33.fq
+```
+
+`for`语句用起来方便，但样品多时只能所有样品串行运行或同时并行运行（当然也可能可以用`wait`控制并行的数量）。这里推荐另外一个工具`rush`, 这是重庆医科大学沈伟博士开发的一个并行工具，<https://github.com/shenwei356/rush>，很好用。跨平台，免安装，下载即可用。
+
+```
+tail -n+2 metadata.txt | cut -f1 | rush -j 2 \
+      "echo vsearch --fastq_convert {1}.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout {1}_33.fq"
+```
+
+运行输出如下，除了命令顺序有变化，看上去与`for`没什么不同。关键参数有 2 个：
+
+1. `-j 2`表示同时运行 2 个样本，所以下面的输出顺序才有些乱；如果去掉 `echo`，会发现同时有 2 个样本正在转换。当然这里的 2 可以改为任意非 0 的正数，控制同时运行的命令数目。
+2. `{1}`: 样本名会替换在这里。
+
+```
+vsearch --fastq_convert WT1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout WT1_33.fq
+vsearch --fastq_convert WT2.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout WT2_33.fq
+vsearch --fastq_convert KO2.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout KO2_33.fq
+vsearch --fastq_convert KO1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout KO1_33.fq
+```
+
+如果你习惯用`parallel`也可以。
+
 ## 监控程序的运行时间和资源占用 {#top}
 
 1. 监测命令的运行时间 `time command`
