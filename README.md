@@ -53,9 +53,7 @@
 * [软件安装不上，可能是网速慢！Conda/R/pip/brew等国内镜像大全拿走不谢~~](https://mp.weixin.qq.com/s/eIw-k6RcR5KQFbrNmBsWBw)
 * [耗时很长的程序忘加nohup就运行了怎么办？](https://mp.weixin.qq.com/s/kt_e-DCq7xBfh9tTCJinZQ)
 
-![](http://www.ehbio.com/ehbio_resource/Linux_course.png)
 
-视频课程地址：<https://ke.qq.com/course/288048?tuin=20cd7788>
 
 
 
