@@ -1,5 +1,5 @@
 bookdown::pdf_book:
-  template: ehbio/ehbio.latex
+  template: template.latex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
