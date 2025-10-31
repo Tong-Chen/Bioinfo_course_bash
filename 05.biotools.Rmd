@@ -46,33 +46,33 @@ Chromosome/scaffold name | Start (bp) | End (bp) | Score | Feature Type
 
 1. 进入Ensembl主页后点击**BioMart**
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/1.png)
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/1.png)
 
 2. 使用下拉框-`CHOOSE DATASET`- 选择数据库，我们选则**Ensembl Genes 93**；这时出现新的下拉框-`CHOOSE DATASET`- ，选择目的物种，以**Human gene GRCh38.p12**为例。如果自己实际操作，需要选择自己的数据常用的基因组版本。如果没有历史包袱，建议选择**GRCh38**最新版。
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/2.png)
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/2.png)
 
 3. 选择数据库后，点击Filters对数据进行筛选，如果是对全基因组进行分析可不用筛选, **略过不填**。
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/3.png)   
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/3.png)   
 
 4. 点击**Attributes**，在GENE处依次选择1-6列的内容，勾选顺序便是结果矩阵中每列的顺序。
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/4.png)   
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/4.png)   
 
 5. 如上图中所示，点击**results**后跳转下载页面，中间展示了部分所选的数据矩阵，确定格式无误后点击**GO**即可下载。
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/5.png) 
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/5.png) 
 
-6. **转录因子结合位点矩阵的下载**类似上面，不过在下拉框-CHOOSE DATASET- 选择数据库时，我们选则**Ensembl Regulation 93**，再选择**Human Binding Motif (GRCh38.p12) **
+6. **转录因子结合位点矩阵的下载**类似上面，不过在下拉框-CHOOSE DATASET- 选择数据库时，我们选择**Ensembl Regulation 93**，再选择**Human Binding Motif (GRCh38.p12) **
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/6.png) 
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/6.png) 
 
 7. 在Attributes处选择需要的信息列，点击**Results**和**GO**进行数据下载
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/7.png) 
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/7.png) 
 
-   ![BioMart](http://www.ehbio.com/ehbio_resource/BioMart/8.png) 
+   ![BioMart](http://www.bic.ac.cn/resource/BioMart/8.png) 
 
 将上述下载的两个文件分别命名为 `GRCh38.gene.bed`和 `GRCh38.TFmotif_binding.bed` ，在Shell中查看一下：
 
@@ -281,24 +281,24 @@ emboss可以使用源码编译安装或用Conda安装，在前面的基础课中
 ```
 # Make sure bioconda channel has added
 # http://blog.genesino.com/2017/09/bioconda/
-ct@ehbio:~$ conda install emboss
-ct@ehbio:~$ url=https://sourceforge.net/projects/primer3/files/primer3/2.3.7/
-ct@ehbio:~$ wget ${url}primer3-2.3.7.tar.gz -O primer3-2.3.7.tar.gz
-ct@ehbio:~$ tar xvzf primer3-2.3.7.tar.gz
-ct@ehbio:~$ cd primer3-2.3.7/src
-ct@ehbio:~$ make all
+ct@ysx:~$ conda install emboss
+ct@ysx:~$ url=https://sourceforge.net/projects/primer3/files/primer3/2.3.7/
+ct@ysx:~$ wget ${url}primer3-2.3.7.tar.gz -O primer3-2.3.7.tar.gz
+ct@ysx:~$ tar xvzf primer3-2.3.7.tar.gz
+ct@ysx:~$ cd primer3-2.3.7/src
+ct@ysx:~$ make all
 # 确保~/bin在环境变量中
-ct@ehbio:~$ ln -s `pwd`/primer3_core ~/bin/primer32_core
+ct@ysx:~$ ln -s `pwd`/primer3_core ~/bin/primer32_core
 
 # Error: thermodynamic approach chosen,  but path to thermodynamic parameters not specified
-ct@ehbio:~$ mkdir /opt/primer3_config
-ct@ehbio:~$ cp -R primer3-2.3.7/src/primer3_config/* /opt/primer3_config
+ct@ysx:~$ mkdir /opt/primer3_config
+ct@ysx:~$ cp -R primer3-2.3.7/src/primer3_config/* /opt/primer3_config
 ```
 
 测试数据
 
 ```
-ct@ehbio:~$ cat <<END >test.fa
+ct@ysx:~$ cat <<END >test.fa
 >comp24_c0_seq1
 TTACTCTCATCCTCCCCTTGTTGAAAGATTGGCTGCAATTGATGAACCCGATAAGAAGGTCAACTAAGAGAAGTGTAC
 TTTTACGCATGGCATGGCATGGCGAGATATGGCTGTAATATGAGTATTATTTTCCTATGTTGCTACCGATATTTTCTA
@@ -311,7 +311,7 @@ END
 设计引物
 
 ```
-ct@ehbio:~$ eprimer32 -sequence test.fa -outfile test.fa.primer \
+ct@ysx:~$ eprimer32 -sequence test.fa -outfile test.fa.primer \
 	-targetregion 0,371 -optsize 20 -numreturn 3 \
 	-minsize 15 -maxsize 25 \
 	-opttm 50 -mintm 45 -maxtm 55 \
@@ -346,14 +346,14 @@ ct@ehbio:~$ eprimer32 -sequence test.fa -outfile test.fa.primer \
 整理引物格式位PrimerSearch需要的格式
 
 ```
-ct@ehbio:~$ awk '{if($0~/EPRIMER32/) {seq_name=$5;count=1;} else \
+ct@ysx:~$ awk '{if($0~/EPRIMER32/) {seq_name=$5;count=1;} else \
 	if($0~/FORWARD PRIMER/) forward=$7; else if ($0~/REVERSE PRIMER/) \
 	{reverse=$7; printf("%s@%d\t%s\t%s\n", seq_name,count,forward, reverse); \
 	count+=1;} }' test.fa.primer >all_primer_file
 ```
 
 ```
-ct@ehbio:~$ cat all_primer_file
+ct@ysx:~$ cat all_primer_file
 comp24_c0_seq1@1        TATTTTCCTATGTTGCTACC    ACTATTAGCTGTAAAGCAAA
 comp24_c0_seq1@2        TATGTTGCTACCGATATTTT    AAGTCTGACTATTAGCTGTA
 comp24_c0_seq1@3        TATGTTGCTACCGATATTTT    AGTCTGACTATTAGCTGTAA
@@ -362,7 +362,7 @@ comp24_c0_seq1@3        TATGTTGCTACCGATATTTT    AGTCTGACTATTAGCTGTAA
 模拟PCR
 
 ```
-ct@ehbio:~$ primersearch -seqall test.fa -infile all_primer_file \
+ct@ysx:~$ primersearch -seqall test.fa -infile all_primer_file \
 	-mismatchpercent 5 -outfile test.database.primerSearch
 ```
 
@@ -397,7 +397,7 @@ Amplimer 1
 
 ```
 # 生成测试数据
-ct@ehbio:~$ cat <<END >generateRandom.awk
+ct@ysx:~$ cat <<END >generateRandom.awk
 BEGIN{srand(seed); seq[0]="A"; seq[1]="C"; seq[2]="G"; seq[3]="T"}
 	{for(i=1;i<=chrNum;i++) 
 		{print ">"label""i; len=(10-int(rand()*10)%2)/10*expected_len; 
@@ -406,19 +406,19 @@ BEGIN{srand(seed); seq[0]="A"; seq[1]="C"; seq[2]="G"; seq[3]="T"}
 	} 
 END
 
-ct@ehbio:~$ echo 1 | awk -v seed=$RANDOM -v label=mm -v chrNum=2 \
+ct@ysx:~$ echo 1 | awk -v seed=$RANDOM -v label=mm -v chrNum=2 \
 			  -v expected_len=40 -f generateRandom.awk >test1.fa
-ct@ehbio:~$ echo 1 | awk -v seed=$RANDOM -v label=hs -v chrNum=2 \
+ct@ysx:~$ echo 1 | awk -v seed=$RANDOM -v label=hs -v chrNum=2 \
 			  -v expected_len=40 -f generateRandom.awk >test2.fa
 ```
 
 ```
-ct@ehbio:~$ cat test1.fa
+ct@ysx:~$ cat test1.fa
 >mm1
 GTATACATCCGTAATCGGATAAAAGCGTACTATGGCG
 >mm2
 TAATTTCCCATGCACTATCACAACCCCTCGGATCAGACGCC
-ct@ehbio:~$ cat test2.fa
+ct@ysx:~$ cat test2.fa
 >hs1
 GCAAACGATTGGCCGGACGTCATCACTCCCCTCCGCGGATG
 >hs2
@@ -429,12 +429,12 @@ CACAGTCCACGCTTTAAACGTACGAACAGACTTCCTT
 # 输出格式见： http://emboss.sourceforge.net/docs/themes/AlignFormats.html
 # Both fa and fq are supported
 # -auto: 关闭弹出选项
-ct@ehbio:~$ needleall -asequence test1.fa -bsequence test2.fa -gapopen 10 -gapextend 0.5 \
+ct@ysx:~$ needleall -asequence test1.fa -bsequence test2.fa -gapopen 10 -gapextend 0.5 \
 	-outfile test12.needle.alignment -auto -aformat3 pair
 ```
 
 ```
-ct@ehbio:~$ cat test12.needle.alignment
+ct@ysx:~$ cat test12.needle.alignment
 ########################################
 # Program: needleall
 # Rundate: Fri 30 Mar 2018 13:49:30
@@ -560,13 +560,13 @@ hs2               33 TCCTT     37
 ```
 
 ```
-ct@ehbio:~$ needleall -asequence test1.fa -bsequence test2.fa -gapopen 10 -gapextend 0.5 \
+ct@ysx:~$ needleall -asequence test1.fa -bsequence test2.fa -gapopen 10 -gapextend 0.5 \
 	-outfile test12.needle.score -auto
 ```
 
 ```
 # 序列1 序列2 比对长度 比对得分
-ct@ehbio:~$ cat test12.needle.score
+ct@ysx:~$ cat test12.needle.score
 mm1 hs1 62 (27.0)
 mm2 hs1 51 (41.0)
 mm1 hs2 51 (26.0)
@@ -579,8 +579,8 @@ mm2 hs2 55 (36.0)
 1. 安装samtools和bedtools
 
 ```
-ct@ehbio:~$ conda install samtools
-ct@ehbio:~$ conda install bedtools
+ct@ysx:~$ conda install samtools
+ct@ysx:~$ conda install bedtools
 ```
 
 2. 产生随机的基因组文件。
@@ -588,10 +588,10 @@ ct@ehbio:~$ conda install bedtools
 ```
 # srand: 随机数发生器。设置固定的种子，保证每次出来的结果一致
 # rand: 返回[0,1)之间的随机数，包含0不包含1
-ct@ehbio:~$ echo 1 | awk -v seed=1 -v label=chr -v chrNum=4 \
+ct@ysx:~$ echo 1 | awk -v seed=1 -v label=chr -v chrNum=4 \
 			  -v expected_len=60000 -f generateRandom.awk >genome.fa
 # 显示前60个碱基
-ct@ehbio:~$ ct@ehbio:~/bio$ head genome.fa | cut -c 1-60
+ct@ysx:~$ ct@ysx:~/bio$ head genome.fa | cut -c 1-60
 >chr1
 GACCCACACTACGAGGCTCCCAACGATCAGGATTCCTATTCCCTCCTCGCTACCGGAAAA
 >chr2
@@ -607,7 +607,7 @@ ACGCCCGTCAATTAGAGGCATTCAAAGACACCCGCCCGTGCTACAATAGGTACTACAACC
 ```
 # -N: 获得40K read pairs
 # mut.txt: 突变位点或区域
-ct@ehbio:~$ wgsim -N 40000 genome.fa ehbio_1.fq ehbio_2.fq > mut.txt
+ct@ysx:~$ wgsim -N 40000 genome.fa ysx_1.fq ysx_2.fq > mut.txt
 ```
 
 ```
@@ -616,7 +616,7 @@ ct@ehbio:~$ wgsim -N 40000 genome.fa ehbio_1.fq ehbio_2.fq > mut.txt
 # 第二行为序列
 # 第三行+开头，后面一般无内容；若有，也是序列名字
 # 第四行，质量值，对应序列中每个碱基的测序准确度
-ct@ehbio:~$ head ehbio_1.fq
+ct@ysx:~$ head ysx_1.fq
 @chr1_17674_18124_2:0:0_2:0:0_0/1
 TCGTTCAGTGGTGGTTACTCGTAGGGTCTTCCATCTGAGGCGGGCGAGCGGACGCCTTTTCTGCCTCCAG
 +
@@ -635,7 +635,7 @@ Col2: position
 Col3: original base
 Col4: new base (IUPAC codes indicate heterozygous)
 Col5: which genomic copy/haplotype 
-ct@ehbio:~$ head mut.txt
+ct@ysx:~$ head mut.txt
 chr1	6274	T	C	-
 chr1	6923	C	Y	+
 chr1	7022	C	Y	+
@@ -647,51 +647,51 @@ chr1	12135	G	R	+
 4. 创建基因组索引
 
 ```
-ct@ehbio:~$ bwa index genome.fa
+ct@ysx:~$ bwa index genome.fa
 # samtools fadix快速获取某区域序列
-ct@ehbio:~$ samtools faidx genome.fa
+ct@ysx:~$ samtools faidx genome.fa
 ```
 
 5. 序列比对回基因组
 
 ```
-ct@ehbio:~$ bwa mem -t 3 genome.fa ehbio_1.fq ehbio_2.fq | gzip >map.sam.gz
+ct@ysx:~$ bwa mem -t 3 genome.fa ysx_1.fq ysx_2.fq | gzip >map.sam.gz
 ```
 
 6. 筛选比对上的高质量reads
 
 ```
-ct@ehbio:~$ samtools view -F4 -q1 -b map.sam.gz -o map.bam
+ct@ysx:~$ samtools view -F4 -q1 -b map.sam.gz -o map.bam
 # 下面2个排序用法都可以，看使用的samtools版本
-ct@ehbio:~$ #samtools sort -@ 2 map.bam map.sortP
-ct@ehbio:~$ samtools sort -@ 2 -o map.sortP.bam map.bam
-ct@ehbio:~$ samtools index map.sortP.bam
+ct@ysx:~$ #samtools sort -@ 2 map.bam map.sortP
+ct@ysx:~$ samtools sort -@ 2 -o map.sortP.bam map.bam
+ct@ysx:~$ samtools index map.sortP.bam
 ```
 
 7. 统计比对reads数
 
 ```
-ct@ehbio:~$ samtools view -c map.sortP.bam
+ct@ysx:~$ samtools view -c map.sortP.bam
 79998
 ```
 
 8. 统计未比对上的reads数
 
 ```
-ct@ehbio:~$ samtools view -c -f 4 map.sam.gz
+ct@ysx:~$ samtools view -c -f 4 map.sam.gz
 ```
 
 9. 统计比对到正链的reads数
 
 ```
-ct@ehbio:~$ samtools view -c -F 16 map.sam.gz
+ct@ysx:~$ samtools view -c -F 16 map.sam.gz
 40001
 ```
 
 10. 获取properly-paired的reads数
 
 ```
-ct@ehbio:~$ samtools view -f2 -F 256 -c map.sortP.bam
+ct@ysx:~$ samtools view -f2 -F 256 -c map.sortP.bam
 79996
 ```
 
@@ -699,7 +699,7 @@ ct@ehbio:~$ samtools view -f2 -F 256 -c map.sortP.bam
 
 ```
 # -Q 0: 测试数据使用，默认为-Q 13，表示过滤掉低质量测序碱基
-ct@ehbio:~$ samtools mpileup -f genome.fa -Q 0 map.sortP.bam | less
+ct@ysx:~$ samtools mpileup -f genome.fa -Q 0 map.sortP.bam | less
 # chrName	coordinate	ref_base	coverage	reads_base	reads_quality
 chr1    5       C       1       ^].     2
 chr1    6       A       2       .^].    22
@@ -738,7 +738,7 @@ mpileup format (http://samtools.sourceforge.net/pileup.shtml)
 
 ```
 # 获得未压缩的vcf格式，方便查看
-ct@ehbio:~$ samtools mpileup -f genome.fa -Q 0 -vu map.sortP.bam >snp.vcf
+ct@ysx:~$ samtools mpileup -f genome.fa -Q 0 -vu map.sortP.bam >snp.vcf
 ```
 
 ## Bedtools使用 {#bedtools}
@@ -834,21 +834,21 @@ The bedtools sub-commands include:
 1. 安装bedtools
 
 ```
-ct@ehbio:~$ conda install bedtools
+ct@ysx:~$ conda install bedtools
 ```
 
 2. 获得测试数据集(http://quinlanlab.org/tutorials/bedtools/bedtools.html)
 
 ```
-ct@ehbio:~$ mkdir bedtools
-ct@ehbio:~$ cd bedtools
-ct@ehbio:~$ url=https://s3.amazonaws.com/bedtools-tutorials/web
-ct@ehbio:~/bedtools$ curl -O ${url}/maurano.dnaseI.tgz
-ct@ehbio:~/bedtools$ curl -O ${url}/cpg.bed
-ct@ehbio:~/bedtools$ curl -O ${url}/exons.bed
-ct@ehbio:~/bedtools$ curl -O ${url}/gwas.bed
-ct@ehbio:~/bedtools$ curl -O ${url}/genome.txt
-ct@ehbio:~/bedtools$ curl -O ${url}/hesc.chromHmm.bed
+ct@ysx:~$ mkdir bedtools
+ct@ysx:~$ cd bedtools
+ct@ysx:~$ url=https://s3.amazonaws.com/bedtools-tutorials/web
+ct@ysx:~/bedtools$ curl -O ${url}/maurano.dnaseI.tgz
+ct@ysx:~/bedtools$ curl -O ${url}/cpg.bed
+ct@ysx:~/bedtools$ curl -O ${url}/exons.bed
+ct@ysx:~/bedtools$ curl -O ${url}/gwas.bed
+ct@ysx:~/bedtools$ curl -O ${url}/genome.txt
+ct@ysx:~/bedtools$ curl -O ${url}/hesc.chromHmm.bed
 ```
 
 3. 交集 (intersect)
@@ -867,7 +867,7 @@ knitr::include_graphics(if(identical(knitr:::pandoc_to(),'html')) url else pic_f
 自己做研究CpG岛信息可以从UCSC的Table Browser获得，具体操作见<http://blog.genesino.com/2013/05/ucsc-usages/>。
 
 ```
-ct@ehbio:~/bedtools$ head -n 3 cpg.bed exons.bed
+ct@ysx:~/bedtools$ head -n 3 cpg.bed exons.bed
 ==> cpg.bed <==
 chr1	28735	29810	CpG:_116
 chr1	135124	135563	CpG:_30
@@ -882,7 +882,7 @@ chr1	13220	14409	NR_046018_exon_2_0_chr1_13221_f	0	+
 获得重叠区域(既是外显子，又是CpG岛的区域)
 
 ```
-ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed | head -5
+ct@ysx:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed | head -5
 chr1	29320	29370	CpG:_116
 chr1	135124	135563	CpG:_30
 chr1	327790	328229	CpG:_29
@@ -893,7 +893,7 @@ chr1	327790	328229	CpG:_29
 输出重叠区域对应的原始区域(与外显子存在交集的CpG岛)
 
 ```
-ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wa -wb > | head -5
+ct@ysx:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wa -wb > | head -5
 ```
 
 * chr1	28735	29810	CpG:_116	chr1	29320	29370	NR_024540_exon_10_0_chr1_29321_r	0	-
@@ -905,7 +905,7 @@ ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wa -wb > | head
 计算重叠碱基数
 
 ```
-ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wo | head -10
+ct@ysx:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wo | head -10
 ```
 
 * chr1	28735	29810	CpG:_116	chr1	29320	29370	NR_024540_exon_10_0_chr1_29321_r	0	-	50
@@ -923,7 +923,7 @@ ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -wo | head -10
 计算第一个(-a)bed区域有多少个重叠的第二个(-b)bed文件中有多少个区域
 
 ```
-ct@ehbio:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -c | head
+ct@ysx:~/bedtools$ bedtools intersect -a cpg.bed -b exons.bed -c | head
 chr1	28735	29810	CpG:_116	1
 chr1	135124	135563	CpG:_30	1
 chr1	327790	328229	CpG:_29	3
@@ -943,7 +943,7 @@ chr1	788863	789211	CpG:_28	9
 ```
 # -names标注注释来源
 # -sorted: 如果使用了这个参数，提供的一定是排序好的bed文件
-ct@ehbio:~/bedtools$ bedtools intersect -a exons.bed \
+ct@ysx:~/bedtools$ bedtools intersect -a exons.bed \
 	-b cpg.bed gwas.bed hesc.chromHmm.bed -sorted -wa -wb -names cpg gwas chromhmm \
   	| head -10000  | tail -10
 ```
@@ -975,7 +975,7 @@ knitr::include_graphics(if(identical(knitr:::pandoc_to(),'html')) url else pic_f
 只需要输入一个排序好的bed文件，默认合并重叠或邻接区域。
 
 ```
-ct@ehbio:~/bedtools$ bedtools merge -i exons.bed | head -n 5
+ct@ysx:~/bedtools$ bedtools merge -i exons.bed | head -n 5
 chr1	11873	12227
 chr1	12612	12721
 chr1	13220	14829
@@ -986,7 +986,7 @@ chr1	15795	15947
 合并区域并输出此合并后区域是由几个区域合并来的
 
 ```
-ct@ehbio:~/bedtools$ bedtools merge -i exons.bed -c 1 -o count | head -n 5
+ct@ysx:~/bedtools$ bedtools merge -i exons.bed -c 1 -o count | head -n 5
 chr1	11873	12227	1
 chr1	12612	12721	1
 chr1	13220	14829	2
@@ -1001,7 +1001,7 @@ chr1	15795	15947	1
 # -o: 与-c对应，表示对指定列进行哪些操作
 # 这里的用法是对第一列做计数操作，输出这个区域是由几个区域合并来的
 # 对第4列做收集操作，记录合并的区域的名字，并逗号分隔显示出来
-ct@ehbio:~/bedtools$ bedtools merge -i exons.bed -d 340 -c 1,4 -o count,collapse | head -4
+ct@ysx:~/bedtools$ bedtools merge -i exons.bed -d 340 -c 1,4 -o count,collapse | head -4
 chr1	11873	12227	1	NR_046018_exon_0_0_chr1_11874_f
 chr1	12612	12721	1	NR_046018_exon_1_0_chr1_12613_f
 chr1	13220	15038	3	NR_046018_exon_2_0_chr1_13221_f,NR_024540_exon_0_0_chr1_14362_r,NR_024540_exon_1_0_chr1_14970_r
@@ -1016,7 +1016,7 @@ chr1	15795	15947	1	NR_024540_exon_2_0_chr1_15796_r
 重复序列区域的获取也可以用上面提供的链接 <http://blog.genesino.com/2013/05/ucsc-usages/>。
 
 ```
-ct@ehbio:~/bedtools$ head genome.txt 
+ct@ysx:~/bedtools$ head genome.txt 
 chr1	249250621
 chr10	135534747
 chr11	135006516
@@ -1026,7 +1026,7 @@ chr13	115169878
 chr14	107349540
 chr15	102531392
 
-ct@ehbio:~/bedtools$ bedtools complement -i exons.bed -g genome.txt | head -n 5
+ct@ysx:~/bedtools$ bedtools complement -i exons.bed -g genome.txt | head -n 5
 chr1	0	11873
 chr1	12227	12612
 chr1	12721	13220
@@ -1051,14 +1051,14 @@ knitr::include_graphics(if(identical(knitr:::pandoc_to(),'html')) url else pic_f
 ```
 # 对单行FASTA，可如此计算
 # 如果是多行FASTA，则需要累加
-ct@ehbio:~/bedtools$ awk 'BEGIN{OFS=FS="\t"}{\
+ct@ysx:~/bedtools$ awk 'BEGIN{OFS=FS="\t"}{\
 	if($0~/>/) {seq_name=$0;sub(">","",seq_name);} \
 	else {print seq_name,length;} }' ../bio/genome.fa | tee ../bio/genome.txt 
 chr1	60001
 chr2	54001
 chr3	54001
 chr4	60001
-ct@ehbio:~/bedtools$ bedtools genomecov -ibam ../bio/map.sortP.bam -bga \
+ct@ysx:~/bedtools$ bedtools genomecov -ibam ../bio/map.sortP.bam -bga \
 	-g ../bio/genome.txt | head
 
 # 这个warning很有意思，因为BAM中已经有这个信息了，就不需要提供了
@@ -1089,7 +1089,7 @@ chr1	48	54	10
 `bedtools jaccard`计算的是给定的两个`bed`文件之间交集区域(intersection)占总区域(union-intersection)的比例(jaccard)和交集的数目(n_intersections)。
 
 ```
-ct@ehbio:~/bedtools$ bedtools jaccard \
+ct@ysx:~/bedtools$ bedtools jaccard \
 	-a fHeart-DS16621.hotspot.twopass.fdr0.05.merge.bed \
 	-b fHeart-DS15839.hotspot.twopass.fdr0.05.merge.bed
 intersection	union-intersection	jaccard	n_intersections
@@ -1101,7 +1101,7 @@ intersection	union-intersection	jaccard	n_intersections
 一个办法是使用`for`循环, 双层嵌套。这种用法也很常见，不管是单层还是双层for循环，都有利于简化重复运算。
 
 ```
-ct@ehbio:~/bedtools$ for i in *.merge.bed; do \
+ct@ysx:~/bedtools$ for i in *.merge.bed; do \
 	for j in *.merge.bed; do \
 	bedtools jaccard -a $i -b $j | cut -f3 | tail -n +2 | sed "s/^/$i\t$j\t/"; \
 	done; done >total.similarity
@@ -1110,7 +1110,7 @@ ct@ehbio:~/bedtools$ for i in *.merge.bed; do \
 另一个办法是用`parallel`，不只可以批量，更可以并行。
 
 ```
-root@ehbio:~# yum install parallel.noarch
+root@ysx:~# yum install parallel.noarch
 ```
 
 ```
@@ -1123,17 +1123,17 @@ root@ehbio:~# yum install parallel.noarch
 # 这个命令可以替换原文档里面的整合和替换, 相比于原文命令生成多个文件，这里对每个输出结果
 # 先进行了比对信息的增加，最后结果可以输入一个文件中。
 #
-ct@ehbio:~/bedtools$ parallel "bedtools jaccard -a {1} -b {2} | awk 'NR> | cut -f 3 \
+ct@ysx:~/bedtools$ parallel "bedtools jaccard -a {1} -b {2} | awk 'NR> | cut -f 3 \
 	| sed 's/^/{1}\t{2}\t/'" ::: `ls *.merge.bed` ::: `ls *.merge.bed`  >totalSimilarity.2
 
 
 # 上面的命令也有个小隐患，并行计算时的输出冲突问题，可以修改为输出到单个文件,再cat到一起
-ct@ehbio:~/bedtools$ parallel "bedtools jaccard -a {1} -b {2} | awk 'NR> | cut -f 3 \
+ct@ysx:~/bedtools$ parallel "bedtools jaccard -a {1} -b {2} | awk 'NR> | cut -f 3 \
 	| sed 's/^/{1}\t{2}\t/' >{1}.{2}.totalSimilarity_tmp" ::: `ls *.merge.bed` ::: `ls *.merge.bed` 
-ct@ehbio:~/bedtools$ cat *.totalSimilarity_tmp >totalSimilarity.2
+ct@ysx:~/bedtools$ cat *.totalSimilarity_tmp >totalSimilarity.2
 
 # 替换掉无关信息
-ct@ehbio:~/bedtools$ sed -i -e 's/.hotspot.twopass.fdr0.05.merge.bed//' \
+ct@ysx:~/bedtools$ sed -i -e 's/.hotspot.twopass.fdr0.05.merge.bed//' \
 	-e 's/.hg19//' totalSimilarity.2  
 ```
 
@@ -1144,7 +1144,7 @@ ct@ehbio:~/bedtools$ sed -i -e 's/.hotspot.twopass.fdr0.05.merge.bed//' \
 原文档的命令，稍微有些复杂，利于学习不同命令的组合。使用时推荐使用上面的命令。
 
 ```
-ct@ehbio:~/bedtools$ parallel "bedtools jaccard -a {1} -b {2} \
+ct@ysx:~/bedtools$ parallel "bedtools jaccard -a {1} -b {2} \
 	  | awk 'NR>1' | cut -f 3 \
 	  > {1}.{2}.jaccard" \
 	 ::: `ls *.merge.bed` ::: `ls *.merge.bed`

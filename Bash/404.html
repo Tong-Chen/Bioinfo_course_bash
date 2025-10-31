@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Supplemental | Linux学习</title>
-  <meta name="description" content="7 Supplemental | Linux学习" />
+  <title>Page not found | Linux学习</title>
+  <meta name="description" content="Page not found | Linux学习" />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Supplemental | Linux学习" />
+  <meta property="og:title" content="Page not found | Linux学习" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Supplemental | Linux学习" />
+  <meta name="twitter:title" content="Page not found | Linux学习" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bioinfo_linux.html"/>
-<link rel="next" href="生信教程文章集锦.html"/>
+
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -411,78 +411,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="supplemental" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Supplemental<a href="supplemental.html#supplemental" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>serverInfo.sh</p>
-<pre><code>#!/bin/bash
-
-echo &quot;This lists the information of this computer.&quot;
-
-echo
-
-echo &quot;Hostname is $(tput setaf 3)`hostname`$(tput sgr0),\
-Ip address is $(tput setaf 3)\
-`/sbin/ifconfig | sed -n &#39;2p&#39; | cut -d &#39;:&#39; -f 2 | cut -d &#39; &#39; -f 1`.
-$(tput sgr0)&quot;
-
-
-nuclear=`uname -a | cut -d &#39; &#39; -f 3`
-bitInfo=`uname -a | cut -d &#39; &#39; -f 12`
-
-if test $bitInfo == &quot;x86_64&quot;; then
-    bit=64
-else
-    bit=32
-fi
-
-echo &quot;The $(tput bold)${bit}$(tput sgr0) bit operating \
-system is $(tput bold) `head -n 1 /etc/issue`\
-$(tput sgr0), Nuclear info is $(tput setaf 1)\
-${nuclear}$(tput sgr0).&quot;
-
-echo
-
-echo &quot;The CPU is$(tput setaf 4)`sed -n &#39;5p&#39; /proc/cpuinfo \
-| cut -d &#39;:&#39; -f 2 | sed &#39;s/[ ] */ /g&#39;`$(tput sgr0).&quot;
-
-echo
-
-echo &quot;There are $(tput setaf 5)\
-`cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq \
-| wc -l`$(tput sgr0) physical cpu, \
-each physical \
-cpu has$(tput setaf 5)`sed -n &#39;12p&#39; /proc/cpuinfo | \
-cut -d &#39;:&#39; -f 2`$(tput sgr0) cores,\
-$(tput setaf 5)`sed -n &#39;10p&#39; /proc/cpuinfo | \
-cut -d &#39;:&#39; -f 2`$(tput sgr0) threads.&quot;
-
-echo
-
-echo &quot;There are $(tput setaf 5)\
-`cat /proc/cpuinfo | grep &quot;cpu cores&quot; | wc -l`$(tput sgr0) logical cpu.&quot;
-
-mem=`head -n 1 /proc/meminfo | cut -d &#39;:&#39; -f 2 | sed &#39;s/^ *//g&#39; | cut -d &#39; &#39; -f 1`
-memInM=$(echo &quot;$mem/1024/1024&quot; | bc -l)
-
-echo
-
-echo &quot;The memory of this server is $(tput setaf 5)${memInM}$(tput sgr0)G.&quot;
-
-echo
-
-echo &quot;The disk information is :&quot;
-
-echo &quot;`df -h`&quot;
-</code></pre>
-
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="bioinfo_linux.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="生信教程文章集锦.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

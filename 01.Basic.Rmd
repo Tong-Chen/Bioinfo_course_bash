@@ -1,8 +1,11 @@
 # Linux初探，打开新世界的大门 {#linux_basic}
 
-![](http://www.ehbio.com/ehbio_resource/Linux_course.png)
 
-视频课程地址：<https://ke.qq.com/course/288048?tuin=20cd7788>
+视频课程地址：
+
+* B站 <https://space.bilibili.com/362709786/lists/1012502?type=season>
+* 知乎：<https://www.zhihu.com/people/chen586>
+* 生信宝典视频号也有。
 
 ## Linux系统简介和目录理解 {#basicDir}
  
@@ -26,7 +29,7 @@
 
 ### 免费的Linux系统来一套 {#free_linux}
 
-* 如果自己的单位有共有服务器，可以尝试申请账号。
+* 如果自己的单位有公有服务器，可以尝试申请账号。
 * 自己的电脑安装双系统或虚拟机。
 * 使用[gitforwindows](http://blog.csdn.net/woodcorpse/article/details/79313846)在windows下模拟使用Linux命令。
 * 购买一块云服务器
@@ -56,14 +59,14 @@ Last login: Mon Jun  5 16:56:56 2017 from 239.241.208.209
 
 Welcome to aliyun Elastic Compute Service!
 
-ct@ehbio:~$ 
+ct@ysx:~$ 
 
 ```
 
 首先解释下出现的这几个字母和符号:
 
 * `ct`: 用户名
-* `ehbio`：如果是登录的远程服务器，则为宿主机的名字；若是本地电脑，则为自己电脑的名字。
+* `ysx`：如果是登录的远程服务器，则为宿主机的名字；若是本地电脑，则为自己电脑的名字。
 * `~`: 代表家目录, 在我们进入新的目录后，这个地方会跟着改变
 * `$`: 用来指示普通用户输入命令的地方；对根用户来说一般是`#`
 * <http://bashrcgenerator.com/>可视化定制不同的显示方式。
@@ -87,7 +90,7 @@ knitr::include_graphics("image/Linux_dir.png")
 # 若提示命令找不到，运行下面语句安装tree
 # 需要有根用户权限
 # yum install tree.x86_64
-ct@ehbio:~$ tree -d -L 2 /
+ct@ysx:~$ tree -d -L 2 /
 
 ```
 
@@ -131,21 +134,21 @@ knitr::kable(directory, booktabs=T,caption="Linux下目录简介")
 看完目录结构了，来看一下硬盘有多大，有多少可用空间，只需要运行`df -h`命令。
 
 ```{bash eval=F}
-ct@ehbio:~$ df -h
+ct@ysx:~$ df -h
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/sda2             193G   61G  122G  34% /
 tmpfs                 127G  344K  127G   1% /dev/shm
 /dev/sda1             190M   77M  103M  43% /boot
-/dev/mapper/a          37T   12T   25T  32% /ehbio1
-/dev/mapper/b          37T   28T  8.8T  76% /ehbio2
-/dev/mapper/c          37T   15T   23T  40% /ehbio3
+/dev/mapper/a          37T   12T   25T  32% /ysx1
+/dev/mapper/b          37T   28T  8.8T  76% /ysx2
+/dev/mapper/c          37T   15T   23T  40% /ysx3
 ```
 
 除了看硬盘，还想看下CPU、内存、操作系统呢？
 
 ```{bash eval=F}
 # serverInfo.sh是我写的一个脚本，这个脚本怎么实现的会是一个考核题目。
-ct@ehbio:~$ serverInfo.sh
+ct@ysx:~$ serverInfo.sh
 ```
 
 ```
@@ -169,17 +172,17 @@ The memory of this server is 252G.
 通常登陆后直接进入家目录，下面大部分操作也是在家目录下完成的。如果想查看当前目录下都有什么内容，输入命令 `ls`，回车即可 (ls可以理解为单词list的缩写)。当前目录下什么也没有，所以没有任何输出。
 
 ```{bash eval=F}
-ct@ehbio:~$ ls
+ct@ysx:~$ ls
 
 ```
 
 如果错把`l`看成了`i`，输入了`is`，则会出现下面的提示`未找到命令`。如果输入的是Linux基本命令，出现这个提示，基本可以判定是命令输入错了，瞪大眼睛仔细看就是了。 **在敲完命令回车后，注意查看终端的输出，以判断是否有问题。**
 
 ```{bash eval=F}
-ct@ehbio:~$ is
+ct@ysx:~$ is
 -bash: is: 未找到命令
 # 大小写敏感
-ct@ehbio:~$ lS
+ct@ysx:~$ lS
 -bash: lS: 未找到命令
 ```
 
@@ -191,21 +194,21 @@ ct@ehbio:~$ lS
 如果目录存在，则会出现提示，"无法创建已存在的目录"。这时可以使用参数`-p`忽略这个错误。
 
 ```{bash eval=F}
-ct@ehbio:~$ mkdir data
-ct@ehbio:~$ ls
+ct@ysx:~$ mkdir data
+ct@ysx:~$ ls
 data
-ct@ehbio:~$ mkdir data
+ct@ysx:~$ mkdir data
 mkdir: 无法创建目录"data" : 文件已存在
 
 # -p: no error if existing, make parent directories as needed
-ct@ehbio:~$ mkdir -p data
+ct@ysx:~$ mkdir -p data
 ```
 
 `cat`是一个命令，主要用来查看文件；在这与`<<END`连用用于读入大段数据。输入`cat <<END`之后，回车，会看到终端出现一个大于号，大于号后面可以输入内容，再回车，继续输入内容，直到我们输入`END` (大写的，与上面一致)，输入过程结束，我们输入的内容都显示在了屏幕上。
 
 ```{bash eval=F}
-ct@ehbio:~$ mkdir data
-ct@ehbio:~$ cat <<END
+ct@ysx:~$ mkdir data
+ct@ysx:~$ cat <<END
 a
 bc
 END
@@ -220,7 +223,7 @@ bc
 `ls -l`列出文件的详细信息；`-l`表示命令行参数，是程序预留的一些选项，保证在不更改程序的情况下获得更灵活的操作。可使用`man ls`查看`ls`所有的命令行参数, **上下箭头翻页**，按`q`退出查看。(man: manual, 手册)
 
 ```{bash eval=F}
-ct@ehbio:~$ cat <<END >data/test.fa
+ct@ysx:~$ cat <<END >data/test.fa
 >SOX2
 ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT
 ACGATGAGGAGTAGGAGAGAGGAGG
@@ -238,16 +241,16 @@ end
 END
 
 ## 注意命令和参数之间的空格
-ct@ehbio:~/data$ ls-l
+ct@ysx:~/data$ ls-l
 -bash: ls-l: 未找到命令
 
-ct@ehbio:~$ ls -l
+ct@ysx:~$ ls -l
 总用量 4
 ## d: dir; 表示data是个目录
 ## rwx：表示目录的权限，暂时忽略，或自己在线搜索
 drwxrwxr-x 2 ct ct 4096 6月   8 14:52 data
 
-ct@ehbio:~$ ls -l data
+ct@ysx:~$ ls -l data
 总用量 4
 ## 开头的`-`表示test.fa是个文件
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 test.fa
@@ -262,10 +265,10 @@ ct@ehbio:~$ ls -l data
 # 这个应该是最常见的错误之一，程序不可能知道你的输入文件在什么地方，
 # 需要人为指定。
 # 如果未指定路径，表示当前目录
-ct@ehbio:~$ cat test.fa
+ct@ysx:~$ cat test.fa
 cat: test.fa: 没有那个文件或目录
 
-ct@ehbio:~$ cat data/test.fa 
+ct@ysx:~$ cat data/test.fa 
 >SOX2
 ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT
 ACGATGAGGAGTAGGAGAGAGGAGG
@@ -301,15 +304,15 @@ end
 
 ```{bash eval=F}
 # 记住输出
-ct@ehbio:~$ pwd
+ct@ysx:~$ pwd
 /home/ct
 
-ct@ehbio:~$ cd data
+ct@ysx:~$ cd data
 
 # 注意输出变化
-ct@ehbio:~$ pwd
+ct@ysx:~$ pwd
 /home/ct/data
-ct@ehbio:~/data$ head -n 6 test.fa 
+ct@ysx:~/data$ head -n 6 test.fa 
 >SOX2
 ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT
 ACGATGAGGAGTAGGAGAGAGGAGG
@@ -321,7 +324,7 @@ AGAGTAGAGAGA
 另外`less`和`more`也可以用来查看文件，尤其是文件内容特别多的时候。
 
 ```{bash eval=F}
-ct@ehbio:~/data$ less test.fa 
+ct@ysx:~/data$ less test.fa 
 # q: 退出
 # 上下箭头、空格翻页
 ```
@@ -333,7 +336,7 @@ ct@ehbio:~/data$ less test.fa
 终端运行`man ls`可以查看`ls`所有可用的参数，上下箭头翻页，按`q`退出查看。(man: manual, 手册)
 
 ```{bash eval=F}
-ct@ehbio:~/data$ man ls
+ct@ysx:~/data$ man ls
 NAME
  ls - list directory contents
 
@@ -386,7 +389,7 @@ DESCRIPTION
 两个有意思的命令，`tac`: 文件翻转，第一行变为最后一行，第二行变为倒数第二行；`rev`每列反转，第一个字符变为最后一个字符，第二个字符变为倒数第二个字符。
 
 ```{bash eval=F}
-ct@ehbio:~/data$ cat <<END | tac
+ct@ysx:~/data$ cat <<END | tac
 > first
 > second
 > third
@@ -395,7 +398,7 @@ third
 second
 first
 
-ct@ehbio:~/data$ cat <<END | rev
+ct@ysx:~/data$ cat <<END | rev
 > abcde
 > xyz
 > END
@@ -435,30 +438,30 @@ zyx
 
 ```{bash eval=F}
 # 列出当前目录下有的文件和文件夹
-ct@ehbio:~$ ls
+ct@ysx:~$ ls
 data
 
 # 新建一个文件夹
-ct@ehbio:~$ mkdir ehbio_project
+ct@ysx:~$ mkdir ysx_project
 
 # 列出当前目录下有的文件和文件夹, 及其子文件夹的内容
-# data目录下有一个文件，ehbio_project目录下无文件
-ct@ehbio:~$ ls *
+# data目录下有一个文件，ysx_project目录下无文件
+ct@ysx:~$ ls *
 data:
 test.fa
 
-ehbio_project:
+ysx_project:
 
-# 拷贝data目录下的文件test.fa到ehbio_project目录下
-ct@ehbio:~$ cp data/test.fa ehbio_project/
+# 拷贝data目录下的文件test.fa到ysx_project目录下
+ct@ysx:~$ cp data/test.fa ysx_project/
 
 # 列出当前目录下有的文件和文件夹, 及其子文件夹的内容
-# data目录下有一个文件，ehbio_project目录下无文件
-ct@ehbio:~$ ls *
+# data目录下有一个文件，ysx_project目录下无文件
+ct@ysx:~$ ls *
 data:
 test.fa
 
-ehbio_project:
+ysx_project:
 test.fa
 ```
 
@@ -475,14 +478,14 @@ test.fa
 ```{bash eval=F}
 # 重命名data目录下的文件test.fa为first.fa
 # mv除了可以移动文件，也可以做单个文件的重命名
-ct@ehbio:~$ mv data/test.fa data/first.fa
+ct@ysx:~$ mv data/test.fa data/first.fa
 
 # 列出当前目录下有的文件和文件夹,  及其子文件夹的内容
-ct@ehbio:~$ ls *
+ct@ysx:~$ ls *
 data:
 first.fa
 
-ehbio_project:
+ysx_project:
 test.fa
 ```
 
@@ -490,33 +493,33 @@ test.fa
 
 ```{bash eval=F}
 # 进入另一个目录
-ct@ehbio:~$ cd ehbio_project/
-ct@ehbio:~/ehbio_project$ ls
+ct@ysx:~$ cd ysx_project/
+ct@ysx:~/ysx_project$ ls
 test.fa
 
 # 给文件做一份拷贝
-ct@ehbio:~/ehbio_project$ cp test.fa second.fa
-ct@ehbio:~/ehbio_project$ ls
+ct@ysx:~/ysx_project$ cp test.fa second.fa
+ct@ysx:~/ysx_project$ ls
 second.fa  test.fa
 
 # 给文件多拷贝几次，无聊的操作，就是为了给rename提供发挥作用的机会
-ct@ehbio:~/ehbio_project$ cp test.fa test2.fa
-ct@ehbio:~/ehbio_project$ cp test.fa test3.fa
-ct@ehbio:~/ehbio_project$ cp test.fa test4.fa
+ct@ysx:~/ysx_project$ cp test.fa test2.fa
+ct@ysx:~/ysx_project$ cp test.fa test3.fa
+ct@ysx:~/ysx_project$ cp test.fa test4.fa
 
 # cp 后面需要2个参数，被拷贝的文件和要被拷贝到的目录或文件
 # 出现下面的错误，表示缺少目标路径或文件
-ct@ehbio:~/ehbio_project$ cp ehbio.fa 
-cp: 在" ehbio.fa"  后缺少了要操作的目标文件
+ct@ysx:~/ysx_project$ cp ysx.fa 
+cp: 在" ysx.fa"  后缺少了要操作的目标文件
 Try 'cp --help' for more information.
 
-ct@ehbio:~/ehbio_project$ ls
+ct@ysx:~/ysx_project$ ls
 second.fa  test2.fa  test3.fa  test4.fa  test.fa
 
 # 用rename进行文件批量重命名
-ct@ehbio:~/ehbio_project$ rename 'test' 'ehbio' test*.fa
-ct@ehbio:~/ehbio_project$ ls
-ehbio2.fa  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
+ct@ysx:~/ysx_project$ rename 'test' 'ysx' test*.fa
+ct@ysx:~/ysx_project$ ls
+ysx2.fa  ysx3.fa  ysx4.fa  ysx.fa  second.fa
 ```
 
 `ln` (link): 给文件建立快捷方式 (`ln -s source_file target` 创建软连接)。
@@ -540,49 +543,49 @@ ehbio2.fa  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
 
 
 ```{bash eval=F}
-# 建立软连接，把当前目录下的ehbio2.fa，链接到上一层目录的data下面
+# 建立软连接，把当前目录下的ysx2.fa，链接到上一层目录的data下面
 
 # 这是一个无效的软连接，
-ct@ehbio:~/ehbio_project$ ln -s ehbio2.fa ../data
+ct@ysx:~/ysx_project$ ln -s ysx2.fa ../data
 
 # 在使用ls查看时，无效的软连接的文件名下面是黑色的背景。
 # 不同的终端配色方案会有不同，一般一直闪烁表示是失效的链接，
 # 另外是否失效以能否使用为最终判断标准。
-ct@ehbio:~/ehbio_project$ ls -l ../data/
+ct@ysx:~/ysx_project$ ls -l ../data/
 总用量 4
-lrwxrwxrwx 1 ct ct   9 6月   9 17:55 ehbio2.fa -> ehbio2.fa
+lrwxrwxrwx 1 ct ct   9 6月   9 17:55 ysx2.fa -> ysx2.fa
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 first.fa
 
-ct@ehbio:~/ehbio_project$ less ../data/ehbio2.fa
+ct@ysx:~/ysx_project$ less ../data/ysx2.fa
 xxxxx 符号连接的层数过多
 
 # 输出当前所在的目录
-ct@ehbio:~/ehbio_project$ pwd
-/home/ct/ehbio_project
+ct@ysx:~/ysx_project$ pwd
+/home/ct/ysx_project
 
 # 建立软连接时，原始文件一定使用全路径。全路径指以/开头的路径。
-ct@ehbio:~/ehbio_project$ ln -s /home/ct/ehbio_project/ehbio2.fa ../data
-ln: 无法创建符号链接" ../data/ehbio2.fa" : 文件已存在
+ct@ysx:~/ysx_project$ ln -s /home/ct/ysx_project/ysx2.fa ../data
+ln: 无法创建符号链接" ../data/ysx2.fa" : 文件已存在
 
 # 上面的错误信息时，已经存在这么一个链接了（虽然是无效的），但再建新的链接时还会提示
 # 使用`-f` (force)强制覆盖已有的链接
-ct@ehbio:~/ehbio_project$ ln -fs /home/ct/ehbio_project/ehbio2.fa ../data
+ct@ysx:~/ysx_project$ ln -fs /home/ct/ysx_project/ysx2.fa ../data
 
 # 再次查看时，就正常了。文件名下面没有了恐怖的背景色，并且有个右箭头指向原始文件
 # `lrwxrwxrwx`中的`l`表示软连接。
-ct@ehbio:~/ehbio_project$ ls -l ../data/
+ct@ysx:~/ysx_project$ ls -l ../data/
 总用量 4
-lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ehbio2.fa -> /home/ct/ehbio_project/ehbio2.fa
+lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ysx2.fa -> /home/ct/ysx_project/ysx2.fa
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 first.fa
 
 # 通常为了简化写法，使用`pwd`代替全路径
 # `为键盘Esc下面的按键，写在反引号内的命令会被运行，运行结果会放置在反引号所在的位置
-ct@ehbio:~/ehbio_project$ ln -s `pwd`/ehbio2.fa ../data
-ln: 无法创建符号链接" ../data/ehbio2.fa" : 文件已存在
-ct@ehbio:~/ehbio_project$ ln -fs `pwd`/ehbio2.fa ../data
-ct@ehbio:~/ehbio_project$ ls -l ../data/
+ct@ysx:~/ysx_project$ ln -s `pwd`/ysx2.fa ../data
+ln: 无法创建符号链接" ../data/ysx2.fa" : 文件已存在
+ct@ysx:~/ysx_project$ ln -fs `pwd`/ysx2.fa ../data
+ct@ysx:~/ysx_project$ ls -l ../data/
 总用量 4
-lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ehbio2.fa -> /home/ct/ehbio_project/ehbio2.fa
+lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ysx2.fa -> /home/ct/ysx_project/ysx2.fa
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 first.fa
 ```
 
@@ -604,31 +607,31 @@ lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ehbio2.fa -> /home/ct/ehbio_project/ehbio2
 > -r: 递归删除
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ ln -s `pwd`/ehbio2.fa ../data
-ln: 无法创建符号链接" ../data/ehbio2.fa" : 文件已存在
+ct@ysx:~/ysx_project$ ln -s `pwd`/ysx2.fa ../data
+ln: 无法创建符号链接" ../data/ysx2.fa" : 文件已存在
 
 # 删除之前的软连接，源文件不会被删除
-ct@ehbio:~/ehbio_project$ rm -f ../data/ehbio2.fa
+ct@ysx:~/ysx_project$ rm -f ../data/ysx2.fa
 
 # 再次新建软连接
-ct@ehbio:~/ehbio_project$ ln -s `pwd`/ehbio2.fa ../data
-ct@ehbio:~/ehbio_project$ ls -l ../data/
+ct@ysx:~/ysx_project$ ln -s `pwd`/ysx2.fa ../data
+ct@ysx:~/ysx_project$ ls -l ../data/
 总用量 4
-lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ehbio2.fa -> /home/ct/ehbio_project/ehbio2.fa
+lrwxrwxrwx 1 ct ct  32 6月   9 17:56 ysx2.fa -> /home/ct/ysx_project/ysx2.fa
 -rw-rw-r-- 1 ct ct 284 6月   8 14:48 first.fa
 
 # 
-ct@ehbio:~/ehbio_project$ mkdir tmp
+ct@ysx:~/ysx_project$ mkdir tmp
 
 # touch filename: 如果文件不存在，则新建一个文件
 #                 若存在，则更新其修改和访问时间
 #                 在后面的搜索讲解中会有touch的一个妙用
-ct@ehbio:~/ehbio_project$ touch tmp/a
-ct@ehbio:~/ehbio_project$ touch tmp/b
+ct@ysx:~/ysx_project$ touch tmp/a
+ct@ysx:~/ysx_project$ touch tmp/b
 
 # -r: 递归删除，主要用于删除目录和子目录时
 # -f: 强制删除
-ct@ehbio:~/ehbio_project$ rm -rf tmp
+ct@ysx:~/ysx_project$ rm -rf tmp
 ```
 
 ### Linux下命令的一些突发事故 {#linux_abnormal}
@@ -636,55 +639,55 @@ ct@ehbio:~/ehbio_project$ rm -rf tmp
 **命令不全**：在命令没有输入完 (引号或括号没有配对)，就不小心按下了`Enter`键，终端会提示出一个`>`代表命令不完整，这是可以继续输入，也可以`ctrl+c`终止输入，重新再来。(下面sed命令使用时，还有另外一种命令不全的问题)
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ rename 'ehbio2
+ct@ysx:~/ysx_project$ rename 'ysx2
 >'
-ct@ehbio:~/ehbio_project$ rename 'ehbio2
+ct@ysx:~/ysx_project$ rename 'ysx2
 > ^C
-ct@ehbio:~/ehbio_project$
+ct@ysx:~/ysx_project$
 ```
 
 **文件名输入错误**: 多一个字母、少一个字母、大小写问题
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ls
-ehbio2.fa  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
+ct@ysx:~/ysx_project$ls
+ysx2.fa  ysx3.fa  ysx4.fa  ysx.fa  second.fa
 
 # 重命名没有生效
-ct@ehbio:~/ehbio_project$ rename 'ehbio2' 'ehbio5' ebio2.fa
-ct@ehbio:~/ehbio_project$ ls
-ehbio2.fa  ehbio3.fa  ehbio4.fa  ehbio.fa  second.fa
+ct@ysx:~/ysx_project$ rename 'ysx2' 'ysx5' ebio2.fa
+ct@ysx:~/ysx_project$ ls
+ysx2.fa  ysx3.fa  ysx4.fa  ysx.fa  second.fa
 
-# 仔细看是ehbio2.fa写成了ebio2.fa，更正后即可。
-Z8vb3e9jtel4m99ss6e7eZ:~/ehbio_project$ rename 'ehbio2' 'ehbio5' ehbio2.fa
-ct@ehbio:~/ehbio_project$ ls
-ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio.fa  second.fa
+# 仔细看是ysx2.fa写成了ebio2.fa，更正后即可。
+Z8vb3e9jtel4m99ss6e7eZ:~/ysx_project$ rename 'ysx2' 'ysx5' ysx2.fa
+ct@ysx:~/ysx_project$ ls
+ysx3.fa  ysx4.fa  ysx5.fa  ysx.fa  second.fa
 ```
 
 
 **所在目录不对**: 访问的文件不存在于当前目录，而又没有提供绝对路径, 或软连接失效
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ ls
-ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
-ct@ehbio:~/ehbio_project$ ls ../data
-ehbio2.fa  first.fa
+ct@ysx:~/ysx_project$ ls
+ysx3.fa  ysx4.fa  ysx5.fa  ysx6.fa  ysx.fa  second.fa
+ct@ysx:~/ysx_project$ ls ../data
+ysx2.fa  first.fa
 
-# 当前目录没有ehbio2.fa
-ct@ehbio:~/ehbio_project$ less ehbio2.fa
-ehbio2.fa: 没有那个文件或目录
+# 当前目录没有ysx2.fa
+ct@ysx:~/ysx_project$ less ysx2.fa
+ysx2.fa: 没有那个文件或目录
 
-# ehbio2.fa在上一层目录的data目录下
-ct@ehbio:~/ehbio_project$ ls ../data/ehbio2.fa 
-../data/ehbio2.fa
+# ysx2.fa在上一层目录的data目录下
+ct@ysx:~/ysx_project$ ls ../data/ysx2.fa 
+../data/ysx2.fa
 
 # 加上路径依然访问不了 
-ct@ehbio:~/ehbio_project$ less ../data/ehbio2.fa 
-../data/ehbio2.fa: 没有那个文件或目录
+ct@ysx:~/ysx_project$ less ../data/ysx2.fa 
+../data/ysx2.fa: 没有那个文件或目录
 
-# 上面的问题是软连接失效，在之前的操作中删掉了原始的ehbio2.fa，所以快捷方式失效
+# 上面的问题是软连接失效，在之前的操作中删掉了原始的ysx2.fa，所以快捷方式失效
 
 # 正确的访问
-ct@ehbio:~/ehbio_project$ tail -n 3 ../data/first.fa 
+ct@ysx:~/ysx_project$ tail -n 3 ../data/first.fa 
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
 end
@@ -700,26 +703,26 @@ end
 # gzip -c 把压缩的文件输出到标准输出 (一般是屏幕)
 # '>' 输出重定向，输出写入文件
 
-ct@ehbio:~/ehbio_project$ gzip -c ehbio.fa >ehbio.fa.gz
+ct@ysx:~/ysx_project$ gzip -c ysx.fa >ysx.fa.gz
 
 # 多了一个.gz文件
-ct@ehbio:~/ehbio_project$ ls
-ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio.fa  ehbio.fa.gz  second.fa
+ct@ysx:~/ysx_project$ ls
+ysx3.fa  ysx4.fa  ysx5.fa  ysx.fa  ysx.fa.gz  second.fa
 
 # 解压缩
-ct@ehbio:~/ehbio_project$ gunzip ehbio.fa.gz
-gzip: ehbio.fa already exists; do you wish to overwrite (y or n)? y
+ct@ysx:~/ysx_project$ gunzip ysx.fa.gz
+gzip: ysx.fa already exists; do you wish to overwrite (y or n)? y
 
-ct@ehbio:~/ehbio_project$ ls
-ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio.fa  second.fa
+ct@ysx:~/ysx_project$ ls
+ysx3.fa  ysx4.fa  ysx5.fa  ysx.fa  second.fa
 ```
 
 `wc` (word count): 一般使用`wc -l`获取文件的行数。
 
 ```{bash eval=F}
 # 输出文件有14行
-ct@ehbio:~/ehbio_project$ wc -l ehbio.fa
-14 ehbio.fa
+ct@ysx:~/ysx_project$ wc -l ysx.fa
+14 ysx.fa
 ```
 
 获取文件中包含大于号 (`>`)的行, `grep` (print lines matching a pattern，对每一行进行模式匹配)。
@@ -727,22 +730,22 @@ ct@ehbio:~/ehbio_project$ wc -l ehbio.fa
 `grep`的用法很多，支持正则表达式匹配，这个后面我们会详细讲解。
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ grep '>' ehbio.fa
+ct@ysx:~/ysx_project$ grep '>' ysx.fa
 >SOX2
 >OCT4
 >NANOG
 >mYC HAHA
 
 # 获取包含>的行的行数 (-c: count lines)
-ct@ehbio:~/ehbio_project$ grep -c '>' ehbio.fa
+ct@ysx:~/ysx_project$ grep -c '>' ysx.fa
 4
 
 # 是不是还记得当时新建文件时，末尾多了一行end，删除end所在行
-ct@ehbio:~/ehbio_project$ less ehbio.fa 
+ct@ysx:~/ysx_project$ less ysx.fa 
 
 # -v: 不输出匹配上的行
-ct@ehbio:~/ehbio_project$ grep -v 'end' ehbio.fa >ehbio6.fa
-ct@ehbio:~/ehbio_project$ cat ehbio6.fa 
+ct@ysx:~/ysx_project$ grep -v 'end' ysx.fa >ysx6.fa
+ct@ysx:~/ysx_project$ cat ysx6.fa 
 >SOX2
 ACGTCGGCGGAGGGTGGSCGGGGGGGGAGAGGT
 ACGATGAGGAGTAGGAGAGAGGAGG
@@ -767,18 +770,18 @@ CAGGACAGGAGCTA
 # 第一个错误，漏掉了文件名
 # 程序静止在这，等待用户的进一步输入
 # ctrl+c杀掉当前命令
-ct@ehbio:~/ehbio_project$ sed 's/ HAHA//' | tail -n 3
+ct@ysx:~/ysx_project$ sed 's/ HAHA//' | tail -n 3
 
 ^C
 
 # 第二个错误，文件名和单引号之间没有空格，使得sed判断命令错误
 
-ct@ehbio:~/ehbio_project$ sed 's/ HAHA//'ehbio.fa  | tail -n 3
+ct@ysx:~/ysx_project$ sed 's/ HAHA//'ysx.fa  | tail -n 3
 sed：-e 表达式 #1，字符 11：“s”的未知选项
 
 # 正确操作，
 
-ct@ehbio:~/ehbio_project$ sed 's/ HAHA//' ehbio.fa  | tail -n 4
+ct@ysx:~/ysx_project$ sed 's/ HAHA//' ysx.fa  | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
@@ -792,7 +795,7 @@ end
 `-d`: 设定分隔符, 默认为TAB键。如果某一行没有指定的分隔符，整行都为第一列。
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio.fa | tail -n 4
+ct@ysx:~/ysx_project$ cut -f 1 -d ' ' ysx.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
@@ -803,9 +806,9 @@ end
 
 1. Linux下文件拷贝、移动、重命名、软连接、压缩、替换等操作。
 2. Linux下常见问题
-   * `ehbio2.fa: 没有那个文件或目录`：这个错误通常由什么引起，应该怎么解决？
+   * `ysx2.fa: 没有那个文件或目录`：这个错误通常由什么引起，应该怎么解决？
    * 若文件`a`存在，运行`ln a data/b`能否成功给`a`建立软连接？
-   * `grep '> ehbio.fa`的输出是什么？
+   * `grep '> ysx.fa`的输出是什么？
 3. 若目标文件存在时，再运行`cp`, `mv`或`ln`会有什么提示？
 4. 计算某一个Fasta序列中序列的个数。
    
@@ -816,15 +819,15 @@ end
 * `!`加之前输入过的命令的前几个字母，快速获取前面的命令
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio.fa | tail -n 4
+ct@ysx:~/ysx_project$ cut -f 1 -d ' ' ysx.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
 end
-ct@ehbio:~/ehbio_project$ man cut
+ct@ysx:~/ysx_project$ man cut
 # 直接跳到上面运行的cut命令，再执行一次
-ct@ehbio:~/ehbio_project$ !cut
-cut -f 1 -d ' ' ehbio.fa | tail -n 4
+ct@ysx:~/ysx_project$ !cut
+cut -f 1 -d ' ' ysx.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
@@ -835,45 +838,45 @@ end
 
 ```{bash eval=F}
 # 写完下面的命令，突然不想运行了，又不想一个个删掉
-ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio.fa | tail -n 4
+ct@ysx:~/ysx_project$ cut -f 1 -d ' ' ysx.fa | tail -n 4
 
 # 按ctrl+a, 回到行首，再输入`#`号，回车，命令即被注释掉。
-ct@ehbio:~/ehbio_project$ #cut -f 1 -d ' ' ehbio.fa | tail -n 4
+ct@ysx:~/ysx_project$ #cut -f 1 -d ' ' ysx.fa | tail -n 4
 ```
 
 * `!!` 表示上一条命令。
 
 ```{bash eval=F}
-ct@ehbio:~/ehbio_project$ ls
-ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
-ct@ehbio:~/ehbio_project$ !!
+ct@ysx:~/ysx_project$ ls
+ysx3.fa  ysx4.fa  ysx5.fa  ysx6.fa  ysx.fa  second.fa
+ct@ysx:~/ysx_project$ !!
 ls
-ehbio3.fa  ehbio4.fa  ehbio5.fa  ehbio6.fa  ehbio.fa  second.fa
+ysx3.fa  ysx4.fa  ysx5.fa  ysx6.fa  ysx.fa  second.fa
 ```
 
 * 替换上一个命令中的字符，再运行一遍命令，用于需要对多个文件执行同样的命令，又不想写循环的情况
 
 ```{bash eval=F}
 # 输入一个命令
-ct@ehbio:~/ehbio_project$ #cut -f 1 -d ' ' ehbio.fa | tail -n 4
+ct@ysx:~/ysx_project$ #cut -f 1 -d ' ' ysx.fa | tail -n 4
 
 # !!表示上一条命令
-# :gs表示替换，把上一个命令中全部的ehbio替换为ehbio3; g: global; s: substitute
-ct@ehbio:~/ehbio_project$ !!:gs/ehbio/ehbio3
-#cut -f 1 -d ' ' ehbio3.fa | tail -n 4
+# :gs表示替换，把上一个命令中全部的ysx替换为ysx3; g: global; s: substitute
+ct@ysx:~/ysx_project$ !!:gs/ysx/ysx3
+#cut -f 1 -d ' ' ysx3.fa | tail -n 4
 
 # 替换后效果如上
 
 # 去掉命令前的#号
-ct@ehbio:~/ehbio_project$ cut -f 1 -d ' ' ehbio3.fa | tail -n 4
+ct@ysx:~/ysx_project$ cut -f 1 -d ' ' ysx3.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
 end
 
-## 替换ehbio3为ehbio4，直接运行命令
-ct@ehbio:~/ehbio_project$ !!:gs/ehbio3/ehbio4
-cut -f 1 -d ' ' ehbio4.fa | tail -n 4
+## 替换ysx3为ysx4，直接运行命令
+ct@ysx:~/ysx_project$ !!:gs/ysx3/ysx4
+cut -f 1 -d ' ' ysx4.fa | tail -n 4
 >mYC
 ACGGAGCGAGCTAGTGCAGCGAGGAGCTGAGTCGAGC
 CAGGACAGGAGCTA
@@ -959,26 +962,26 @@ unexisted_command
 
 ```{bash eval=F}
 # 标准输出和标准错误默认都会显示到屏幕上
-ct@ehbio:~$ bash stdout_error.sh 
+ct@ysx:~$ bash stdout_error.sh 
 I am std output
 stdout_error.sh: line 5: unexisted_command: command not found
 # 上一行的line 5 表示是第5行命令出错了，通常用来调试程序。
 # 在这个例子中，bash脚本第5行是故意输入的一个错误命令，用来展示什么是标准错误
 
 # >把结果输入到了文件；标准错误还显示在屏幕上
-ct@ehbio:~$ bash stdout_error.sh >stdout_error.stdout
+ct@ysx:~$ bash stdout_error.sh >stdout_error.stdout
 stdout_error.sh: line 5: unexisted_command: command not found
-ct@ehbio:~$ cat stdout_error.stdout
+ct@ysx:~$ cat stdout_error.stdout
 I am std output
 
 # >把结果输入到了文件; 2>把标准错误输入到了另一个文件
-ct@ehbio:~$ bash stdout_error.sh >stdout_error.stdout 2>stdout_error.stderr
-ct@ehbio:~$ cat stdout_error.stderr
+ct@ysx:~$ bash stdout_error.sh >stdout_error.stdout 2>stdout_error.stderr
+ct@ysx:~$ cat stdout_error.stderr
 stdout_error.sh: line 5: unexisted_command: command not found
 
 # 标准输出和标准错误写入同一个文件
-ct@ehbio:~$ bash stdout_error.sh >stdout_error.stdout 2>&1
-ct@ehbio:~$ cat stdout_error.stdout
+ct@ysx:~$ bash stdout_error.sh >stdout_error.stdout 2>&1
+ct@ysx:~$ cat stdout_error.stdout
 I am std output
 stdout_error.sh: line 5: unexisted_command: command not found
 ```
@@ -990,7 +993,7 @@ stdout_error.sh: line 5: unexisted_command: command not found
 # 第一个命令的输出作为第二个的输入
 # 前面的例子中也有使用
 # tr: 是用于替换字符的，把空格替换为换行，文字就从一行变为了一列
-ct@ehbio:~$ echo "1 2 3" | tr ' ' '\n'
+ct@ysx:~$ echo "1 2 3" | tr ' ' '\n'
 1
 2
 3
@@ -999,7 +1002,7 @@ ct@ehbio:~$ echo "1 2 3" | tr ' ' '\n'
 # diff是比较2个文件的差异的，需要2个参数
 # - (短横线)表示上一个命令的输出，传递给diff
 # < 表示其后的命令的输出，也重定向给diff
-ct@ehbio:~$ cat <<END | diff - <(echo "1 2 3" | tr ' ' '\n')
+ct@ysx:~$ cat <<END | diff - <(echo "1 2 3" | tr ' ' '\n')
 > 2
 > 3
 > 4
@@ -1012,18 +1015,18 @@ ct@ehbio:~$ cat <<END | diff - <(echo "1 2 3" | tr ' ' '\n')
 # 如果不使用管道和重定向标准输入，程序是这么写的
 
 # 先把第一部分存储为1个文件
-ct@ehbio:~$ cat <<END >firstfile
+ct@ysx:~$ cat <<END >firstfile
 2
 3
 > 4
 > END
-ct@ehbio:~$ less firstfile 
+ct@ysx:~$ less firstfile 
 
 # 再把第二部分存储为1个文件
-ct@ehbio:~$ echo "1 2 3" | tr ' ' '\n' >secondfile
+ct@ysx:~$ echo "1 2 3" | tr ' ' '\n' >secondfile
 
 # 然后比较
-ct@ehbio:~$ diff firstfile secondfile 
+ct@ysx:~$ diff firstfile secondfile 
 0a1
 > 1
 3d3
@@ -1034,11 +1037,11 @@ ct@ehbio:~$ diff firstfile secondfile
 管道符的更多应用
 
 ```{bash eval=F}
-ct@ehbio:~$ echo  "actg aaaaa cccccg" | tr ' ' '\n' | wc -l
+ct@ysx:~$ echo  "actg aaaaa cccccg" | tr ' ' '\n' | wc -l
 3
 
 # sed =：先输出行号，再输出每行的内容
-ct@ehbio:~$ echo  "a b c" | tr ' ' '\n' | sed =  
+ct@ysx:~$ echo  "a b c" | tr ' ' '\n' | sed =  
 1
 a
 2
@@ -1050,7 +1053,7 @@ c
 # sed = 同时输出行号
 # N: 表示读入下一行；sed命令每次只读一行，加上N之后就是缓存了第2行，所有的操作都针对第一行；
 # s: 替换；把换行符替换为\t
-ct@ehbio:~$ echo  "a b c" | tr ' ' '\n' | sed = | sed 'N;s/\n/\t/' 
+ct@ysx:~$ echo  "a b c" | tr ' ' '\n' | sed = | sed 'N;s/\n/\t/' 
 1	a
 2	b
 3	c
@@ -1059,7 +1062,7 @@ ct@ehbio:~$ echo  "a b c" | tr ' ' '\n' | sed = | sed 'N;s/\n/\t/'
 # sed = 同时输出行号
 # N: 表示读入下一行；sed命令每次只读一行，加上N之后就是缓存了第2行，所有的操作都针对第一行；
 # s: 替换；把读取的奇数行行首加一个'>'（偶数行相当于被隐藏了）
-ct@ehbio:~$ echo  "a b c" | tr ' ' '\n' | sed = | sed 'N;s/^/>/' 
+ct@ysx:~$ echo  "a b c" | tr ' ' '\n' | sed = | sed 'N;s/^/>/' 
 >1
 a
 >2
@@ -1072,7 +1075,7 @@ c
 # N: 表示读入下一行；sed命令每次只读一行，加上N之后就是缓存了第2行，所有的操作都针对第一行；
 # s: 替换；把读取的奇数行行首加一个'>'（偶数行相当于被隐藏了）
 # 于是FASTA格式序列就出来了
-ct@ehbio:~$ echo  "actg aaaaa cccccg" | tr ' ' '\n' | sed = | sed 'N;s/^/>/' 
+ct@ysx:~$ echo  "actg aaaaa cccccg" | tr ' ' '\n' | sed = | sed 'N;s/^/>/' 
 >1
 actg
 >2
@@ -1090,7 +1093,7 @@ cccccg
 
 ```{bash eval=F}
 # 产生从1到10的数，步长为1
-ct@ehbio:~$ seq 1 10
+ct@ysx:~$ seq 1 10
 1
 2
 3
@@ -1103,17 +1106,17 @@ ct@ehbio:~$ seq 1 10
 10
 
 # 产生从1到10的数，步长为1，用空格分割
-ct@ehbio:~$ seq -s ' ' 1 10
+ct@ysx:~$ seq -s ' ' 1 10
 1 2 3 4 5 6 7 8 9 10
 
 # 产生从1到10的数，步长为2
 # 如果有3个数，中间的数为步长，最后一个始终为最大值
-ct@ehbio:~$ seq -s ' ' 1 2 10
+ct@ysx:~$ seq -s ' ' 1 2 10
 1 3 5 7 9
 
 # 还记得前面提到的标准输入和标准输出吧
-ct@ehbio:~$ cat <(seq 0 3 17) <(seq 3 6 18) >test
-ct@ehbio:~$ cat test 
+ct@ysx:~$ cat <(seq 0 3 17) <(seq 3 6 18) >test
+ct@ysx:~$ cat test 
 0
 3
 6
@@ -1150,7 +1153,7 @@ ct@ehbio:~$ cat test
 
 ```{bash eval=F}
 # 系统默认按ASCII码排序，首先排0，然后排1, 3, 6, 9
-ct@ehbio:~$ sort test
+ct@ysx:~$ sort test
 0
 12
 15
@@ -1162,7 +1165,7 @@ ct@ehbio:~$ sort test
 9
 
 # 按数值大小排序
-ct@ehbio:~$ sort -n test
+ct@ysx:~$ sort -n test
 0
 3
 3
@@ -1177,7 +1180,7 @@ ct@ehbio:~$ sort -n test
 `sort -u`: 去除重复的行，等同于`sort | uniq`。
 
 ```{bash eval=F}
-ct@ehbio:~$ sort -nu test
+ct@ysx:~$ sort -nu test
 0
 3
 6
@@ -1189,7 +1192,7 @@ ct@ehbio:~$ sort -nu test
 `sort file | uniq -d`: 获得重复的行。(`d`=`duplication`)
 
 ```{bash eval=F}
-ct@ehbio:~$ sort -n test | uniq -d
+ct@ysx:~$ sort -n test | uniq -d
 3
 9
 15
@@ -1199,7 +1202,7 @@ ct@ehbio:~$ sort -n test | uniq -d
 
 ```{bash eval=F}
 # 第一列为每行出现的次数，第二列为原始的行
-ct@ehbio:~$ sort -n test | uniq -c
+ct@ysx:~$ sort -n test | uniq -c
   1 0
   2 3
   1 6
@@ -1208,7 +1211,7 @@ ct@ehbio:~$ sort -n test | uniq -c
   2 15
 
 # 换一个文件看的更清楚
-ct@ehbio:~$ cat <<END >test2
+ct@ysx:~$ cat <<END >test2
 a
 b
 c
@@ -1220,7 +1223,7 @@ a
 END
 
 # 第一列为每行出现的次数，第二列为原始的行
-ct@ehbio:~$ sort test2 | uniq -c
+ct@ysx:~$ sort test2 | uniq -c
 3 a
 2 b
 1 c
@@ -1228,7 +1231,7 @@ ct@ehbio:~$ sort test2 | uniq -c
 1 e
 
 # 在执行uniq操作前，文件要先排序，不然结果很诡异
-ct@ehbio:~$ cat test2 | uniq -c
+ct@ysx:~$ cat test2 | uniq -c
 1 a
 1 b
 1 c
@@ -1253,7 +1256,7 @@ ct@ehbio:~$ cat test2 | uniq -c
 # 管道符还记得吧
 # awk的操作就是读入上一步的结果，去除多余的空白，然后调换2列
 #
-ct@ehbio:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2, $1}'
+ct@ysx:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2, $1}'
 a	3
 b	2
 c	1
@@ -1265,7 +1268,7 @@ e	1
 
 ```{bash eval=F}
 # 第二列按数值大小排序
-ct@ehbio:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2, $1}' | sort -k2, 2n
+ct@ysx:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2, $1}' | sort -k2, 2n
 c	1
 d	1
 e	1
@@ -1275,7 +1278,7 @@ a	3
 # 第二列按数值大小排序
 # 第二列相同的再按第一列的字母顺序的逆序排序 (-r)
 # 注意看前3行的顺序与上一步结果的差异
-ct@ehbio:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2,$1}' | sort -k2,2n -k1,1r
+ct@ysx:~$ sort test2 | uniq -c | awk 'BEGIN{OFS="\t";}{print $2,$1}' | sort -k2,2n -k1,1r
 e	1
 d	1
 c	1
@@ -1298,7 +1301,7 @@ a	3
 ```{bash eval=F}
 # 生成单行序列FASTA文件
 # 开头的大于号是为了还原命令的输入过程，可以复制下面cat出来的结果，方便输入。
-ct@ehbio:~$ cat <<END >test.fasta
+ct@ysx:~$ cat <<END >test.fasta
 > >SOX2
 > ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 > >POU5F1
@@ -1306,7 +1309,7 @@ ct@ehbio:~$ cat <<END >test.fasta
 > >NANOG
 > CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT
 > END
-ct@ehbio:~$ cat test.fasta 
+ct@ysx:~$ cat test.fasta 
 >SOX2
 ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 >POU5F1
@@ -1316,7 +1319,7 @@ CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT
 
 # grep匹配含有SOX2的行
 # -A 1 表示输出的行中，包含匹配行的下一行 (A: after)
-ct@ehbio:~$ grep -A 1 'SOX2' test.fasta 
+ct@ysx:~$ grep -A 1 'SOX2' test.fasta 
 >SOX2
 ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 
@@ -1336,7 +1339,7 @@ ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 # 关于引号，如果最外层用的是单引号，那么里面最好不要再出现单引号
 # 如果最外面用的是双引号，则里面最好不要再出现单引号
 # 命令会寻找最近的同样引号进行匹配。
-ct@ehbio:~$ awk 'BEGIN{OFS=FS="\t"}{if($0~/>/) {name=$0; sub(">", "", name);} \
+ct@ysx:~$ awk 'BEGIN{OFS=FS="\t"}{if($0~/>/) {name=$0; sub(">", "", name);} \
 	else seq[name]=$0;}END{print ">SOX2"; print seq["SOX2"]}' test.fasta
 >SOX2
 ACGAGGGACGCATCGGACGACTGCAGGACTGTC
@@ -1348,7 +1351,7 @@ ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 `sed`和`tr`都为最常用的字符替换工具。
 
 ```{bash eval=F}
-ct@ehbio:~$ cat <<END >test.fasta
+ct@ysx:~$ cat <<END >test.fasta
 > >SOX2
 > ACGAGGGACGCATCGGACGACTGCAGGACTGTC
 > ACGAGGGACGCATCGGACGACTGCAGGACTGTC
@@ -1364,21 +1367,21 @@ ct@ehbio:~$ cat <<END >test.fasta
 > END
 
 # 新解法，更简单
-ct@ehbio:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g' \
+ct@ysx:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g' \
 		| sed 's/\t/\n/' | sed 's/\t//g' >test.oneline.fa
 # 分解来看
 # 第一步所有行变为一行
 #
 # 这一步使用tr是因为tr里面可以直接识别换行符，而sed不可以
 # 其它的替换都使用sed
-ct@ehbio:~$ cat test.fasta | tr '\n' '\t'
+ct@ysx:~$ cat test.fasta | tr '\n' '\t'
 ```
 
 > `>`SOX2	 ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGAC >POU5F1	 CGGAAGGTAGTCGTCAGTGCAGCGAGTCCGT CGGAAGGTAGTCGTCAGTGCAGCGAGTCC >NANOG	 ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGG ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGT 
 
 ```
 # >号前面加换行符
-ct@ehbio:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g'
+ct@ysx:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g'
 ```
 
 > `>`SOX2	 ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGACTGTC ACGAGGGACGCATCGGACGACTGCAGGAC
@@ -1391,7 +1394,7 @@ ct@ehbio:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g'
 ```
 # 先把第一个TAB键变为换行符，实现序列名字和序列的分离
 # 再去掉序列中所有的TAB键
-ct@ehbio:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g' \
+ct@ysx:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g' \
 		| sed 's/\t/\n/' | sed 's/\t//g' >test.oneline.fa
 ```
 
@@ -1414,7 +1417,7 @@ ct@ehbio:~$ cat test.fasta | tr '\n' '\t' | sed 's/\t>/\n>/g' \
 # 差别只在一点
 # 对于单行fasta文件，只需要记录一行，seq[name]=$0
 # 对于多好fasta文件，需要把每一行序列都加到前面的序列上，seq[name]=seq[name]$0
-ct@ehbio:~$ awk 'BEGIN{OFS=FS="\t"}{if($0~/>/) {name=$0; sub(">", "", name);} \
+ct@ysx:~$ awk 'BEGIN{OFS=FS="\t"}{if($0~/>/) {name=$0; sub(">", "", name);} \
 	else seq[name]=seq[name]$0;}END{print ">SOX2"; print seq["SOX2"]}' test.fasta
 >SOX2
 ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGAC
@@ -1436,17 +1439,17 @@ ACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATCGGACGACTGCAGGACTGTCACGAGGGACGCATC
 
 ```{bash eval=F}
 # 列出了所有的R
-ct@ehbio:~$ whereis R
+ct@ysx:~$ whereis R
 R: /usr/bin/R /usr/local/bin/R /bin/R/4.0.2/bin/R /soft/R.sys /soft/R
 
 # 列出我们默认调用的R
-ct@ehbio:~$ which R
+ct@ysx:~$ which R
 /bin/R/4.0.2/bin/R
 
-ct@ehbio:~$ which bwa
+ct@ysx:~$ which bwa
 /soft/bin/bwa
 
-ct@ehbio:~$ which bwa2
+ct@ysx:~$ which bwa2
 /usr/bin/which: no bwa2 in (/home/usr/bin:/bin:/soft/bin/)
 ```
 
@@ -1455,7 +1458,7 @@ ct@ehbio:~$ which bwa2
 `locate`是快速查找定位文件的好方法，但其依赖于`updatedb`建立的索引。而`updatedb`一般是每天运行一次，所以当天新建的文件是索引不到的。如果有根用户权限，可以手动运行`updatedb`做个更新，然后再`locate bwa`。(个人用户也可以构建自己的`updatedb`, 使用`locate`在局部环境中查找。)
 
 ```
-ct@ehbio:~$ locate R.sys
+ct@ysx:~$ locate R.sys
 /soft/R.sys
 ```
 
@@ -1466,7 +1469,7 @@ ct@ehbio:~$ locate R.sys
 运行上面的命令时会输出很多`Permission denied`，是因为 作为普通用户，无权限访问一些目录，因此会有提示输出，可以使用`find / -name bwa 2>/dev/null`重定向标准错误到空设备，报错信息就被扔掉了，还不影响正常输出。
 
 ```
-ct@ehbio:~$ find / -name R 2>/dev/null
+ct@ysx:~$ find / -name R 2>/dev/null
 /usr/bin/R
 /usr/lib/rstudio-server/R
 /usr/share/groff/1.22.2/font/devascii/R
@@ -1481,7 +1484,7 @@ ct@ehbio:~$ find / -name R 2>/dev/null
 
 #### 按时间查找 {#find_by_time}
 
-我们开发的在线画图网站 ([www.ehbio.com/ImageGP](http://mp.weixin.qq.com/s/pTHHqxuf0y1MCCCBaZjt9A))，为了追踪每天用户使用时碰到了什么问题，需要每天定时去查看日志。
+我们开发的在线画图网站 ([www.ysx.com/ImageGP](http://mp.weixin.qq.com/s/pTHHqxuf0y1MCCCBaZjt9A))，为了追踪每天用户使用时碰到了什么问题，需要每天定时去查看日志。
 
 这个命令`find . -name *.log -mmin  -60`可以查看当前目录下(包括所有子目录)一小时内修改的日志文件。再配合`head`就可以查看每个日志文件的内容，以方便查看使用过程中出现了哪些错误，如何增加提示或修改画图程序。
 
@@ -1492,7 +1495,7 @@ ct@ehbio:~$ find / -name R 2>/dev/null
 现在画图网站越来越稳定，出现的问题越来越少，前台提示也越来越完善，希望大家使用时多看下提示，查看日志的频率也少了，就使用`find . -name *.log -mtime -1`查看从现在起24小时内的日志了。
 
 ```{bash, eval=F}
-ct@ehbio:/log# find . -name *.log -mtime -1 | head
+ct@ysx:/log# find . -name *.log -mtime -1 | head
 ./upsetView/1597502345.upsetView.log
 ./upsetView/1597502776.upsetView.log
 ./Scatter/1597485169.Scatter.log
@@ -1535,25 +1538,25 @@ find可以查找包含某句话的文件吗？ 还是拿我们的日志说事吧
 
 **匹配行的前后行**
 
-`grep -A 5 -B 1 'Bioinfo' ehbio.log`可以查看匹配行的前1行(B, before)和后5行(A, after)。
+`grep -A 5 -B 1 'Bioinfo' ysx.log`可以查看匹配行的前1行(B, before)和后5行(A, after)。
 
 **匹配次数**
 
-`grep -c 'Bioinfo' ehbio.log`可以统计包含Bioinfo的行数
+`grep -c 'Bioinfo' ysx.log`可以统计包含Bioinfo的行数
 
-`grep -ci 'Bioinfo' ehbio.log`则会在匹配时忽略大小写。
+`grep -ci 'Bioinfo' ysx.log`则会在匹配时忽略大小写。
 
-统计FASTA序列中的序列数 `grep '^>' ehbio.fa`
+统计FASTA序列中的序列数 `grep '^>' ysx.fa`
 
-统计FASTQ序列中的序列数 `grep '^+$' ehbio.fq`。(^表示以什么开头，$表示以什么结尾)。
+统计FASTQ序列中的序列数 `grep '^+$' ysx.fq`。(^表示以什么开头，$表示以什么结尾)。
 
 **获取未匹配行**
 
-`grep -v 'Bioinfo' ehbio.log`，读读手册(`man grep`)，可以看到更多参数使用。
+`grep -v 'Bioinfo' ysx.log`，读读手册(`man grep`)，可以看到更多参数使用。
 
 **序列提取**
 
-假设有个基因列表文件 (ID)，有个单行序列的FASTA文件 (ehbio.fa)， 运行如下命令`grep -A 1 -Fw -f id ehbio.fa | grep -v -- '--'`就可以批量提取序列了。
+假设有个基因列表文件 (ID)，有个单行序列的FASTA文件 (ysx.fa)， 运行如下命令`grep -A 1 -Fw -f id ysx.fa | grep -v -- '--'`就可以批量提取序列了。
 
 `-f id`表示把id文件中的每一行作为一个匹配模式。`-F`表示匹配模式作为原始字符串，而非正则表达式，这是以防有特殊字符被解析。`-w`则表示作为一个单词匹配，即假如id中有`Sox2`，那么它会匹配`Sox2`，也会匹配`Sox21`；如果加了`-w`，则不会匹配`Sox21`。
 
@@ -1563,7 +1566,7 @@ find可以查找包含某句话的文件吗？ 还是拿我们的日志说事吧
 
 grep强大的功能是支持正则匹配，默认使用基本正则表达式，`-E`使用扩展的正则表达式，`-P`使用perl格式的正则表达式。
 
-比如想去掉文件中所有的空行`grep -v '^$' ehbio.fa >ehbio.clean.fa`;
+比如想去掉文件中所有的空行`grep -v '^$' ysx.fa >ysx.clean.fa`;
 
 从公众号文章中搜索跟文章写作相关的文章 `grep 'writ.*' *.md` (可以匹配write, writing等字)；
 
@@ -1876,7 +1879,7 @@ vsearch --fastq_convert KO1.fq --fastq_ascii 64 --fastq_asciiout 33 --fastqout K
 1. 监测命令的运行时间 `time command`
 
 ```
-ct@ehbio:~$ time sleep 5
+ct@ysx:~$ time sleep 5
 
 real	0m5.003s # 程序开始至结束的时间，包括其它进程占用的时间片和IO时间
 user	0m0.001s # 进程真正执行占用CPU的时间, 
@@ -1892,7 +1895,7 @@ user+sys是进程实际的CPU时间。如果多线程执行，这个时间可能
 * 重点关注的是%MEM列，查看系统占用的内存是否超出。
 
 ```
-ct@ehbio:~$ top -a #按内存排序显示
+ct@ysx:~$ top -a #按内存排序显示
 
 top - 09:02:11 up 224 days,  8:34,  30 users,  load average: 40, 33, 28
 Tasks: 1561 total,   1 running, 1550 sleeping,   0 stopped,  10 zombie

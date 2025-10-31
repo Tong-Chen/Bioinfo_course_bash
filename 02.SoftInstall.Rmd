@@ -1,7 +1,5 @@
 # Linux下软件安装相关 {#softinstall}
 
-视频课见 <http://bioinfo.ke.qq.com>。
-
 软件安装的几个概念：环境变量、可执行属性、编译安装、Conda安装。
 
 ## 文件属性和可执行属性 {#fileattributeplusX}
@@ -13,22 +11,22 @@
 `chmod`可以修改文件或文件夹属性。
 
 ```{bash eval=F}
-ct@ehbio:~$ ls -l /home
+ct@ysx:~$ ls -l /home
 -rwxr-xr-x 1 ct ct 26 12月  7 2016  ct
 
 # 让自己的家目录只自己可见
-ct@ehbio:~$ chmod go-rwx /home/ct
-ct@ehbio:~$ ls -l /home
+ct@ysx:~$ chmod go-rwx /home/ct
+ct@ysx:~$ ls -l /home
 -rwx------ 1 ct ct 26 12月  7 2016  ct
 
 # 同组人增加可读和可执行属性
-ct@ehbio:~$ chmod g+rx /home/ct
-ct@ehbio:~$ ls -l /home
+ct@ysx:~$ chmod g+rx /home/ct
+ct@ysx:~$ ls -l /home
 -rwxr-x--- 1 ct ct 26 12月  7 2016  ct
 
 # 所有人增加可读和可执行属性
-ct@ehbio:~$ chmod a+rx /home/ct
-ct@ehbio:~$ ls -l /home
+ct@ysx:~$ chmod a+rx /home/ct
+ct@ysx:~$ ls -l /home
 -rwxr-xr-x 1 ct ct 26 12月  7 2016  ct
 ```
 
@@ -39,27 +37,27 @@ Linux下文件有一个特殊的属性即可执行属性，用来指示这个文
 `which`: 表示查看命令的路径。一般用于当我们想知道使用的命令来源于什么地方时，比如安装了多个R或多个python，但又分不清用的是哪个时，`which`一下，立即明了。在这儿我们用which获取的是可执行的命令所在的路径，进而查看其属性。
 
 ```{bash eval=F}
-ct@ehbio:~$ ls -l "`which cd`"
+ct@ysx:~$ ls -l "`which cd`"
 #rwx: 文件所有者可读、可写、可执行
 #r-x: 文件所有者所在组其它成员可读、可执行，不可修改
 #r-x: 其它人可读、可执行，不可修改
 -rwxr-xr-x 1 root root 26 12月  7 2016 /usr/bin/cd
 
-ct@ehbio:~$ ls -l "`which mkdir`"
+ct@ysx:~$ ls -l "`which mkdir`"
 -rwxr-xr-x. 1 root root 79768 11月  6 2016 /usr/bin/mkdir
 
-ct@ehbio:~$ ls -l "`which python`"
+ct@ysx:~$ ls -l "`which python`"
 #l: 代表软连接
 #软连接自身是所有人可读可写，但具体的权限依赖于其链接的文件
 lrwxrwxrwx. 1 root root 7 3月  22 15:04 /usr/bin/python -> python2
 
-ct@ehbio:~$ ls -l "`which python2`"
+ct@ysx:~$ ls -l "`which python2`"
 #第二层链接
 lrwxrwxrwx. 1 root root 9 3月  22 15:04 /usr/bin/python2 -> python2.7
 
 #链接的原始文件
 
-ct@ehbio:~$ ls -l "`which python2.7`"
+ct@ysx:~$ ls -l "`which python2.7`"
 -rwxr-xr-x. 1 root root 7136 11月  6 2016 /usr/bin/python2.7
 ```
 
@@ -76,51 +74,51 @@ ct@ehbio:~$ ls -l "`which python2.7`"
 
 ```{bash eval=F}
 # 新建个文件
-ct@ehbio:~$ cat <<END >run.sh
-> echo " I am a script created by ehbio." 
+ct@ysx:~$ cat <<END >run.sh
+> echo " I am a script created by ysx." 
 > END
 
 # 查看其权限值
-ct@ehbio:~$ ls -l run.sh 
+ct@ysx:~$ ls -l run.sh 
 -rw-rw-r-- 1 ct ct 39 6月  14 23:12 run.sh
 
 # 更改权限值
-ct@ehbio:~$ chmod 755 run.sh
+ct@ysx:~$ chmod 755 run.sh
 
 # 查看其权限值
 # 注意多了3个x
-ct@ehbio:~$ ls -l run.sh 
+ct@ysx:~$ ls -l run.sh 
 -rwxr-xr-x 1 ct ct 39 6月  14 23:12 run.sh
 
 # 去除其它用户的可执行权限
-ct@ehbio:~$ chmod o-x run.sh 
+ct@ysx:~$ chmod o-x run.sh 
 
 # 注意看少了个x
-ct@ehbio:~$ ls -l run.sh 
+ct@ysx:~$ ls -l run.sh 
 -rwxr-xr-- 1 ct ct 39 6月  14 23:12 run.sh
 
 # 去除同组的可执行权限
-ct@ehbio:~$ chmod g-x run.sh
+ct@ysx:~$ chmod g-x run.sh
 
 # 注意看又少了个x
-ct@ehbio:~$ ls -l run.sh 
+ct@ysx:~$ ls -l run.sh 
 -rwxr--r-- 1 ct ct 39 6月  14 23:12 run.sh
 
 # 去除所有人的可执行权限
-ct@ehbio:~$ chmod a-x run.sh
-ct@ehbio:~$ ls -l run.sh 
+ct@ysx:~$ chmod a-x run.sh
+ct@ysx:~$ ls -l run.sh 
 -rw-r--r-- 1 ct ct 39 6月  14 23:12 run.sh
 
 # 给所有人增加可执行权限
-ct@ehbio:~$ chmod a+x run.sh
-ct@ehbio:~$ ls -l run.sh 
+ct@ysx:~$ chmod a+x run.sh
+ct@ysx:~$ ls -l run.sh 
 -rwxr-xr-x 1 ct ct 39 6月  14 23:12 run.sh
 ```
 
 如果一个文件有了可执行权限，是不是就可以执行了，我们来检测下。
 
 ```{bash eval=F}
-ct@ehbio:~$ run.sh
+ct@ysx:~$ run.sh
 -bash: run.sh: 未找到命令
 ```
 
@@ -141,7 +139,7 @@ ct@ehbio:~$ run.sh
 我们要查看一个在自己家目录下的文件 `I_am_home.txt`，那登录后，直接可见：
 
 ```
-YSX@ehbio:~$ tree
+YSX@ysx:~$ tree
 .
 ├── I_am_home.txt
 └── train
@@ -156,33 +154,33 @@ YSX@ehbio:~$ tree
     │   └── Seurat.Rmd
     └── transcriptome
         └── pipeline_salmon.sh
-YSX@ehbio:~$ head I_am_home.txt
+YSX@ysx:~$ head I_am_home.txt
 I am home!
 ```
 
 那如果想看`Seurat.Rmd`，怎么查看？一步步找下去就对了。
 
 ```
-YSX@ehbio:~$ less Seurat.Rmd
+YSX@ysx:~$ less Seurat.Rmd
 Seurat.Rmd: 没有那个文件或目录
-YSX@ehbio:~$ less train/Seurat.Rmd
+YSX@ysx:~$ less train/Seurat.Rmd
 train/Seurat.Rmd: 没有那个文件或目录
-YSX@ehbio:~$ less train/single_cell/Seurat.Rmd
+YSX@ysx:~$ less train/single_cell/Seurat.Rmd
 ```
 
 也可以一步步先做目录切换，然后再查看
 
 ```
-YSX@ehbio:~$ cd train
-YSX@ehbio:~/train$ cd single_cell/
-YSX@ehbio:~/train/single_cell$ less Seurat.Rmd
+YSX@ysx:~$ cd train
+YSX@ysx:~/train$ cd single_cell/
+YSX@ysx:~/train/single_cell$ less Seurat.Rmd
 ```
 
 那如果你这时你想运行`pipeline_metagenome.sh`快速分析宏基因组数据怎么办？
 
 
 ```
-YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ pipeline_metagenome.sh
 -bash: pipeline_metagenome.sh: 未找到命令
 ```
 
@@ -197,7 +195,7 @@ YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
 我们先看下`PATH`里面存了哪些目录？
 
 ```
-YSX@ehbio:~/train/single_cell$ echo $PATH
+YSX@ysx:~/train/single_cell$ echo $PATH
 /usr/bin:/usr/local/bin
 ```
 
@@ -207,11 +205,11 @@ YSX@ehbio:~/train/single_cell$ echo $PATH
 
 ```
 # 相对路径
-YSX@ehbio:~/train/single_cell$ ../metagenome/pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ ../metagenome/pipeline_metagenome.sh
 # 绝对路径
-YSX@ehbio:~/train/single_cell$ ~/train/metagenome/pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ ~/train/metagenome/pipeline_metagenome.sh
 # 再绝对一些
-YSX@ehbio:~/train/single_cell$ /home/YSX/train/metagenome/pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ /home/YSX/train/metagenome/pipeline_metagenome.sh
 ```
 
 程序可以运行了，但是不是写起来太麻烦了？既然`head`可以只写命令，系统就可以帮着我们去找，那么我们是否也可以把`/home/YSX/train/metagenome/`放到`PATH`里面。这就是如何去设置环境变量了。
@@ -222,22 +220,22 @@ YSX@ehbio:~/train/single_cell$ /home/YSX/train/metagenome/pipeline_metagenome.sh
 # 我们后面会讲什么时候用$, 什么时候不用$
 
 # 给原变量PATH后面加一个路径（绝对路径），冒号(:)分割
-YSX@ehbio:~/train/single_cell$ PATH=$PATH:/home/YSX/train/metagenome/
+YSX@ysx:~/train/single_cell$ PATH=$PATH:/home/YSX/train/metagenome/
 # 导出变量，使其对系统（Shell）可见
-YSX@ehbio:~/train/single_cell$ export PATH
+YSX@ysx:~/train/single_cell$ export PATH
 # 上面两句可以合并为一句，如下：
-YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/
+YSX@ysx:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/
 # 再次运行，可以运行了
-YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ pipeline_metagenome.sh
 # 看下PATH存储的目录，多了我们的新增
-YSX@ehbio:~/train/single_cell$ echo $PATH
+YSX@ysx:~/train/single_cell$ echo $PATH
 /usr/bin:/usr/local/bin:/home/YSX/train/metagenome/
 ```
 
 这样就新增一个目录到环境变量里面了，可以依次继续增加更多目录。
 
 ```
-YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/
+YSX@ysx:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/
 ```
 
 加到环境变量的路径必须是全路径，全路径指以`/`开头或以`~`或`${HOME}`开头的路径 (注意：`~`开头的路径只能个人用户有效)。
@@ -255,11 +253,11 @@ YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/:/ho
 
 ```
 # which 常用工具，查看当前调用的程序的具体来源
-YSX@ehbio:~/train/single_cell$ which python
+YSX@ysx:~/train/single_cell$ which python
 /usr/bin/python
 # 优先调用自己的python
-YSX@ehbio:~/train/single_cell$ export PATH=/home/YSX/soft/anaconda/bin:$PATH
-YSX@ehbio:~/train/single_cell$ which python
+YSX@ysx:~/train/single_cell$ export PATH=/home/YSX/soft/anaconda/bin:$PATH
+YSX@ysx:~/train/single_cell$ which python
 /home/YSX/soft/anaconda/bin/python
 ```
 
@@ -268,9 +266,9 @@ YSX@ehbio:~/train/single_cell$ which python
 第二天早上起来，打开电脑，再运行程序
 
 ```
-YSX@ehbio:~/train/single_cell$ which python
+YSX@ysx:~/train/single_cell$ which python
 /usr/bin/python
-YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ pipeline_metagenome.sh
 -bash: pipeline_metagenome.sh: 未找到命令
 ```
 
@@ -467,7 +465,7 @@ bioconda生物分析软件安装的通道，后面专门介绍。
 
 ### R和R包的安装 {#R_install}
 
-见[R系列教程](http://www.ehbio.com/Bioinfo_R_course)。
+见[R系列教程](http://www.ysx.com/Bioinfo_R_course)。
 
 ### Perl包的安装 {#perl_package}
 
@@ -682,12 +680,12 @@ IMPORTANT: You may need to close and restart your shell after running 'conda ini
 激活环境后，会看到命令行提示前多了一个环境名字，比如下面激活`qiime2-2020.6`环境后的展示。
 
 ```
-ct@ehbio:~# source /anaconda3/bin/activate qiime2-2020.6
-(qiime2-2020.6) ct@ehbio:~# which python
+ct@ysx:~# source /anaconda3/bin/activate qiime2-2020.6
+(qiime2-2020.6) ct@ysx:~# which python
 /anaconda3/envs/qiime2-2020.6/bin/python
-(qiime2-2020.6) ct@ehbio:~# source /anaconda3/bin/deactivate
+(qiime2-2020.6) ct@ysx:~# source /anaconda3/bin/deactivate
 DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
-ct@ehbio:~# which python
+ct@ysx:~# which python
 /usr/bin/python
 ```
 
@@ -928,13 +926,13 @@ source deactivate ${environment}
 做培训时需要给参加培训的老师提供配置环境的脚本，之前都是提供一个`Bash`文件全部运行下来就可以完成整个环境的配置，更简单的方式是可以导出环境，自己配置时再导入就好了。
 
 ```
-# 假设我们有一个环境叫 ehbio，可以导出为一个yml文件
-conda env export --file ehbio_env.yml --name ehbio
+# 假设我们有一个环境叫 ysx，可以导出为一个yml文件
+conda env export --file ysx_env.yml --name ysx
 
 # 然后换一台电脑，就可以完全重现这个环境了
 # 这么做的另一个优势是yml中明确列出了软件的版本，
 # 使用 conda solving environment时速度会快很多
-conda env create -f ehbio_env.yml
+conda env create -f ysx_env.yml
 ```
 
 ### Conda软件安装 core dump error/Segment fault/段错误 怎么办 {#cond_segment_fault}
@@ -1417,7 +1415,7 @@ Makefile通常的格式和布局如下，有兴趣的可以自己去学，或者
 
 ```make
 # 假设当前文件夹下Makefile文件中内容如下 
-ct@ehbio:~$ cat Makefile
+ct@ysx:~$ cat Makefile
 # first: target名字
 # echo "compile first": target对应的命令，任何Linux命令都可以
 first:
@@ -1428,16 +1426,16 @@ second:
 echo "compile second"
 
 # 直接运行make，会make第一个出现的target
-ct@ehbio:~$ make
+ct@ysx:~$ make
 echo "compile first"
 compile first
 # make first与直接make相同，因为它出现在第一个 
-ct@ehbio:~$ make first
+ct@ysx:~$ make first
 echo "compile first"
 compile first
 # all依赖于first, second，因此make all会先执行make first, make second
 # 然后才是自己所代表的命令 
-ct@ehbio:~$ make all
+ct@ysx:~$ make all
 echo "compile first"
 compile first
 echo "compile second"

@@ -1,13 +1,12 @@
 # Linux神器 {#LinuxGreatTools}
 
-视频课见 <http://bioinfo.ke.qq.com>。
 
 ## 正则表达式替换文本随心所欲 {#regularExpr}
 
 正则表达式 (regular expression)是用来做模糊匹配的，匹配符合特定模式的文本。最早来源于Unix系统中的`sed`和`grep`命令，在各个程序语言，如`perl`, `python`中也都有实现。不同程序语言中正则表达式语法大体通用，细节上又各自有自己的特色。
 
 ```{r, fig.cap="正则表达式基本语法"}
-url = "http://www.ehbio.com/ehbio_resource/pyre.png"
+url = "http://www.bic.ac.cn/resource/pyre.png"
 if(!file.exists(pic_file <- "pyre.png")){
   download.file(url, pic_file, mode="wb")
 }
@@ -16,26 +15,26 @@ knitr::include_graphics(if(identical(knitr:::pandoc_to(),'html')) url else pic_f
 
 ```bash
 # 假如有这么一个测试文件
-ct@ehbio: ~/$ cat <<END >url.list
-http://www.ehbio.com/ImageGP
-http://www.ehbio.com/Training
-http://www.ehbio.com/Esx
-www.ehbio.com
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Lineplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/GOenrichmentplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PHeatmap.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Volcanoplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Manhattanplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Histogram.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/VennDiagram.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/UpsetView.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Densityplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PCAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PCoAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Sankey.html
+ct@ysx: ~/$ cat <<END >url.list
+http://www.bic.ac.cn/ImageGP
+http://www.bic.ac.cn/Training
+http://www.bic.ac.cn/Esx
+www.bic.ac.cn
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Lineplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/GOenrichmentplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PHeatmap.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Volcanoplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Manhattanplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Histogram.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/VennDiagram.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/UpsetView.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Densityplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PCAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PCoAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/CPCoAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Sankey.html
 http://blog.genesino.com
 https://blog.csdn.net/qazplm12_3/
 https://blog.csdn.net/woodcorpse/
@@ -49,7 +48,7 @@ END
 获取以`https`开头的行
 
 ```
-ct@ehbio: ~/$ grep '^https' url.list
+ct@ysx: ~/$ grep '^https' url.list
 https://blog.csdn.net/qazplm12_3/
 https://blog.csdn.net/woodcorpse/
 ```
@@ -57,7 +56,7 @@ https://blog.csdn.net/woodcorpse/
 获取包含数字的行
 
 ```
-ct@ehbio:~/$ grep '[0-9]' url.list 
+ct@ysx:~/$ grep '[0-9]' url.list 
 https://blog.csdn.net/qazplm12_3/
 blog.csdn.net/woodcorpse/article/details/79313846
 123456789
@@ -66,73 +65,73 @@ blog.csdn.net/woodcorpse/article/details/79313846
 获取空行
 
 ```
-ct@ehbio:~/$ grep '^$' url.list 
+ct@ysx:~/$ grep '^$' url.list 
 
 ```
 
 获取`html`结尾的行
 
 ```
-ct@ehbio:~/$ grep 'html$' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Lineplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/GOenrichmentplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PHeatmap.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Volcanoplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Manhattanplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Histogram.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/VennDiagram.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/UpsetView.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Densityplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PCAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PCoAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Sankey.html
+ct@ysx:~/$ grep 'html$' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Lineplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/GOenrichmentplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PHeatmap.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Volcanoplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Manhattanplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Histogram.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/VennDiagram.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/UpsetView.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Densityplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PCAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PCoAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/CPCoAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Sankey.html
 ```
 
 获取`Boxplot`和`Barplot`的地址
 
 ```
 # 未能满足要求
-ct@ehbio:~/$ grep 'B.*plot' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ct@ysx:~/$ grep 'B.*plot' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
 ImageGP is one of the Best online plot.
 
 # 一个办法：更长的匹配
-ct@ehbio:~/$ grep 'B.*plot.html' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ct@ysx:~/$ grep 'B.*plot.html' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
 
 # 限定中间不能有空格
-ct@ehbio:~/$ grep 'B[^ ]*plot' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ct@ysx:~/$ grep 'B[^ ]*plot' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
 
 # 限定中间只能有2个字符
-ct@ehbio:~/$ grep 'B..plot' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ct@ysx:~/$ grep 'B..plot' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
 
 # 2个字符的另外一种写法
-ct@ehbio:~/$ grep -P 'B.{2}plot' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ct@ysx:~/$ grep -P 'B.{2}plot' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
 
 # 2个字符的再一种写法，只允许出现特定字符
-ct@ehbio:~/$ grep -P 'B[arox]*plot' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Boxplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/Barplot.html
+ct@ysx:~/$ grep -P 'B[arox]*plot' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Boxplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/Barplot.html
 ```
 
 获取PCA或PCoA相关的行
 
 ```
-ct@ehbio:~/$ grep 'PCo*A' url.list 
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PCAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/PCoAplot.html
-http://www.ehbio.com/ImageGP/index.php/Home/Index/CPCoAplot.html
+ct@ysx:~/$ grep 'PCo*A' url.list 
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PCAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/PCoAplot.html
+http://www.bic.ac.cn/ImageGP/index.php/Home/Index/CPCoAplot.html
 ```
 
 
@@ -172,7 +171,7 @@ awk后面的命令部分是用引号括起来的，可以单引号，可以双�
 
 ```bash
 # 注意除了第一行是空格，其它行都是tab键分割
-ct@ehbio:~/sxbd$ cat <<END >ehbio.wig
+ct@ysx:~/sxbd$ cat <<END >ysx.wig
 variableStep chrom=chr2
 300701	12
 300702	10
@@ -182,7 +181,7 @@ variableStep chrom=chr2
 END
 
 ct@localhost:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}\
-	{if(FNR>1) $2=$2*10^6/(2.5*10^6); print $0}' ehbio.wig
+	{if(FNR>1) $2=$2*10^6/(2.5*10^6); print $0}' ysx.wig
 variableStep chrom=chr2
 300701	4.8
 300702	4
@@ -195,7 +194,7 @@ variableStep chrom=chr2
 
 ```bash
 # 怎么获得count文件，应该不难吧
-ct@ehbio:~/sxbd$ cat count 
+ct@ysx:~/sxbd$ cat count 
 ID	Type
 Pou5f1	Pluripotency
 Nanog	Pluripotency
@@ -204,7 +203,7 @@ Tet1	Epigenetic
 Tet3	Epigenetic
 Myc	Oncogene
 
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{if(FNR>1) a[$2]+=1;}END\
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{if(FNR>1) a[$2]+=1;}END\
 	{print "Type\tCount"; for(i in a) print i,a[i];}' count
 Type	Count
 Neuron	1
@@ -213,7 +212,7 @@ Oncogene	1
 Pluripotency	2
 
 # 这个也可以用下面方式代替，但不直接
-ct@ehbio:~/sxbd$ tail -n +2 count | cut -f 2 | sort | uniq -c | \
+ct@ysx:~/sxbd$ tail -n +2 count | cut -f 2 | sort | uniq -c | \
 		sed -e 's/^  *//' -e 's/  */\t/' 
 2	Epigenetic
 1	Neuron
@@ -227,7 +226,7 @@ GRCh38.gtf可以从<ftp://ftp.ensembl.org/pub/release-91/gtf/homo_sapiens/Homo_s
 
 
 ```bash
-ct@ehbio:~/sxbd$ sed 's/"/\t/g' GRCh38.gtf | \
+ct@ysx:~/sxbd$ sed 's/"/\t/g' GRCh38.gtf | \
 	awk 'BEGIN{OFS=FS="\t"}{if($3=="gene") {ensn=$10; symbol=$16; \
 		if($7=="+") {start=$4-1; up=start-1000; if(up<0) up=0; dw=start+500; \
 		print $1,up, dw, ensn, symbol, $7;} else \
@@ -239,12 +238,12 @@ ct@ehbio:~/sxbd$ sed 's/"/\t/g' GRCh38.gtf | \
 * 数据矩阵的格式化输出
 
 ```bash
-ct@ehbio:~/sxbd$ cat numeric.matrix 
+ct@ysx:~/sxbd$ cat numeric.matrix 
 ID	A	B	C
 a	1.002	1.234	1.999
 b	2.333	4.232	0.889
 
-ct@ehbio:~/sxbd$ awk '{if(FNR==1) print $0; \
+ct@ysx:~/sxbd$ awk '{if(FNR==1) print $0; \
 	else {printf "%s%s",$1,FS; for (i=2; i<=NF; i++) \
 		printf "%.1f %s", $i, (i==NF?RS:FS)}}' numeric.matrix 
 ID	A	B	C
@@ -255,16 +254,16 @@ b 2.3  4.2  0.9
 * 判断FASTQ文件中，输出质量值的长度是与序列长度不一致的序列ID
 
 ```bash
-ct@ehbio:~/sxbd$ cat <<END | gzip -c >Test_2.fq.gz
->ehbio1
+ct@ysx:~/sxbd$ cat <<END | gzip -c >Test_2.fq.gz
+>ysx1
 ACGTCGACGACGAGAGGAGAGGAGCCCTCTCGCCCGCCCTACTACCACCCACACACAACACAAGTGT
 +
 FFFFFFA$A#$$AFEEEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
->ehbio2
+>ysx2
 ACGTCGACGACGAGAGGAGAGGAGCCCTCTCGCCCGCCCTACTACCACCCACACACAACACAAGTGT
 +
 FFFFFF$A#$$AFEEEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
->ehbio3
+>ysx3
 ACGTCGACGACGAGAGGAGAGGAGCCTCTCGCCCGCCCTACTACCACCCACACACAACACAAGTGT
 +
 FFFFFFA$A#$$AFEEEEFFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -272,7 +271,7 @@ END
 ```
 
 ```bash
-ct@ehbio:~/sxbd$ zcat Test_2.fq.gz | \
+ct@ysx:~/sxbd$ zcat Test_2.fq.gz | \
 	awk '{if(FNR%4==1) ID=$0; else if(FNR%4==2) seq_len=length($0); \
 		else if(FNR%4==0) {quality_len=length($0); if(seq_len!=quality_len) print ID; }}' 
 ```
@@ -281,7 +280,7 @@ ct@ehbio:~/sxbd$ zcat Test_2.fq.gz | \
 
 ```bash
 # TAB键分割的文件
-ct@ehbio:~/sxbd$ cat de_gene
+ct@ysx:~/sxbd$ cat de_gene
 ID	log2fc	padj
 A	1	0.001
 B	-1	0.001
@@ -291,14 +290,14 @@ E	-0.51	0.051
 F	0.1	0.1
 G	1	0.1
 
-ct@ehbio:~/sxbd$ awk '$3<0.05 || NR==1' de_gene 
+ct@ysx:~/sxbd$ awk '$3<0.05 || NR==1' de_gene 
 ID	log2fc	padj
 A	1	0.001
 B	-1	0.001
 C	1	0.001
 D	2	0.0001
 
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{if(FNR==1) print $0; \
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{if(FNR==1) print $0; \
 	else {abs_log2fc=($2<0?$2*(-1):$2);if(abs_log2fc>=1 && $3<0.05) print $0;}}' de_gene 
 ID	log2fc	padj
 A	1	0.001
@@ -310,11 +309,11 @@ D	2	0.0001
 * 筛选差异基因存储到不同的文件
 
 ```bash
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"; up="up"; dw="dw";}\
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"; up="up"; dw="dw";}\
 	{if(FNR==1) {print $0 >up; print $0 >dw;} else \
 	if ($3<0.05) {if ($2>=1) print $0 >up; else if($2<=-1) print $0 >dw;}}' de_gene 
 
-ct@ehbio:~/sxbd$ head up dw
+ct@ysx:~/sxbd$ head up dw
 ==> up <==
 ID	log2fc	padj
 A	1	0.001
@@ -338,7 +337,7 @@ awk 'BEGIN{OFS=FS="\t"; up=ARGV[1]".up"; dw=ARGV[1]".dw";}\
 
 ```bash
 # TAB键分割的文件
-ct@ehbio:~/sxbd$ cat id_map 
+ct@ysx:~/sxbd$ cat id_map 
 ENSM	Symbol	Entrez
 ENSG00000280516	TMEM42	693149
 ENSG00000281886	TGM4	7047
@@ -352,13 +351,13 @@ ENSG00000281165	SLC2A6	11182
 ENSG00000281879	ABO	28
 ENSG00000282873	BCL7A	605
 ENSG00000280651	AC156455.1	100506691
-ct@ehbio:~/sxbd$ vim ensm
-ct@ehbio:~/sxbd$ cat ensm 
+ct@ysx:~/sxbd$ vim ensm
+ct@ysx:~/sxbd$ cat ensm 
 ENSG00000281244
 ENSG00000281165
 ENSG00000282873
 
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{if(FNR>1) ensm2entrez[$1]=$3;}\
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{if(FNR>1) ensm2entrez[$1]=$3;}\
 		ARGIND==2{print ensm2entrez[$1];}' id_map ensm
 11093
 11182
@@ -366,7 +365,7 @@ ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{if(FNR>1) ensm2entrez[$1]=$3;}
 
 # 替代解决方案，注意 -w的使用，避免部分匹配。最稳妥的方式还是使用awk。
 
-ct@ehbio:~/sxbd$ grep -w -f ensm id_map | cut -f 3
+ct@ysx:~/sxbd$ grep -w -f ensm id_map | cut -f 3
 11093
 11182
 605
@@ -375,12 +374,12 @@ ct@ehbio:~/sxbd$ grep -w -f ensm id_map | cut -f 3
 * 转换大小写, `toupper`, `tolower`
 
 ```bash
-ct@ehbio:~/sxbd$ cat symbol 
+ct@ysx:~/sxbd$ cat symbol 
 Tgm4
 Dgkd
 Abo
 
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{if(FNR>1) ensm2entrez[$2]=$3;}\
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{if(FNR>1) ensm2entrez[$2]=$3;}\
 		ARGIND==2{print ensm2entrez[toupper($1)];}' id_map symbol 
 7047
 8527
@@ -390,7 +389,7 @@ ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}ARGIND==1{if(FNR>1) ensm2entrez[$2]=$3;}
 * awk数值操作
 
 ```bash
-ct@ehbio:~/sxbd$ cat <<END >file
+ct@ysx:~/sxbd$ cat <<END >file
 2
 4
 3.1
@@ -401,16 +400,16 @@ ct@ehbio:~/sxbd$ cat <<END >file
 END
 
 # log2对数
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}{print log($0)/log(2)}' file
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}{print log($0)/log(2)}' file
 
 # 取整,四舍五入
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}{print int($1+0.5);}' file
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}{print int($1+0.5);}' file
 ```
 
 * awk定义函数
 
 ```bash
-ct@ehbio:~/sxbd$ cat <<END | sed 's/  */\t/g'>file
+ct@ysx:~/sxbd$ cat <<END | sed 's/  */\t/g'>file
 1	2	3	4
 5	6	7	8
 9	10	11	12
@@ -418,7 +417,7 @@ END
 ```
 
 ```bash
-ct@ehbio:~/sxbd$ awk 'function abs(x){return ((x < 0.0) ? -x : x)}BEGIN{OFS="\t";FS="\t"}\
+ct@ysx:~/sxbd$ awk 'function abs(x){return ((x < 0.0) ? -x : x)}BEGIN{OFS="\t";FS="\t"}\
 	{pos[1]=$1;pos[2]=$2;pos[3]=$3;pos[4]=$4; len=asort(pos); \
 	for(i=len;i>1;i--) print abs(pos[i]-pos[i-1]);}' file
 ```
@@ -427,14 +426,14 @@ ct@ehbio:~/sxbd$ awk 'function abs(x){return ((x < 0.0) ? -x : x)}BEGIN{OFS="\t"
 
 ```bash
 # TAB键分割的文件
-ct@ehbio:~/sxbd$ cat ens.bed
+ct@ysx:~/sxbd$ cat ens.bed
 1	100	105
 2	100	105
 3	100	105
 Mt	100	105
 X	100	105
 
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{if($1~/^[0-9XY]/) $1="chr"$1; else \
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{if($1~/^[0-9XY]/) $1="chr"$1; else \
 	if($1~/M.*/) gsub(/M.*/, "chrM", $1); print $0}' ens.bed 
 chr1	100	105
 chr2	100	105
@@ -446,14 +445,14 @@ chrX	100	105
 * 字符串分割
 
 ```bash
-ct@ehbio:~/sxbd$ cat trinity_id
+ct@ysx:~/sxbd$ cat trinity_id
 Trinity_C1_g1_i1
 Trinity_C1_g1_i2
 Trinity_C1_g1_i3
 Trinity_C2_g1_i1
 Trinity_C3_g1_i1
 Trinity_C3_g3_i2
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{count=split($1, geneL, "_"); gene=geneL[1]; \
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{count=split($1, geneL, "_"); gene=geneL[1]; \
 	for(i=2;i<count;i++) gene=gene"_"geneL[i]; print gene,$1;}' trinity_id 
 Trinity_C1_g1	Trinity_C1_g1_i1
 Trinity_C1_g1	Trinity_C1_g1_i2
@@ -467,7 +466,7 @@ Trinity_C3_g3	Trinity_C3_g3_i2
 
 ```bash
 
-ct@ehbio:~/sxbd$ cat <<END >grade.awk
+ct@ysx:~/sxbd$ cat <<END >grade.awk
 BEGIN{OFS=FS="\t"; up=ARGV[1]".up"; dw=ARGV[1]".dw";}
 	{if(FNR==1) {print $0 >up; print $0 >dw;} 
 				 else if ($3<=0.05) {
@@ -476,13 +475,13 @@ BEGIN{OFS=FS="\t"; up=ARGV[1]".up"; dw=ARGV[1]".dw";}
 	}
 END
 
-ct@ehbio:~/sxbd$ awk -f grade.awk de_gene
+ct@ysx:~/sxbd$ awk -f grade.awk de_gene
 ```
 
 * awk给每行增加行号，使其变为唯一
 
 ```bash
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}NR!=1{$4=$4"_"NR;print $0}' file
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}NR!=1{$4=$4"_"NR;print $0}' file
 ```
 
 ### awk糅合操作 - 命令组合体现魅力 {#awk_combine}
@@ -491,30 +490,30 @@ ct@ehbio:~/sxbd$ awk 'BEGIN{OFS="\t";FS="\t"}NR!=1{$4=$4"_"NR;print $0}' file
 
 ```bash
 # input_mat
-ct@ehbio:~/sxbd$ cat <<END | sed 's/  */\t/g' >input_mat
+ct@ysx:~/sxbd$ cat <<END | sed 's/  */\t/g' >input_mat
 SRR1	root
 SRR2	leaf
 SRR3	stem
 END
 
-ct@ehbio:~/sxbd$ touch SRR1.fq SRR2.fq SRR3.fq
+ct@ysx:~/sxbd$ touch SRR1.fq SRR2.fq SRR3.fq
 
-ct@ehbio:~/sxbd$ ls
+ct@ysx:~/sxbd$ ls
 SRR1.fq SRR2.fq SRR3.fq 
 
 # 系统命令组成字符串，交给system函数运行
-ct@ehbio:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{system("mv "$1".fq "$2".fq");}' input_mat
+ct@ysx:~/sxbd$ awk 'BEGIN{OFS=FS="\t"}{system("mv "$1".fq "$2".fq");}' input_mat
 
 # 
-ct@ehbio:~/sxbd$ ls
+ct@ysx:~/sxbd$ ls
 leaf.fq root.fq stem.fq
 ```
 
 * awk 引用系统变量
 
 ```bash
-ct@ehbio:~/sxbd$ echo 1 | awk -v ehbio="shengxinbaodian" \
-						-v ehbio2="sxbd" '{print ehbio, ehbio2;}'
+ct@ysx:~/sxbd$ echo 1 | awk -v ysx="shengxinbaodian" \
+						-v ysx2="sxbd" '{print ysx, ysx2;}'
 shengxinbaodian sxbd
 ```
 
@@ -538,7 +537,7 @@ sed是`stream editor`的简称，擅长对文件进行各种正则操作、插�
 ```bash
 # 空格是我们不太喜欢出现在文件中的一个符号，尤其是作为列名字时
 # 列使用TAB键分割
-ct@ehbio:~/sxbd$ cat <<END | sed 's/;/\t/g' mat
+ct@ysx:~/sxbd$ cat <<END | sed 's/;/\t/g' mat
 ID;2 cell;4 cell;8 cell;embryo
 Pou5f1_1;2;3;4;5
 Nanog_1;2;3.2;4.3;5
@@ -547,7 +546,7 @@ Tet1_3;2;3;4;5
 END
 
 # 一次替换
-ct@ehbio:~/sxbd$ sed 's/ /_/' mat 
+ct@ysx:~/sxbd$ sed 's/ /_/' mat 
 ID	2_cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -555,7 +554,7 @@ c-Myc	2	3	4	5
 Tet1_3	2	3	4	5
 
 # 全部替换
-ct@ehbio:~/sxbd$ sed 's/ /_/g' mat 
+ct@ysx:~/sxbd$ sed 's/ /_/g' mat 
 ID	2_cell	4_cell	8_cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -566,14 +565,14 @@ Tet1_3	2	3	4	5
 * 获得逗号分隔的一组数
 
 ```bash
-ct@ehbio:~/sxbd$ echo `seq 1 10` | sed 's/ /,/g'
+ct@ysx:~/sxbd$ echo `seq 1 10` | sed 's/ /,/g'
 1,2,3,4,5,6,7,8,9,10
 ```
 
 * 针对指定行替换
 
 ```bash
-ct@ehbio:~/sxbd$ sed '2,$ s/_[0-9]//g' mat 
+ct@ysx:~/sxbd$ sed '2,$ s/_[0-9]//g' mat 
 ID	2 cell	4 cell	8 cell	embryo
 Pou5f1	2	3	4	5
 Nanog	2	3.2	4.3	5
@@ -585,21 +584,21 @@ Tet1	2	3	4	5
 
 ```bash
 # 替换第一个空格
-ct@ehbio:~/sxbd$ sed 's/ /_/1' mat 
+ct@ysx:~/sxbd$ sed 's/ /_/1' mat 
 ID	2_cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
 c-Myc	2	3	4	5
 Tet1_3	2	3	4	5
 # 替换第二个空格
-ct@ehbio:~/sxbd$ sed 's/ /_/2' mat 
+ct@ysx:~/sxbd$ sed 's/ /_/2' mat 
 ID	2 cell	4_cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
 c-Myc	2	3	4	5
 Tet1_3	2	3	4	5
 # 替换第二个及以后的空格
-ct@ehbio:~/sxbd$ sed 's/ /_/2g' mat 
+ct@ysx:~/sxbd$ sed 's/ /_/2g' mat 
 ID	2 cell	4_cell	8_cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -610,11 +609,11 @@ Tet1_3	2	3	4	5
 * 给序列起名字
 
 ```bash
-ct@ehbio:~/sxbd$ cat seq
+ct@ysx:~/sxbd$ cat seq
 ACDGTFGGCATGCDTGD
 ACDGAGCDTAGCDGTA
 CAGDTAGDCTADTG
-ct@ehbio:~/sxbd$ sed = seq
+ct@ysx:~/sxbd$ sed = seq
 1
 ACDGTFGGCATGCDTGD
 2
@@ -622,7 +621,7 @@ ACDGAGCDTAGCDGTA
 3
 CAGDTAGDCTADTG
 # 同时缓冲两行，但只对第一行行首操作
-ct@ehbio:~/sxbd$ sed = seq | sed 'N;s/^/>/;'
+ct@ysx:~/sxbd$ sed = seq | sed 'N;s/^/>/;'
 >1
 ACDGTFGGCATGCDTGD
 >2
@@ -634,7 +633,7 @@ CAGDTAGDCTADTG
 * 给文件增加标题行
 
 ```bash
-ct@ehbio:~/sxbd$ tail -n +2 mat | sort -k2,2n
+ct@ysx:~/sxbd$ tail -n +2 mat | sort -k2,2n
 c-Myc	2	3	4	5
 Nanog_1	2	3.2	4.3	5
 Pou5f1_1	2	3	4	5
@@ -642,7 +641,7 @@ Tet1_3	2	3	4	5
 
 # 1 表示第一行
 # i 表示插入，在指定行前面插入新行
-ct@ehbio:~/sxbd$ tail -n +2 mat | sort -k2,2n | sed '1 i ID\t2_cell\t4_cell\t8_cell\tembryo'
+ct@ysx:~/sxbd$ tail -n +2 mat | sort -k2,2n | sed '1 i ID\t2_cell\t4_cell\t8_cell\tembryo'
 ID	2_cell	4_cell	8_cell	embryo
 c-Myc	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -654,12 +653,12 @@ Tet1_3	2	3	4	5
 
 ```bash
 # -n是必须的，阻止程序自动输出匹配行，不然会导致重复输出
-ct@ehbio:~/sxbd$ sed -n '2,4p' mat
+ct@ysx:~/sxbd$ sed -n '2,4p' mat
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
 c-Myc	2	3	4	5
 
-ct@ehbio:~/sxbd$ sed -n '4p' mat
+ct@ysx:~/sxbd$ sed -n '4p' mat
 c-Myc	2	3	4	5
 ```
 
@@ -668,19 +667,19 @@ c-Myc	2	3	4	5
   `/pattern/`支持普通字符串和正则表达式匹配
 
 ```bash
-ct@ehbio:~/sxbd$ sed -n '/_/ p' mat
+ct@ysx:~/sxbd$ sed -n '/_/ p' mat
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
 Tet1_3	2	3	4	5
 
-ct@ehbio:~/sxbd$ sed -n '/-/ p' mat
+ct@ysx:~/sxbd$ sed -n '/-/ p' mat
 c-Myc	2	3	4	5
 ```
 
 * 去除文件中的空行
 
 ```bash
-ct@ehbio:~/sxbd$ cat mat
+ct@ysx:~/sxbd$ cat mat
 ID	2 cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -690,7 +689,7 @@ Tet1_3	2	3	4	5
 
 
 # 空行就是只有行首和行尾的行
-ct@ehbio:~/sxbd$ sed '/^$/d' mat 
+ct@ysx:~/sxbd$ sed '/^$/d' mat 
 ID	2 cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -701,7 +700,7 @@ Tet1_3	2	3	4	5
 * 原位删除
 
 ```bash
-ct@ehbio:~/sxbd$ cat mat
+ct@ysx:~/sxbd$ cat mat
 ID	2 cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -710,8 +709,8 @@ c-Myc	2	3	4	5
 Tet1_3	2	3	4	5
 
 # -i 参数的使用
-ct@ehbio:~/sxbd$ sed -i '/^$/d' mat 
-ct@ehbio:~/sxbd$ cat mat
+ct@ysx:~/sxbd$ sed -i '/^$/d' mat 
+ct@ysx:~/sxbd$ cat mat
 ID	2 cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
@@ -722,14 +721,14 @@ Tet1_3	2	3	4	5
 * 删除指定范围的行
 
 ```bash
-ct@ehbio:~/sxbd$ cat mat
+ct@ysx:~/sxbd$ cat mat
 ID	2 cell	4 cell	8 cell	embryo
 Pou5f1_1	2	3	4	5
 Nanog_1	2	3.2	4.3	5
 c-Myc_2	2	3	4	5
 Tet1_3	2	3	4	5
 
-ct@ehbio:~/sxbd$ sed '2,3d' mat
+ct@ysx:~/sxbd$ sed '2,3d' mat
 ID	2 cell	4 cell	8 cell	embryo
 c-Myc_2	2	3	4	5
 Tet1_3	2	3	4	5
@@ -740,33 +739,33 @@ Tet1_3	2	3	4	5
 `\(\)`启动记忆匹配；`\1`为第一个匹配项，`\2`为第二个匹配项；匹配项的计数根据左括号出现的位置来定，第一个`(`包括起来的为`\1`。
 
 ```bash
-ct@ehbio:~/sxbd$ echo "hah ehbio hah" | sed 's/ \(.*\) /\t\1\t\1\t/'
-hah	ehbio	ehbio	hah
+ct@ysx:~/sxbd$ echo "hah ysx hah" | sed 's/ \(.*\) /\t\1\t\1\t/'
+hah	ysx	ysx	hah
 ```
 
 * 奇偶数行处理
 
 ```bash
-ct@ehbio:~/sxbd$ echo -e "odd\neven\nodd\neven"
+ct@ysx:~/sxbd$ echo -e "odd\neven\nodd\neven"
 odd
 even
 odd
 even
 
 # 奇偶数行合并
-ct@ehbio:~/sxbd$ echo -e "odd\neven\nodd\neven" | sed 'N;s/\n/\t/'
+ct@ysx:~/sxbd$ echo -e "odd\neven\nodd\neven" | sed 'N;s/\n/\t/'
 odd	even
 odd	even
 
 # 取出偶数行，比较简单
 # 注意 n (小写)撇掉了奇数行
-ct@ehbio:~/sxbd$ echo -e "odd\neven\nodd\neven" | sed -n 'n;p'
+ct@ysx:~/sxbd$ echo -e "odd\neven\nodd\neven" | sed -n 'n;p'
 even
 even
 
 # 取出奇数行
 # 先都读进去，然后替换偶数行为空值，再输出
-ct@ehbio:~/sxbd$ echo -e "odd\neven\nodd\neven" | sed -n 'N;s/\n.*//;p'
+ct@ysx:~/sxbd$ echo -e "odd\neven\nodd\neven" | sed -n 'N;s/\n.*//;p'
 odd
 odd
 ```
@@ -779,12 +778,12 @@ Windows下的换行符是`\r\n`, Linux下换行符是`\n`, MAC下换行符是`\r
 `^M`的输是 `ctrl+v+M`  `ctrl+v;ctrl+m`，不是简单的输入`^`,再输入`M`。
 
 ```bash
-ct@ehbio:~/sxbd$ cat -A windows.txt 
+ct@ysx:~/sxbd$ cat -A windows.txt 
 ID^M$
 A^M$
 B^M$
 C^M$
-ct@ehbio:~/sxbd$ sed 's/^M//' windows.txt | cat -A
+ct@ysx:~/sxbd$ sed 's/^M//' windows.txt | cat -A
 ID$
 A$
 B$
@@ -795,9 +794,9 @@ C$
 
 ```bash
 # 注意双引号的使用
-ct@ehbio:~/sxbd$ bash_variable='ehbio'
-ct@ehbio:~/sxbd$ echo "sheng xin bao dan " | sed "s/$/$bash_variable/"
-sheng xin bao dan ehbio
+ct@ysx:~/sxbd$ bash_variable='ysx'
+ct@ysx:~/sxbd$ echo "sheng xin bao dan " | sed "s/$/$bash_variable/"
+sheng xin bao dan ysx
 ```
 
 ## VIM的使用 {#vim}
@@ -956,18 +955,18 @@ Linux下文件重命名可以通过两个命令完成，`mv`和`rename`。
 使用`touch`新建文件，两个样品（分别是易生信a，易生信b），各自双端测序的FASTQ文件
 
 ```
-ysx@ehbio:~/test$ touch YSX_a_1.fq.gz YSX_a_2.fq.gz YSX_b_2.fq.gz YSX_b_1.fq.gz
-ysx@ehbio:~/test$ ls
+ysx@ysx:~/test$ touch YSX_a_1.fq.gz YSX_a_2.fq.gz YSX_b_2.fq.gz YSX_b_1.fq.gz
+ysx@ysx:~/test$ ls
 YSX_a_1.fq.gz  YSX_a_2.fq.gz  YSX_b_1.fq.gz  YSX_b_2.fq.gz
 ```
 
-把文件名中的 易生信(`YSX`)改为易汉博 (`ehbio`)
+把文件名中的 易生信(`YSX`)改为易汉博 (`ysx`)
 
 ```
 # rename '被替换文字' '要替换成的文字' 操作对象
-ysx@ehbio:~/test$ rename 'YSX' 'ehbio' *.gz
-ysx@ehbio:~/test$ ls
-ehbio_a_1.fq.gz  ehbio_a_2.fq.gz  ehbio_b_1.fq.gz  ehbio_b_2.fq.gz
+ysx@ysx:~/test$ rename 'YSX' 'ysx' *.gz
+ysx@ysx:~/test$ ls
+ysx_a_1.fq.gz  ysx_a_2.fq.gz  ysx_b_1.fq.gz  ysx_b_2.fq.gz
 ```
 
 不同操作系统，`rename`的使用方法略有不同。印象中:
@@ -978,12 +977,12 @@ ehbio_a_1.fq.gz  ehbio_a_2.fq.gz  ehbio_b_1.fq.gz  ehbio_b_2.fq.gz
 
 ```
 # 在Centos下，该命令未起作用
-ysx@ehbio:~/test$ rename 's/ehbio_//' *
-ysx@ehbio:~/test$ ls
-ehbio_a_1.fq.gz  ehbio_a_2.fq.gz  ehbio_b_1.fq.gz  ehbio_b_2.fq.gz
+ysx@ysx:~/test$ rename 's/ysx_//' *
+ysx@ysx:~/test$ ls
+ysx_a_1.fq.gz  ysx_a_2.fq.gz  ysx_b_1.fq.gz  ysx_b_2.fq.gz
 
 # 如果写的rename命令没发挥作用，使用man rename查看写看其具体使用方法, 个人经验，无外乎上面提到的两种用法。
-ysx@ehbio:~/test$ man rename
+ysx@ysx:~/test$ man rename
 
 # NAME
 #        rename - rename files
@@ -996,9 +995,9 @@ ysx@ehbio:~/test$ man rename
 
 ```
 # 替换后缀
-ysx@ehbio:~/test$ rename 'fq' 'fastq' *.gz
-ysx@ehbio:~/test$ ls
-ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz
+ysx@ysx:~/test$ rename 'fq' 'fastq' *.gz
+ysx@ysx:~/test$ ls
+ysx_a_1.fastq.gz  ysx_a_2.fastq.gz  ysx_b_1.fastq.gz  ysx_b_2.fastq.gz
 ```
 
 ### 复杂重命名 {#rename_complex}
@@ -1010,10 +1009,10 @@ ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz
 如下`name.map.txt`是自己手动编写的文件，`a`对应`Control`, `b`对应`Treatment`。
 
 ```
-ysx@ehbio:~/test$ ls
-name.map.txt ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz
+ysx@ysx:~/test$ ls
+name.map.txt ysx_a_1.fastq.gz  ysx_a_2.fastq.gz  ysx_b_1.fastq.gz  ysx_b_2.fastq.gz
 
-ysx@ehbio:~/test$ cat name.map.txt
+ysx@ysx:~/test$ cat name.map.txt
 a	Control
 b	Treatment
 ```
@@ -1023,36 +1022,36 @@ b	Treatment
 首先组合出原名字和最终名字
 
 ```
-ysx@ehbio:~/test$ awk '{print "ehbio_"$1"_1.fastq.gz", "ehbio_"$2"_1.fastq.gz", "ehbio_"$1"_2.fastq.gz",  "ehbio_"$2"_2.fastq.gz"}' name.map.txt
-ehbio_a_1.fastq.gz ehbio_Control_1.fastq.gz ehbio_a_2.fastq.gz ehbio_Control_2.fastq.gz
-ehbio_b_1.fastq.gz ehbio_Treatment_1.fastq.gz ehbio_b_2.fastq.gz ehbio_Treatment_2.fastq.gz
+ysx@ysx:~/test$ awk '{print "ysx_"$1"_1.fastq.gz", "ysx_"$2"_1.fastq.gz", "ysx_"$1"_2.fastq.gz",  "ysx_"$2"_2.fastq.gz"}' name.map.txt
+ysx_a_1.fastq.gz ysx_Control_1.fastq.gz ysx_a_2.fastq.gz ysx_Control_2.fastq.gz
+ysx_b_1.fastq.gz ysx_Treatment_1.fastq.gz ysx_b_2.fastq.gz ysx_Treatment_2.fastq.gz
 ```
 
 加上`mv`
 
 ```
-ysx@ehbio:~/test$ awk '{print "mv ehbio_"$1"_1.fastq.gz ehbio_"$2"_1.fastq.gz"; print "mv ehbio_"$1"_2.fastq.gz ehbio_"$2"_2.fastq.gz";}' name.map.txt
-mv ehbio_a_1.fastq.gz ehbio_Control_1.fastq.gz
-mv ehbio_a_2.fastq.gz ehbio_Control_2.fastq.gz
-mv ehbio_b_1.fastq.gz ehbio_Treatment_1.fastq.gz
-mv ehbio_b_2.fastq.gz ehbio_Treatment_2.fastq.gz
+ysx@ysx:~/test$ awk '{print "mv ysx_"$1"_1.fastq.gz ysx_"$2"_1.fastq.gz"; print "mv ysx_"$1"_2.fastq.gz ysx_"$2"_2.fastq.gz";}' name.map.txt
+mv ysx_a_1.fastq.gz ysx_Control_1.fastq.gz
+mv ysx_a_2.fastq.gz ysx_Control_2.fastq.gz
+mv ysx_b_1.fastq.gz ysx_Treatment_1.fastq.gz
+mv ysx_b_2.fastq.gz ysx_Treatment_2.fastq.gz
 ```
 
 可以直接拷贝上面的输出再粘贴运行，或存储为文件运行
 
 ```
-ysx@ehbio:~/test$ awk '{print "mv ehbio_"$1"_1.fastq.gz ehbio_"$2"_1.fastq.gz"; print "mv ehbio_"$1"_2.fastq.gz ehbio_"$2"_2.fastq.gz";}' name.map.txt >rename.sh
-ysx@ehbio:~/test$ #bash rename.sh
+ysx@ysx:~/test$ awk '{print "mv ysx_"$1"_1.fastq.gz ysx_"$2"_1.fastq.gz"; print "mv ysx_"$1"_2.fastq.gz ysx_"$2"_2.fastq.gz";}' name.map.txt >rename.sh
+ysx@ysx:~/test$ #bash rename.sh
 ```
 
 也可以把`print`改为`system`直接运行
 
 ```
-ysx@ehbio:~/test$ ls
-ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz  name.map.txt  rename.sh
-ysx@ehbio:~/test$ awk '{system("mv ehbio_"$1"_1.fastq.gz ehbio_"$2"_1.fastq.gz"); system("mv ehbio_"$1"_2.fastq.gz ehbio_"$2"_2.fastq.gz");}' name.map.txt
-ysx@ehbio:~/test$ ls
-ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  ehbio_Treatment_2.fastq.gz  name.map.txt  rename.sh
+ysx@ysx:~/test$ ls
+ysx_a_1.fastq.gz  ysx_a_2.fastq.gz  ysx_b_1.fastq.gz  ysx_b_2.fastq.gz  name.map.txt  rename.sh
+ysx@ysx:~/test$ awk '{system("mv ysx_"$1"_1.fastq.gz ysx_"$2"_1.fastq.gz"); system("mv ysx_"$1"_2.fastq.gz ysx_"$2"_2.fastq.gz");}' name.map.txt
+ysx@ysx:~/test$ ls
+ysx_Control_1.fastq.gz  ysx_Control_2.fastq.gz  ysx_Treatment_1.fastq.gz  ysx_Treatment_2.fastq.gz  name.map.txt  rename.sh
 ```
 
 ##### 使用rename会不会稍微简单一点？ {#rename_for_complex_style}
@@ -1061,37 +1060,37 @@ ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  
 
 ```
 # 注意引号和空格
-ysx@ehbio:~/test$ awk '{print("rename "$1" "$2" *.fastq.gz"); }' name.map.txt
+ysx@ysx:~/test$ awk '{print("rename "$1" "$2" *.fastq.gz"); }' name.map.txt
 rename a Control *.fastq.gz
 rename b Treatment *.fastq.gz
 
 # 上面的命令有什么问题吗？
 # fastq中也存在a，是否也会被替换
-# ehbio中也存在b，是否也会倍替换
+# ysx中也存在b，是否也会倍替换
 
-ysx@ehbio:~/test$ awk '{system("rename "$1" "$2" *.fastq.gz"); }' name.map.txt
+ysx@ysx:~/test$ awk '{system("rename "$1" "$2" *.fastq.gz"); }' name.map.txt
 
 # 执行后，文件名都乱套了
-ysx@ehbio:~/test$ ls
-ehbio_b_1.fControlstq.gz  ehbio_b_2.fControlstq.gz  ehTreatmentio_Control_1.fastq.gz  ehTreatmentio_Control_2.fastq.gz  name.map.txt  rename.sh
+ysx@ysx:~/test$ ls
+ysx_b_1.fControlstq.gz  ysx_b_2.fControlstq.gz  ehTreatmentio_Control_1.fastq.gz  ehTreatmentio_Control_2.fastq.gz  name.map.txt  rename.sh
 
 # 再重命名回去，再次尝试
-ysx@ehbio:~/test$ rename 'Control' 'a' *
-ysx@ehbio:~/test$ rename 'Treatment' 'b' *
-ysx@ehbio:~/test$ ls
-ehbio_a_1.fastq.gz  ehbio_a_2.fastq.gz  ehbio_b_1.fastq.gz  ehbio_b_2.fastq.gz  name.map.txt  rename.sh
+ysx@ysx:~/test$ rename 'Control' 'a' *
+ysx@ysx:~/test$ rename 'Treatment' 'b' *
+ysx@ysx:~/test$ ls
+ysx_a_1.fastq.gz  ysx_a_2.fastq.gz  ysx_b_1.fastq.gz  ysx_b_2.fastq.gz  name.map.txt  rename.sh
 
 # 重命名两侧加下划线, 这也是我们做匹配时常需要注意的，尽量限制让匹配更准确
-ysx@ehbio:~/test$ awk '{system("rename _"$1"_ _"$2"_ *.fastq.gz"); }' name.map.txt
+ysx@ysx:~/test$ awk '{system("rename _"$1"_ _"$2"_ *.fastq.gz"); }' name.map.txt
 
 # 打印出来看下
-ysx@ehbio:~/test$ awk '{print("rename _"$1"_ _"$2"_ *.fastq.gz"); }' name.map.txt
+ysx@ysx:~/test$ awk '{print("rename _"$1"_ _"$2"_ *.fastq.gz"); }' name.map.txt
 # rename _a_ _Control_ *.fastq.gz
 # rename _b_ _Treatment_ *.fastq.gz
 
 # 这次没问题了
-ysx@ehbio:~/test$ ls
-ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  ehbio_Treatment_2.fastq.gz  name.map.txt  rename.sh
+ysx@ysx:~/test$ ls
+ysx_Control_1.fastq.gz  ysx_Control_2.fastq.gz  ysx_Treatment_1.fastq.gz  ysx_Treatment_2.fastq.gz  name.map.txt  rename.sh
 ```
 
 
@@ -1105,7 +1104,7 @@ ehbio_Control_1.fastq.gz  ehbio_Control_2.fastq.gz  ehbio_Treatment_1.fastq.gz  
 
 ```
 # 如下有一堆测序原始数据，选择A组样品来查看
-ysx@ehbio:~/test2# ls A*
+ysx@ysx:~/test2# ls A*
 
 A1_FRAS192317015-1a_1.fq.gz  A2_FRAS192320421-1a_1.fq.gz  A3_FRAS192317017-1a_1.fq.gz
 A1_FRAS192317015-1a_2.fq.gz  A2_FRAS192320421-1a_2.fq.gz  A3_FRAS192317017-1a_2.fq.gz
@@ -1116,7 +1115,7 @@ A1_FRAS192317015-1a_2.fq.gz  A2_FRAS192320421-1a_2.fq.gz  A3_FRAS192317017-1a_2.
 观察规律，按下划线分割(`_`)，获取第`1,3`个元素；另外习惯性给生物重复前面也加上下划线（用到了`sed`的记忆匹配）。
 
 ```
-ysx@ehbio:~/test2# ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/'
+ysx@ysx:~/test2# ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/'
 A_1_1.fq.gz
 A_1_2.fq.gz
 A_2_1.fq.gz
@@ -1126,7 +1125,7 @@ A_2_2.fq.gz
 把原样品名字与新样品名字对应起来，这里用到了`paste`和输入重定向 (`<`):
 
 ```
-ysx@ehbio:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/')
+ysx@ysx:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/')
 A1_FRAS192317015-1a_1.fq.gz	A_1_1_fq.gz
 A1_FRAS192317015-1a_2.fq.gz	A_1_2_fq.gz
 A2_FRAS192320421-1a_1.fq.gz	A_2_1_fq.gz
@@ -1138,7 +1137,7 @@ A3_FRAS192317017-1a_2.fq.gz	A_3_2_fq.gz
 使用`mv`直接重命名 （还可以把这个脚本保存下来，保留原始名字和新名字的对应关系，万一操作错了，在看到结果异常时也可以方便回溯）
 
 ```
-ysx@ehbio:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/') | sed 's#^#/bin/mv #'
+ysx@ysx:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([A-E]\)/\1_/') | sed 's#^#/bin/mv #'
 /bin/mv A1_FRAS192317015-1a_1.fq.gz	A_1_1_fq.gz
 /bin/mv A1_FRAS192317015-1a_2.fq.gz	A_1_2_fq.gz
 /bin/mv A2_FRAS192320421-1a_1.fq.gz	A_2_1_fq.gz
@@ -1150,7 +1149,7 @@ ysx@ehbio:~/test2# paste <(ls A*.gz) <(ls A*.gz | cut -f 1,3 -d '_' | sed 's/\([
 软链接也是常用的 (但一定注意源文件使用全路径)
 
 ```
-ysx@ehbio:~/test2# paste <(ls *.gz) <(ls *.gz | sed 's/\./_/' | cut -f 1,3,4 -d '_' | sed 's/\([A-E]\)/analysis\/\1_/') | sed 's#^#ln -s `pwd`/#'
+ysx@ysx:~/test2# paste <(ls *.gz) <(ls *.gz | sed 's/\./_/' | cut -f 1,3,4 -d '_' | sed 's/\([A-E]\)/analysis\/\1_/') | sed 's#^#ln -s `pwd`/#'
 ln -s `pwd`/A1_FRAS192317015-1a_1.fq.gz	analysis/A_1_1_fq.gz
 ln -s `pwd`/A1_FRAS192317015-1a_2.fq.gz	analysis/A_1_2_fq.gz
 ln -s `pwd`/A2_FRAS192320421-1a_1.fq.gz	analysis/A_2_1_fq.gz
@@ -1166,14 +1165,14 @@ ln -s `pwd`/E15_FRAS192317028-1a_2.fq.gz	analysis/E_15_2_fq.gz
 转换下输入数据的格式，字符处理在`awk`也可以操作，但我更习惯使用命令组合，每一步都用最简单的操作，不容易出错。
 
 ```
-ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/'
+ysx@ysx:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/'
 A_1_FRAS192317015-1a_1.fq.gz
 A_1_FRAS192317015-1a_2.fq.gz
 A_2_FRAS192320421-1a_1.fq.gz
 A_2_FRAS192320421-1a_2.fq.gz
 A_3_FRAS192317017-1a_1.fq.gz
 A_3_FRAS192317017-1a_2.fq.gz
-ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./'
+ysx@ysx:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./'
 A_1_FRAS192317015-1a_1_.fq.gz
 A_1_FRAS192317015-1a_2_.fq.gz
 A_2_FRAS192320421-1a_1_.fq.gz
@@ -1186,7 +1185,7 @@ A_3_FRAS192317017-1a_2_.fq.gz
 
 ```
 # 生成样品重复，计数出错了，每行记了一个数，而实际两行是一个样本。
-ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}'
+ysx@ysx:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}'
 A_1_FRAS192317015-1a_1_.fq.gz A_1_1.fq.gz
 A_1_FRAS192317015-1a_2_.fq.gz A_2_2.fq.gz
 A_2_FRAS192320421-1a_1_.fq.gz A_3_1.fq.gz
@@ -1197,7 +1196,7 @@ A_3_FRAS192317017-1a_2_.fq.gz A_6_2.fq.gz
 
 ```
 # 稍微改进下
-ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}'
+ysx@ysx:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}'
 A_1_FRAS192317015-1a_1.fq.gz A_1_1.fq.gz
 A_1_FRAS192317015-1a_2.fq.gz A_2_2.fq.gz
 A_2_FRAS192320421-1a_1.fq.gz A_3_1.fq.gz
@@ -1206,7 +1205,7 @@ A_3_FRAS192317017-1a_1.fq.gz A_5_1.fq.gz
 A_3_FRAS192317017-1a_2.fq.gz A_6_2.fq.gz
 
 # 记得源文件名字的替换
-ysx@ehbio:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}' | sed -e 's/_//' -e 's/_\././' -e 's#^#ln -s `pwd`/#' |head
+ysx@ysx:~/test2# ls A*.gz | sed -e 's/\([A-E]\)/\1_/' -e 's/\./_./' | awk 'BEGIN{OFS=" ";FS="_"}{sum[$1]+=1; print $0, $1"_"sum[$1]"_"$4$5;}' | sed -e 's/_//' -e 's/_\././' -e 's#^#ln -s `pwd`/#' |head
 ln -s `pwd`/A1_FRAS192317015-1a_1.fq.gz A_1_1.fq.gz
 ln -s `pwd`/A1_FRAS192317015-1a_2.fq.gz A_2_2.fq.gz
 ```
@@ -1238,7 +1237,7 @@ nohup fastq-dump -v --split-3 --gzip SRR5908361 &
 下面看这个例子：马上要去吃午饭了，把文件同步到另一个服务器，饭后回来继续操作：
 
 ```
-ysx@ehbio:~/test/Bigwig$ rsync -av * ysx@46.93.19.14:/tmp
+ysx@ysx:~/test/Bigwig$ rsync -av * ysx@46.93.19.14:/tmp
 ysx@46.93.19.14's password: 
 sending incremental file list
 test1Y_DK10.bw
@@ -1258,24 +1257,24 @@ test1Y_DK10.bw
 第二步（可选），用`jobs`命令查看下任务状态，跟刚才的屏幕提示一致，程序被暂时终止，作业号还是`1`：
 
 ```
-ysx@ehbio:~/test/Bigwig$ jobs
+ysx@ysx:~/test/Bigwig$ jobs
 [1]+  已停止               rsync -av * ysx@46.93.19.14:/tmp
 ```
 
 第三步，使用`bg %1`命令把作业号为`1`的任务放入后台，并从**停止**状态变为**运行**状态，相当于加了`&`后接着运行。再用`jobs`查看，任务状态变成了`运行中`，这一步很关键。如果没有运行`bg %1`则程序处于停止状态，一直不会运行，吃几顿饭都不会运行。
 
 ```
-ysx@ehbio:~/test/Bigwig$ bg %1
+ysx@ysx:~/test/Bigwig$ bg %1
 [1]+ rsync -av * ysx@46.93.19.14:/tmp &
-ysx@ehbio:~/test/Bigwig$ jobs
+ysx@ysx:~/test/Bigwig$ jobs
 [1]+  运行中               rsync -av * ysx@46.93.19.14:/tmp &
 ```
 
 第四步，运行`disown -h %1`，表示在终端关闭时不对作业号为`1`的程序发送终止信号，外部因素将不影响程序的运行。通过`ps`命令查看下任务进程 (可选)。
 
 ```
-ysx@ehbio:~/test/Bigwig$ disown -h %1
-ysx@ehbio:~/test/Bigwig$ ps -auwx | grep 'rsync'
+ysx@ysx:~/test/Bigwig$ disown -h %1
+ysx@ysx:~/test/Bigwig$ ps -auwx | grep 'rsync'
 ysx       18214  0.0  0.0 117844  1720 ?        S    09:43   0:01 rsync -av *.bw ysx@46.93.19.14:/tmp
 ysx       18215  0.1  0.0 182376  8360 ?        S    09:43   0:04 ssh -l ysx 46.93.19.14 rsync --server -vlogDtpre.iLsfxC . /tmp
 ysx       18340  0.0  0.0 112724   984 pts/1    S+   10:17   0:00 grep --color=auto rsync
@@ -1295,7 +1294,7 @@ ysx       18340  0.0  0.0 112724   984 pts/1    S+   10:17   0:00 grep --color=a
 
 ## References
 
-* [www.ehbio.com/Training](www.ehbio.com/Training)
+* [www.bic.ac.cn/Training](www.bic.ac.cn/Training)
 * [Linux学习 - 常用和不太常用的实用awk命令](http://mp.weixin.qq.com/s/8wD14FXt7fLDo1BjJyT0ew)
 * [Linux-总目录](http://mp.weixin.qq.com/s/hEYU80fPf1eD5OWL3fO4Bg)
 * [Linux-文件和目录](http://mp.weixin.qq.com/s/yKP1Kboji9N4p2Sl1Ovj0Q)

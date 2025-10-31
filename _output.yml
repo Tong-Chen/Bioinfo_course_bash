@@ -12,7 +12,7 @@ bookdown::gitbook:
     download: [pdf]
     toc:
       before: |
-          <li><a href="http://https://mp.weixin.qq.com/s/i71OMaUu6QtcY0pt1njHQA"><img src="http://www.ehbio.com/logos/ehbio_gitbook_logo.png" width="95%"></a></li>
+          <li><a href="http://https://mp.weixin.qq.com/s/i71OMaUu6QtcY0pt1njHQA">Hello</a></li>
       after: |
           <li><a href="mailto:chentong_biology@163.com" target="blank">chentong_biology@163.com</a></li>
     sharing: 

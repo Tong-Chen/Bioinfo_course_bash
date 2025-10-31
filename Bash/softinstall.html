@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Linux下软件安装相关 | Linux学习</title>
   <meta name="description" content="2 Linux下软件安装相关 | Linux学习" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Linux下软件安装相关 | Linux学习" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -22,20 +21,20 @@
   
 
 <meta name="author" content="易生信" />
-<meta name="author" content="www.ehbio.com/Training" />
-<meta name="author" content="train@ehbio.com" />
+<meta name="author" content="www.bic.ac.cn/Training" />
 
 
-<meta name="date" content="2020-08-24" />
+<meta name="date" content="2025-10-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="linux-basic.html"/>
+<link rel="prev" href="linux_basic.html"/>
 <link rel="next" href="LinuxGreatTools.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,23 +50,25 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,13 +88,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -118,6 +119,11 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -133,63 +139,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="http://www.ehbio.com"><img src="http://www.ehbio.com/logos/ehbio_gitbook_logo.png" width="95%"></a></li>
+<li><a href="http://https://mp.weixin.qq.com/s/i71OMaUu6QtcY0pt1njHQA">Hello</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>EHBIO Gene Technology</a></li>
-<li class="chapter" data-level="1" data-path="linux-basic.html"><a href="linux-basic.html"><i class="fa fa-check"></i><b>1</b> Linux初探，打开新世界的大门</a><ul>
-<li class="chapter" data-level="1.1" data-path="linux-basic.html"><a href="linux-basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="linux-basic.html"><a href="linux-basic.html#why_linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
-<li class="chapter" data-level="1.1.2" data-path="linux-basic.html"><a href="linux-basic.html#linux_everywhere"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统无处不在</a></li>
-<li class="chapter" data-level="1.1.3" data-path="linux-basic.html"><a href="linux-basic.html#free_linux"><i class="fa fa-check"></i><b>1.1.3</b> 免费的Linux系统来一套</a></li>
-<li class="chapter" data-level="1.1.4" data-path="linux-basic.html"><a href="linux-basic.html#linux_login"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录-联系远方的她</a></li>
-<li class="chapter" data-level="1.1.5" data-path="linux-basic.html"><a href="linux-basic.html#linux_cmd"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统 - 黑夜中的闪烁是你的落脚点</a></li>
-<li class="chapter" data-level="1.1.6" data-path="linux-basic.html"><a href="linux-basic.html#my_computer"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
-<li class="chapter" data-level="1.1.7" data-path="linux-basic.html"><a href="linux-basic.html#linux_system_hardware"><i class="fa fa-check"></i><b>1.1.7</b> 系统配置怎样？来看看256M硬盘的服务器</a></li>
-<li class="chapter" data-level="1.1.8" data-path="linux-basic.html"><a href="linux-basic.html#directpry_show"><i class="fa fa-check"></i><b>1.1.8</b> 看下目录下都有什么</a></li>
-<li class="chapter" data-level="1.1.9" data-path="linux-basic.html"><a href="linux-basic.html#mkdir"><i class="fa fa-check"></i><b>1.1.9</b> 新建一个目录</a></li>
-<li class="chapter" data-level="1.1.10" data-path="linux-basic.html"><a href="linux-basic.html#cat_file"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
-<li class="chapter" data-level="1.1.11" data-path="linux-basic.html"><a href="linux-basic.html#com_parameter_help"><i class="fa fa-check"></i><b>1.1.11</b> 查看帮助，获取可用命令行参数</a></li>
-<li class="chapter" data-level="1.1.12" data-path="linux-basic.html"><a href="linux-basic.html#first_summary"><i class="fa fa-check"></i><b>1.1.12</b> 小结</a></li>
-<li class="chapter" data-level="1.1.13" data-path="linux-basic.html"><a href="linux-basic.html#first_exercise"><i class="fa fa-check"></i><b>1.1.13</b> 做个小测试</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前沿</a></li>
+<li class="chapter" data-level="1" data-path="linux_basic.html"><a href="linux_basic.html"><i class="fa fa-check"></i><b>1</b> Linux初探，打开新世界的大门</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux_basic.html"><a href="linux_basic.html#basicDir"><i class="fa fa-check"></i><b>1.1</b> Linux系统简介和目录理解</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="linux_basic.html"><a href="linux_basic.html#why_linux"><i class="fa fa-check"></i><b>1.1.1</b> 为什么要用Linux系统</a></li>
+<li class="chapter" data-level="1.1.2" data-path="linux_basic.html"><a href="linux_basic.html#linux_everywhere"><i class="fa fa-check"></i><b>1.1.2</b> Linux系统无处不在</a></li>
+<li class="chapter" data-level="1.1.3" data-path="linux_basic.html"><a href="linux_basic.html#free_linux"><i class="fa fa-check"></i><b>1.1.3</b> 免费的Linux系统来一套</a></li>
+<li class="chapter" data-level="1.1.4" data-path="linux_basic.html"><a href="linux_basic.html#linux_login"><i class="fa fa-check"></i><b>1.1.4</b> Linux系统登录-联系远方的她</a></li>
+<li class="chapter" data-level="1.1.5" data-path="linux_basic.html"><a href="linux_basic.html#linux_cmd"><i class="fa fa-check"></i><b>1.1.5</b> 初识Linux系统 - 黑夜中的闪烁是你的落脚点</a></li>
+<li class="chapter" data-level="1.1.6" data-path="linux_basic.html"><a href="linux_basic.html#my_computer"><i class="fa fa-check"></i><b>1.1.6</b> 我的电脑在哪？</a></li>
+<li class="chapter" data-level="1.1.7" data-path="linux_basic.html"><a href="linux_basic.html#linux_system_hardware"><i class="fa fa-check"></i><b>1.1.7</b> 系统配置怎样？来看看256M硬盘的服务器</a></li>
+<li class="chapter" data-level="1.1.8" data-path="linux_basic.html"><a href="linux_basic.html#directpry_show"><i class="fa fa-check"></i><b>1.1.8</b> 看下目录下都有什么</a></li>
+<li class="chapter" data-level="1.1.9" data-path="linux_basic.html"><a href="linux_basic.html#mkdir"><i class="fa fa-check"></i><b>1.1.9</b> 新建一个目录</a></li>
+<li class="chapter" data-level="1.1.10" data-path="linux_basic.html"><a href="linux_basic.html#cat_file"><i class="fa fa-check"></i><b>1.1.10</b> 访问文件</a></li>
+<li class="chapter" data-level="1.1.11" data-path="linux_basic.html"><a href="linux_basic.html#com_parameter_help"><i class="fa fa-check"></i><b>1.1.11</b> 查看帮助，获取可用命令行参数</a></li>
+<li class="chapter" data-level="1.1.12" data-path="linux_basic.html"><a href="linux_basic.html#first_summary"><i class="fa fa-check"></i><b>1.1.12</b> 小结</a></li>
+<li class="chapter" data-level="1.1.13" data-path="linux_basic.html"><a href="linux_basic.html#first_exercise"><i class="fa fa-check"></i><b>1.1.13</b> 做个小测试</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="linux-basic.html"><a href="linux-basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="linux-basic.html"><a href="linux-basic.html#tac_rev"><i class="fa fa-check"></i><b>1.2.1</b> 文件按行翻转和按列翻转</a></li>
-<li class="chapter" data-level="1.2.2" data-path="linux-basic.html"><a href="linux-basic.html#new_file"><i class="fa fa-check"></i><b>1.2.2</b> 新建文件的n种方式</a></li>
-<li class="chapter" data-level="1.2.3" data-path="linux-basic.html"><a href="linux-basic.html#file_cp_mv_rename_link"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名、软链</a></li>
-<li class="chapter" data-level="1.2.4" data-path="linux-basic.html"><a href="linux-basic.html#linux_abnormal"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些突发事故</a></li>
-<li class="chapter" data-level="1.2.5" data-path="linux-basic.html"><a href="linux-basic.html#file_op_gzip_wc"><i class="fa fa-check"></i><b>1.2.5</b> 了解和操作你的文件</a></li>
-<li class="chapter" data-level="1.2.6" data-path="linux-basic.html"><a href="linux-basic.html#second_exercise"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
+<li class="chapter" data-level="1.2" data-path="linux_basic.html"><a href="linux_basic.html#fileoperation"><i class="fa fa-check"></i><b>1.2</b> Linux下文件操作</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="linux_basic.html"><a href="linux_basic.html#tac_rev"><i class="fa fa-check"></i><b>1.2.1</b> 文件按行翻转和按列翻转</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linux_basic.html"><a href="linux_basic.html#new_file"><i class="fa fa-check"></i><b>1.2.2</b> 新建文件的n种方式</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linux_basic.html"><a href="linux_basic.html#file_cp_mv_rename_link"><i class="fa fa-check"></i><b>1.2.3</b> 文件拷贝、移动、重命名、软链</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linux_basic.html"><a href="linux_basic.html#linux_abnormal"><i class="fa fa-check"></i><b>1.2.4</b> Linux下命令的一些突发事故</a></li>
+<li class="chapter" data-level="1.2.5" data-path="linux_basic.html"><a href="linux_basic.html#file_op_gzip_wc"><i class="fa fa-check"></i><b>1.2.5</b> 了解和操作你的文件</a></li>
+<li class="chapter" data-level="1.2.6" data-path="linux_basic.html"><a href="linux_basic.html#second_exercise"><i class="fa fa-check"></i><b>1.2.6</b> 小结和练习</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="linux-basic.html"><a href="linux-basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
-<li class="chapter" data-level="1.4" data-path="linux-basic.html"><a href="linux-basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.4</b> Linux下的标准输入、输出、重定向、管道</a></li>
-<li class="chapter" data-level="1.5" data-path="linux-basic.html"><a href="linux-basic.html#filecontent"><i class="fa fa-check"></i><b>1.5</b> Linux文件内容操作</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="linux-basic.html"><a href="linux-basic.html#generate_file_seq"><i class="fa fa-check"></i><b>1.5.1</b> 命令组合生成文件</a></li>
-<li class="chapter" data-level="1.5.2" data-path="linux-basic.html"><a href="linux-basic.html#sort_par"><i class="fa fa-check"></i><b>1.5.2</b> 文件排序原来有暗仓</a></li>
-<li class="chapter" data-level="1.5.3" data-path="linux-basic.html"><a href="linux-basic.html#实战fasta序列提取-fasta_extract"><i class="fa fa-check"></i><b>1.5.3</b> 实战FASTA序列提取 [#fasta_extract}</a></li>
+<li class="chapter" data-level="1.3" data-path="linux_basic.html"><a href="linux_basic.html#shortcut"><i class="fa fa-check"></i><b>1.3</b> Linux终端常用快捷操作</a></li>
+<li class="chapter" data-level="1.4" data-path="linux_basic.html"><a href="linux_basic.html#linuxSpecialSymbols"><i class="fa fa-check"></i><b>1.4</b> Linux 命令中的特殊符号</a></li>
+<li class="chapter" data-level="1.5" data-path="linux_basic.html"><a href="linux_basic.html#stdinoutpipe"><i class="fa fa-check"></i><b>1.5</b> Linux下的标准输入、输出、重定向、管道</a></li>
+<li class="chapter" data-level="1.6" data-path="linux_basic.html"><a href="linux_basic.html#filecontent"><i class="fa fa-check"></i><b>1.6</b> Linux文件内容操作</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="linux_basic.html"><a href="linux_basic.html#generate_file_seq"><i class="fa fa-check"></i><b>1.6.1</b> 命令组合生成文件</a></li>
+<li class="chapter" data-level="1.6.2" data-path="linux_basic.html"><a href="linux_basic.html#sort_par"><i class="fa fa-check"></i><b>1.6.2</b> 文件排序原来有暗仓</a></li>
+<li class="chapter" data-level="1.6.3" data-path="linux_basic.html"><a href="linux_basic.html#%E5%AE%9E%E6%88%98fasta%E5%BA%8F%E5%88%97%E6%8F%90%E5%8F%96-fasta_extract"><i class="fa fa-check"></i><b>1.6.3</b> 实战FASTA序列提取 [#fasta_extract}</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="linux-basic.html"><a href="linux-basic.html#linux_search"><i class="fa fa-check"></i><b>1.6</b> Linux下的查找命令 - 文件哪里跑</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="linux-basic.html"><a href="linux-basic.html#seach_cmmand"><i class="fa fa-check"></i><b>1.6.1</b> 命令/可执行程序查找 - 定位脚本的位置</a></li>
-<li class="chapter" data-level="1.6.2" data-path="linux-basic.html"><a href="linux-basic.html#locate"><i class="fa fa-check"></i><b>1.6.2</b> locate普通文件快速定位</a></li>
-<li class="chapter" data-level="1.6.3" data-path="linux-basic.html"><a href="linux-basic.html#find"><i class="fa fa-check"></i><b>1.6.3</b> find让文件无处可逃 find</a></li>
-<li class="chapter" data-level="1.6.4" data-path="linux-basic.html"><a href="linux-basic.html#grep_file"><i class="fa fa-check"></i><b>1.6.4</b> 按文件内容查找 grep</a></li>
+<li class="chapter" data-level="1.7" data-path="linux_basic.html"><a href="linux_basic.html#linux_search"><i class="fa fa-check"></i><b>1.7</b> Linux下的查找命令 - 文件哪里跑</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="linux_basic.html"><a href="linux_basic.html#seach_cmmand"><i class="fa fa-check"></i><b>1.7.1</b> 命令/可执行程序查找 - 定位脚本的位置</a></li>
+<li class="chapter" data-level="1.7.2" data-path="linux_basic.html"><a href="linux_basic.html#locate"><i class="fa fa-check"></i><b>1.7.2</b> locate普通文件快速定位</a></li>
+<li class="chapter" data-level="1.7.3" data-path="linux_basic.html"><a href="linux_basic.html#find"><i class="fa fa-check"></i><b>1.7.3</b> find让文件无处可逃 find</a></li>
+<li class="chapter" data-level="1.7.4" data-path="linux_basic.html"><a href="linux_basic.html#grep_file"><i class="fa fa-check"></i><b>1.7.4</b> 按文件内容查找 grep</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="linux-basic.html"><a href="linux-basic.html#grep_faster"><i class="fa fa-check"></i><b>1.7</b> 一句话加速grep近30倍</a><ul>
-<li class="chapter" data-level="1.7.1" data-path="linux-basic.html"><a href="linux-basic.html#grep_single_gene"><i class="fa fa-check"></i><b>1.7.1</b> 获取单基因表达量</a></li>
-<li class="chapter" data-level="1.7.2" data-path="linux-basic.html"><a href="linux-basic.html#grep_multiple_gene"><i class="fa fa-check"></i><b>1.7.2</b> 那如果获取多个基因怎么操作呢？</a></li>
+<li class="chapter" data-level="1.8" data-path="linux_basic.html"><a href="linux_basic.html#grep_faster"><i class="fa fa-check"></i><b>1.8</b> 一句话加速grep近30倍</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="linux_basic.html"><a href="linux_basic.html#grep_single_gene"><i class="fa fa-check"></i><b>1.8.1</b> 获取单基因表达量</a></li>
+<li class="chapter" data-level="1.8.2" data-path="linux_basic.html"><a href="linux_basic.html#grep_multiple_gene"><i class="fa fa-check"></i><b>1.8.2</b> 那如果获取多个基因怎么操作呢？</a></li>
 </ul></li>
-<li class="chapter" data-level="1.8" data-path="linux-basic.html"><a href="linux-basic.html#top"><i class="fa fa-check"></i><b>1.8</b> 监控程序的运行时间和资源占用</a></li>
-<li class="chapter" data-level="1.9" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>1.9</b> References</a></li>
+<li class="chapter" data-level="1.9" data-path="linux_basic.html"><a href="linux_basic.html#linux%E4%B8%8B%E7%9A%84%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C"><i class="fa fa-check"></i><b>1.9</b> Linux下的批量操作</a></li>
+<li class="chapter" data-level="1.10" data-path="linux_basic.html"><a href="linux_basic.html#top"><i class="fa fa-check"></i><b>1.10</b> 监控程序的运行时间和资源占用</a></li>
+<li class="chapter" data-level="1.11" data-path="linux_basic.html"><a href="linux_basic.html#%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8D%A2%E8%A1%8C%E7%AC%A6%E4%B8%8D%E5%85%BC%E5%AE%B9%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98"><i class="fa fa-check"></i><b>1.11</b> 不同系统的换行符不兼容引发的问题</a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="linux_basic.html"><a href="linux_basic.html#winddows-%E7%9A%84%E7%A8%8B%E5%BA%8F%E4%BC%A0%E5%88%B0-linux%E4%B8%8D%E8%83%BD%E8%BF%90%E8%A1%8C"><i class="fa fa-check"></i><b>1.11.1</b> Winddows 的程序传到 Linux不能运行</a></li>
+<li class="chapter" data-level="1.11.2" data-path="linux_basic.html"><a href="linux_basic.html#winddows-%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%88%B0-linux%E4%B8%8D%E8%83%BD%E5%8C%B9%E9%85%8D"><i class="fa fa-check"></i><b>1.11.2</b> Winddows 的数据传到 Linux不能匹配</a></li>
+<li class="chapter" data-level="1.11.3" data-path="linux_basic.html"><a href="linux_basic.html#linux-%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%88%B0-windows-%E6%89%93%E5%BC%80%E4%B8%8D%E6%8D%A2%E8%A1%8C"><i class="fa fa-check"></i><b>1.11.3</b> Linux 的数据传到 Windows 打开不换行</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a><ul>
-<li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a><ul>
+<li class="chapter" data-level="1.12" data-path="linux_basic.html"><a href="linux_basic.html#references"><i class="fa fa-check"></i><b>1.12</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="softinstall.html"><a href="softinstall.html"><i class="fa fa-check"></i><b>2</b> Linux下软件安装相关</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="softinstall.html"><a href="softinstall.html#fileattributeplusX"><i class="fa fa-check"></i><b>2.1</b> 文件属性和可执行属性</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="softinstall.html"><a href="softinstall.html#fileattribute"><i class="fa fa-check"></i><b>2.1.1</b> 文件属性</a></li>
 <li class="chapter" data-level="2.1.2" data-path="softinstall.html"><a href="softinstall.html#executable"><i class="fa fa-check"></i><b>2.1.2</b> 可执行属性</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#PATH_path_which"><i class="fa fa-check"></i><b>2.2</b> PATH和path，傻傻分不清</a><ul>
+<li class="chapter" data-level="2.2" data-path="softinstall.html"><a href="softinstall.html#PATH_path_which"><i class="fa fa-check"></i><b>2.2</b> PATH和path，傻傻分不清</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="softinstall.html"><a href="softinstall.html#last_but_not_least"><i class="fa fa-check"></i><b>2.2.1</b> 小事也不能忽略</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种传统方式</a><ul>
+<li class="chapter" data-level="2.3" data-path="softinstall.html"><a href="softinstall.html#softInstallways"><i class="fa fa-check"></i><b>2.3</b> 软件安装的几种传统方式</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="softinstall.html"><a href="softinstall.html#system_package"><i class="fa fa-check"></i><b>2.3.1</b> 系统包管理器安装</a></li>
 <li class="chapter" data-level="2.3.2" data-path="softinstall.html"><a href="softinstall.html#binary"><i class="fa fa-check"></i><b>2.3.2</b> 下载二进制文件</a></li>
 <li class="chapter" data-level="2.3.3" data-path="softinstall.html"><a href="softinstall.html#configure_make_install"><i class="fa fa-check"></i><b>2.3.3</b> 源码编译安装</a></li>
@@ -198,7 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.6" data-path="softinstall.html"><a href="softinstall.html#R_install"><i class="fa fa-check"></i><b>2.3.6</b> R和R包的安装</a></li>
 <li class="chapter" data-level="2.3.7" data-path="softinstall.html"><a href="softinstall.html#perl_package"><i class="fa fa-check"></i><b>2.3.7</b> Perl包的安装</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装配置生物信息软件</a><ul>
+<li class="chapter" data-level="2.4" data-path="softinstall.html"><a href="softinstall.html#condaInstall"><i class="fa fa-check"></i><b>2.4</b> Conda安装配置生物信息软件</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="softinstall.html"><a href="softinstall.html#condaInstallConfig"><i class="fa fa-check"></i><b>2.4.1</b> Conda安装和配置</a></li>
 <li class="chapter" data-level="2.4.2" data-path="softinstall.html"><a href="softinstall.html#conda_basic"><i class="fa fa-check"></i><b>2.4.2</b> Conda基本使用</a></li>
 <li class="chapter" data-level="2.4.3" data-path="softinstall.html"><a href="softinstall.html#conda_channel"><i class="fa fa-check"></i><b>2.4.3</b> Conda的channel</a></li>
@@ -216,7 +241,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.15" data-path="softinstall.html"><a href="softinstall.html#conda_downlaod_fast"><i class="fa fa-check"></i><b>2.4.15</b> 下载提速</a></li>
 <li class="chapter" data-level="2.4.16" data-path="softinstall.html"><a href="softinstall.html#conda_pack"><i class="fa fa-check"></i><b>2.4.16</b> 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.5</b> Docker安装</a><ul>
+<li class="chapter" data-level="2.5" data-path="softinstall.html"><a href="softinstall.html#docker"><i class="fa fa-check"></i><b>2.5</b> Docker安装</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="softinstall.html"><a href="softinstall.html#docker_what"><i class="fa fa-check"></i><b>2.5.1</b> Docker能做什么</a></li>
 <li class="chapter" data-level="2.5.2" data-path="softinstall.html"><a href="softinstall.html#docker_basic"><i class="fa fa-check"></i><b>2.5.2</b> Docker的几个基本概念</a></li>
 <li class="chapter" data-level="2.5.3" data-path="softinstall.html"><a href="softinstall.html#docker_install"><i class="fa fa-check"></i><b>2.5.3</b> 安装和配置</a></li>
@@ -227,52 +253,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.8" data-path="softinstall.html"><a href="softinstall.html#docker_single_process"><i class="fa fa-check"></i><b>2.5.8</b> Docker的特征</a></li>
 <li class="chapter" data-level="2.5.9" data-path="softinstall.html"><a href="softinstall.html#docker_attention"><i class="fa fa-check"></i><b>2.5.9</b> Docker使用注意</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.6</b> Makefile知识</a><ul>
+<li class="chapter" data-level="2.6" data-path="softinstall.html"><a href="softinstall.html#makefile"><i class="fa fa-check"></i><b>2.6</b> Makefile知识</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="softinstall.html"><a href="softinstall.html#docker_ref"><i class="fa fa-check"></i><b>2.6.1</b> 参考</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+<li class="chapter" data-level="2.7" data-path="softinstall.html"><a href="softinstall.html#references-1"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html"><i class="fa fa-check"></i><b>3</b> Linux神器</a><ul>
+<li class="chapter" data-level="3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html"><i class="fa fa-check"></i><b>3</b> Linux神器</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#regularExpr"><i class="fa fa-check"></i><b>3.1</b> 正则表达式替换文本随心所欲</a></li>
-<li class="chapter" data-level="3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2</b> awk-生信分析不可缺少</a><ul>
+<li class="chapter" data-level="3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk"><i class="fa fa-check"></i><b>3.2</b> awk-生信分析不可缺少</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk_explain"><i class="fa fa-check"></i><b>3.2.1</b> awk基本参数解释</a></li>
 <li class="chapter" data-level="3.2.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk_common_op"><i class="fa fa-check"></i><b>3.2.2</b> awk基本常见操作</a></li>
 <li class="chapter" data-level="3.2.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#awk_combine"><i class="fa fa-check"></i><b>3.2.3</b> awk糅合操作 - 命令组合体现魅力</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3</b> SED命令 - 文本替换舍我其谁</a><ul>
+<li class="chapter" data-level="3.3" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed"><i class="fa fa-check"></i><b>3.3</b> SED命令 - 文本替换舍我其谁</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed_basic"><i class="fa fa-check"></i><b>3.3.1</b> sed基本参数解释</a></li>
 <li class="chapter" data-level="3.3.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#sed_common"><i class="fa fa-check"></i><b>3.3.2</b> 常见操作</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4</b> VIM的使用</a><ul>
+<li class="chapter" data-level="3.4" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim"><i class="fa fa-check"></i><b>3.4</b> VIM的使用</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim_first"><i class="fa fa-check"></i><b>3.4.1</b> 初识VIM</a></li>
 <li class="chapter" data-level="3.4.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#vim_re"><i class="fa fa-check"></i><b>3.4.2</b> VIM中使用正则表达式</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#rename_all"><i class="fa fa-check"></i><b>3.5</b> 有了这些，文件批量重命名还需要求助其它工具吗？</a><ul>
+<li class="chapter" data-level="3.5" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#rename_all"><i class="fa fa-check"></i><b>3.5</b> 有了这些，文件批量重命名还需要求助其它工具吗？</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#rename_simple"><i class="fa fa-check"></i><b>3.5.1</b> 简单重命名</a></li>
 <li class="chapter" data-level="3.5.2" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#rename_complex"><i class="fa fa-check"></i><b>3.5.2</b> 复杂重命名</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#nohup"><i class="fa fa-check"></i><b>3.6</b> 耗时很长的程序忘加nohup就运行了怎么办？</a></li>
-<li class="chapter" data-level="3.7" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>3.7</b> References</a></li>
+<li class="chapter" data-level="3.7" data-path="LinuxGreatTools.html"><a href="LinuxGreatTools.html#references-2"><i class="fa fa-check"></i><b>3.7</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="bash-string.html"><a href="bash-string.html"><i class="fa fa-check"></i><b>4</b> Bash 字符串处理</a><ul>
-<li class="chapter" data-level="4.1" data-path="bash-string.html"><a href="bash-string.html#bash_specific"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
-<li class="chapter" data-level="4.2" data-path="bash-string.html"><a href="bash-string.html#bash_variable"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
-<li class="chapter" data-level="4.3" data-path="bash-string.html"><a href="bash-string.html#bash_operator"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
-<li class="chapter" data-level="4.4" data-path="bash-string.html"><a href="bash-string.html#bash_logic"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
-<li class="chapter" data-level="4.5" data-path="bash-string.html"><a href="bash-string.html#bash_flow"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
-<li class="chapter" data-level="4.6" data-path="bash-string.html"><a href="bash-string.html#bash_function"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
-<li class="chapter" data-level="4.7" data-path="bash-string.html"><a href="bash-string.html#bash_inputoutput"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
-<li class="chapter" data-level="4.8" data-path="bash-string.html"><a href="bash-string.html#command_parameter"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令</a></li>
-<li class="chapter" data-level="4.9" data-path="bash-string.html"><a href="bash-string.html#process_monitor"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
+<li class="chapter" data-level="4" data-path="bash_string.html"><a href="bash_string.html"><i class="fa fa-check"></i><b>4</b> Bash 字符串处理</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bash_string.html"><a href="bash_string.html#bash_specific"><i class="fa fa-check"></i><b>4.1</b> Bash特殊字符</a></li>
+<li class="chapter" data-level="4.2" data-path="bash_string.html"><a href="bash_string.html#bash_variable"><i class="fa fa-check"></i><b>4.2</b> Bash变量</a></li>
+<li class="chapter" data-level="4.3" data-path="bash_string.html"><a href="bash_string.html#bash_operator"><i class="fa fa-check"></i><b>4.3</b> Bash操作符</a></li>
+<li class="chapter" data-level="4.4" data-path="bash_string.html"><a href="bash_string.html#bash_logic"><i class="fa fa-check"></i><b>4.4</b> Shell中条件和test命令</a></li>
+<li class="chapter" data-level="4.5" data-path="bash_string.html"><a href="bash_string.html#bash_flow"><i class="fa fa-check"></i><b>4.5</b> Shell流控制</a></li>
+<li class="chapter" data-level="4.6" data-path="bash_string.html"><a href="bash_string.html#bash_function"><i class="fa fa-check"></i><b>4.6</b> Shell函数</a></li>
+<li class="chapter" data-level="4.7" data-path="bash_string.html"><a href="bash_string.html#bash_inputoutput"><i class="fa fa-check"></i><b>4.7</b> 输入输出</a></li>
+<li class="chapter" data-level="4.8" data-path="bash_string.html"><a href="bash_string.html#command_parameter"><i class="fa fa-check"></i><b>4.8</b> 命令行处理 命令行处理命令</a></li>
+<li class="chapter" data-level="4.9" data-path="bash_string.html"><a href="bash_string.html#process_monitor"><i class="fa fa-check"></i><b>4.9</b> 进程和作业控制</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html"><i class="fa fa-check"></i><b>5</b> Bioinfo tools</a><ul>
+<li class="chapter" data-level="5" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html"><i class="fa fa-check"></i><b>5</b> Bioinfo tools</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#cas9"><i class="fa fa-check"></i><b>5.1</b> 寻找Cas9的同源基因并进行进化分析</a></li>
-<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif"><i class="fa fa-check"></i><b>5.2</b> 如何获取目标基因的转录因子（上）——biomart下载基因和motif位置信息</a><ul>
+<li class="chapter" data-level="5.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif"><i class="fa fa-check"></i><b>5.2</b> 如何获取目标基因的转录因子（上）——biomart下载基因和motif位置信息</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_1"><i class="fa fa-check"></i><b>5.2.1</b> 1. 文件准备</a></li>
 <li class="chapter" data-level="5.2.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_2"><i class="fa fa-check"></i><b>5.2.2</b> 2. 什么是bed文件？</a></li>
 <li class="chapter" data-level="5.2.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_3"><i class="fa fa-check"></i><b>5.2.3</b> 3. BioMart数据下载</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_4"><i class="fa fa-check"></i><b>5.3</b> 如何获取目标基因的转录因子（下）——Linux命令获取目标基因TF</a><ul>
+<li class="chapter" data-level="5.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_4"><i class="fa fa-check"></i><b>5.3</b> 如何获取目标基因的转录因子（下）——Linux命令获取目标基因TF</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_5"><i class="fa fa-check"></i><b>5.3.1</b> 1. 基础回顾</a></li>
 <li class="chapter" data-level="5.3.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_6"><i class="fa fa-check"></i><b>5.3.2</b> 2. 文件格式处理</a></li>
 <li class="chapter" data-level="5.3.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#biomart_motif_7"><i class="fa fa-check"></i><b>5.3.3</b> 3. 计算基因的启动子区</a></li>
@@ -285,73 +321,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bedtools"><i class="fa fa-check"></i><b>5.6</b> Bedtools使用</a></li>
 <li class="chapter" data-level="5.7" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#sra_tools"><i class="fa fa-check"></i><b>5.7</b> SRA toolkit使用</a></li>
 <li class="chapter" data-level="5.8" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#bioinfo_pipeline"><i class="fa fa-check"></i><b>5.8</b> 生信流程开发</a></li>
-<li class="chapter" data-level="5.9" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.9</b> 数据同步和备份</a><ul>
+<li class="chapter" data-level="5.9" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync"><i class="fa fa-check"></i><b>5.9</b> 数据同步和备份</a>
+<ul>
 <li class="chapter" data-level="5.9.1" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#scp"><i class="fa fa-check"></i><b>5.9.1</b> 原创拷贝scp</a></li>
 <li class="chapter" data-level="5.9.2" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rsync1"><i class="fa fa-check"></i><b>5.9.2</b> 镜像备份和增量同步 rsync</a></li>
 <li class="chapter" data-level="5.9.3" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#rdiff_backup"><i class="fa fa-check"></i><b>5.9.3</b> 增量备份，记录各个版本 rdiff-backup</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="linux-basic.html"><a href="linux-basic.html#references"><i class="fa fa-check"></i><b>5.10</b> References</a></li>
+<li class="chapter" data-level="5.10" data-path="bioinfo-tools.html"><a href="bioinfo-tools.html#references-3"><i class="fa fa-check"></i><b>5.10</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html"><i class="fa fa-check"></i><b>6</b> 生物信息中Linux命令练习</a><ul>
-<li class="chapter" data-level="6.1" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#gtf_chr"><i class="fa fa-check"></i><b>6.1</b> 统计GTF文件中染色体数目？</a></li>
-<li class="chapter" data-level="6.2" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#gtf_num_gene"><i class="fa fa-check"></i><b>6.2</b> 统计GTF文件中基因数目？</a></li>
-<li class="chapter" data-level="6.3" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#gtf_exon_length"><i class="fa fa-check"></i><b>6.3</b> 计算GTF中外显子总长度？</a></li>
-<li class="chapter" data-level="6.4" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#gtf_transcript_num"><i class="fa fa-check"></i><b>6.4</b> 计算GTF文件中基因所拥有的平均转录本数目</a></li>
-<li class="chapter" data-level="6.5" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#fasta"><i class="fa fa-check"></i><b>6.5</b> 生成一个多行Fasta测试序列供后续运算 (也可使用我们前面提供的脚本生成)</a></li>
-<li class="chapter" data-level="6.6" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#fasta_uppercase"><i class="fa fa-check"></i><b>6.6</b> <code>test.fa</code>中的序列全转成大写</a></li>
-<li class="chapter" data-level="6.7" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#fasta_len"><i class="fa fa-check"></i><b>6.7</b> 计算多行FASTA文件<code>test.fa</code>中每条序列长度</a></li>
-<li class="chapter" data-level="6.8" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#fasta_format"><i class="fa fa-check"></i><b>6.8</b> 多行FASTA转单行FASTA序列</a></li>
-<li class="chapter" data-level="6.9" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#fasta_name"><i class="fa fa-check"></i><b>6.9</b> 取出单行FASTA文件中序列长度大于40的序列的名字</a></li>
-<li class="chapter" data-level="6.10" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#id_extract"><i class="fa fa-check"></i><b>6.10</b> 分别用<code>awk</code>和<code>grep</code>从<code>test.fa</code>中提取给定ID对应的序列</a></li>
-<li class="chapter" data-level="6.11" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#standard"><i class="fa fa-check"></i><b>6.11</b> 利用AWK对基因表达数据进行标准化</a></li>
-<li class="chapter" data-level="6.12" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#skip_first_row"><i class="fa fa-check"></i><b>6.12</b> 写出3种写法，去掉上一题<code>test.expr</code>矩阵中的第一行？</a></li>
-<li class="chapter" data-level="6.13" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#add_row"><i class="fa fa-check"></i><b>6.13</b> 分别用<code>awk</code>和<code>sed</code>给<code>test.expr</code>矩阵加上标题行？</a></li>
-<li class="chapter" data-level="6.14" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#bam"><i class="fa fa-check"></i><b>6.14</b> 给定一个<code>BAM</code>文件，怎么计算有多少基因组区域被测到了？平均测序深度是多少？</a></li>
-<li class="chapter" data-level="6.15" data-path="bioinfo-linux.html"><a href="bioinfo-linux.html#jaccard"><i class="fa fa-check"></i><b>6.15</b> 如何使用<code>bedtools</code>的其它工具或其它Linux命令实现<code>bedtools jaccard</code>子功能？</a></li>
+<li class="chapter" data-level="6" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html"><i class="fa fa-check"></i><b>6</b> 生物信息中Linux命令练习</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#gtf_chr"><i class="fa fa-check"></i><b>6.1</b> 统计GTF文件中染色体数目？</a></li>
+<li class="chapter" data-level="6.2" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#gtf_num_gene"><i class="fa fa-check"></i><b>6.2</b> 统计GTF文件中基因数目？</a></li>
+<li class="chapter" data-level="6.3" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#gtf_exon_length"><i class="fa fa-check"></i><b>6.3</b> 计算GTF中外显子总长度？</a></li>
+<li class="chapter" data-level="6.4" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#gtf_transcript_num"><i class="fa fa-check"></i><b>6.4</b> 计算GTF文件中基因所拥有的平均转录本数目</a></li>
+<li class="chapter" data-level="6.5" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#fasta"><i class="fa fa-check"></i><b>6.5</b> 生成一个多行Fasta测试序列供后续运算 (也可使用我们前面提供的脚本生成)</a></li>
+<li class="chapter" data-level="6.6" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#fasta_uppercase"><i class="fa fa-check"></i><b>6.6</b> <code>test.fa</code>中的序列全转成大写</a></li>
+<li class="chapter" data-level="6.7" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#fasta_len"><i class="fa fa-check"></i><b>6.7</b> 计算多行FASTA文件<code>test.fa</code>中每条序列长度</a></li>
+<li class="chapter" data-level="6.8" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#fasta_format"><i class="fa fa-check"></i><b>6.8</b> 多行FASTA转单行FASTA序列</a></li>
+<li class="chapter" data-level="6.9" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#fasta_name"><i class="fa fa-check"></i><b>6.9</b> 取出单行FASTA文件中序列长度大于40的序列的名字</a></li>
+<li class="chapter" data-level="6.10" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#id_extract"><i class="fa fa-check"></i><b>6.10</b> 分别用<code>awk</code>和<code>grep</code>从<code>test.fa</code>中提取给定ID对应的序列</a></li>
+<li class="chapter" data-level="6.11" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#standard"><i class="fa fa-check"></i><b>6.11</b> 利用AWK对基因表达数据进行标准化</a></li>
+<li class="chapter" data-level="6.12" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#skip_first_row"><i class="fa fa-check"></i><b>6.12</b> 写出3种写法，去掉上一题<code>test.expr</code>矩阵中的第一行？</a></li>
+<li class="chapter" data-level="6.13" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#add_row"><i class="fa fa-check"></i><b>6.13</b> 分别用<code>awk</code>和<code>sed</code>给<code>test.expr</code>矩阵加上标题行？</a></li>
+<li class="chapter" data-level="6.14" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#bam"><i class="fa fa-check"></i><b>6.14</b> 给定一个<code>BAM</code>文件，怎么计算有多少基因组区域被测到了？平均测序深度是多少？</a></li>
+<li class="chapter" data-level="6.15" data-path="bioinfo_linux.html"><a href="bioinfo_linux.html#jaccard"><i class="fa fa-check"></i><b>6.15</b> 如何使用<code>bedtools</code>的其它工具或其它Linux命令实现<code>bedtools jaccard</code>子功能？</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="supplemental.html"><a href="supplemental.html"><i class="fa fa-check"></i><b>7</b> Supplemental</a></li>
-<li class="chapter" data-level="8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a><ul>
-<li class="chapter" data-level="8.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信宝典"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#系列教程"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
-<li class="chapter" data-level="8.1.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs分析工具评估"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
-<li class="chapter" data-level="8.1.3" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组教程"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
-<li class="chapter" data-level="8.1.4" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#系列宣传"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
-<li class="chapter" data-level="8.1.5" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信生物知识"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
-<li class="chapter" data-level="8.1.6" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#文献精读"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
+<li class="chapter" data-level="8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html"><i class="fa fa-check"></i><b>8</b> 生信教程文章集锦</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%94%9F%E4%BF%A1%E5%AE%9D%E5%85%B8"><i class="fa fa-check"></i><b>8.1</b> 生信宝典</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B"><i class="fa fa-check"></i><b>8.1.1</b> 系列教程</a></li>
+<li class="chapter" data-level="8.1.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E8%AF%84%E4%BC%B0"><i class="fa fa-check"></i><b>8.1.2</b> NGS分析工具评估</a></li>
+<li class="chapter" data-level="8.1.3" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%AE%8F%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%99%E7%A8%8B"><i class="fa fa-check"></i><b>8.1.3</b> 宏基因组教程</a></li>
+<li class="chapter" data-level="8.1.4" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%B3%BB%E5%88%97%E5%AE%A3%E4%BC%A0"><i class="fa fa-check"></i><b>8.1.4</b> 系列宣传</a></li>
+<li class="chapter" data-level="8.1.5" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%94%9F%E4%BF%A1%E7%94%9F%E7%89%A9%E7%9F%A5%E8%AF%86"><i class="fa fa-check"></i><b>8.1.5</b> 生信生物知识</a></li>
+<li class="chapter" data-level="8.1.6" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E6%96%87%E7%8C%AE%E7%B2%BE%E8%AF%BB"><i class="fa fa-check"></i><b>8.1.6</b> 文献精读</a></li>
 <li class="chapter" data-level="8.1.7" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#linux"><i class="fa fa-check"></i><b>8.1.7</b> Linux</a></li>
-<li class="chapter" data-level="8.1.8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#circos系列"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
-<li class="chapter" data-level="8.1.9" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#r统计和作图"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
-<li class="chapter" data-level="8.1.10" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#扩增子三步曲"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
-<li class="chapter" data-level="8.1.11" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组分析专题"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
-<li class="chapter" data-level="8.1.12" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs基础"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
-<li class="chapter" data-level="8.1.13" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#癌症数据库"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
+<li class="chapter" data-level="8.1.8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#circos%E7%B3%BB%E5%88%97"><i class="fa fa-check"></i><b>8.1.8</b> CIRCOS系列</a></li>
+<li class="chapter" data-level="8.1.9" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#r%E7%BB%9F%E8%AE%A1%E5%92%8C%E4%BD%9C%E5%9B%BE"><i class="fa fa-check"></i><b>8.1.9</b> R统计和作图</a></li>
+<li class="chapter" data-level="8.1.10" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E6%89%A9%E5%A2%9E%E5%AD%90%E4%B8%89%E6%AD%A5%E6%9B%B2"><i class="fa fa-check"></i><b>8.1.10</b> 扩增子三步曲</a></li>
+<li class="chapter" data-level="8.1.11" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%AE%8F%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%88%86%E6%9E%90%E4%B8%93%E9%A2%98"><i class="fa fa-check"></i><b>8.1.11</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.1.12" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs%E5%9F%BA%E7%A1%80"><i class="fa fa-check"></i><b>8.1.12</b> NGS基础</a></li>
+<li class="chapter" data-level="8.1.13" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%99%8C%E7%97%87%E6%95%B0%E6%8D%AE%E5%BA%93"><i class="fa fa-check"></i><b>8.1.13</b> 癌症数据库</a></li>
 <li class="chapter" data-level="8.1.14" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#python"><i class="fa fa-check"></i><b>8.1.14</b> Python</a></li>
-<li class="chapter" data-level="8.1.15" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs软件"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
-<li class="chapter" data-level="8.1.16" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#cytoscape网络图"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
-<li class="chapter" data-level="8.1.17" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#分子对接"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
-<li class="chapter" data-level="8.1.18" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信宝典之傻瓜式"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
-<li class="chapter" data-level="8.1.19" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#生信人写程序"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
-<li class="chapter" data-level="8.1.20" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#小技巧系列"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
-<li class="chapter" data-level="8.1.21" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#招聘"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
+<li class="chapter" data-level="8.1.15" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#ngs%E8%BD%AF%E4%BB%B6"><i class="fa fa-check"></i><b>8.1.15</b> NGS软件</a></li>
+<li class="chapter" data-level="8.1.16" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#cytoscape%E7%BD%91%E7%BB%9C%E5%9B%BE"><i class="fa fa-check"></i><b>8.1.16</b> Cytoscape网络图</a></li>
+<li class="chapter" data-level="8.1.17" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%88%86%E5%AD%90%E5%AF%B9%E6%8E%A5"><i class="fa fa-check"></i><b>8.1.17</b> 分子对接</a></li>
+<li class="chapter" data-level="8.1.18" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%94%9F%E4%BF%A1%E5%AE%9D%E5%85%B8%E4%B9%8B%E5%82%BB%E7%93%9C%E5%BC%8F"><i class="fa fa-check"></i><b>8.1.18</b> 生信宝典之傻瓜式</a></li>
+<li class="chapter" data-level="8.1.19" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%94%9F%E4%BF%A1%E4%BA%BA%E5%86%99%E7%A8%8B%E5%BA%8F"><i class="fa fa-check"></i><b>8.1.19</b> 生信人写程序</a></li>
+<li class="chapter" data-level="8.1.20" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%B0%8F%E6%8A%80%E5%B7%A7%E7%B3%BB%E5%88%97"><i class="fa fa-check"></i><b>8.1.20</b> 小技巧系列</a></li>
+<li class="chapter" data-level="8.1.21" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E6%8B%9B%E8%81%98"><i class="fa fa-check"></i><b>8.1.21</b> 招聘</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#精选文章推荐"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
-<li class="chapter" data-level="8.2.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#培训会议征稿招聘"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
-<li class="chapter" data-level="8.2.3" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#科研经验"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
-<li class="chapter" data-level="8.2.4" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#软件和数据库使用"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
-<li class="chapter" data-level="8.2.5" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#扩增子学习三步曲"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
-<li class="chapter" data-level="8.2.6" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#宏基因组分析专题-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
-<li class="chapter" data-level="8.2.7" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#r统计绘图"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
-<li class="chapter" data-level="8.2.8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#实验设计与技术"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
-<li class="chapter" data-level="8.2.9" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#基础知识"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
-<li class="chapter" data-level="8.2.10" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#必读综述"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
-<li class="chapter" data-level="8.2.11" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#高分文章套路解读"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
-<li class="chapter" data-level="8.2.12" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#科普视频-寓教于乐"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
-<li class="chapter" data-level="8.2.13" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#友军文章汇总推荐"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
+<li class="chapter" data-level="8.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%AE%8F%E5%9F%BA%E5%9B%A0%E7%BB%84"><i class="fa fa-check"></i><b>8.2</b> 宏基因组</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90"><i class="fa fa-check"></i><b>8.2.1</b> 精选文章推荐</a></li>
+<li class="chapter" data-level="8.2.2" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%9F%B9%E8%AE%AD%E4%BC%9A%E8%AE%AE%E5%BE%81%E7%A8%BF%E6%8B%9B%E8%81%98"><i class="fa fa-check"></i><b>8.2.2</b> 培训、会议、征稿、招聘</a></li>
+<li class="chapter" data-level="8.2.3" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%A7%91%E7%A0%94%E7%BB%8F%E9%AA%8C"><i class="fa fa-check"></i><b>8.2.3</b> 科研经验</a></li>
+<li class="chapter" data-level="8.2.4" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8"><i class="fa fa-check"></i><b>8.2.4</b> 软件和数据库使用</a></li>
+<li class="chapter" data-level="8.2.5" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E6%89%A9%E5%A2%9E%E5%AD%90%E5%AD%A6%E4%B9%A0%E4%B8%89%E6%AD%A5%E6%9B%B2"><i class="fa fa-check"></i><b>8.2.5</b> 扩增子学习三步曲</a></li>
+<li class="chapter" data-level="8.2.6" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%AE%8F%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%88%86%E6%9E%90%E4%B8%93%E9%A2%98-1"><i class="fa fa-check"></i><b>8.2.6</b> 宏基因组分析专题</a></li>
+<li class="chapter" data-level="8.2.7" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#r%E7%BB%9F%E8%AE%A1%E7%BB%98%E5%9B%BE"><i class="fa fa-check"></i><b>8.2.7</b> R统计绘图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%8A%80%E6%9C%AF"><i class="fa fa-check"></i><b>8.2.8</b> 实验设计与技术</a></li>
+<li class="chapter" data-level="8.2.9" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><i class="fa fa-check"></i><b>8.2.9</b> 基础知识</a></li>
+<li class="chapter" data-level="8.2.10" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%BF%85%E8%AF%BB%E7%BB%BC%E8%BF%B0"><i class="fa fa-check"></i><b>8.2.10</b> 必读综述</a></li>
+<li class="chapter" data-level="8.2.11" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E9%AB%98%E5%88%86%E6%96%87%E7%AB%A0%E5%A5%97%E8%B7%AF%E8%A7%A3%E8%AF%BB"><i class="fa fa-check"></i><b>8.2.11</b> 高分文章套路解读</a></li>
+<li class="chapter" data-level="8.2.12" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E7%A7%91%E6%99%AE%E8%A7%86%E9%A2%91-%E5%AF%93%E6%95%99%E4%BA%8E%E4%B9%90"><i class="fa fa-check"></i><b>8.2.12</b> 科普视频-寓教于乐</a></li>
+<li class="chapter" data-level="8.2.13" data-path="生信教程文章集锦.html"><a href="生信教程文章集锦.html#%E5%8F%8B%E5%86%9B%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB%E6%8E%A8%E8%8D%90"><i class="fa fa-check"></i><b>8.2.13</b> 友军文章汇总推荐</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="mailto:ct@ehbio.com" target="blank">ct@ehbio.com</a></li>
+<li><a href="mailto:chentong_biology@163.com" target="blank">chentong_biology@163.com</a></li>
 
 </ul>
 
@@ -370,19 +411,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="softinstall" class="section level1">
-<h1><span class="header-section-number">2</span> Linux下软件安装相关</h1>
-<p>视频课见 <a href="http://bioinfo.ke.qq.com" class="uri">http://bioinfo.ke.qq.com</a>。</p>
+<div id="softinstall" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Linux下软件安装相关<a href="softinstall.html#softinstall" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>软件安装的几个概念：环境变量、可执行属性、编译安装、Conda安装。</p>
-<div id="fileattributeplusX" class="section level2">
-<h2><span class="header-section-number">2.1</span> 文件属性和可执行属性</h2>
-<div id="fileattribute" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> 文件属性</h3>
+<div id="fileattributeplusX" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 文件属性和可执行属性<a href="softinstall.html#fileattributeplusX" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fileattribute" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> 文件属性<a href="softinstall.html#fileattribute" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>文件属性<code>rwx</code>中<code>r</code>表示<code>read</code> (数字表示为4)、<code>w</code>表示<code>write</code> (数字表示为2)、<code>x</code>表示执行 (数字表示为1)。三个为一组，连续出现三次(如下面命令行中所示), 第一组表示文件的所有者拥有的权限，第二组为文件所有者所在的用户组所拥有的权限，组内所有成员都具有的权限，第三组为其它用户的权限。</p>
 <p><code>chmod</code>可以修改文件或文件夹属性。</p>
 </div>
-<div id="executable" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> 可执行属性</h3>
+<div id="executable" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> 可执行属性<a href="softinstall.html#executable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Linux下文件有一个特殊的属性即可执行属性，用来指示这个文件是一个可执行的脚本或可以运行的二进制文件。前面所提到的这些命令，都具有可执行属性。</p>
 <p><code>which</code>: 表示查看命令的路径。一般用于当我们想知道使用的命令来源于什么地方时，比如安装了多个R或多个python，但又分不清用的是哪个时，<code>which</code>一下，立即明了。在这儿我们用which获取的是可执行的命令所在的路径，进而查看其属性。</p>
 <p><code>chmod a+x file</code>: 表示给文件增加所有人(a)可执行权限 (+x)</p>
@@ -395,14 +435,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>这就涉及到<strong>环境变量</strong>的概念，通俗的讲，环境变量就是告诉电脑 (实际是操作系统)几个目录。这几个目录下存储又可执行文件，如前面显示的<code>/usr/bin</code>目录，大部分的系统命令都在这个目录下。</p>
 </div>
 </div>
-<div id="PATH_path_which" class="section level2">
-<h2><span class="header-section-number">2.2</span> PATH和path，傻傻分不清</h2>
+<div id="PATH_path_which" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> PATH和path，傻傻分不清<a href="softinstall.html#PATH_path_which" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>习惯了Windows电脑下的所见即所得，找到程序或文件双击即可运行或打开；于是我们被惯得以为电脑会像人一样聪明，给他一个名字就可以运行程序或打开文件；于是在命令行下或程序里不断碰壁，为啥这个命令不运行了呢？</p>
 <p>我们不能太高估电脑（或操作系统），不要以为只要输入一个程序名或文件名，电脑（或操作系统）就可以满硬盘的去找这个文件在哪；这一来效率太低了，二来重名了怎么办？比如有2个文件都叫“子房.txt”，一个存储汉初三杰之张良，一个存储被子植物生长种子的器官；可能打开前我们自己也不知道要开哪个吧。</p>
 <p>想一下，我们在Windows下寻找文件时，是不是先打开<code>我的电脑</code>，然后打开<code>D盘</code>，打开<code>学习</code>目录，再打开<code>学习计划.docx</code>这个文件。即便我们从来没有执行过这个计划，每天我们还是不厌其烦的一层层打开然后制定新的计划。只是，我们忽略了这个<code>一层层</code>打开。</p>
 <p><code>path</code>我们一般指文件的路径，也就是<code>一层层</code>打开的过程。以Linux为例：</p>
 <p>我们要查看一个在自己家目录下的文件 <code>I_am_home.txt</code>，那登录后，直接可见：</p>
-<pre><code>YSX@ehbio:~$ tree
+<pre><code>YSX@ysx:~$ tree
 .
 ├── I_am_home.txt
 └── train
@@ -417,54 +457,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     │   └── Seurat.Rmd
     └── transcriptome
         └── pipeline_salmon.sh
-YSX@ehbio:~$ head I_am_home.txt
+YSX@ysx:~$ head I_am_home.txt
 I am home!</code></pre>
 <p>那如果想看<code>Seurat.Rmd</code>，怎么查看？一步步找下去就对了。</p>
-<pre><code>YSX@ehbio:~$ less Seurat.Rmd
+<pre><code>YSX@ysx:~$ less Seurat.Rmd
 Seurat.Rmd: 没有那个文件或目录
-YSX@ehbio:~$ less train/Seurat.Rmd
+YSX@ysx:~$ less train/Seurat.Rmd
 train/Seurat.Rmd: 没有那个文件或目录
-YSX@ehbio:~$ less train/single_cell/Seurat.Rmd</code></pre>
+YSX@ysx:~$ less train/single_cell/Seurat.Rmd</code></pre>
 <p>也可以一步步先做目录切换，然后再查看</p>
-<pre><code>YSX@ehbio:~$ cd train
-YSX@ehbio:~/train$ cd single_cell/
-YSX@ehbio:~/train/single_cell$ less Seurat.Rmd</code></pre>
+<pre><code>YSX@ysx:~$ cd train
+YSX@ysx:~/train$ cd single_cell/
+YSX@ysx:~/train/single_cell$ less Seurat.Rmd</code></pre>
 <p>那如果你这时你想运行<code>pipeline_metagenome.sh</code>快速分析宏基因组数据怎么办？</p>
-<pre><code>YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+<pre><code>YSX@ysx:~/train/single_cell$ pipeline_metagenome.sh
 -bash: pipeline_metagenome.sh: 未找到命令</code></pre>
 <p><code>pipeline_metagenome.sh</code>命令去哪儿了？上面我们都看到了，就在<code>metagenome</code>目录下，为啥电脑（操作系统）这么笨却找不到？另外为什么运行<code>head</code>就可以找到？难道有一些黑魔法在里面？</p>
 <p>确实是有一些黑魔法的，不过我们一般称之为<strong>规则</strong>。</p>
 <p>操作系统为了便捷性和安全性，定义了一系列环境变量，存储常用信息，<code>PATH</code> (注意全是大写字母)是其中一个。</p>
 <p><code>PATH</code>: 是存放有(可执行)命令和程序的目录集合；在操作系统接到用户输入的命令时，会对PATH<strong>存储的目录</strong>进行查找，看下是否有与用户输入的命令同名的文件存在，而且是<strong>从前到后</strong>一个个查找，而且是<strong>查到就停</strong>，最后查不到就报错。（从这几个加粗的文字，可以看到操作系统很懒，当然懒是好的程序员的必备属性。）</p>
 <p>我们先看下<code>PATH</code>里面存了哪些目录？</p>
-<pre><code>YSX@ehbio:~/train/single_cell$ echo $PATH
+<pre><code>YSX@ysx:~/train/single_cell$ echo $PATH
 /usr/bin:/usr/local/bin</code></pre>
 <p>在我们前面输入<code>head</code>命令时，操作系统收到<code>回车</code>指令后，先去看下<code>$PATH</code>里面有哪些目录，然后从第一个<code>/usr/bin</code>开始寻找，很幸运，一下找到了<code>/usr/bin/head</code>文件，尝试运行，成功。所以在这个情况下，我们输入<code>head</code>等同于输入<code>/usr/bin/head</code>。那这个会不会给我们一些启发呢？</p>
 <p>我们只要提供<code>pipeline_metagenome.sh</code>的路径就可以运行了。</p>
 <pre><code># 相对路径
-YSX@ehbio:~/train/single_cell$ ../metagenome/pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ ../metagenome/pipeline_metagenome.sh
 # 绝对路径
-YSX@ehbio:~/train/single_cell$ ~/train/metagenome/pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ ~/train/metagenome/pipeline_metagenome.sh
 # 再绝对一些
-YSX@ehbio:~/train/single_cell$ /home/YSX/train/metagenome/pipeline_metagenome.sh</code></pre>
+YSX@ysx:~/train/single_cell$ /home/YSX/train/metagenome/pipeline_metagenome.sh</code></pre>
 <p>程序可以运行了，但是不是写起来太麻烦了？既然<code>head</code>可以只写命令，系统就可以帮着我们去找，那么我们是否也可以把<code>/home/YSX/train/metagenome/</code>放到<code>PATH</code>里面。这就是如何去设置环境变量了。</p>
 <pre><code># 加到环境变量的路径必须是全路径，全路径指以/开头或已~开头的路径
 # 注意第一个PATH不含$, 第二个PATH有$符号
 # 我们后面会讲什么时候用$, 什么时候不用$
 
 # 给原变量PATH后面加一个路径（绝对路径），冒号(:)分割
-YSX@ehbio:~/train/single_cell$ PATH=$PATH:/home/YSX/train/metagenome/
+YSX@ysx:~/train/single_cell$ PATH=$PATH:/home/YSX/train/metagenome/
 # 导出变量，使其对系统（Shell）可见
-YSX@ehbio:~/train/single_cell$ export PATH
+YSX@ysx:~/train/single_cell$ export PATH
 # 上面两句可以合并为一句，如下：
-YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/
+YSX@ysx:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/
 # 再次运行，可以运行了
-YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ pipeline_metagenome.sh
 # 看下PATH存储的目录，多了我们的新增
-YSX@ehbio:~/train/single_cell$ echo $PATH
+YSX@ysx:~/train/single_cell$ echo $PATH
 /usr/bin:/usr/local/bin:/home/YSX/train/metagenome/</code></pre>
 <p>这样就新增一个目录到环境变量里面了，可以依次继续增加更多目录。</p>
-<pre><code>YSX@ehbio:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/</code></pre>
+<pre><code>YSX@ysx:~/train/single_cell$ export PATH=$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/</code></pre>
 <p>加到环境变量的路径必须是全路径，全路径指以<code>/</code>开头或以<code>~</code>或<code>${HOME}</code>开头的路径 (注意：<code>~</code>开头的路径只能个人用户有效)。</p>
 <p>有时我们也会看的这样的写法：<code>export PATH=my_path:$PATH</code>，这与<code>export PATH=$PATH:my_path</code>有什么区别呢？</p>
 <p>回顾下这几个关键字：<strong>从前到后</strong>，<strong>查到就停</strong>。写出官话就是：PATH中越靠前的路径优先级越高。这有什么用处呢？</p>
@@ -472,17 +512,17 @@ YSX@ehbio:~/train/single_cell$ echo $PATH
 <p>那怎么办？自己装一份新的<code>python</code>和<code>R</code>，然后用自己的，这时就涉及到优先级问题了。</p>
 <p>假如我在<code>/home/YSX/soft/anaconda/bin</code>下安装了一个<code>python</code>，那么我需要设置优先调用我自己的<code>python</code>，设置环境变量时，我就得把<code>/home/YSX/soft/anaconda/bin</code>放到前面，如<code>export PATH=/home/YSX/soft/anaconda/bin:$PATH</code>。如果反过来写，那么<code>/usr/bin/python</code>就会优先被调用了。</p>
 <pre><code># which 常用工具，查看当前调用的程序的具体来源
-YSX@ehbio:~/train/single_cell$ which python
+YSX@ysx:~/train/single_cell$ which python
 /usr/bin/python
 # 优先调用自己的python
-YSX@ehbio:~/train/single_cell$ export PATH=/home/YSX/soft/anaconda/bin:$PATH
-YSX@ehbio:~/train/single_cell$ which python
+YSX@ysx:~/train/single_cell$ export PATH=/home/YSX/soft/anaconda/bin:$PATH
+YSX@ysx:~/train/single_cell$ which python
 /home/YSX/soft/anaconda/bin/python</code></pre>
 <p>环境变量学会怎么设置了，关机，下班，睡觉。</p>
 <p>第二天早上起来，打开电脑，再运行程序</p>
-<pre><code>YSX@ehbio:~/train/single_cell$ which python
+<pre><code>YSX@ysx:~/train/single_cell$ which python
 /usr/bin/python
-YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
+YSX@ysx:~/train/single_cell$ pipeline_metagenome.sh
 -bash: pipeline_metagenome.sh: 未找到命令</code></pre>
 <p>结果发现昨天的设置都无效了，去生信宝典群里提问 “有谁对Linux比较精通？”。半晌，无人响应，敢说自己精通的不多。提问还是不能这么问，应该怎么问，具体见：<a href="https://mp.weixin.qq.com/s/B8JO4GjvzZP5BUMoaKPrZw">如何优雅的提问</a>。</p>
 <p>后来，有好心人回复“你遇到什么问题，具体描述下？”</p>
@@ -490,8 +530,8 @@ YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
 <p>如果早这么问，估计程序都运行完了。</p>
 <p>这时需要用到另一个规则: 登录远程服务器时，系统会自动运行<code>~/.bash_profile</code>里面的命令，所以把前面写的这句话<code>export PATH=/home/YSX/soft/anaconda/bin:$PATH:/home/YSX/train/metagenome/:/home/YSX/train/amplicon/</code>放到文件<code>~/.bash_profile</code>里面就好了。</p>
 <p>文件输入后，不要忘记<code>source ~/.bash_profile</code>使设置生效（当然，关掉登录窗口，再次登录也可以）。</p>
-<div id="last_but_not_least" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> 小事也不能忽略</h3>
+<div id="last_but_not_least" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> 小事也不能忽略<a href="softinstall.html#last_but_not_least" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol start="2" style="list-style-type: decimal">
 <li>其它环境变量
 <ul>
@@ -511,11 +551,11 @@ YSX@ehbio:~/train/single_cell$ pipeline_metagenome.sh
 </ol>
 </div>
 </div>
-<div id="softInstallways" class="section level2">
-<h2><span class="header-section-number">2.3</span> 软件安装的几种传统方式</h2>
+<div id="softInstallways" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 软件安装的几种传统方式<a href="softinstall.html#softInstallways" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>不同于windows，Linux下软件安装的方式比较多样，有些也比较复杂。每种安装方式都有自己的优点和局限，也都有可能遇到问题。在我们理解了原理之后，借助谷歌，可以更好地帮助解决问题。</p>
-<div id="system_package" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> 系统包管理器安装</h3>
+<div id="system_package" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> 系统包管理器安装<a href="softinstall.html#system_package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>软件安装最方便的、一般也不容易出问题的是利用系统自带的包管理工具，可以解决大部分的依赖问题。</p>
 <pre><code># centos
 # 如果长时间没更新，先运行下update
@@ -531,14 +571,14 @@ yum search soft_official_name</code></pre>
 <li>生物信息学中不少软件不在系统的安装源里面。</li>
 </ol>
 </div>
-<div id="binary" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> 下载二进制文件</h3>
+<div id="binary" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> 下载二进制文件<a href="softinstall.html#binary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>解决这些问题，就需要自己去软件官网查找最新的分发包，又有两种可能，一种是分发包直接就是编译好的软件，下载下来设置下可执行属性并放入环境变量就可以运行了，如于<code>blast</code>或<code>bowtie</code>这样的工具。</p>
 <p>blast的链接为<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz" class="uri">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-x64-linux.tar.gz</a>。</p>
 <p>另一种则是需要从源码编译安装，下面主要讲解下这个。</p>
 </div>
-<div id="configure_make_install" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> 源码编译安装</h3>
+<div id="configure_make_install" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> 源码编译安装<a href="softinstall.html#configure_make_install" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>源码编译经典的三部曲<code>configure</code>, <code>make</code>, <code>make install</code>。如果不出问题，一步步执行下来就安装好了，也不一定要知其所以然。但出了问题，就不是比较容易解决的。如果知道这背后的机制，还是会有帮助的。</p>
 <ul>
 <li><p><code>configure</code>是检查系统的库文件、类文件、依赖软件是否存在以及它们的版本是否满足需求，并根据实际检测结果生成<code>Makefile</code>的工具。一般是一堆bash命令的组合。通常也需要在这一步配置一些参数。最常用的就是指定软件的安装目录<code>--prefix=/home/ct/soft/specific_name</code>。</p></li>
@@ -558,7 +598,11 @@ yum search soft_official_name</code></pre>
 <p><strong>小练习</strong>： 尝试源码安装<code>EMBOSS</code>, 下载地址 <a href="ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz" class="uri">ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz</a>.</p>
 <p><code>EMBOSS</code>是欧洲分子生物学开放软件包，主要做序列比对，数据库搜搜，蛋白motif分析和功能域分析，序列模式搜索，引物设计等。</p>
 <table>
-<caption><span id="tab:unnamed-chunk-60">Table 2.1: </span>Popular applications of EMBOSS.</caption>
+<caption><span id="tab:unnamed-chunk-61">Table 2.1: </span>Popular applications of EMBOSS.</caption>
+<colgroup>
+<col width="25%" />
+<col width="74%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Popular.applications</th>
@@ -633,8 +677,8 @@ yum search soft_official_name</code></pre>
 </tbody>
 </table>
 </div>
-<div id="pythonpac" class="section level3">
-<h3><span class="header-section-number">2.3.4</span> Python包的安装</h3>
+<div id="pythonpac" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Python包的安装<a href="softinstall.html#pythonpac" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>在没有<code>Anaconda</code>(或其前身canopy)出现之前，Python包以其管理混乱、安装困难著称。有了<code>Anaconda</code>后，不只python包的安装简单了，其它软件的安装也都方便了 (详见后面Anaconda的两个福利)。</p>
 <ul>
 <li>首先下载Anaconda的安装包 <a href="https://www.continuum.io/downloads" class="uri">https://www.continuum.io/downloads</a>。</li>
@@ -648,8 +692,8 @@ yum search soft_official_name</code></pre>
 </ul></li>
 </ul>
 </div>
-<div id="anaconda_fear" class="section level3">
-<h3><span class="header-section-number">2.3.5</span> Anaconda的两个福利</h3>
+<div id="anaconda_fear" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Anaconda的两个福利<a href="softinstall.html#anaconda_fear" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>头文件和库文件库</li>
 </ol>
@@ -677,12 +721,12 @@ libasan.so               libmkl_avx.so         libQtSql.so.4.8.7</code></pre>
 </ol>
 <p>bioconda生物分析软件安装的通道，后面专门介绍。</p>
 </div>
-<div id="R_install" class="section level3">
-<h3><span class="header-section-number">2.3.6</span> R和R包的安装</h3>
-<p>见<a href="http://www.ehbio.com/Bioinfo_R_course">R系列教程</a>。</p>
+<div id="R_install" class="section level3 hasAnchor" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> R和R包的安装<a href="softinstall.html#R_install" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>见<a href="http://www.ysx.com/Bioinfo_R_course">R系列教程</a>。</p>
 </div>
-<div id="perl_package" class="section level3">
-<h3><span class="header-section-number">2.3.7</span> Perl包的安装</h3>
+<div id="perl_package" class="section level3 hasAnchor" number="2.3.7">
+<h3><span class="header-section-number">2.3.7</span> Perl包的安装<a href="softinstall.html#perl_package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code># 假设~/bin已在环境变量中
 cd ~/bin
 curl -L https://cpanmin.us/ -o cpanm
@@ -690,13 +734,13 @@ chmod +x cpanm
 cpanm List::MoreUtils Bio::Perl</code></pre>
 </div>
 </div>
-<div id="condaInstall" class="section level2">
-<h2><span class="header-section-number">2.4</span> Conda安装配置生物信息软件</h2>
+<div id="condaInstall" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Conda安装配置生物信息软件<a href="softinstall.html#condaInstall" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Conda是一种通用包管理系统，旨在构建和管理任何语言的任何类型的软件。通常与Anaconda (集成了更多软件包，<a href="https://www.anaconda.com/products/individual">https://www.anaconda.com/products/individual</a>)和Miniconda (只包含基本功能软件包, <a href="https://conda.io/miniconda.html">https://conda.io/miniconda.html</a>)一起分发。</p>
 <p>最初接触到Anaconda是用于Python包的安装。Anaconda囊括了100多个常用的Python包，一键式安装，解决Python包安装的痛苦。但后来发现，其还有更多的功能，尤其是其增加了<code>bionconda</code> (<a href="https://bioconda.github.io/index.html">https://bioconda.github.io/index.html</a>)通道后，生物信息分析的7925多个软件都可以一键安装了 (具体列表在：<a href="https://anaconda.org/bioconda/repo" class="uri">https://anaconda.org/bioconda/repo</a>)，免去了编译时间浪费和解决库文件安装的问题。另外其最有吸引力的是它的<code>虚拟软件环境</code>概念，可以简单的配置不同Python版本的环境、不同Python包的环境、不同R环境和R包的环境，对于生物信息软件繁杂的应用和频繁的更新提供了很大的便利。</p>
 <p><img src="image/conda.png" /></p>
-<div id="condaInstallConfig" class="section level3">
-<h3><span class="header-section-number">2.4.1</span> Conda安装和配置</h3>
+<div id="condaInstallConfig" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Conda安装和配置<a href="softinstall.html#condaInstallConfig" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>在链接<a href="https://www.anaconda.com/products/individual" class="uri">https://www.anaconda.com/products/individual</a>下载<code>Anaconda</code>或<code>Miniconda</code>对应版本的分发包之后，安装就是运行下面的命令，根据提示一步步操作，主要是修改安装路径 (如果是根用户，可以安装到<code>/anaconda</code>下，其它任意目录都可以，但路径短还是有好处的；普通用户安装到自己有权限的目录下，如<code>~/miniconda2</code>)。</p>
 <pre><code># soft目录为conda安装的目录，可自己修改
 soft=~/miniconda2
@@ -706,8 +750,8 @@ wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda2-latest-Linux-x86_64.sh -b -f -p ${soft}</code></pre>
 <p>安装完成之后，记得把安装路径下的<code>bin</code>文件夹加入到环境变量中 (上面命令中我们已经帮您加进去了)。</p>
 </div>
-<div id="conda_basic" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> Conda基本使用</h3>
+<div id="conda_basic" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Conda基本使用<a href="softinstall.html#conda_basic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>在Conda安装配置好之后，就可以使用了。</p>
 <pre><code>conda list # 列出安装的软件包
 # conda所有软件名都是小写
@@ -755,8 +799,8 @@ conda update r-base</code></pre>
 conda install -h #查看install子命令的帮助</code></pre>
 <p>只是这些命令就可以省去不少安装的麻烦了，但是如果软件没搜索到呢？</p>
 </div>
-<div id="conda_channel" class="section level3">
-<h3><span class="header-section-number">2.4.3</span> Conda的channel</h3>
+<div id="conda_channel" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Conda的channel<a href="softinstall.html#conda_channel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Conda默认的源访问速度有些慢，可以增加国内的源；另外还可以增加几个源，以便于安装更多的软件，尤其是<code>bioconda</code>安装生信类工具。<code>conda-forge</code>通道是Conda社区维护的包含很多不在默认通道里面的通用型软件。<code>r</code>通道是向后兼容性通道，尤其是使用<code>R3.3.1</code>版本时会用到，现在则不需要单独添加了。后加的通道优先级更高，因此一般用下面列出的顺序添加。清华镜像具体见<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" class="uri">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a> (有时清华镜像也不稳定，不稳定时直接用官方镜像，早上下载速度还是好的)。</p>
 <pre><code>conda config --add channels r # Optional # Lowest priority
 conda config --add channels defaults
@@ -784,8 +828,8 @@ conda config --get channels</code></pre>
   - conda-forge
   - r</code></pre>
 </div>
-<div id="conda_environment" class="section level3">
-<h3><span class="header-section-number">2.4.4</span> 创建不同的软件运行环境</h3>
+<div id="conda_environment" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> 创建不同的软件运行环境<a href="softinstall.html#conda_environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>这是<code>Conda</code>最有特色的地方，可以通过创建不同的环境，同时运行不同软件的多个版本。</p>
 <p>新创建的软件环境的目录为<code>anaconda_path/envs/enrironment_name</code>，具体见下面的3个例子。</p>
 <ul>
@@ -831,12 +875,12 @@ See &#39;conda init --help&#39; for more information and options.
 IMPORTANT: You may need to close and restart your shell after running &#39;conda init&#39;.</code></pre>
 <p>不过，个人更喜欢用<code>source anaconda_path/bin/activate transcriptome</code>激活环境，用起来更灵活一些。而且如果是根用户安装时，<strong>不建议把<code>conda</code>环境默认加到环境变量中</strong>，会引起不必要的系统冲突。可以给个用户自己使用是自己配置对应的环境变量。</p>
 <p>激活环境后，会看到命令行提示前多了一个环境名字，比如下面激活<code>qiime2-2020.6</code>环境后的展示。</p>
-<pre><code>ct@ehbio:~# source /anaconda3/bin/activate qiime2-2020.6
-(qiime2-2020.6) ct@ehbio:~# which python
+<pre><code>ct@ysx:~# source /anaconda3/bin/activate qiime2-2020.6
+(qiime2-2020.6) ct@ysx:~# which python
 /anaconda3/envs/qiime2-2020.6/bin/python
-(qiime2-2020.6) ct@ehbio:~# source /anaconda3/bin/deactivate
+(qiime2-2020.6) ct@ysx:~# source /anaconda3/bin/deactivate
 DeprecationWarning: &#39;source deactivate&#39; is deprecated. Use &#39;conda deactivate&#39;.
-ct@ehbio:~# which python
+ct@ysx:~# which python
 /usr/bin/python</code></pre>
 <ul>
 <li>在环境<code>phylo</code>中安装<code>ete3</code></li>
@@ -903,12 +947,12 @@ source deactivate r</code></pre>
                          /anaconda2/envs/sourmash_env
                          /anaconda3/envs/qiime2-2020.6</code></pre>
 </div>
-<div id="remove_conda" class="section level3">
-<h3><span class="header-section-number">2.4.5</span> 移除某个conda环境</h3>
+<div id="remove_conda" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> 移除某个conda环境<a href="softinstall.html#remove_conda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>如果环境不需要了，或出了错，则可以移除。比如需要移除<code>phylo</code>环境，执行<code>conda remove -n phylo --all</code>。</p>
 </div>
-<div id="conda-R" class="section level3">
-<h3><span class="header-section-number">2.4.6</span> Conda配置R</h3>
+<div id="conda-R" class="section level3 hasAnchor" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> Conda配置R<a href="softinstall.html#conda-R" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>在添加了不同的源之后，有些源更新快，有些更新慢，经常会碰到版本不一的问题。而且软件版本的优先级，低于源的优先级。保险期间，先做下搜索，获得合适的版本号，然后再选择安装。</p>
 <pre><code>conda search r-essentials
 
@@ -955,8 +999,8 @@ r-essentials                 1.0                    r3.2.1_0  r
 <pre><code>conda install -c r -n r r-essentials=1.6.0</code></pre>
 <p><code>R</code>会安装于<code>conda_path/envs/r/bin</code>中，软链到位于环境变量的目录中即可正常使用。这就是环境变量的活学活用。</p>
 </div>
-<div id="conda_simple" class="section level3">
-<h3><span class="header-section-number">2.4.7</span> Conda环境简化运行</h3>
+<div id="conda_simple" class="section level3 hasAnchor" number="2.4.7">
+<h3><span class="header-section-number">2.4.7</span> Conda环境简化运行<a href="softinstall.html#conda_simple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>为了方便不同环境里面程序的运行，我写了一个shell脚本 (<code>conda_env_run.sh</code>)，具体运行如下：</p>
 <pre><code># -c: 表示实际需要运行的命令
 # -e: 表示需要启动的软件环境，也就是上面conda create建立的环境
@@ -966,33 +1010,33 @@ conda_env_run.sh -c  &#39;ete3 -h mod&#39; -e phylo
 conda_env_run.sh -c  &#39;bwa mem -h&#39; -e aligner -b &quot;/usr/local/anaconda2/bin&quot;</code></pre>
 <p><code>conda_env_run.sh</code>内容如下</p>
 </div>
-<div id="conda_bak" class="section level3">
-<h3><span class="header-section-number">2.4.8</span> Conda环境备份</h3>
+<div id="conda_bak" class="section level3 hasAnchor" number="2.4.8">
+<h3><span class="header-section-number">2.4.8</span> Conda环境备份<a href="softinstall.html#conda_bak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>有的时候会出现装一个新包，装着装着就把当前环境搞装崩了的情况，所以备份一个环境还是必要的，<code>conda create -n python35copy --clone python35</code>，把<code>python35</code>备份为<code>python35copy</code>。</p>
 </div>
-<div id="conda_import" class="section level3">
-<h3><span class="header-section-number">2.4.9</span> Conda环境导出和导入</h3>
+<div id="conda_import" class="section level3 hasAnchor" number="2.4.9">
+<h3><span class="header-section-number">2.4.9</span> Conda环境导出和导入<a href="softinstall.html#conda_import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>做培训时需要给参加培训的老师提供配置环境的脚本，之前都是提供一个<code>Bash</code>文件全部运行下来就可以完成整个环境的配置，更简单的方式是可以导出环境，自己配置时再导入就好了。</p>
-<pre><code># 假设我们有一个环境叫 ehbio，可以导出为一个yml文件
-conda env export --file ehbio_env.yml --name ehbio
+<pre><code># 假设我们有一个环境叫 ysx，可以导出为一个yml文件
+conda env export --file ysx_env.yml --name ysx
 
 # 然后换一台电脑，就可以完全重现这个环境了
 # 这么做的另一个优势是yml中明确列出了软件的版本，
 # 使用 conda solving environment时速度会快很多
-conda env create -f ehbio_env.yml</code></pre>
+conda env create -f ysx_env.yml</code></pre>
 </div>
-<div id="cond_segment_fault" class="section level3">
-<h3><span class="header-section-number">2.4.10</span> Conda软件安装 core dump error/Segment fault/段错误 怎么办</h3>
+<div id="cond_segment_fault" class="section level3 hasAnchor" number="2.4.10">
+<h3><span class="header-section-number">2.4.10</span> Conda软件安装 core dump error/Segment fault/段错误 怎么办<a href="softinstall.html#cond_segment_fault" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code># 清空缓存
 # https://github.com/conda/conda/issues/7815
 conda clean -a</code></pre>
 </div>
-<div id="conda_slow" class="section level3">
-<h3><span class="header-section-number">2.4.11</span> Conda为什么越来越慢？</h3>
+<div id="conda_slow" class="section level3 hasAnchor" number="2.4.11">
+<h3><span class="header-section-number">2.4.11</span> Conda为什么越来越慢？<a href="softinstall.html#conda_slow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Conda中包含的软件越来越多，而且软件的不同版本都保留了下来，软件的索引文件越来越大，安装一个新软件时搜索满足环境中所有软件依赖的软件的搜索空间也会越来越大，导致<code>solving environment</code>越来越慢。</p>
 </div>
-<div id="conda_how_work" class="section level3">
-<h3><span class="header-section-number">2.4.12</span> Conda是如何工作的</h3>
+<div id="conda_how_work" class="section level3 hasAnchor" number="2.4.12">
+<h3><span class="header-section-number">2.4.12</span> Conda是如何工作的<a href="softinstall.html#conda_how_work" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><p>从设定的通道 (<code>channel</code>)处下载通道中所有软件的索引信息 (<code>repodata.json</code>) (<em>Collecting package metadata (repodata.json)</em>)</p>
 <pre><code>&quot;packages&quot; : {
@@ -1015,12 +1059,12 @@ conda clean -a</code></pre>
 <li><p>下载并安装包</p></li>
 </ol>
 </div>
-<div id="cond_which_step_slow" class="section level3">
-<h3><span class="header-section-number">2.4.13</span> Conda哪一步慢？</h3>
+<div id="cond_which_step_slow" class="section level3 hasAnchor" number="2.4.13">
+<h3><span class="header-section-number">2.4.13</span> Conda哪一步慢？<a href="softinstall.html#cond_which_step_slow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>主要是第<code>3</code>步，确定待安装包的依赖包之间的兼容和已安装软件之间的兼容，获得需要下载的包和对应版本。</p>
 </div>
-<div id="cond_accelarate" class="section level3">
-<h3><span class="header-section-number">2.4.14</span> 如何提速Conda</h3>
+<div id="cond_accelarate" class="section level3 hasAnchor" number="2.4.14">
+<h3><span class="header-section-number">2.4.14</span> 如何提速Conda<a href="softinstall.html#cond_accelarate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>采用最新版的<code>conda</code> (Conda4.7相比Conda4.6提速<strong>3.5</strong>倍, Conda 4.8应该不会比4.7慢)</p></li>
 <li><p>安装时指定版本减少搜索空间 <code>conda install python=3.7.4</code></p></li>
@@ -1061,8 +1105,8 @@ conda config –add channels conda-forge
 <li><p>综合以上组合，之前尝试多次都没安装好的工具，直接搞定。</p></li>
 </ul>
 </div>
-<div id="conda_downlaod_fast" class="section level3">
-<h3><span class="header-section-number">2.4.15</span> 下载提速</h3>
+<div id="conda_downlaod_fast" class="section level3 hasAnchor" number="2.4.15">
+<h3><span class="header-section-number">2.4.15</span> 下载提速<a href="softinstall.html#conda_downlaod_fast" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><p>国内镜像，见<em><a href="https://mp.weixin.qq.com/s/eIw-k6RcR5KQFbrNmBsWBw">软件安装不上，可能是网速慢！Conda/R/pip/brew等国内镜像大全拿走不谢~~</a></em></p></li>
 <li><p>换个网或从朋友处拷贝已经下载好的压缩包一般在<code>anaconda_root_dir/pkgs</code>下，拷贝放在自己的<code>anaconda3/pkgs</code>下面，再次下载时系统会识别已经下载好的包而跳过 (并不总是有效)。</p></li>
@@ -1087,13 +1131,16 @@ for i in `grep &#39;::&#39; a | sed &#39;s/.*:://&#39; | sed &#39;s/$/.tar.bz2/&
 <li><p>如果拷贝过来未能自动识别，可手动安装 <code>conda install --offline local_path</code>。</p></li>
 </ol>
 </div>
-<div id="conda_pack" class="section level3">
-<h3><span class="header-section-number">2.4.16</span> 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统)</h3>
+<div id="conda_pack" class="section level3 hasAnchor" number="2.4.16">
+<h3><span class="header-section-number">2.4.16</span> 使用conda-pack直接从已经安装好的地方拷贝一份 (同一操作系统)<a href="softinstall.html#conda_pack" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>安装<code>conda-pack</code></p>
 <pre><code>conda install -c conda-forge conda-pack
 # pip install git+https://github.com/conda/conda-pack.git</code></pre>
 <p>打包已经安装好的环境</p>
-<pre><code>conda pack -n my_env_name -o my_env_name.tar.gz</code></pre>
+<pre><code>conda pack -n my_env_name -o my_env_name.tar.gz
+
+# 如果有多个同名环境，可指定目录打包
+# conda pack -p /path/my_env_name -o my_env_name.tar.gz</code></pre>
 <p>拷贝打包好的环境<code>my_env_name.tar.gz</code>到目标机器，并解压到任何目录，一般推荐放到<code>envs</code>目录下 <code>(anaconda_root/envs)</code>。(注意：<em>anaconda_root</em>改为自己的conda安装路径。)</p>
 <pre><code># 解压打包好的环境
 # 默认是全都解压到当前目录，场面很壮观
@@ -1113,10 +1160,10 @@ conda-unpack
 source deactivate</code></pre>
 </div>
 </div>
-<div id="docker" class="section level2">
-<h2><span class="header-section-number">2.5</span> Docker安装</h2>
-<div id="docker_what" class="section level3">
-<h3><span class="header-section-number">2.5.1</span> Docker能做什么</h3>
+<div id="docker" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Docker安装<a href="softinstall.html#docker" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="docker_what" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Docker能做什么<a href="softinstall.html#docker_what" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The key benefit of Docker is that it allows users to package an
 application with all of its dependencies into a standardized unit for
 software development.</p>
@@ -1127,8 +1174,8 @@ software development.</p>
 <li><p>提供一个系统资源分配手段，给不同用户的程序分配独立的计算资源。</p></li>
 </ul>
 </div>
-<div id="docker_basic" class="section level3">
-<h3><span class="header-section-number">2.5.2</span> Docker的几个基本概念</h3>
+<div id="docker_basic" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Docker的几个基本概念<a href="softinstall.html#docker_basic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>镜像 (Images): 可以认为是超级轻量级的虚拟机的快照。
 镜像会有自己的唯一ID，名字和标签，比如<code>ubuntu:latest</code>, <code>django:1.6</code>等。
@@ -1153,16 +1200,16 @@ Docker允许用户定义哪一部分是应用程序，哪一步分是数据，�
 那么我们可以在网络服务器容器 (webserver)中通过指定端口连接dbapp与数据库容器通讯。</p></li>
 </ul>
 </div>
-<div id="docker_install" class="section level3">
-<h3><span class="header-section-number">2.5.3</span> 安装和配置</h3>
+<div id="docker_install" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> 安装和配置<a href="softinstall.html#docker_install" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Centos 6.5 安装Docker</p></li>
 <li><p>其他新版操作系统的安装可以直接使用系统自带的<code>yum</code>或<code>apt</code>工具，
 启动和配置如上。</p></li>
 </ul>
 </div>
-<div id="docker_priviledges" class="section level3">
-<h3><span class="header-section-number">2.5.4</span> Docker用户权限</h3>
+<div id="docker_priviledges" class="section level3 hasAnchor" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> Docker用户权限<a href="softinstall.html#docker_priviledges" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>默认情况下，Docker命令的运行需要根用户权限。一个解决办法是把用户加入
 <code>docker</code>用户组，原因是Docker能够将<code>/run/docker.socket</code>的文件权限设为
 <code>660</code>、用户组设为<code>docker</code>。当把用户加入到<code>docker</code>用户组后，就无需使用
@@ -1172,8 +1219,8 @@ Docker允许用户定义哪一部分是应用程序，哪一步分是数据，�
 <p>脚本完成后，配置sudoers</p>
 <p>更多权限设置见<a href="http://dockone.io/article/589" class="uri">http://dockone.io/article/589</a></p>
 </div>
-<div id="docker_try" class="section level3">
-<h3><span class="header-section-number">2.5.5</span> Docker试用</h3>
+<div id="docker_try" class="section level3 hasAnchor" number="2.5.5">
+<h3><span class="header-section-number">2.5.5</span> Docker试用<a href="softinstall.html#docker_try" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>查看本地Docker的信息 <code>docker info</code></p></li>
 <li><p>运行Docker需要有一个镜像和容器。镜像是容器的只读版本，
@@ -1210,7 +1257,7 @@ ubuntu       latest   37b164bb431e   4 days ago   126.6 MB</code></pre>
 <li><p>运行<code>docker commit -m 'Add build-essential r-base' -a ct5869 8aca49b869be ct5869/ubuntu-dev:v1''</code>。</p></li>
 <li><p>测试运行新的镜像 <code>docker run --rm -it username/ubuntu-dev:v1</code>。</p></li>
 <li><p>挂载宿主机硬盘在容器内部操作, 通过<code>-v</code>参数，路径都为绝对路径，
-<code>docker run --rm -v /host_absolute_dir:/container_absolute_dir username/ubuntu-dev:v1 echo 'test' &gt;/container_absolute_dir/test_file</code>
+<code>docker run --rm -v /host_absolute_dir:/container_absolute_dir   username/ubuntu-dev:v1 echo 'test' &gt;/container_absolute_dir/test_file</code>
 这样，就相当于把host机目录<code>/host_absolute_dir</code>链接为docker容器路径
 <code>/container_absolute_dir</code>。</p></li>
 <li><p>如果只是自己用，到现在就可以结束了，我们可以在镜像里面继续更多的操作了。</p></li>
@@ -1231,8 +1278,8 @@ ubuntu       latest   37b164bb431e   4 days ago   126.6 MB</code></pre>
 译环境的ubuntu系统了。</p></li>
 </ul>
 </div>
-<div id="docker_basic_operation" class="section level3">
-<h3><span class="header-section-number">2.5.6</span> Docker系统基本操作</h3>
+<div id="docker_basic_operation" class="section level3 hasAnchor" number="2.5.6">
+<h3><span class="header-section-number">2.5.6</span> Docker系统基本操作<a href="softinstall.html#docker_basic_operation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>当一个容器不再使用时，运行<code>docker rm container_id</code>移除容器，以节省空间。
 这不会对镜像造成影响。</p></li>
@@ -1245,7 +1292,7 @@ ubuntu       latest   37b164bb431e   4 days ago   126.6 MB</code></pre>
 <li><p>运行<code>docker tag 26d99f722dca username/ubuntu-dev:v0</code>修改镜像的名字。</p></li>
 <li><p>运行<code>docker run -d --name=container_name username/ubuntu-dev:v1</code>
 指定运行的container的名字。</p></li>
-<li><p>运行<code>docker run --rm -ti -v /host_abs_dir:/container_abs_dir:ro username/ubuntu-dev:v1</code>挂载只读目录。</p></li>
+<li><p>运行<code>docker run --rm -ti -v /host_abs_dir:/container_abs_dir:ro   username/ubuntu-dev:v1</code>挂载只读目录。</p></li>
 <li><p>运行<code>docker stop containde_id/container_name</code>停止镜像。</p></li>
 <li><p>运行<code>docker rm $(docker ps -a -q)</code>和<code>docker rmi $(docker images -q)</code>移除全部镜像。<strong>BE CAREFULL</strong></p></li>
 <li><p>查看Docker镜像的创建历史 <code>docker history image_name</code></p></li>
@@ -1268,8 +1315,8 @@ bedff16caee9   7 months ago        /bin/sh -c #(nop) ENV  PHP_UPLOAD_MAX_FILESIZ
 </ul>
 <pre><code>docker logs --tail=all container_id</code></pre>
 </div>
-<div id="Dockerfile" class="section level3">
-<h3><span class="header-section-number">2.5.7</span> 使用Dockerfile自动构建镜像</h3>
+<div id="Dockerfile" class="section level3 hasAnchor" number="2.5.7">
+<h3><span class="header-section-number">2.5.7</span> 使用Dockerfile自动构建镜像<a href="softinstall.html#Dockerfile" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>除了可以像上面那样一步步地获取镜像、修改容器、存储镜像、上传镜像等操作外，
 我们还可以使用Dockerfile自动实现上述操作。</p>
 <p>典型的Dockerfile如下所示，</p>
@@ -1291,8 +1338,8 @@ COPY的文件的路径是相对于docker build的PATH，一般是当前路径；
 最后的<code>.</code>表示Dockerfile在当前目录，也可指定其他目录。<code>public_html</code>必须
 与Dockerfile在同一目录。</p>
 </div>
-<div id="docker_single_process" class="section level3">
-<h3><span class="header-section-number">2.5.8</span> Docker的特征</h3>
+<div id="docker_single_process" class="section level3 hasAnchor" number="2.5.8">
+<h3><span class="header-section-number">2.5.8</span> Docker的特征<a href="softinstall.html#docker_single_process" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Docker will watch only one single process.
 If you need multiple processes,
@@ -1301,8 +1348,8 @@ you need to add a monitor like <a href="http://mmonit.com/monit/">Monit</a> or
 care of the others. But this is not recommended.</li>
 </ul>
 </div>
-<div id="docker_attention" class="section level3">
-<h3><span class="header-section-number">2.5.9</span> Docker使用注意</h3>
+<div id="docker_attention" class="section level3 hasAnchor" number="2.5.9">
+<h3><span class="header-section-number">2.5.9</span> Docker使用注意<a href="softinstall.html#docker_attention" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>避免安装不必要的软件包。</p></li>
 <li><p>每个容器都只运行一个进程。</p></li>
@@ -1310,11 +1357,11 @@ care of the others. But this is not recommended.</li>
 </ul>
 </div>
 </div>
-<div id="makefile" class="section level2">
-<h2><span class="header-section-number">2.6</span> Makefile知识</h2>
+<div id="makefile" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Makefile知识<a href="softinstall.html#makefile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Makefile通常的格式和布局如下，有兴趣的可以自己去学，或者我们再出一个教程。</p>
 <pre class="make"><code># 假设当前文件夹下Makefile文件中内容如下 
-ct@ehbio:~$ cat Makefile
+ct@ysx:~$ cat Makefile
 # first: target名字
 # echo &quot;compile first&quot;: target对应的命令，任何Linux命令都可以
 first:
@@ -1325,24 +1372,24 @@ second:
 echo &quot;compile second&quot;
 
 # 直接运行make，会make第一个出现的target
-ct@ehbio:~$ make
+ct@ysx:~$ make
 echo &quot;compile first&quot;
 compile first
 # make first与直接make相同，因为它出现在第一个 
-ct@ehbio:~$ make first
+ct@ysx:~$ make first
 echo &quot;compile first&quot;
 compile first
 # all依赖于first, second，因此make all会先执行make first, make second
 # 然后才是自己所代表的命令 
-ct@ehbio:~$ make all
+ct@ysx:~$ make all
 echo &quot;compile first&quot;
 compile first
 echo &quot;compile second&quot;
 compile second
 echo &quot;compile all&quot;
 compile all</code></pre>
-<div id="docker_ref" class="section level3">
-<h3><span class="header-section-number">2.6.1</span> 参考</h3>
+<div id="docker_ref" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> 参考<a href="softinstall.html#docker_ref" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>入门级 <a href="http://blog.saymagic.cn/2015/06/01/learning-docker.html" class="uri">http://blog.saymagic.cn/2015/06/01/learning-docker.html</a></p></li>
 <li><p>入门级 <a href="https://www.dwhd.org/20151115_140935.html" class="uri">https://www.dwhd.org/20151115_140935.html</a></p></li>
@@ -1355,8 +1402,8 @@ compile all</code></pre>
 </ul>
 </div>
 </div>
-<div id="references" class="section level2">
-<h2><span class="header-section-number">2.7</span> References</h2>
+<div id="references-1" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> References<a href="softinstall.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="https://samrelton.wordpress.com/2015/07/02/rconda/">https://samrelton.wordpress.com/2015/07/02/rconda/</a></li>
 <li><a href="https://www.anaconda.com/blog/developer-blog/anaconda-r-users-sparkr-and-rbokeh/">https://www.anaconda.com/blog/developer-blog/anaconda-r-users-sparkr-and-rbokeh/</a></li>
@@ -1380,12 +1427,11 @@ compile all</code></pre>
           </div>
         </div>
       </div>
-<a href="linux-basic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linux_basic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="LinuxGreatTools.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1396,37 +1442,42 @@ compile all</code></pre>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Bash.pdf"],
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Bash.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

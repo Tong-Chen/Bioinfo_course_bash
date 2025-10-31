@@ -15,8 +15,8 @@ grep -v '^#' GRCh38.gtf | sed 's/^/chr/' >GRCh38.new.gtf
 ## 统计GTF文件中染色体数目？ {#gtf_chr}
 
 ```
-ct@ehbio:~/sxbd$ cut -f1 GRCh38.new.gtf | uniq -c >chrCount.txt
-ct@ehbio:~/sxbd$ awk '{print $2"\t"$1}' chrCount.txt 
+ct@ysx:~/sxbd$ cut -f1 GRCh38.new.gtf | uniq -c >chrCount.txt
+ct@ysx:~/sxbd$ awk '{print $2"\t"$1}' chrCount.txt 
 chr1	236802
 chr2	194223
 chr3	160954
@@ -64,7 +64,7 @@ chrKI270721.1	25
 chrKI270726.1	11
 chrKI270711.1	151
 chrKI270713.1	20
-ct@ehbio:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt 
+ct@ysx:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt 
  236802 chr1
  194223 chr2
  160954 chr3
@@ -90,7 +90,7 @@ ct@ehbio:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt
   56380 chr22
   28928 chr21
     144 chrMT
-ct@ehbio:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt | sed 's/  *\([0-9]*\) \(chr.*\)/\2\t\1/' 
+ct@ysx:~/sxbd$ awk '/chr[0-9XYM]/' chrCount.txt | sed 's/  *\([0-9]*\) \(chr.*\)/\2\t\1/' 
 chr1	236802
 chr2	194223
 chr3	160954
@@ -121,7 +121,7 @@ chrMT	144
 ## 统计GTF文件中基因数目？ {#gtf_num_gene}
 
 ```
-ct@ehbio:~/sxbd$ time cut -f 3 GRCh38.new.gtf | sort | uniq -c
+ct@ysx:~/sxbd$ time cut -f 3 GRCh38.new.gtf | sort | uniq -c
  712821 CDS
 1199851 exon
  144659 five_prime_utr
@@ -136,7 +136,7 @@ real	0m8.314s
 user	0m8.259s
 sys	0m0.679s
 # 更快
-ct@ehbio:~/sxbd$ time awk '{a[$3]+=1}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
+ct@ysx:~/sxbd$ time awk '{a[$3]+=1}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
 five_prime_utr 144659
 exon 1199851
 three_prime_utr 137545
@@ -152,14 +152,14 @@ user	0m1.504s
 sys	0m0.394s
 
 
-ct@ehbio:~/sxbd$ awk '{if(a[$3]=="") a[$3]=1; else a[$3]=a[$3]+1;}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
+ct@ysx:~/sxbd$ awk '{if(a[$3]=="") a[$3]=1; else a[$3]=a[$3]+1;}END{for(i in a) print i,a[i];}' GRCh38.new.gtf
 ```
 
 ## 计算GTF中外显子总长度？ {#gtf_exon_length}
 
 ```
 # 这个是冗余的外显子，后面在计算非冗余外显子
-ct@ehbio:~/sxbd$ awk '{if($3=="exon") sum+=$5-$4+1;}END\
+ct@ysx:~/sxbd$ awk '{if($3=="exon") sum+=$5-$4+1;}END\
 	{print "Total redundant exon length", sum;}' GRCh38.new.gtf
 ```
 

@@ -1,6 +1,5 @@
 # Bash 字符串处理 {#bash_string}
 
-视频课见 <http://bioinfo.ke.qq.com>。
 
 ## Bash特殊字符 {#bash_specific}
 
@@ -26,7 +25,7 @@
    
 4. 其它特殊字符:   
 
-`()`: 子shell运行；比如 `(cd ehbio; mdkir ysx)`进入`ehbio`目录，新建`ysx`文件夹，运行完之后还在当前目录。
+`()`: 子shell运行；比如 `(cd current_dir; mdkir ysx)`进入`current_dir`目录，新建`ysx`文件夹，运行完之后还在当前目录。
  
 `'`: 强引用字符串, 不解释特殊字符  
 
@@ -49,27 +48,27 @@
 shell语言是非类型的解释型语言, 给一个变量赋值实际上就是定义了变量, 而且可以赋不同类型的值。引用变量有两种方式, `$varname`和`${varname}`, 为防止变量在字符串中产生歧义建议使用第二种方式, 引用未定义的变量其值为空。  
 
 ```
-ct@ehbio:~$ a="EHBIO"
-ct@ehbio:~$ echo ${a}
-EHBIO
-ct@ehbio:~$ echo $a
-EHBIO
+ct@ysx:~$ a="current_dir"
+ct@ysx:~$ echo ${a}
+current_dir
+ct@ysx:~$ echo $a
+current_dir
 
 #出错了
-ct@ehbio:~$ echo $agood
+ct@ysx:~$ echo $agood
 
 #引用变量时大括号的作用
-ct@ehbio:~$ echo ${a}good
-EHBIOgood
-ct@ehbio:~$ echo $a.good
-EHBIO.good
+ct@ysx:~$ echo ${a}good
+current_dirgood
+ct@ysx:~$ echo $a.good
+current_dir.good
 
 #出错了
-ct@ehbio:~$ echo $a_good
+ct@ysx:~$ echo $a_good
 
 #引用变量时大括号的作用
-ct@ehbio:~$ echo ${a}_good
-EHBIO_good
+ct@ysx:~$ echo ${a}_good
+current_dir_good
 ```
 
 为了使变量可以在其它进程中使用, 需要将变量导出: `export varname`
@@ -97,10 +96,10 @@ EHBIO_good
 `$*`和`$@`: 传给脚本的所有参数(不包含脚本本身), 每个参数以`$IFS`分隔（一般内为空格, TAB, 换行）; 两者的不同点是引号括起来时，`$*`会被作为一个整体，`$@`还是单个的参数。
 
 ```
-ct@ehbio:~$ cat ehbio_testParam.sh
+ct@ysx:~$ cat current_dir_testParam.sh
 #!/bin/bash
 
-echo "EHBIO${IFS}great"
+echo "current_dir${IFS}great"
 
 echo '$*'
 echo -ne "\t";
@@ -124,8 +123,8 @@ for i in "$@"; do
 	echo $i;
 done
 
-ct@ehbio:~$ bash ehbio_testParam.sh sheng xin bao dian
-EHBIO 	
+ct@ysx:~$ bash current_dir_testParam.sh sheng xin bao dian
+current_dir 	
 great
 $*
 	sheng xin bao dian
@@ -153,24 +152,24 @@ Each element in $@:
 若没有length, 则默认到var串末尾
 
 ```bash
-ct@ehbio:~$ echo ${var:?message}
+ct@ysx:~$ echo ${var:?message}
 -bash: var: message
-ct@ehbio:~$ var='sheng xin bao dian'
-ct@ehbio:~$ echo ${var:6:3}
+ct@ysx:~$ var='sheng xin bao dian'
+ct@ysx:~$ echo ${var:6:3}
 xin
-ct@ehbio:~$ echo ${var:?message}
+ct@ysx:~$ echo ${var:?message}
 sheng xin bao dian
-ct@ehbio:~$ echo $?
+ct@ysx:~$ echo $?
 0
-ct@ehbio:~$ unset var
-ct@ehbio:~$ echo ${var:?message}
+ct@ysx:~$ unset var
+ct@ysx:~$ echo ${var:?message}
 -bash: var: message
-ct@ehbio:~$ echo $?
+ct@ysx:~$ echo $?
 1
-ct@ehbio:~$ echo ${var:=ehbio}
-ehbio
-ct@ehbio:~$ echo ${var}
-ehbio
+ct@ysx:~$ echo ${var:=current_dir}
+current_dir
+ct@ysx:~$ echo ${var}
+current_dir
 ```
 
 2. 模式匹配操作符
@@ -188,10 +187,10 @@ ehbio
 个人最常用的是最后一个，常用于`for`循环中。
 
 ```
-ct@ehbio:~$ var='sheng xin bao dian good'
-ct@ehbio:~$ ${var/good/great}
+ct@ysx:~$ var='sheng xin bao dian good'
+ct@ysx:~$ ${var/good/great}
 -bash: sheng: command not found
-ct@ehbio:~$ echo ${var/good/great}
+ct@ysx:~$ echo ${var/good/great}
 sheng xin bao dian great
 ```
 
@@ -229,16 +228,16 @@ Bash可以使用`[ … ]`结构或`test`命令测试复杂条件
 举两个例子
 
 ```
-ct@ehbio:~$ touch older
-ct@ehbio:~$ touch newer
+ct@ysx:~$ touch older
+ct@ysx:~$ touch newer
 
-ct@ehbio:~$ if test -e older; then echo "older esists"; fi
+ct@ysx:~$ if test -e older; then echo "older esists"; fi
 older esists
-ct@ehbio:~$ if test -s older; then echo "older is unempty"; fi
-ct@ehbio:~$ if [ -s older ]; then echo "older is unempty"; fi
-ct@ehbio:~$ if [ ! -s older ]; then echo "older is empty"; fi
+ct@ysx:~$ if test -s older; then echo "older is unempty"; fi
+ct@ysx:~$ if [ -s older ]; then echo "older is unempty"; fi
+ct@ysx:~$ if [ ! -s older ]; then echo "older is empty"; fi
 older is empty
-ct@ehbio:~$ if [ newer -nt older ]; then echo "newer"; fi
+ct@ysx:~$ if [ newer -nt older ]; then echo "newer"; fi
 newer
 ```
 
@@ -252,9 +251,9 @@ newer
 
 ```
 # 字符串的大小比较的是最先遇到的不同的ASCII码的大小
-ct@ehbio:~$ if test "10">"20"; then echo "10>20"; fi
+ct@ysx:~$ if test "10">"20"; then echo "10>20"; fi
 10>20
-ct@ehbio:~$ if test 10>20; then echo "10 < 20"; fi
+ct@ysx:~$ if test 10>20; then echo "10 < 20"; fi
 ```
 
 3. **整数**操作符
@@ -339,7 +338,7 @@ echo $a
 4. 选择结构: `case`和`select` (类似getopts)
 
 ```
-ct@ehbio:~$ cat select_case.sh
+ct@ysx:~$ cat select_case.sh
 
 PS3="Input the position of selected parameter (1 for exit):"
 
@@ -364,7 +363,7 @@ do
 	esac
 done
 
-ct@ehbio:~$ bash select_case.sh 
+ct@ysx:~$ bash select_case.sh 
 1) a
 2) b
 3) c
@@ -384,7 +383,7 @@ Input the position of selected parameter (1 for exit):1
 将存放在位置变量中的命令行参数依次向左传递`shift n` 命令行参数向左传递`n`个参数串
 
 ```
-ct@ehbio:~$ cat ehbio_testParam.sh
+ct@ysx:~$ cat current_dir_testParam.sh
 #!/bin/bash
 
 echo 'Each element in $*:'
@@ -401,7 +400,7 @@ for i in "$*"; do
 	echo -ne "\t";
 	echo $i;
 done
-ct@ehbio:~$ bash ehbio_testParam.sh sheng xin bao dian
+ct@ysx:~$ bash current_dir_testParam.sh sheng xin bao dian
 Each element in $*:
 	sheng xin bao dian
 sheng
@@ -413,16 +412,16 @@ sheng
 `function function_name () { function body}`定义函数，函数参数的获取同命令行参数获取。
 
 ```
-ct@ehbio:~$ cat test_func.sh 
-function show_ehbio () {
+ct@ysx:~$ cat test_func.sh 
+function show_current_dir () {
 	echo $@
 	echo $1
 }
 
-show_ehbio "EHBIO great" "SXBD great"
-ct@ehbio:~$ bash test_func.sh
-EHBIO great SXBD great
-EHBIO great
+show_current_dir "current_dir great" "SXBD great"
+ct@ysx:~$ bash test_func.sh
+current_dir great SXBD great
+current_dir great
 ```
 
 ## 输入输出 {#bash_inputoutput}
@@ -470,15 +469,15 @@ END
 命令选项: 
 
 ```
-ct@ehbio:~$ read -p "Enter the best tutorial: " tutorial
+ct@ysx:~$ read -p "Enter the best tutorial: " tutorial
 Enter the best tutorial: Sheng Xin Bao Dian
-ct@ehbio:~$ echo $tutorial
+ct@ysx:~$ echo $tutorial
 Sheng Xin Bao Dian
 
 # 隐藏输入内容
-ct@ehbio:~$ read -s -p "Enter your password: " password
+ct@ysx:~$ read -s -p "Enter your password: " password
 Enter your password: 
-ct@ehbio:~$ echo $password
+ct@ysx:~$ echo $password
 haha
 ```
 
